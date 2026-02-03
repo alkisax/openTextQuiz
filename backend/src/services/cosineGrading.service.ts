@@ -25,15 +25,15 @@ const cosineTextService = async (textA: string, textB: string) => {
   }
 
   // DEBUG — remove after
-  console.log("LEN A:", textA.length);
-  console.log("LEN B:", textB.length);
-  console.log("EQUAL STRING:", textA === textB);
-  console.log("JSON A:", JSON.stringify(textA));
-  console.log("JSON B:", JSON.stringify(textB));
-  const embeddingA2 = await getEmbedding(textA);
-  const cosineSelf = cosineSimilarity(embeddingA, embeddingA2);
-  console.log("COSINE(A vs B):", cosine);
-  console.log("COSINE(A vs A fresh):", cosineSelf);
+  // console.log("LEN A:", textA.length);
+  // console.log("LEN B:", textB.length);
+  // console.log("EQUAL STRING:", textA === textB);
+  // console.log("JSON A:", JSON.stringify(textA));
+  // console.log("JSON B:", JSON.stringify(textB));
+  // const embeddingA2 = await getEmbedding(textA);
+  // const cosineSelf = cosineSimilarity(embeddingA, embeddingA2);
+  // console.log("COSINE(A vs B):", cosine);
+  // console.log("COSINE(A vs A fresh):", cosineSelf);
 
   return {
     cosineScore: Math.round(cosine * 100),
@@ -58,23 +58,23 @@ const cosineGradingService = async (
   const cosine = cosineSimilarity(studentEmbedding, question.embedding);
 
   // DEBUG — remove after
-  console.log("LEN student:", answerText.length);
-  console.log("LEN canonical:", question.canonicalAnswer.length);
-  console.log("EQUAL STRING:", answerText === question.canonicalAnswer);
-  console.log("JSON student:", JSON.stringify(answerText));
-  console.log("JSON canonical:", JSON.stringify(question.canonicalAnswer));
-  const canonicalNow = await getEmbedding(question.canonicalAnswer);
-  const cosStoredVsNow = cosineSimilarity(canonicalNow, question.embedding);
-  console.log("COSINE(stored vs fresh canonical):", cosStoredVsNow);
-  const freshCanonical = await getEmbedding(question.canonicalAnswer);
-  console.log(
-    "COSINE(student vs fresh canonical):",
-    cosineSimilarity(studentEmbedding, freshCanonical),
-  );
-  console.log(
-    "COSINE(student vs stored canonical):",
-    cosineSimilarity(studentEmbedding, question.embedding),
-  );
+  // console.log("LEN student:", answerText.length);
+  // console.log("LEN canonical:", question.canonicalAnswer.length);
+  // console.log("EQUAL STRING:", answerText === question.canonicalAnswer);
+  // console.log("JSON student:", JSON.stringify(answerText));
+  // console.log("JSON canonical:", JSON.stringify(question.canonicalAnswer));
+  // const canonicalNow = await getEmbedding(question.canonicalAnswer);
+  // const cosStoredVsNow = cosineSimilarity(canonicalNow, question.embedding);
+  // console.log("COSINE(stored vs fresh canonical):", cosStoredVsNow);
+  // const freshCanonical = await getEmbedding(question.canonicalAnswer);
+  // console.log(
+  //   "COSINE(student vs fresh canonical):",
+  //   cosineSimilarity(studentEmbedding, freshCanonical),
+  // );
+  // console.log(
+  //   "COSINE(student vs stored canonical):",
+  //   cosineSimilarity(studentEmbedding, question.embedding),
+  // );
 
   return {
     cosineScore: Math.round(cosine * 100),

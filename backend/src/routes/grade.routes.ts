@@ -23,10 +23,20 @@ import { controllers } from "../controllers/controller";
 
 const router = Router();
 
+// vector routes
 // question-based
 router.post("/cosine", controllers.gradeWithCosineDb);
-
 // text-to-text
 router.post("/cosine/text", controllers.gradeTextWithCosine);
+
+// BM25 routes
+// BM25 text-to-text
+router.post("/bm25/text", controllers.gradeTextWithBm25);
+
+// BULLETS ad-hoc comparison
+router.post("/bullets/compare", controllers.compareTextWithBullets);
+
+//language
+router.post("/language", controllers.gradeTextWithLanguage);
 
 export default router;
