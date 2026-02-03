@@ -39,4 +39,7 @@ router.post("/bullets/compare", controllers.compareTextWithBullets);
 //language
 router.post("/language", controllers.gradeTextWithLanguage);
 
+// ✅ TOTAL (text-to-text)
+router.post("/total/text", controllers.gradeTotalText);
+
 export default router;

@@ -6,6 +6,7 @@ import path from "path";
 import { bm25TextGrading } from "../services/bm25Text.service";
 import { compareTextsWithBullets } from "../services/bullets.service";
 import { gradeLanguage } from "../services/language.service";
+import { gradeTotalTextToText } from "../services/total.service";
 
 /* 
 VECTOR
@@ -130,10 +131,33 @@ const gradeTextWithLanguage = async (req: Request, res: Response) => {
   }
 };
 
+/*
+TOTAL
+*/
+const gradeTotalText = async (req: Request, res: Response) => {
+  try {
+    const { textA, textB } = req.body;
+
+    if (!textA || !textB) {
+      throw new ValidationError("textA and textB are required");
+    }
+
+    const result = await gradeTotalTextToText(textA, textB);
+
+    return res.json({
+      status: true,
+      ...result,
+    });
+  } catch (error) {
+    return handleControllerError(res, error);
+  }
+};
+
 export const controllers = {
   gradeWithCosineDb,
   gradeTextWithCosine,
   gradeTextWithBm25,
   compareTextWithBullets,
   gradeTextWithLanguage,
+  gradeTotalText,
 };
