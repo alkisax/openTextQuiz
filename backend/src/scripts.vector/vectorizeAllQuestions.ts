@@ -9,7 +9,7 @@ import type { QuestionSpec } from "../types/qa.types";
   - μιλάει ΜΟΝΟ με DAO
 */
 
-const buildEmbeddingText = (q: QuestionSpec): string => {
+export const buildEmbeddingText = (q: QuestionSpec): string => {
   return [
     `Ερώτηση: ${q.questionText}`,
     `Ενδεικτική απάντηση: ${q.canonicalAnswer}`,
@@ -43,7 +43,8 @@ const run = async () => {
 
     console.log(`🔢 Vectorizing ${question.id}`);
 
-    const text = buildEmbeddingText(question);
+    // const text = buildEmbeddingText(question);
+    const text = question.canonicalAnswer;
     const embedding = await getEmbedding(text);
 
     await vectorDao.saveEmbeddingById(question.id, embedding, dataPath);

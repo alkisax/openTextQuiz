@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import type { Request, Response } from "express";
 import path from "path";
-// import gradeRoutes from "./routes/grade.routes";
+import gradeRoutes from "./routes/grade.routes";
 
 export const app = express();
 
@@ -22,7 +22,7 @@ app.get("/health", (_req, res) => {
   res.send("ok");
 });
 
-// app.use("/api/grade", gradeRoutes);
+app.use("/api/grade", gradeRoutes);
 
 app.use(express.static("dist"));
 

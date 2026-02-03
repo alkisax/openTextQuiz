@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-// src/utils/errorHandler.ts
+// backend\src\utils\error\errorHandler.ts
 import type { Response } from 'express';
 import { ZodError } from 'zod';
 import { BadRequestError, DatabaseError, NotFoundError, ValidationError } from './errors.types';
