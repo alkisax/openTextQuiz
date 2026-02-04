@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from 'axios';
+import axios from "axios";
 import {
   Box,
   Button,
@@ -20,31 +20,30 @@ const App = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-const handleButtonSubmit = async () => {
-  setIsLoading(true);
-  setIsSubmitted(false);
+  const handleButtonSubmit = async () => {
+    setIsLoading(true);
+    setIsSubmitted(false);
 
-  const payload = { textA, textB };
+    const payload = { textA, textB };
 
-  console.log('SUBMIT:', payload);
+    console.log("SUBMIT:", payload);
 
-  const res = await axios.post<GradeResponse>(
-    `${url}/api/grade/total/text`,
-    payload,
-    {
-      headers: {
-        'Content-Type': 'application/json',
+    const res = await axios.post<GradeResponse>(
+      `${url}/api/grade/total/text`,
+      payload,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
       },
-    }
-  );
+    );
 
-  console.log('RESPONSE:', res.data);
+    console.log("RESPONSE:", res.data);
 
-  setResult(res.data);
-  setIsSubmitted(true);
-  setIsLoading(false);
-};
-
+    setResult(res.data);
+    setIsSubmitted(true);
+    setIsLoading(false);
+  };
 
   const handleTextAChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -56,6 +55,13 @@ const handleButtonSubmit = async () => {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     setTextB(e.target.value);
+  };
+
+  const handleClear = () => {
+    setTextA("");
+    setTextB("");
+    setResult(null);
+    setIsSubmitted(false);
   };
 
   return (
@@ -88,13 +94,24 @@ const handleButtonSubmit = async () => {
         sx={{ mb: 3 }}
       />
 
-      <Button
-        variant="contained"
-        onClick={handleButtonSubmit}
-        disabled={isLoading}
-      >
-        {isLoading ? <CircularProgress size={22} /> : "Υποβολή"}
-      </Button>
+      <Box display="flex" gap={2} mt={2}>
+        <Button
+          variant="contained"
+          onClick={handleButtonSubmit}
+          disabled={isLoading}
+        >
+          {isLoading ? <CircularProgress size={22} /> : "Υποβολή"}
+        </Button>
+
+        <Button
+          variant="outlined"
+          color="secondary"
+          onClick={handleClear}
+          disabled={isLoading}
+        >
+          Clear
+        </Button>
+      </Box>
 
       {isSubmitted && result && (
         <Paper sx={{ mt: 4, p: 3 }}>
