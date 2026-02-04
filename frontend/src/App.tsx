@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from 'axios';
 import {
   Box,
   Button,
@@ -19,25 +20,31 @@ const App = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleButtonSubmit = async () => {
-    const payload = { textA, textB };
+const handleButtonSubmit = async () => {
+  setIsLoading(true);
+  setIsSubmitted(false);
 
-    console.log("SUBMIT:", payload);
+  const payload = { textA, textB };
 
-    const res = await fetch(`${url}/api/grade/total/text`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
+  console.log('SUBMIT:', payload);
 
-    const data: GradeResponse = await res.json();
+  const res = await axios.post<GradeResponse>(
+    `${url}/api/grade/total/text`,
+    payload,
+    {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+  );
 
-    console.log("RESPONSE:", data);
+  console.log('RESPONSE:', res.data);
 
-    setResult(data);
-    setIsSubmitted(true);
-    setIsLoading(false);
-  };
+  setResult(res.data);
+  setIsSubmitted(true);
+  setIsLoading(false);
+};
+
 
   const handleTextAChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,

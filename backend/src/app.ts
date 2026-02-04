@@ -24,15 +24,12 @@ app.get("/health", (_req, res) => {
 
 app.use("/api/grade", gradeRoutes);
 
-app.use(express.static("dist"));
-
-// ✅ SERVE UPLOADS BEFORE DIST
-// ΠΡΟΣΟΧΗ το ../ στο path είναι συμαντικο. τα αρχεια μας βρίσκονται τελικά στον φάκελο dist
-app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
+const publicPath = path.join(__dirname, '../dist');
+app.use(express.static(publicPath));
 
 //αυτο είναι για να σερβίρει το index.html του front όταν ο χρήστης επισκέπτεται το root path ή οποιοδήποτε άλλο path που δεν είναι api ή api-docs
 app.get(/^\/(?!api|api-docs).*/, (_req, res) => {
-  res.sendFile(path.join(__dirname, "../public", "index.html"));
+  res.sendFile(path.join(publicPath, "index.html"));
 });
 
 export default app;

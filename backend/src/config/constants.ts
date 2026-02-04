@@ -12,7 +12,7 @@ if (!process.env.MONGO_URI) {
 
 export const consts = {
   env: {
-    PORT: Number(process.env.PORT || 3000),
+    PORT: Number(process.env.PORT || 3009),
     MONGO_URI: process.env.MONGO_URI,
     OPENAI_API_KEY: process.env.OPENAI_API_KEY,
   },
