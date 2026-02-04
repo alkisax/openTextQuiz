@@ -107,6 +107,7 @@ const handleButtonSubmit = async () => {
             <ScoreBox label="Cosine" value={result.scores.cosine} />
             <ScoreBox label="BM25" value={result.scores.bm25} />
             <ScoreBox label="Bullets" value={result.scores.bullets} />
+            <ScoreBox label="Language" value={result.scores.language} />
           </Box>
         </Paper>
       )}
