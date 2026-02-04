@@ -43,3 +43,21 @@ systemctl reload nginx
 certbot --nginx -d portfolio-projects.space -d www.portfolio-projects.space
 systemctl reload nginx
 ```
+
+## oneline deploy
+```bash
+cd /var/www/open-text \
+&& git pull origin main \
+&& cd frontend \
+&& npm install \
+&& npm run build \
+&& cd ../backend \
+&& npm install \
+&& npm run build \
+&& pm2 restart open-text --update-env \
+&& nginx -t \
+&& systemctl reload nginx \
+&& sleep 3 \
+&& curl https://portfolio-projects.space/open-text/api/ping; echo
+
+```
