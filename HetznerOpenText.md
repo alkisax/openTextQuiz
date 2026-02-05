@@ -60,5 +60,6 @@ cd /var/www/open-text \
 && systemctl reload nginx \
 && sleep 3 \
 && curl https://portfolio-projects.space/open-text/api/ping; echo
-
 ```
+`pm2 logs open-text --lines 100`
+`pm2 flush open-text`
