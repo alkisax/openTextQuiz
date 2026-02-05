@@ -19,6 +19,11 @@ type GeoQuestion = {
   canonicalAnswer?: unknown;
 };
 
+type MapPoint = {
+  x: number;
+  y: number;
+  label: string;
+};
 
 const pickRandomQuestion = (questions: GeoQuestion[]) => {
   const mapQuestions = questions.filter((q) => q.rules?.map);
@@ -30,8 +35,14 @@ const pickRandomQuestion = (questions: GeoQuestion[]) => {
 
 const GeographyMaps = () => {
   const [question, setQuestion] = useState<GeoQuestion | null>(null);
+  const [points, setPoints] = useState<MapPoint[]>([]);
 
   pickRandomQuestion(geoQuestionsData as GeoQuestion[]);
+
+  const handleNextQuestion = () => {
+    setQuestion(pickRandomQuestion(geoQuestionsData as GeoQuestion[]));
+    setPoints([]); // ✅ reset ΧΩΡΙΣ effects
+  };
 
   return (
     <Box sx={{ p: 2 }}>
@@ -51,14 +62,14 @@ const GeographyMaps = () => {
         </>
       )}
 
-      <MapClickQuiz maxWidth={500} />
+      <MapClickQuiz
+        maxWidth={500}
+        points={points}
+        setPoints={setPoints}
+        maxPoints={question?.rules?.maxPoints ?? 4}
+      />
 
-      <Button
-        variant="contained"
-        onClick={() =>
-          setQuestion(pickRandomQuestion(geoQuestionsData as GeoQuestion[]))
-        }
-      >
+      <Button variant="contained" onClick={handleNextQuestion}>
         Νέα τυχαία ερώτηση
       </Button>
 
