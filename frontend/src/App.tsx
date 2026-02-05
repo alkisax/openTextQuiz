@@ -5,7 +5,7 @@ import GeographyMaps from './pages/GeographyMaps';
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/open-text-page' element={<OpenText />} />
