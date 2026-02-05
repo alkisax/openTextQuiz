@@ -1,16 +1,16 @@
 import { useState } from "react";
 
 type MapClickQuizProps = {
-  maxWidth?: number;
-  points: MapPoint[];
-  setPoints: React.Dispatch<React.SetStateAction<MapPoint[]>>;
-  maxPoints: number;
+  maxWidth?: number; // μέγιστο πλάτος container
+  points: MapPoint[]; // σημεία που προβάλλονται (user ή canonical)
+  setPoints: React.Dispatch<React.SetStateAction<MapPoint[]>>; // setter από parent
+  maxPoints: number; // πόσα σημεία επιτρέπονται συνολικά
 };
 
 type MapPoint = {
-  x: number;
-  y: number;
-  label: string;
+  x: number; // ποσοστό X (0–100)
+  y: number; // ποσοστό Y (0–100)
+  label: string; // κείμενο (προς το παρόν δεν βαθμολογείται)
 };
 
 // compact styles για input + label (ίδια πριν & μετά submit)
@@ -41,19 +41,24 @@ const MapClickQuiz = ({
   setPoints,
   maxPoints,
 }: MapClickQuizProps) => {
-  // προσωρινό σημείο (όσο γράφουμε)
+  // προσωρινό σημείο (όσο γράφουμε πριν το submit)
   const [draftPoint, setDraftPoint] = useState<{ x: number; y: number } | null>(
     null,
   );
+
+  // προσωρινό label για το draft σημείο
   const [label, setLabel] = useState("");
 
   // click πάνω στο overlay
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    // αν γράφουμε ήδη ή έχουμε 4 σημεία, μπλοκ
+    // αν υπάρχει ήδη draft ή έχουμε φτάσει το max, μπλοκάρουμε
     if (draftPoint || points.length >= maxPoints) return;
 
+    // πραγματικές διαστάσεις του overlay (ίδιες με της εικόνας)
     const rect = e.currentTarget.getBoundingClientRect();
 
+    // offsetX / offsetY είναι ήδη relative στο element
+    // τα μετατρέπουμε σε ποσοστά για responsive συμπεριφορά
     const xPercentage = (e.nativeEvent.offsetX / rect.width) * 100;
     const yPercentage = (e.nativeEvent.offsetY / rect.height) * 100;
 
@@ -64,12 +69,13 @@ const MapClickQuiz = ({
   const handleSubmit = () => {
     if (!draftPoint || !label.trim()) return;
 
-    setPoints((prev) => [...prev, { x: draftPoint.x, y: draftPoint.y, label }]);
+    // προσθέτουμε το σημείο στο state του parent
+    setPoints((prev) => [
+      ...prev,
+      { x: draftPoint.x, y: draftPoint.y, label },
+    ]);
 
-    // μετά την υποβολή:
-    // - η κουκίδα μένει
-    // - το label μένει
-    // - φεύγει μόνο το κουμπί υποβολής
+    // καθαρίζουμε μόνο το draft
     setDraftPoint(null);
     setLabel("");
   };
@@ -86,11 +92,9 @@ const MapClickQuiz = ({
   };
 
   const removePoint = (index: number) => {
-    // αν ακυρώσουμε ενα σημείο να μπορούμε να το ξαναβάλουμε
+    // αν ακυρώσουμε ένα σημείο, ελευθερώνεται slot
     setPoints((prev) => prev.filter((_, i) => i !== index));
   };
-
-  // if (readOnly) return;
 
   return (
     <div
@@ -119,21 +123,23 @@ const MapClickQuiz = ({
           }}
         />
 
-        {/* overlay για click */}
+        {/* overlay για click – τα coords ξεκινούν από την εικόνα */}
         <div
           onClick={handleClick}
           style={{
             position: "absolute",
             inset: 0,
             cursor:
-              draftPoint || points.length >= 4 ? "not-allowed" : "crosshair",
+              draftPoint || points.length >= maxPoints
+                ? "not-allowed"
+                : "crosshair",
           }}
         />
 
-        {/* ήδη υποβληθέντα σημεία (ΜΕΝΟΥΝ) */}
+        {/* ήδη υποβληθέντα σημεία (μένουν) */}
         {points.map((p, index) => (
           <div key={index}>
-            {/* κουκίδα - ΜΕΝΕΙ ΑΚΡΙΒΩΣ στο click */}
+            {/* κουκίδα */}
             <div
               style={{
                 position: "absolute",
@@ -143,12 +149,12 @@ const MapClickQuiz = ({
                 width: 10,
                 height: 10,
                 borderRadius: "50%",
-                backgroundColor: "red",
+                backgroundColor: "red", // εδώ αργότερα θα γίνει πράσινο/κόκκινο
                 pointerEvents: "none",
               }}
             />
 
-            {/* label δίπλα στην κουκίδα - ΜΕΝΕΙ μετά το submit */}
+            {/* label δίπλα στην κουκίδα */}
             <div
               style={{
                 position: "absolute",
@@ -166,7 +172,7 @@ const MapClickQuiz = ({
                 style={compactInputStyle}
               />
 
-              {/* μετά την υποβολή μένει ΜΟΝΟ η ακύρωση */}
+              {/* αφαίρεση σημείου */}
               <button
                 style={{ fontSize: 11 }}
                 onClick={() => removePoint(index)}
@@ -180,7 +186,7 @@ const MapClickQuiz = ({
         {/* draft κουκίδα + input */}
         {draftPoint && (
           <>
-            {/* κουκίδα draft - ΜΕΝΕΙ ΑΚΡΙΒΩΣ στο click */}
+            {/* κουκίδα draft */}
             <div
               style={{
                 position: "absolute",
@@ -195,7 +201,7 @@ const MapClickQuiz = ({
               }}
             />
 
-            {/* input δίπλα στην κουκίδα */}
+            {/* input για το draft */}
             <div
               style={{
                 position: "absolute",
@@ -213,7 +219,6 @@ const MapClickQuiz = ({
                 style={compactInputStyle}
               />
 
-              {/* πριν την υποβολή φαίνεται και το submit */}
               <button style={{ fontSize: 11 }} onClick={handleSubmit}>
                 ✔
               </button>
@@ -232,7 +237,9 @@ const MapClickQuiz = ({
           fontFamily: "monospace",
         }}
       >
-        <div>Σημεία: {points.length} / 4</div>
+        <div>
+          Σημεία: {points.length} / {maxPoints}
+        </div>
         {points.map((p, i) => (
           <div key={i}>
             {i + 1}. ({p.x.toFixed(2)}, {p.y.toFixed(2)}) → {p.label}
