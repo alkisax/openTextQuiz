@@ -114,7 +114,7 @@ const MapClickQuiz = ({
       >
         {/* χάρτης */}
         <img
-          src="/mapOfGreecce.png"
+          src={`${import.meta.env.BASE_URL}mapOfGreecce.png`}
           alt="Χάρτης Ελλάδας"
           style={{
             width: "100%",
