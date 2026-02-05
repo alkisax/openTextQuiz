@@ -45,7 +45,7 @@ const pickRandomQuestion = (questions: GeoQuestion[]) => {
 const GeographyMaps = () => {
   const [question, setQuestion] = useState<GeoQuestion | null>(null);
   const [points, setPoints] = useState<MapPoint[]>([]);
-  const [showAnswers, setShowAnswers] = useState(false);
+  const [, setShowAnswers] = useState(false);
 
   pickRandomQuestion(geoQuestionsData as GeoQuestion[]);
 
@@ -100,7 +100,6 @@ const GeographyMaps = () => {
         points={points}
         setPoints={setPoints}
         maxPoints={question?.rules?.maxPoints ?? 4}
-        readOnly={showAnswers}
       />
 
       <Box sx={{ display: "flex", gap: 2, mt: 2 }}>

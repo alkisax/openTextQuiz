@@ -5,7 +5,6 @@ type MapClickQuizProps = {
   points: MapPoint[];
   setPoints: React.Dispatch<React.SetStateAction<MapPoint[]>>;
   maxPoints: number;
-  readOnly?: boolean;
 };
 
 type MapPoint = {
@@ -41,7 +40,6 @@ const MapClickQuiz = ({
   points,
   setPoints,
   maxPoints,
-  readOnly,
 }: MapClickQuizProps) => {
   // προσωρινό σημείο (όσο γράφουμε)
   const [draftPoint, setDraftPoint] = useState<{ x: number; y: number } | null>(
