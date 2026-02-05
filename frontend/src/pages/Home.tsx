@@ -14,7 +14,7 @@ const Home = () => {
       <Button
         variant='contained'
         size='large'
-        onClick={() => navigate('/open-text')}
+        onClick={() => navigate('/open-text-page')}
       >
         Open Text
       </Button>

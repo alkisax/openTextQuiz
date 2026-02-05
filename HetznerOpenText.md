@@ -45,6 +45,7 @@ systemctl reload nginx
 ```
 
 ## oneline deploy
+ssh root@49.12.76.128
 ```bash
 cd /var/www/open-text \
 && git pull origin main \
