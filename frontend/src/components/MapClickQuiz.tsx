@@ -13,27 +13,6 @@ type MapPoint = {
   label: string; // κείμενο (προς το παρόν δεν βαθμολογείται)
 };
 
-// compact styles για input + label (ίδια πριν & μετά submit)
-const compactInputStyle: React.CSSProperties = {
-  width: 70,
-  height: 18,
-  fontSize: 11,
-  padding: "1px 3px",
-  border: "1px solid #aaa",
-  borderRadius: 3,
-  outline: "none",
-};
-
-const compactBoxStyle: React.CSSProperties = {
-  display: "flex",
-  gap: 3,
-  background: "white",
-  padding: "2px 3px",
-  border: "1px solid #ccc",
-  borderRadius: 4,
-  zIndex: 10,
-};
-
 // component: δείχνει χάρτη + overlay για click
 const MapClickQuiz = ({
   maxWidth = 900,
@@ -70,10 +49,7 @@ const MapClickQuiz = ({
     if (!draftPoint || !label.trim()) return;
 
     // προσθέτουμε το σημείο στο state του parent
-    setPoints((prev) => [
-      ...prev,
-      { x: draftPoint.x, y: draftPoint.y, label },
-    ]);
+    setPoints((prev) => [...prev, { x: draftPoint.x, y: draftPoint.y, label }]);
 
     // καθαρίζουμε μόνο το draft
     setDraftPoint(null);
@@ -94,6 +70,27 @@ const MapClickQuiz = ({
   const removePoint = (index: number) => {
     // αν ακυρώσουμε ένα σημείο, ελευθερώνεται slot
     setPoints((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  // styles για input + label (ίδια πριν & μετά submit)
+  const compactInputStyle = {
+    width: 70,
+    height: 18,
+    fontSize: 11,
+    padding: "1px 3px",
+    border: "1px solid #aaa",
+    borderRadius: 3,
+    outline: "none",
+  };
+
+  const compactBoxStyle = {
+    display: "flex",
+    gap: 3,
+    background: "white",
+    padding: "2px 3px",
+    border: "1px solid #ccc",
+    borderRadius: 4,
+    zIndex: 10,
   };
 
   return (

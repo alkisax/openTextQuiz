@@ -3,11 +3,8 @@ import { Box, Button, Typography } from "@mui/material";
 import geoQuestionsData from "../data/geoQuestionsData.json";
 import MapClickQuiz from "../components/MapClickQuiz";
 
-/* =========================
-   ΤΥΠΟΙ ΔΕΔΟΜΕΝΩΝ
-========================= */
-
-// τύπος ερώτησης γεωγραφίας
+// ΤΥΠΟΙ ΔΕΔΟΜΕΝΩΝ
+// ερώτησης γεωγραφίας
 type GeoQuestion = {
   id: string;
   category: string;
@@ -15,11 +12,11 @@ type GeoQuestion = {
   rules?: {
     map?: boolean; // αν είναι ερώτηση με χάρτη
     maxPoints?: number; // πόσα σημεία επιτρέπονται
+    tolerance?: boolean; // αυτό είναι bool (δεν το έχω χρησιμοποιήσει γιατί βάζω απευθείας tolerancePct 3.5/8 )
     tolerancePct?: number; // ανοχή σε %
-    expectsSubset?: boolean;
+    expectsSubset?: boolean; // αυτό αφορά αλλλου τύπου έρωτήσεις (πχ 4 απο τους 12 θεους του ολύμπου. Αν και έχουμε και μία εδω)
     minItems?: number;
     maxItems?: number;
-    tolerance?: boolean;
   };
   canonicalAnswer?: CanonicalPointsAnswer; // σωστές απαντήσεις
 };
@@ -34,17 +31,23 @@ type CanonicalPointsAnswer = {
   }[];
 };
 
-// σημείο πάνω στον χάρτη (user ή canonical)
+// σημείο πάνω στον χάρτη (user ή απάντησης)
 type MapPoint = {
   x: number;
   y: number;
   label: string;
 };
 
-//HELPERS
+// τύπος graded point
+type GradedPoint = MapPoint & {
+  correct: boolean;
+};
+
+//HELPER
 // διαλέγει τυχαία ΜΟΝΟ ερώτηση που έχει rules.map === true
+// αυτό είναι μονο για dev. αλλιώς η ερώτηση θα έρχετε αλλιώς
 const pickRandomQuestion = (questions: GeoQuestion[]) => {
-  const mapQuestions = questions.filter((q) => q.rules?.map);
+  const mapQuestions = questions.filter((question) => question.rules?.map);
   if (mapQuestions.length === 0) return null;
 
   const index = Math.floor(Math.random() * mapQuestions.length);
@@ -54,18 +57,18 @@ const pickRandomQuestion = (questions: GeoQuestion[]) => {
 const GeographyMaps = () => {
   // τρέχουσα ερώτηση
   const [question, setQuestion] = useState<GeoQuestion | null>(null);
-
   // σημεία που έχει βάλει ο χρήστης (ή που δείχνουμε ως λύσεις)
   const [points, setPoints] = useState<MapPoint[]>([]);
-
+  // αποτέλεσμα αξιολόγησης των σημείων του χρήστη (σωστό / λάθος)
   const [gradedPoints, setGradedPoints] = useState<
     (MapPoint & { correct: boolean })[] | null
   >(null);
-
-  // flag μόνο για flow (δεν το διαβάζουμε)
+  // στο submit θα δείχνουμε όλα τα σημεια του user + όσα σωστα δεν βρέθηκαν
+  const [displayPoints, setDisplayPoints] = useState<MapPoint[]>([]);
+  // TODO flag μόνο για flow (δεν το διαβάζουμε)
   const [, setShowAnswers] = useState(false);
 
-  // CANONICAL POINTS
+  // Σημεία απο την απάντηση
   // μετατρέπει το canonicalAnswer της ερώτησης σε MapPoint[]
   const getCanonicalPoints = (question: GeoQuestion | null): MapPoint[] => {
     if (!question) return [];
@@ -73,10 +76,10 @@ const GeographyMaps = () => {
     const canonical = question.canonicalAnswer;
     if (!canonical || canonical.type !== "points") return [];
 
-    return canonical.points.map((p) => ({
-      x: p.x,
-      y: p.y,
-      label: p.label,
+    return canonical.points.map((point) => ({
+      x: point.x,
+      y: point.y,
+      label: point.label,
     }));
   };
 
@@ -93,15 +96,16 @@ const GeographyMaps = () => {
   const handleShowAnswers = () => {
     if (!question) return;
 
-    const canonicalPoints = getCanonicalPoints(question);
+    const canonicalPoints = getCanonicalPoints(question); // μου επιστρέφει [x,y,label]
 
     // αντικαθιστούμε τα user points με τα canonical
+    // TODO θα αλλάξει να δείχνει τα λάθη και τις απαντήσεις
     setPoints(canonicalPoints);
     setShowAnswers(true);
   };
 
   // GRADING (ΜΟΝΟ ΣΗΜΕΙΟ)
-  // απόσταση δύο σημείων σε ποσοστά
+  // απόσταση δύο σημείων σε ποσοστά → μου επιστρέφει την υποτείνουσα
   const distancePct = (
     a: { x: number; y: number },
     b: { x: number; y: number },
@@ -111,24 +115,20 @@ const GeographyMaps = () => {
     return Math.sqrt(dx * dx + dy * dy);
   };
 
-  // τύπος graded point
-  type GradedPoint = MapPoint & {
-    correct: boolean;
-  };
-
   // ελέγχει αν τα user points πέφτουν κοντά σε canonical
   const gradePoints = (
     userPoints: MapPoint[],
     canonicalPoints: { x: number; y: number }[],
     tolerancePct: number,
   ): GradedPoint[] => {
-    const remaining = [...canonicalPoints]; // για να μη μετράει διπλό
+    const remaining = [...canonicalPoints]; // για να μην αγγίζουμε το array των απαντήσεων
 
+    // παίρνει ένα ένα τα σημεία του user, και ελεγχει αν η αποστασή με του με κάποιο απο τα σημεία της απάντησης είναι μικρότερη απο το οριο. αν ναί το μετράει ως σωστό. επιστρέφει το σημείο με correct: true/false
     return userPoints.map((userPoint) => {
-      let matchedIndex = -1;
+      let matchedIndex = -1; // = δεν βρέθηκε τίποτα ακόμα
 
-      const isCorrect = remaining.some((canon, i) => {
-        const dist = distancePct(userPoint, canon);
+      const isCorrect = remaining.some((canonicalPont, i) => {
+        const dist = distancePct(userPoint, canonicalPont); // helper πιο πανω
         if (dist <= tolerancePct) {
           matchedIndex = i;
           return true;
@@ -138,7 +138,7 @@ const GeographyMaps = () => {
 
       // αν βρεθεί σωστό, αφαιρείται από τα διαθέσιμα
       if (matchedIndex !== -1) {
-        remaining.splice(matchedIndex, 1);
+        remaining.splice(matchedIndex, 1); // αφαιρεί 1 ξεκινόντας απο το matchedIndex, δηλ αφαιρεί το matchedIndex
       }
 
       return {
@@ -148,11 +148,50 @@ const GeographyMaps = () => {
     });
   };
 
+  // φτιάχνει τα σημεία που θα εμφανιστούν μετά το submit (δηλ σωστά + τα λάθη και το αντιστοιχό σωστό σημείο)
+  const buildReviewPoints = (
+    graded: GradedPoint[],
+    canonicalPoints: MapPoint[],
+    tolerancePct: number,
+  ): MapPoint[] => {
+    // κρατάμε όσα canonical ΔΕΝ αντιστοιχήθηκαν σε σωστό user point
+    const remainingCanonical = [...canonicalPoints]; // για να μην αγγίζουμε το array των απαντήσεων
+
+    // αφαιρούμε από τα canonical όσα έχουν καλυφθεί σωστά
+    graded.forEach((gradedPoint) => {
+      if (!gradedPoint.correct) return;
+
+      // αν είναι λάθος το σημείο θα πρέπει να δουμε ποιο απο τις απαντήσεις δεν έχει βρεί λύση. δεν σκεφτικα κάποιον άλλο τρόπο και θα κάνουμε τον ίδιο υπολογισμό με την υποτείνουσα με πριν
+      const index = remainingCanonical.findIndex((canonicalPoint) => {
+        const dx = gradedPoint.x - canonicalPoint.x;
+        const dy = gradedPoint.y - canonicalPoint.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        return distance <= tolerancePct;
+      });
+
+      if (index !== -1) {
+        remainingCanonical.splice(index, 1);
+      }
+    });
+
+    // επιστρέφουμε:
+    // - όλα τα user points (σωστά + λάθος)
+    // - + όσα canonical έμειναν (αυτά που δεν βρήκε)
+    return [
+      ...graded.map((g) => ({
+        x: g.x,
+        y: g.y,
+        label: g.label,
+      })),
+      ...remainingCanonical,
+    ];
+  };
+
   // submit απαντήσεων
   const handleSubmit = () => {
     if (!question?.canonicalAnswer) return;
 
-    const tolerance = question.rules?.tolerancePct ?? 2.5;
+    const tolerance = question.rules?.tolerancePct ?? 3.5;
 
     const graded = gradePoints(
       points,
@@ -160,7 +199,10 @@ const GeographyMaps = () => {
       tolerance,
     );
 
-    setGradedPoints(graded); // 👈 ΤΟ ΚΡΙΣΙΜΟ
+    setGradedPoints(graded);
+    const canonicalPoints = getCanonicalPoints(question);
+    const reviewPoints = buildReviewPoints(graded, canonicalPoints, tolerance);
+    setDisplayPoints(reviewPoints);
     console.log("graded result:", graded);
   };
 
@@ -184,7 +226,7 @@ const GeographyMaps = () => {
 
       <MapClickQuiz
         maxWidth={500}
-        points={points}
+        points={gradedPoints ? displayPoints : points} //πριν submit → points, μετά submit → displayPoints
         setPoints={setPoints}
         maxPoints={question?.rules?.maxPoints ?? 4}
       />
