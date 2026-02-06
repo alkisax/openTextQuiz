@@ -1,6 +1,4 @@
 import { useState } from "react";
-import MapImageLayer from "./MapImageLayer";
-import MapPointsLayer from "./MapPointsLayer";
 
 type MapClickQuizProps = {
   maxWidth?: number; // μέγιστο πλάτος container
@@ -15,7 +13,7 @@ type MapPoint = {
   label: string; // κείμενο (προς το παρόν δεν βαθμολογείται)
 };
 
-// component: controller για map + points
+// component: δείχνει χάρτη + overlay για click
 const MapClickQuiz = ({
   maxWidth = 900,
   points,
@@ -29,11 +27,18 @@ const MapClickQuiz = ({
   // προσωρινό label για το draft σημείο
   const [label, setLabel] = useState("");
 
-  const handleMapClick = (x: number, y: number) => {
+  // click πάνω στο overlay
+  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     // αν υπάρχει ήδη draft ή έχουμε φτάσει το max, μπλοκάρουμε
     if (draftPoint || points.length >= maxPoints) return;
 
-    setDraftPoint({ x, y });
+    const rect = e.currentTarget.getBoundingClientRect();
+
+    // ΧΡΗΣΙΜΟ: clientX/Y – rect.left/top
+    const xPercentage = ((e.clientX - rect.left) / rect.width) * 100;
+    const yPercentage = ((e.clientY - rect.top) / rect.height) * 100;
+
+    setDraftPoint({ x: xPercentage, y: yPercentage });
     setLabel("");
   };
 
@@ -41,7 +46,10 @@ const MapClickQuiz = ({
     if (!draftPoint || !label.trim()) return;
 
     // προσθέτουμε το σημείο στο state του parent
-    setPoints((prev) => [...prev, { x: draftPoint.x, y: draftPoint.y, label }]);
+    setPoints((prev) => [
+      ...prev,
+      { x: draftPoint.x, y: draftPoint.y, label },
+    ]);
 
     // καθαρίζουμε μόνο το draft
     setDraftPoint(null);
@@ -93,24 +101,79 @@ const MapClickQuiz = ({
         maxWidth,
       }}
     >
-      {/* εικόνα + overlay */}
-      <MapImageLayer
-        maxWidth={maxWidth}
-        disabled={!!draftPoint || points.length >= maxPoints}
-        onMapClick={handleMapClick}
+      {/* χάρτης */}
+      <img
+        src={`${import.meta.env.BASE_URL}mapOfGreecce.png`}
+        alt="Χάρτης Ελλάδας"
+        style={{
+          width: "100%",
+          height: "auto",
+          display: "block",
+        }}
       />
 
-      {/* σημεία που έχουν ήδη υποβληθεί */}
-      <MapPointsLayer
-        points={points}
-        onLabelChange={updatePointLabel}
-        onRemove={removePoint}
+      {/* overlay για click – ΙΔΙΟ container με τα points */}
+      <div
+        onClick={handleClick}
+        style={{
+          position: "absolute",
+          inset: 0,
+          cursor:
+            draftPoint || points.length >= maxPoints
+              ? "not-allowed"
+              : "crosshair",
+        }}
       />
+
+      {/* ήδη υποβληθέντα σημεία */}
+      {points.map((p, index) => (
+        <div key={index}>
+          {/* κουκίδα */}
+          <div
+            style={{
+              position: "absolute",
+              left: `${p.x}%`,
+              top: `${p.y}%`,
+              transform: "translate(-50%, -50%)",
+              width: 10,
+              height: 10,
+              borderRadius: "50%",
+              backgroundColor: "red",
+              pointerEvents: "none",
+            }}
+          />
+
+          {/* label δίπλα στην κουκίδα */}
+          <div
+            style={{
+              position: "absolute",
+              left: `${p.x}%`,
+              top: `${p.y}%`,
+              transform: "translate(10px, -50%)",
+              ...compactBoxStyle,
+            }}
+          >
+            <input
+              type="text"
+              value={p.label}
+              onChange={(e) => updatePointLabel(index, e.target.value)}
+              placeholder="γράψε"
+              style={compactInputStyle}
+            />
+
+            <button
+              style={{ fontSize: 11 }}
+              onClick={() => removePoint(index)}
+            >
+              ✖
+            </button>
+          </div>
+        </div>
+      ))}
 
       {/* draft κουκίδα + input */}
       {draftPoint && (
         <>
-          {/* κουκίδα draft */}
           <div
             style={{
               position: "absolute",
@@ -125,7 +188,6 @@ const MapClickQuiz = ({
             }}
           />
 
-          {/* input για το draft */}
           <div
             style={{
               position: "absolute",
@@ -152,23 +214,6 @@ const MapClickQuiz = ({
           </div>
         </>
       )}
-
-      {/* debug panel */}
-      <div
-        style={{
-          marginTop: 12,
-          fontFamily: "monospace",
-        }}
-      >
-        <div>
-          Σημεία: {points.length} / {maxPoints}
-        </div>
-        {points.map((p, i) => (
-          <div key={i}>
-            {i + 1}. ({p.x.toFixed(2)}, {p.y.toFixed(2)}) → {p.label}
-          </div>
-        ))}
-      </div>
     </div>
   );
 };
