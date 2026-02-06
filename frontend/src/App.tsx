@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import OpenText from './pages/OpenText';
-import GeographyMaps from './pages/GeographyMaps';
+import GeographyMaps from './geo/pages/GeographyMaps';
 
 const App = () => {
   return (
