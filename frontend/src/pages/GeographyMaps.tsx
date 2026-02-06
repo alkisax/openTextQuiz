@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Box, Button, Typography } from "@mui/material";
 import geoQuestionsData from "../data/geoQuestionsData.json";
 import MapClickQuiz from "../components/MapClickQuiz";
+import { simplifyLang } from "../utils/simplifyLang";
 
 // ΤΥΠΟΙ ΔΕΔΟΜΕΝΩΝ
 // ερώτησης γεωγραφίας
@@ -42,6 +43,12 @@ type MapPoint = {
 type GradedPoint = MapPoint & {
   correct: boolean;
   labelCorrect: boolean;
+  hasSpellingErrors: boolean;
+};
+
+type LabelCheckResult = {
+  correct: boolean;
+  hasSpellingErrors: boolean;
 };
 
 //HELPER
@@ -127,7 +134,10 @@ const GeographyMaps = () => {
     // παίρνει ένα ένα τα σημεία του user, και ελεγχει αν η αποστασή με του με κάποιο απο τα σημεία της απάντησης είναι μικρότερη απο το οριο. αν ναί το μετράει ως σωστό. επιστρέφει το σημείο με correct: true/false
     return userPoints.map((userPoint) => {
       let matchedIndex = -1; // = δεν βρέθηκε τίποτα ακόμα
-      let labelCorrect = false;
+      let labelResult = {
+        correct: false,
+        hasSpellingErrors: false,
+      };
 
       const isCorrect = remaining.some((canonicalPont, i) => {
         const dist = distancePct(userPoint, canonicalPont); // helper πιο πανω
@@ -141,14 +151,15 @@ const GeographyMaps = () => {
       // αν βρεθεί σωστό, αφαιρείται από τα διαθέσιμα
       if (matchedIndex !== -1) {
         const matchedCanonical = remaining[matchedIndex];
-        labelCorrect = isLabelCorrect(userPoint.label, matchedCanonical.label);
+        labelResult = isLabelCorrect(userPoint.label, matchedCanonical.label);
         remaining.splice(matchedIndex, 1); // αφαιρεί 1 ξεκινόντας απο το matchedIndex, δηλ αφαιρεί το matchedIndex
       }
 
       return {
         ...userPoint,
         correct: isCorrect,
-        labelCorrect,
+        labelCorrect: labelResult.correct,
+        hasSpellingErrors: labelResult.hasSpellingErrors,
       };
     });
   };
@@ -156,10 +167,25 @@ const GeographyMaps = () => {
   const isLabelCorrect = (
     userLabel: string,
     canonicalLabel: string,
-  ): boolean => {
-    const result = userLabel.trim() === canonicalLabel.trim();
-    console.log(result, userLabel, canonicalLabel);
-    return result;
+  ): LabelCheckResult => {
+    const cleanUser = userLabel.trim();
+    const cleanCanonical = canonicalLabel.trim();
+
+    // 1️⃣ exact match → όλα σωστά
+    if (cleanUser === cleanCanonical) {
+      return { correct: true, hasSpellingErrors: false };
+    }
+
+    // 2️⃣ simplified match → σωστό αλλά με ορθογραφικά
+    const simplifiedUser = simplifyLang(cleanUser);
+    const simplifiedCanonical = simplifyLang(cleanCanonical);
+
+    if (simplifiedUser === simplifiedCanonical) {
+      return { correct: true, hasSpellingErrors: true };
+    }
+
+    // 3️⃣ αποτυχία
+    return { correct: false, hasSpellingErrors: false };
   };
 
   // φτιάχνει τα σημεία που θα εμφανιστούν μετά το submit (δηλ σωστά + τα λάθη και το αντιστοιχό σωστό σημείο)
@@ -289,11 +315,16 @@ const GeographyMaps = () => {
 
           {gradedPoints.map((p, i) => (
             <div key={i}>
-              {i + 1}. ({p.x.toFixed(2)}, {p.y.toFixed(2)}) → "{p.label}"{" "}
+              {i + 1}. ({p.x.toFixed(2)}, {p.y.toFixed(2)}) → "{p.label}"{" | "}
               <span>📍 {p.correct ? "σωστό σημείο" : "λάθος σημείο"}</span>
               {" | "}
               <span>
-                🏷 {p.labelCorrect ? "σωστό λεκτικό" : "λάθος λεκτικό"}
+                🏷{" "}
+                {p.labelCorrect
+                  ? p.hasSpellingErrors
+                    ? "σωστό με ορθογραφικά"
+                    : "σωστό λεκτικό"
+                  : "λάθος λεκτικό"}
               </span>
             </div>
           ))}
