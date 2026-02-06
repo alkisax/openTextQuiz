@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import OpenText from './pages/OpenText';
-import GeographyMaps from './geo/pages/GeographyMaps';
+import GeoMapPageWrap from './pages/GeoMapPageWrap';
 
 const App = () => {
   return (
@@ -9,7 +9,7 @@ const App = () => {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/open-text-page' element={<OpenText />} />
-        <Route path='/geography-maps' element={<GeographyMaps />} />
+        <Route path='/geography-maps' element={<GeoMapPageWrap />} />
       </Routes>
     </BrowserRouter>
   );
