@@ -41,6 +41,7 @@ type MapPoint = {
 // τύπος graded point
 type GradedPoint = MapPoint & {
   correct: boolean;
+  labelCorrect: boolean;
 };
 
 //HELPER
@@ -61,7 +62,7 @@ const GeographyMaps = () => {
   const [points, setPoints] = useState<MapPoint[]>([]);
   // αποτέλεσμα αξιολόγησης των σημείων του χρήστη (σωστό / λάθος)
   const [gradedPoints, setGradedPoints] = useState<
-    (MapPoint & { correct: boolean })[] | null
+    (GradedPoint & { correct: boolean })[] | null
   >(null);
   // στο submit θα δείχνουμε όλα τα σημεια του user + όσα σωστα δεν βρέθηκαν
   const [displayPoints, setDisplayPoints] = useState<MapPoint[]>([]);
@@ -118,7 +119,7 @@ const GeographyMaps = () => {
   // ελέγχει αν τα user points πέφτουν κοντά σε canonical
   const gradePoints = (
     userPoints: MapPoint[],
-    canonicalPoints: { x: number; y: number }[],
+    canonicalPoints: { x: number; y: number; label: string }[],
     tolerancePct: number,
   ): GradedPoint[] => {
     const remaining = [...canonicalPoints]; // για να μην αγγίζουμε το array των απαντήσεων
@@ -126,6 +127,7 @@ const GeographyMaps = () => {
     // παίρνει ένα ένα τα σημεία του user, και ελεγχει αν η αποστασή με του με κάποιο απο τα σημεία της απάντησης είναι μικρότερη απο το οριο. αν ναί το μετράει ως σωστό. επιστρέφει το σημείο με correct: true/false
     return userPoints.map((userPoint) => {
       let matchedIndex = -1; // = δεν βρέθηκε τίποτα ακόμα
+      let labelCorrect = false;
 
       const isCorrect = remaining.some((canonicalPont, i) => {
         const dist = distancePct(userPoint, canonicalPont); // helper πιο πανω
@@ -138,14 +140,26 @@ const GeographyMaps = () => {
 
       // αν βρεθεί σωστό, αφαιρείται από τα διαθέσιμα
       if (matchedIndex !== -1) {
+        const matchedCanonical = remaining[matchedIndex];
+        labelCorrect = isLabelCorrect(userPoint.label, matchedCanonical.label);
         remaining.splice(matchedIndex, 1); // αφαιρεί 1 ξεκινόντας απο το matchedIndex, δηλ αφαιρεί το matchedIndex
       }
 
       return {
         ...userPoint,
         correct: isCorrect,
+        labelCorrect,
       };
     });
+  };
+
+  const isLabelCorrect = (
+    userLabel: string,
+    canonicalLabel: string,
+  ): boolean => {
+    const result = userLabel.trim() === canonicalLabel.trim();
+    console.log(result, userLabel, canonicalLabel);
+    return result;
   };
 
   // φτιάχνει τα σημεία που θα εμφανιστούν μετά το submit (δηλ σωστά + τα λάθη και το αντιστοιχό σωστό σημείο)
@@ -225,7 +239,7 @@ const GeographyMaps = () => {
       )}
 
       <MapClickQuiz
-        maxWidth={500}
+        maxWidth={900}
         points={gradedPoints ? displayPoints : points} //πριν submit → points, μετά submit → displayPoints
         setPoints={setPoints}
         maxPoints={question?.rules?.maxPoints ?? 4}
@@ -264,14 +278,23 @@ const GeographyMaps = () => {
           }}
         >
           <div>
-            Αποτέλεσμα: {gradedPoints.filter((p) => p.correct).length} /{" "}
+            Πλήρως σωστά:{" "}
+            {gradedPoints.filter((p) => p.correct && p.labelCorrect).length} /{" "}
             {question?.rules?.maxPoints ?? gradedPoints.length}
+          </div>
+
+          <div>
+            Χωρικά σωστά: {gradedPoints.filter((p) => p.correct).length}
           </div>
 
           {gradedPoints.map((p, i) => (
             <div key={i}>
-              {i + 1}. ({p.x.toFixed(2)}, {p.y.toFixed(2)}) →{" "}
-              {p.correct ? "✔ σωστό" : "✖ λάθος"}
+              {i + 1}. ({p.x.toFixed(2)}, {p.y.toFixed(2)}) → "{p.label}"{" "}
+              <span>📍 {p.correct ? "σωστό σημείο" : "λάθος σημείο"}</span>
+              {" | "}
+              <span>
+                🏷 {p.labelCorrect ? "σωστό λεκτικό" : "λάθος λεκτικό"}
+              </span>
             </div>
           ))}
         </Box>
