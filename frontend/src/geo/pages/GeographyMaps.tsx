@@ -2,13 +2,15 @@ import { useState } from "react";
 import { Box, Button, Typography } from "@mui/material";
 import geoQuestionsData from "../../data/geoQuestionsData.json";
 import MapClickQuiz from "../components/MapClickQuiz";
-
-// TYPES
 import type { GeoQuestion, MapPoint, GradedPoint } from "../types/geoTypes";
 
 // UTILS / HELPERS
 import {
+  // διαλέγει τυχαία ΜΟΝΟ ερώτηση που έχει rules.map === true
+  // αυτό είναι μονο για dev. αλλιώς η ερώτηση θα έρχετε αλλιώς
   getCanonicalPoints,
+  // Σημεία απο την απάντηση
+  // μετατρέπει το canonicalAnswer της ερώτησης σε MapPoint[]
   pickRandomQuestion,
 } from "../utils/geoQuestionUtils";
 
@@ -27,7 +29,7 @@ const GeographyMaps = () => {
     (GradedPoint & { correct: boolean })[] | null
   >(null);
 
-  // στο submit θα δείχνουμε όλα τα σημεια του user + όσα σωστα δεν βρέθηκαν
+  // στο submit θα δείχνουμε όλα τα σημεια του user + όσα δεν βρέθηκαν
   const [displayPoints, setDisplayPoints] = useState<MapPoint[]>([]);
 
   // flag μόνο για flow (δεν το διαβάζουμε)

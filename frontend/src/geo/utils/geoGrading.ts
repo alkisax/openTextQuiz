@@ -2,7 +2,7 @@ import { simplifyLang } from "../../utils/simplifyLang";
 import type { GradedPoint, LabelCheckResult, MapPoint } from "../types/geoTypes";
 
 // GRADING (ΜΟΝΟ ΣΗΜΕΙΟ)
-// απόσταση δύο σημείων σε ποσοστά → μου επιστρέφει την υποτείνουσα
+// απόσταση δύο σημείων σε ποσοστά → μου επιστρέφει την υποτείνουσα  (≈ το διάνυσμα της απόστασης)
 export const distancePct = (
   a: { x: number; y: number },
   b: { x: number; y: number },
@@ -19,12 +19,12 @@ export const isLabelCorrect = (
   const cleanUser = userLabel.trim();
   const cleanCanonical = canonicalLabel.trim();
 
-  // 1️⃣ exact match → όλα σωστά
+  // exact match → όλα σωστά
   if (cleanUser === cleanCanonical) {
     return { correct: true, hasSpellingErrors: false };
   }
 
-  // 2️⃣ simplified match → σωστό αλλά με ορθογραφικά
+  // simplified match → σωστό αλλά με ορθογραφικά
   const simplifiedUser = simplifyLang(cleanUser);
   const simplifiedCanonical = simplifyLang(cleanCanonical);
 
@@ -32,7 +32,7 @@ export const isLabelCorrect = (
     return { correct: true, hasSpellingErrors: true };
   }
 
-  // 3️⃣ αποτυχία
+  // αποτυχία
   return { correct: false, hasSpellingErrors: false };
 };
 
@@ -44,14 +44,18 @@ export const gradePoints = (
 ): GradedPoint[] => {
   const remaining = [...canonicalPoints]; // για να μην αγγίζουμε το array των απαντήσεων
 
+  // με το map ελέγχουμε όλα τα σημειά που έχει υποβάλει ο μαθητής
   return userPoints.map((userPoint) => {
-    let matchedIndex = -1;
+    // δηλ ξεκινάμε απο το "δεν έχει βρεθεί τιποτα" και τα λεκτικά είναι λάθος
+    let matchedIndex = -1; 
     let labelResult = {
       correct: false,
       hasSpellingErrors: false,
     };
 
+    // ελέγχει αν έστω και ένα σημείο, απο τα σημεία της απάντησης είναι εντώς του tolerance (αρα αν έχει απαντηθει σωστα) - TODO να το σκευτώ λίγο γιατί πολλά σημεία ήταν πολύ κοντά το ένα στο άλλο στις απαντήσεις
     const isCorrect = remaining.some((canonicalPoint, i) => {
+      // βρίσκει την αποσταση μεταξύ σημείου μαθητή και απάντησης
       const dist = distancePct(userPoint, canonicalPoint);
       if (dist <= tolerancePct) {
         matchedIndex = i;
@@ -86,6 +90,7 @@ export const buildReviewPoints = (
   graded.forEach((gradedPoint) => {
     if (!gradedPoint.correct) return;
 
+    // θα πρέπει να δούμε ποια απο τα σημεία που έχουν χαρακτηριστεί ως σωστά ταυτίζονται με αυτα της απάντησης. δεν βρίκα κάποιο καλήτερο τρόπο και υπολογίζω για δεύτερη φορά το διανυσμα της μεταξύ τους απόστασης
     const index = remainingCanonical.findIndex((canonicalPoint) => {
       const dx = gradedPoint.x - canonicalPoint.x;
       const dy = gradedPoint.y - canonicalPoint.y;
