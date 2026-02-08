@@ -78,14 +78,16 @@ const GeographyMaps = () => {
   };
 
   return (
-    <div className="p-4  space-y-4">
-      <h2 className="mb-4 text-xl font-semibold">Geography Maps</h2>
+    <div className="p-4 space-y-4">
+      <h2 className="mb-4 text-xl font-semibold text-foreground">
+        Geography Maps
+      </h2>
 
       {question && (
         <>
-          <p className="mb-2 text-base text-slate-900">{question.ερώτηση}</p>
+          <p className="mb-2 text-base text-foreground">{question.ερώτηση}</p>
 
-          <span className="mb-2 block text-sm text-slate-500">
+          <span className="mb-2 block text-sm text-muted-foreground">
             id: {question.id}
           </span>
         </>
@@ -103,7 +105,7 @@ const GeographyMaps = () => {
       <div className="flex gap-3">
         <Button
           onClick={handleNextQuestion}
-          className="bg-blue-600 text-white hover:bg-blue-700"
+          className="bg-primary text-primary-foreground hover:bg-primary/90"
         >
           Νέα τυχαία ερώτηση
         </Button>
@@ -111,7 +113,7 @@ const GeographyMaps = () => {
         <Button
           onClick={handleShowAnswers}
           disabled={!question}
-          className="border border-blue-700 bg-white text-slate-900 hover:bg-blue-50"
+          className="border border-border bg-background text-foreground hover:bg-accent hover:text-accent-foreground"
         >
           Δείξε απαντήσεις
         </Button>
@@ -119,7 +121,7 @@ const GeographyMaps = () => {
         <Button
           onClick={handleSubmit}
           disabled={points.length === 0}
-          className="bg-green-600 text-white hover:bg-green-700 disabled:bg-green-300 disabled:text-white"
+          className="bg-secondary text-secondary-foreground hover:bg-secondary/80 disabled:opacity-50"
         >
           Submit
         </Button>

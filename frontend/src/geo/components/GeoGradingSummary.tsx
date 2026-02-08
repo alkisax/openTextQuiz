@@ -1,16 +1,6 @@
-import {
-  Box,
-  Card,
-  CardContent,
-  Typography,
-  Divider,
-  List,
-  ListItem,
-  ListItemText,
-  Stack,
-  Chip,
-} from '@mui/material';
-import type { GradedPoint, GeoQuestion } from '../types/geoTypes';
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import type { GradedPoint, GeoQuestion } from "../types/geoTypes";
 
 type GeoGradingSummaryProps = {
   gradedPoints: GradedPoint[];
@@ -30,64 +20,67 @@ const GeoGradingSummary = ({
   const maxPoints = question?.rules?.maxPoints ?? gradedPoints.length;
 
   return (
-    <Card sx={{ mt: 3 }}>
+    <Card className="mt-3">
       <CardContent>
         {/* Τίτλος */}
-        <Typography variant="h6" gutterBottom>
+        <h3 className="mb-2 text-lg font-semibold text-foreground">
           Αξιολόγηση
-        </Typography>
+        </h3>
 
         {/* Summary */}
-        <Stack direction="row" spacing={2} sx={{ mb: 2 }}>
-          <Chip
-            label={`Πλήρως σωστά: ${fullyCorrect} / ${maxPoints}`}
-            color={fullyCorrect === maxPoints ? 'success' : 'default'}
-          />
-          <Chip
-            label={`Χωρικά σωστά: ${spatialCorrect}`}
-            color="info"
-          />
-        </Stack>
+        <div className="mb-2 flex gap-2">
+          <Badge
+            className={
+              fullyCorrect === maxPoints
+                ? "bg-primary text-primary-foreground"
+                : "bg-secondary text-secondary-foreground"
+            }
+          >
+            Πλήρως σωστά: {fullyCorrect} / {maxPoints}
+          </Badge>
 
-        <Divider sx={{ mb: 2 }} />
+          <Badge className="bg-secondary text-secondary-foreground">
+            Χωρικά σωστά: {spatialCorrect}
+          </Badge>
+        </div>
+        <div className="mb-2 border-b border-border" />
 
         {/* Λεπτομέρειες */}
-        <List dense>
+        <ul className="space-y-2">
           {gradedPoints.map((p, i) => (
-            <ListItem key={i} disableGutters>
-              <ListItemText
-                primary={
-                  <Typography variant="body2">
-                    {i + 1}. ({p.x.toFixed(2)}, {p.y.toFixed(2)}) → “{p.label}”
-                  </Typography>
-                }
-                secondary={
-                  <Box sx={{ mt: 0.5 }}>
-                    <Stack direction="row" spacing={1}>
-                      <Chip
-                        size="small"
-                        label={p.correct ? 'σωστό σημείο' : 'λάθος σημείο'}
-                        color={p.correct ? 'success' : 'error'}
-                      />
-                      <Chip
-                        size="small"
-                        label={
-                          p.labelCorrect
-                            ? p.hasSpellingErrors
-                              ? 'σωστό με ορθογραφικά'
-                              : 'σωστό λεκτικό'
-                            : 'λάθος λεκτικό'
-                        }
-                        color={p.labelCorrect ? 'success' : 'error'}
-                        variant="outlined"
-                      />
-                    </Stack>
-                  </Box>
-                }
-              />
-            </ListItem>
+            <li key={i} className="rounded-md border border-border bg-card p-2">
+              <p className="text-sm font-medium text-foreground">
+                {i + 1}. ({p.x.toFixed(2)}, {p.y.toFixed(2)}) → “{p.label}”
+              </p>
+
+              <div className="mt-1 flex gap-1">
+                <Badge
+                  className={
+                    p.correct
+                      ? "bg-primary text-primary-foreground"
+                      : "bg-destructive text-destructive-foreground"
+                  }
+                >
+                  {p.correct ? "σωστό σημείο" : "λάθος σημείο"}
+                </Badge>
+
+                <Badge
+                  className={
+                    p.labelCorrect
+                      ? "bg-secondary text-secondary-foreground"
+                      : "bg-destructive text-white"
+                  }
+                >
+                  {p.labelCorrect
+                    ? p.hasSpellingErrors
+                      ? "σωστό με ορθογραφικά"
+                      : "σωστό λεκτικό"
+                    : "λάθος λεκτικό"}
+                </Badge>
+              </div>
+            </li>
           ))}
-        </List>
+        </ul>
       </CardContent>
     </Card>
   );
