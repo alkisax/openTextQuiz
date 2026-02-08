@@ -58,7 +58,7 @@ const GeoGradingSummary = ({
                   className={
                     p.correct
                       ? "bg-primary text-primary-foreground"
-                      : "bg-destructive text-destructive-foreground"
+                      : "bg-destructive text-white"
                   }
                 >
                   {p.correct ? "σωστό σημείο" : "λάθος σημείο"}
