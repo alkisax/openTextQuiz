@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box, Button, Typography } from "@mui/material";
+import { Button } from "../../components/ui/button";
 import geoQuestionsData from "../../data/geoQuestionsData.json";
 import MapClickQuiz from "../components/MapClickQuiz";
 import type { GeoQuestion, MapPoint, GradedPoint } from "../types/geoTypes";
@@ -78,57 +78,57 @@ const GeographyMaps = () => {
   };
 
   return (
-    <Box sx={{ p: 2 }}>
-      <Typography variant="h5" sx={{ mb: 2 }}>
-        Geography Maps
-      </Typography>
+    <div className="p-4  space-y-4">
+      <h2 className="mb-4 text-xl font-semibold">Geography Maps</h2>
 
       {question && (
         <>
-          <Typography variant="body1" sx={{ mb: 2 }}>
-            {question.ερώτηση}
-          </Typography>
+          <p className="mb-2 text-base text-slate-900">{question.ερώτηση}</p>
 
-          <Typography variant="caption" sx={{ display: "block", mb: 2 }}>
+          <span className="mb-2 block text-sm text-slate-500">
             id: {question.id}
-          </Typography>
+          </span>
         </>
       )}
 
-      <MapClickQuiz
-        maxWidth={900}
-        points={gradedPoints ? displayPoints : points} // πριν submit → points, μετά submit → displayPoints
-        setPoints={setPoints}
-        maxPoints={question?.rules?.maxPoints ?? 4}
-      />
+      <div className="mb-4">
+        <MapClickQuiz
+          maxWidth={900}
+          points={gradedPoints ? displayPoints : points} // πριν submit → points, μετά submit → displayPoints
+          setPoints={setPoints}
+          maxPoints={question?.rules?.maxPoints ?? 4}
+        />
+      </div>
 
-      <Box sx={{ display: "flex", gap: 2, mt: 2 }}>
-        <Button variant="contained" onClick={handleNextQuestion}>
+      <div className="flex gap-3">
+        <Button
+          onClick={handleNextQuestion}
+          className="bg-blue-600 text-white hover:bg-blue-700"
+        >
           Νέα τυχαία ερώτηση
         </Button>
 
         <Button
-          variant="outlined"
           onClick={handleShowAnswers}
           disabled={!question}
+          className="border border-blue-700 bg-white text-slate-900 hover:bg-blue-50"
         >
           Δείξε απαντήσεις
         </Button>
 
         <Button
-          variant="contained"
-          color="success"
           onClick={handleSubmit}
           disabled={points.length === 0}
+          className="bg-green-600 text-white hover:bg-green-700 disabled:bg-green-300 disabled:text-white"
         >
           Submit
         </Button>
-      </Box>
+      </div>
 
       {gradedPoints && (
         <GeoGradingSummary gradedPoints={gradedPoints} question={question} />
       )}
-    </Box>
+    </div>
   );
 };
 
