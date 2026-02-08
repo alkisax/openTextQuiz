@@ -1,10 +1,10 @@
 // frontend\src\geo\finalTestComponent\GeoMapQuestionInstance.tsx
-import { Button } from "@mui/material";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
 import MapClickQuiz from "../components/MapClickQuiz";
 import GeoGradingSummary from "../components/GeoGradingSummary";
 import { getCanonicalPoints } from "../utils/geoQuestionUtils";
 import { buildReviewPoints, gradePoints } from "../utils/geoGrading";
-import { useState } from "react";
 import type { GeoQuestion, GradedPoint, MapPoint } from "../types/geoTypes";
 
 export type GeoMapQuestionInstanceProps = {
@@ -54,19 +54,25 @@ const GeoMapQuestionInstance = ({
   };
 
   return (
-    <>
+    <div className="space-y-4">
       <MapClickQuiz
         points={gradedPoints ? displayPoints : points}
         setPoints={setPoints}
         maxPoints={question.rules?.maxPoints ?? 4}
       />
 
-      <Button onClick={handleSubmit}>Submit</Button>
+      <Button
+        onClick={handleSubmit}
+        disabled={points.length === 0}
+        className="bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-50"
+      >
+        Submit
+      </Button>
 
       {gradedPoints && (
         <GeoGradingSummary gradedPoints={gradedPoints} question={question} />
       )}
-    </>
+    </div>
   );
 };
 
