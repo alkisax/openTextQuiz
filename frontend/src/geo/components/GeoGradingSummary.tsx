@@ -48,7 +48,10 @@ const GeoGradingSummary = ({
 				{/* Λεπτομέρειες */}
 				<ul className="space-y-2">
 					{gradedPoints.map((p, i) => (
-						<li key={i} className="rounded-md border border-border bg-card p-2">
+						<li
+							key={`${p.x}-${p.y}-${p.label}`}
+							className="rounded-md border border-border bg-card p-2"
+						>
 							<p className="text-sm font-medium text-foreground">
 								{i + 1}. ({p.x.toFixed(2)}, {p.y.toFixed(2)}) → “{p.label}”
 							</p>
