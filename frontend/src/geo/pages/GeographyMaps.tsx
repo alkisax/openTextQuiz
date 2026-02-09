@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { Button } from "../../components/ui/button";
-import geoQuestionsData from "../../data/geoQuestionsData.json";
+import GeoGradingSummary from "../components/GeoGradingSummary";
 import MapClickQuiz from "../components/MapClickQuiz";
-import type { GeoQuestion, MapPoint, GradedPoint } from "../types/geoTypes";
+import geoQuestionsData from "../data/geoQuestionsData.json";
+import type { GeoQuestion, GradedPoint, MapPoint } from "../types/geoTypes";
 
+import { buildReviewPoints, gradePoints } from "../utils/geoGrading";
 // UTILS / HELPERS
 import {
   // διαλέγει τυχαία ΜΟΝΟ ερώτηση που έχει rules.map === true
@@ -13,9 +15,6 @@ import {
   // μετατρέπει το canonicalAnswer της ερώτησης σε MapPoint[]
   pickRandomQuestion,
 } from "../utils/geoQuestionUtils";
-
-import { gradePoints, buildReviewPoints } from "../utils/geoGrading";
-import GeoGradingSummary from "../components/GeoGradingSummary";
 
 const GeographyMaps = () => {
   // τρέχουσα ερώτηση
@@ -78,59 +77,62 @@ const GeographyMaps = () => {
   };
 
   return (
-    <div className="p-4 space-y-4">
-      <h2 className="mb-4 text-xl font-semibold text-foreground">
-        Geography Maps
-      </h2>
+    <>
+    new
+      <div className="p-4 space-y-4">
+        <h2 className="mb-4 text-xl font-semibold text-foreground">
+          Geography Maps
+        </h2>
 
-      {question && (
-        <>
-          <p className="mb-2 text-base text-foreground">{question.ερώτηση}</p>
+        {question && (
+          <>
+            <p className="mb-2 text-base text-foreground">{question.ερώτηση}</p>
 
-          <span className="mb-2 block text-sm text-muted-foreground">
-            id: {question.id}
-          </span>
-        </>
-      )}
+            <span className="mb-2 block text-sm text-muted-foreground">
+              id: {question.id}
+            </span>
+          </>
+        )}
 
-      <div className="mb-4">
-        <MapClickQuiz
-          maxWidth={900}
-          points={gradedPoints ? displayPoints : points} // πριν submit → points, μετά submit → displayPoints
-          setPoints={setPoints}
-          maxPoints={question?.rules?.maxPoints ?? 4}
-        />
+        <div className="mb-4">
+          <MapClickQuiz
+            maxWidth={900}
+            points={gradedPoints ? displayPoints : points} // πριν submit → points, μετά submit → displayPoints
+            setPoints={setPoints}
+            maxPoints={question?.rules?.maxPoints ?? 4}
+          />
+        </div>
+
+        <div className="flex gap-3">
+          <Button
+            onClick={handleNextQuestion}
+            className="bg-primary text-primary-foreground hover:bg-primary/90"
+          >
+            Νέα τυχαία ερώτηση
+          </Button>
+
+          <Button
+            onClick={handleShowAnswers}
+            disabled={!question}
+            className="border border-border bg-background text-foreground hover:bg-accent hover:text-accent-foreground"
+          >
+            Δείξε απαντήσεις
+          </Button>
+
+          <Button
+            onClick={handleSubmit}
+            disabled={points.length === 0}
+            className="bg-secondary text-secondary-foreground hover:bg-secondary/80 disabled:opacity-50"
+          >
+            Submit
+          </Button>
+        </div>
+
+        {gradedPoints && (
+          <GeoGradingSummary gradedPoints={gradedPoints} question={question} />
+        )}
       </div>
-
-      <div className="flex gap-3">
-        <Button
-          onClick={handleNextQuestion}
-          className="bg-primary text-primary-foreground hover:bg-primary/90"
-        >
-          Νέα τυχαία ερώτηση
-        </Button>
-
-        <Button
-          onClick={handleShowAnswers}
-          disabled={!question}
-          className="border border-border bg-background text-foreground hover:bg-accent hover:text-accent-foreground"
-        >
-          Δείξε απαντήσεις
-        </Button>
-
-        <Button
-          onClick={handleSubmit}
-          disabled={points.length === 0}
-          className="bg-secondary text-secondary-foreground hover:bg-secondary/80 disabled:opacity-50"
-        >
-          Submit
-        </Button>
-      </div>
-
-      {gradedPoints && (
-        <GeoGradingSummary gradedPoints={gradedPoints} question={question} />
-      )}
-    </div>
+    </>
   );
 };
 
