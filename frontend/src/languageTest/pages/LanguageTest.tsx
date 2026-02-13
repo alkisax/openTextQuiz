@@ -4,6 +4,7 @@ import testData from "../data/draftLanguageTests.json";
 import { useState } from "react";
 import MultipleChoiceQuestion from "../components/test-parts/MultipleChoiceQuestion";
 import TrueFalseQuestion from "../components/test-parts/TrueFalseQuestion";
+import MultipleChoiceWithTargetQuestion from "../components/test-parts/MultipleChoiceWithTargetQuestion";
 
 const LanguageTest = () => {
   const [answers, setAnswers] = useState<Record<string, string>>({});
@@ -11,6 +12,7 @@ const LanguageTest = () => {
 
   const test = testData[0];
   const partA = test.parts.A.questions;
+  const partB = test.parts.B.questions;
 
   // αποθηκεύουμε τις απαντήσεις
   // χρηαζόμαστε dynamic key για το id και για αυτό [id]: και οχι id:
@@ -83,7 +85,31 @@ const LanguageTest = () => {
               />
             );
           }
-          
+
+          return null;
+        })}
+      </div>
+
+      <div className="max-w-3xl mx-auto py-8 space-y-8">
+        <h2 className="text-xl font-bold">Μέρος Β</h2>
+
+        <p>
+          Στις προτάσεις που ακολουθούν κυκλώστε τη λέξη / φράση που έχει το
+          ίδιο νόημα με την υπογραμμισμένη λέξη / φράση: Γράψτε στο τετράδιο τον
+          αριθμό της άσκησης και δίπλα τη σωστή απάντηση.
+        </p>
+        {partB.map((q) => {
+          if (q.type === "multipleChoice" && q.options) {
+            return (
+              <MultipleChoiceWithTargetQuestion
+                key={q.id}
+                question={q}
+                value={answers[q.id]}
+                onChange={(value) => handleChange(q.id, value)}
+              />
+            );
+          }
+
           return null;
         })}
       </div>
