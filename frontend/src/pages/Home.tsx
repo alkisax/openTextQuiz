@@ -26,6 +26,14 @@ const Home = () => {
 			>
 				Geography Maps
 			</Button>
+
+			<Button
+				variant="contained"
+				size="large"
+				onClick={() => navigate("/language-test")}
+			>
+				Language Test
+			</Button>
 		</Stack>
 	)
 }
