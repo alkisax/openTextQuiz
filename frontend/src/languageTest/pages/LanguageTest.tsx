@@ -2,13 +2,18 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import testData from "../data/draftLanguageTests.json";
 import { useState } from "react";
+import { gradeShortTextDetailed } from "../utils/gradeShortText";
 import MultipleChoiceQuestion from "../components/test-parts/MultipleChoiceQuestion";
 import TrueFalseQuestion from "../components/test-parts/TrueFalseQuestion";
 import MultipleChoiceWithTargetQuestion from "../components/test-parts/MultipleChoiceWithTargetQuestion";
+import ShortTextQuestion from "../components/test-parts/ShortTextQuestion";
+import LanguageGradingSummary from "../components/test-parts/LanguageGradingSummary";
+import type { GradedAnswer } from "../types/language.types";
 
 const LanguageTest = () => {
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [score, setScore] = useState<number | null>(null);
+  const [gradedAnswers, setGradedAnswers] = useState<GradedAnswer[]>([]);
 
   const test = testData[0];
   const partA = test.parts.A.questions;
@@ -23,25 +28,74 @@ const LanguageTest = () => {
     }));
   };
 
-  const gradePartA = () => {
+  const gradeAll = () => {
     let correct = 0;
     let total = 0;
 
-    partA.forEach((q) => {
-      if (q.correctAnswer) {
-        total++;
+    const results: GradedAnswer[] = [];
 
-        if (answers[q.id] === q.correctAnswer) {
-          correct++;
-        }
+    // Part A
+    partA.forEach((q) => {
+      total++;
+
+      const userAnswer = answers[q.id];
+      const isCorrect = userAnswer === q.correctAnswer;
+
+      if (isCorrect) correct++;
+
+      results.push({
+        id: q.id,
+        userAnswer,
+        correctAnswer: q.correctAnswer,
+        correct: isCorrect,
+        type: q.type,
+      });
+    });
+
+    // Part B
+    partB.forEach((q) => {
+      total++;
+
+      const userAnswer = answers[q.id];
+
+      // shortText
+      if (q.type === "shortText") {
+        const result = gradeShortTextDetailed(userAnswer, q.correctAnswer);
+
+        if (result.correct) correct++;
+
+        results.push({
+          id: q.id,
+          userAnswer,
+          correctAnswer: q.correctAnswer,
+          correct: result.correct,
+          hasSpellingErrors: result.hasSpellingErrors,
+          type: q.type,
+        });
+      }
+
+      // multipleChoice
+      if (q.type === "multipleChoice") {
+        const isCorrect = userAnswer === q.correctAnswer;
+
+        if (isCorrect) correct++;
+
+        results.push({
+          id: q.id,
+          userAnswer,
+          correctAnswer: q.correctAnswer,
+          correct: isCorrect,
+          type: q.type,
+        });
       }
     });
 
     setScore(correct);
+    console.log("score :", score)
+    setGradedAnswers(results);
 
-    console.log(`Score: ${correct} / ${total}`);
+    console.log(`Total Score: ${correct} / ${total}`);
   };
-
   return (
     <>
       <div className="max-w-3xl mx-auto py-8">
@@ -60,6 +114,7 @@ const LanguageTest = () => {
         </Card>
       </div>
 
+      {/* part A */}
       <div className="max-w-3xl mx-auto py-8 space-y-8">
         <h2 className="text-xl font-bold">Μέρος Α</h2>
 
@@ -90,9 +145,34 @@ const LanguageTest = () => {
         })}
       </div>
 
+      {/* part B1 */}
       <div className="max-w-3xl mx-auto py-8 space-y-8">
         <h2 className="text-xl font-bold">Μέρος Β</h2>
 
+        <p>
+          Ξαναγράψτε τις παρακάτω προτάσεις με βάση τη φράση που σας δίνεται
+          στην αρχή. Γράψτε στο τετράδιο τον αριθμό της άσκησης και δίπλα τη
+          σωστή πρόταση/απάντηση.
+        </p>
+
+        {partB.map((q) => {
+          if (q.type === "shortText") {
+            return (
+              <ShortTextQuestion
+                key={q.id}
+                question={q}
+                value={answers[q.id]}
+                onChange={(value) => handleChange(q.id, value)}
+              />
+            );
+          }
+
+          return null;
+        })}
+      </div>
+
+      {/* part B2 */}
+      <div className="max-w-3xl mx-auto py-8 space-y-8">
         <p>
           Στις προτάσεις που ακολουθούν κυκλώστε τη λέξη / φράση που έχει το
           ίδιο νόημα με την υπογραμμισμένη λέξη / φράση: Γράψτε στο τετράδιο τον
@@ -116,15 +196,13 @@ const LanguageTest = () => {
 
       <button
         className="px-4 py-2 bg-black text-white rounded"
-        onClick={() => gradePartA()}
+        onClick={gradeAll}
       >
         Αξιολόγηση
       </button>
 
-      {score !== null && (
-        <div className="font-bold">
-          Βαθμός: {score} / {partA.length}
-        </div>
+      {gradedAnswers.length > 0 && (
+        <LanguageGradingSummary gradedAnswers={gradedAnswers} />
       )}
     </>
   );

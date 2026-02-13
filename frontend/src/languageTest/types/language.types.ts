@@ -20,3 +20,12 @@ export type Question = {
   options?: Record<string, string>
   correctAnswer: string
 }
+
+export type GradedAnswer = {
+  id: string
+  userAnswer: string | undefined
+  correctAnswer: string
+  correct: boolean
+  hasSpellingErrors?: boolean
+  type: string
+}
