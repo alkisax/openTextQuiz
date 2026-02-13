@@ -5,7 +5,7 @@ import { ValidationError } from "../utils/error/errors.types";
 import path from "path";
 import { bm25TextGrading } from "../services/bm25Text.service";
 import { compareTextsWithBullets } from "../services/bullets.service";
-import { gradeLanguage } from "../services/language.service";
+import { gradeEssayWithOpenAI, gradeLanguage } from "../services/language.service";
 import { gradeTotalTextToText } from "../services/total.service";
 
 /* 
@@ -153,6 +153,26 @@ const gradeTotalText = async (req: Request, res: Response) => {
   }
 };
 
+// για την ενότητα της έκθεσης
+const gradeEssay = async (req: Request, res: Response) => {
+  try {
+    const { prompt, studentText } = req.body;
+
+    if (!prompt || !studentText) {
+      throw new ValidationError("prompt and studentText are required");
+    }
+
+    const result = await gradeEssayWithOpenAI(prompt, studentText);
+
+    return res.json({
+      status: true,
+      ...result,
+    });
+  } catch (error) {
+    return handleControllerError(res, error);
+  }
+};
+
 export const controllers = {
   gradeWithCosineDb,
   gradeTextWithCosine,
@@ -160,4 +180,5 @@ export const controllers = {
   compareTextWithBullets,
   gradeTextWithLanguage,
   gradeTotalText,
+  gradeEssay,
 };

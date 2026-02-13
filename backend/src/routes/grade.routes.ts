@@ -42,4 +42,7 @@ router.post("/language", controllers.gradeTextWithLanguage);
 // ✅ TOTAL (text-to-text)
 router.post("/total/text", controllers.gradeTotalText);
 
+// για την ενώτητα της έκθεσης
+router.post("/language/essay", controllers.gradeEssay);
+
 export default router;

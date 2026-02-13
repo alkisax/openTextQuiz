@@ -1,6 +1,8 @@
 // frontend\src\languageTest\pages\LanguageTest.tsx
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import testData from "../data/draftLanguageTests.json";
+import axios from "axios";
+import { url } from "@/constants/constants";
 import { useState } from "react";
 import { gradeShortTextDetailed } from "../utils/gradeShortText";
 import MultipleChoiceQuestion from "../components/test-parts/MultipleChoiceQuestion";
@@ -8,7 +10,7 @@ import TrueFalseQuestion from "../components/test-parts/TrueFalseQuestion";
 import MultipleChoiceWithTargetQuestion from "../components/test-parts/MultipleChoiceWithTargetQuestion";
 import ShortTextQuestion from "../components/test-parts/ShortTextQuestion";
 import LanguageGradingSummary from "../components/test-parts/LanguageGradingSummary";
-import type { GradedAnswer } from "../types/language.types";
+import type { EssayResult, GradedAnswer } from "../types/language.types";
 import EssayQuestion from "../components/test-parts/EssayQuestion";
 
 const LanguageTest = () => {
@@ -16,6 +18,9 @@ const LanguageTest = () => {
   const [essayText, setEssayText] = useState("");
   const [score, setScore] = useState<number | null>(null);
   const [gradedAnswers, setGradedAnswers] = useState<GradedAnswer[]>([]);
+
+  const [_essayResult, setEssayResult] = useState<EssayResult | null>(null);
+  const [essayLoading, setEssayLoading] = useState(false);
 
   const test = testData[0];
   const partA = test.parts.A.questions;
@@ -30,12 +35,6 @@ const LanguageTest = () => {
       [id]: value,
     }));
   };
-
-  const wordCount = essayText
-    .trim()
-    .replace(/\n/g, " ")
-    .split(/\s+/)
-    .filter(Boolean).length;
 
   const gradeAll = () => {
     let correct = 0;
@@ -104,6 +103,28 @@ const LanguageTest = () => {
     setGradedAnswers(results);
 
     console.log(`Total Score: ${correct} / ${total}`);
+  };
+
+  const gradeEssay = async () => {
+    if (!essayText) return;
+
+    try {
+      setEssayLoading(true);
+
+      const response = await axios.post<EssayResult>(
+        `${url}/api/grade/language/essay`,
+        {
+          prompt: partC.question,
+          studentText: essayText,
+        },
+      );
+
+      setEssayResult(response.data);
+    } catch (error) {
+      console.error("Essay grading error:", error);
+    } finally {
+      setEssayLoading(false);
+    }
   };
 
   return (
@@ -214,6 +235,13 @@ const LanguageTest = () => {
           value={essayText}
           onChange={setEssayText}
         />
+        <button
+          className="px-4 py-2 bg-black text-white rounded"
+          onClick={gradeEssay}
+          disabled={essayLoading}
+        >
+          {essayLoading ? "Αξιολόγηση..." : "Αξιολόγηση Γ Θέματος"}
+        </button>
       </div>
 
       <button

@@ -44,7 +44,7 @@ const EssayQuestion = ({
         onChange={(e) => onChange(e.target.value)}
         placeholder="Γράψτε εδώ το κείμενό σας..."
         className="
-          min-h-[200px]
+          min-h-50
           border-2
           border-black
           rounded-none

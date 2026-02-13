@@ -29,3 +29,19 @@ export type GradedAnswer = {
   hasSpellingErrors?: boolean
   type: string
 }
+
+export type EssayScores = {
+  content: number
+  coherence: number
+  grammar: number
+  vocabulary: number
+  structure: number
+}
+
+export type EssayResult = {
+  status: boolean
+  scores: EssayScores
+  total: number
+  feedback: string
+  modelAnswer: string
+}
