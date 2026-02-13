@@ -163,6 +163,8 @@ const gradeEssay = async (req: Request, res: Response) => {
     }
 
     const result = await gradeEssayWithOpenAI(prompt, studentText);
+    console.log("result from grade essay", result);
+    
 
     return res.json({
       status: true,

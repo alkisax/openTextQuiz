@@ -6,6 +6,8 @@ import gradeRoutes from "./routes/grade.routes";
 
 export const app = express();
 
+console.log("=== APP START ===");
+
 app.use(cors({
   origin: "*", 
   methods: ["GET", "POST"],
@@ -23,8 +25,9 @@ app.get("/health", (_req, res) => {
 });
 
 app.use("/api/grade", gradeRoutes);
+console.log("Registered /api/grade routes");
 
-const publicPath = path.join(__dirname, '../../dist');
+const publicPath = path.join(__dirname, '../dist');
 app.use(express.static(publicPath));
 
 //αυτο είναι για να σερβίρει το index.html του front όταν ο χρήστης επισκέπτεται το root path ή οποιοδήποτε άλλο path που δεν είναι api ή api-docs

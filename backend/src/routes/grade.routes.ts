@@ -23,6 +23,8 @@ import { controllers } from "../controllers/controller";
 
 const router = Router();
 
+console.log("grade.routes loaded");
+
 // vector routes
 // question-based
 router.post("/cosine", controllers.gradeWithCosineDb);
@@ -43,6 +45,7 @@ router.post("/language", controllers.gradeTextWithLanguage);
 router.post("/total/text", controllers.gradeTotalText);
 
 // για την ενώτητα της έκθεσης
+console.log("Registering POST /language/essay");
 router.post("/language/essay", controllers.gradeEssay);
 
 export default router;

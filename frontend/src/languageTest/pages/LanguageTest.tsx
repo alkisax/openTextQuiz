@@ -112,6 +112,8 @@ const LanguageTest = () => {
     try {
       setEssayLoading(true);
 
+      console.log("url in ${url}/api/grade/language/essay :", url );
+      
       const response = await axios.post<EssayResult>(
         `${url}/api/grade/language/essay`,
         {
