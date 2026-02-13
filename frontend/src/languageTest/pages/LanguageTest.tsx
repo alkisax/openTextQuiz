@@ -9,15 +9,18 @@ import MultipleChoiceWithTargetQuestion from "../components/test-parts/MultipleC
 import ShortTextQuestion from "../components/test-parts/ShortTextQuestion";
 import LanguageGradingSummary from "../components/test-parts/LanguageGradingSummary";
 import type { GradedAnswer } from "../types/language.types";
+import EssayQuestion from "../components/test-parts/EssayQuestion";
 
 const LanguageTest = () => {
   const [answers, setAnswers] = useState<Record<string, string>>({});
+  const [essayText, setEssayText] = useState("");
   const [score, setScore] = useState<number | null>(null);
   const [gradedAnswers, setGradedAnswers] = useState<GradedAnswer[]>([]);
 
   const test = testData[0];
   const partA = test.parts.A.questions;
   const partB = test.parts.B.questions;
+  const partC = test.parts.C;
 
   // αποθηκεύουμε τις απαντήσεις
   // χρηαζόμαστε dynamic key για το id και για αυτό [id]: και οχι id:
@@ -27,6 +30,12 @@ const LanguageTest = () => {
       [id]: value,
     }));
   };
+
+  const wordCount = essayText
+    .trim()
+    .replace(/\n/g, " ")
+    .split(/\s+/)
+    .filter(Boolean).length;
 
   const gradeAll = () => {
     let correct = 0;
@@ -91,11 +100,12 @@ const LanguageTest = () => {
     });
 
     setScore(correct);
-    console.log("score :", score)
+    console.log("score :", score);
     setGradedAnswers(results);
 
     console.log(`Total Score: ${correct} / ${total}`);
   };
+
   return (
     <>
       <div className="max-w-3xl mx-auto py-8">
@@ -192,6 +202,18 @@ const LanguageTest = () => {
 
           return null;
         })}
+      </div>
+
+      {/* Part C */}
+      <div className="max-w-3xl mx-auto py-8">
+        <EssayQuestion
+          instructions={partC.instructions}
+          question={partC.question}
+          minWords={partC.minWords}
+          maxWords={partC.maxWords}
+          value={essayText}
+          onChange={setEssayText}
+        />
       </div>
 
       <button
