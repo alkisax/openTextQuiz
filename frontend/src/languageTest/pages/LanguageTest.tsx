@@ -12,6 +12,7 @@ import ShortTextQuestion from "../components/test-parts/ShortTextQuestion";
 import LanguageGradingSummary from "../components/test-parts/LanguageGradingSummary";
 import type { EssayResult, GradedAnswer } from "../types/language.types";
 import EssayQuestion from "../components/test-parts/EssayQuestion";
+import EssayGradingSummary from "../components/test-parts/EssayGradingSummary";
 
 const LanguageTest = () => {
   const [answers, setAnswers] = useState<Record<string, string>>({});
@@ -19,7 +20,7 @@ const LanguageTest = () => {
   const [score, setScore] = useState<number | null>(null);
   const [gradedAnswers, setGradedAnswers] = useState<GradedAnswer[]>([]);
 
-  const [_essayResult, setEssayResult] = useState<EssayResult | null>(null);
+  const [essayResult, setEssayResult] = useState<EssayResult | null>(null);
   const [essayLoading, setEssayLoading] = useState(false);
 
   const test = testData[0];
@@ -242,6 +243,8 @@ const LanguageTest = () => {
         >
           {essayLoading ? "Αξιολόγηση..." : "Αξιολόγηση Γ Θέματος"}
         </button>
+
+        {essayResult && <EssayGradingSummary result={essayResult} />}
       </div>
 
       <button
