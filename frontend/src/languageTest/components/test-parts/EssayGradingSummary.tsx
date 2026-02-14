@@ -1,8 +1,9 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import type { EssayResult } from "@/languageTest/types/language.types";
 
 type Props = {
-  result: any;
+  result: EssayResult;
 };
 
 const EssayGradingSummary = ({ result }: Props) => {

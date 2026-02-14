@@ -112,8 +112,8 @@ const LanguageTest = () => {
     try {
       setEssayLoading(true);
 
-      console.log("url in ${url}/api/grade/language/essay :", url );
-      
+      console.log("url in ${url}/api/grade/language/essay :", url);
+
       const response = await axios.post<EssayResult>(
         `${url}/api/grade/language/essay`,
         {
@@ -131,7 +131,7 @@ const LanguageTest = () => {
   };
 
   return (
-    <>
+    <div className="space-y-10 max-w-5xl mx-auto py-8">
       <div className="max-w-3xl mx-auto py-8">
         <Card>
           <CardHeader>
@@ -239,6 +239,7 @@ const LanguageTest = () => {
           onChange={setEssayText}
         />
         <button
+          type="button"
           className="px-4 py-2 bg-black text-white rounded"
           onClick={gradeEssay}
           disabled={essayLoading}
@@ -250,6 +251,7 @@ const LanguageTest = () => {
       </div>
 
       <button
+        type="button"
         className="px-4 py-2 bg-black text-white rounded"
         onClick={gradeAll}
       >
@@ -259,7 +261,7 @@ const LanguageTest = () => {
       {gradedAnswers.length > 0 && (
         <LanguageGradingSummary gradedAnswers={gradedAnswers} />
       )}
-    </>
+    </div>
   );
 };
 
