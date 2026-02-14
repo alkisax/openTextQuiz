@@ -1,6 +1,6 @@
 // frontend\src\languageTest\pages\LanguageTest.tsx
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import testData from "../data/draftLanguageTests.json";
+// import testData from "../data/draftLanguageTests.json";
 import axios from "axios";
 import { url } from "@/constants/constants";
 import { useState } from "react";
@@ -10,11 +10,15 @@ import TrueFalseQuestion from "../components/test-parts/TrueFalseQuestion";
 import MultipleChoiceWithTargetQuestion from "../components/test-parts/MultipleChoiceWithTargetQuestion";
 import ShortTextQuestion from "../components/test-parts/ShortTextQuestion";
 import LanguageGradingSummary from "../components/test-parts/LanguageGradingSummary";
-import type { EssayResult, GradedAnswer } from "../types/language.types";
+import type { EssayResult, GradedAnswer, LanguageTestType } from "../types/language.types";
 import EssayQuestion from "../components/test-parts/EssayQuestion";
 import EssayGradingSummary from "../components/test-parts/EssayGradingSummary";
 
-const LanguageTest = () => {
+type LanguageTestProps = {
+  test: LanguageTestType
+}
+
+const LanguageTest = ({ test }: LanguageTestProps) => {
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [essayText, setEssayText] = useState("");
   const [score, setScore] = useState<number | null>(null);
@@ -23,7 +27,7 @@ const LanguageTest = () => {
   const [essayResult, setEssayResult] = useState<EssayResult | null>(null);
   const [essayLoading, setEssayLoading] = useState(false);
 
-  const test = testData[0];
+  // const test = testData[0];
   const partA = test.parts.A.questions;
   const partB = test.parts.B.questions;
   const partC = test.parts.C;

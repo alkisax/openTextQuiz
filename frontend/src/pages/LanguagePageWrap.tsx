@@ -1,6 +1,6 @@
-import LanguageTest from '../languageTest/pages/LanguageTest'
+import LanguagePagePicker from '@/languageTest/pages/LanguagePagePicker'
 
 const LanguagePageWrap = () => {
-	return <LanguageTest />
+	return <LanguagePagePicker  />
 }
 export default LanguagePageWrap

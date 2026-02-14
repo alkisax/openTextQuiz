@@ -1,24 +1,63 @@
-export type MultipleChoiceQuestionType = {
+export type QuestionBase = {
   id: string
-  type: string
   question: string
+  correctAnswer: string
+}
+
+export type MultipleChoiceQuestion = QuestionBase & {
+  type: 'multipleChoice'
   options: Record<string, string>
-  correctAnswer: string
 }
 
-export type TrueFalseQuestionType = {
-  id: string
+export type TrueFalseQuestion = QuestionBase & {
   type: 'trueFalseNA'
-  question: string
-  correctAnswer: string
+  correctAnswer: 'T' | 'F' | 'NA'
 }
 
-export type Question = {
+export type ShortTextQuestion = QuestionBase & {
+  type: 'shortText'
+  caseSensitive?: boolean
+  trim?: boolean
+  normalizeGreek?: boolean
+}
+
+export type Question =
+  | MultipleChoiceQuestion
+  | TrueFalseQuestion
+  | ShortTextQuestion
+
+export type LanguageTestType = {
   id: string
-  type: string
-  question: string
-  options?: Record<string, string>
-  correctAnswer: string
+  category: string
+  type: 'readingTest'
+  title: string
+  prompt: string
+  text: string
+  parts: {
+    A: {
+      type: 'comprehension'
+      instructions: string
+      questions: Question[]
+    }
+    B: {
+      type: 'grammar'
+      instructions: string
+      questions: Question[]
+    }
+    C: {
+      type: 'essay'
+      instructions: string
+      question: string
+      minWords: number
+      maxWords: number
+      evaluation: {
+        method: string
+        responseFormat: string
+        maxScore: number
+        criteria: string[]
+      }
+    }
+  }
 }
 
 export type GradedAnswer = {
