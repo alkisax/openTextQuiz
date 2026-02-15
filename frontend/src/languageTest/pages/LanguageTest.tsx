@@ -251,11 +251,17 @@ const LanguageTest = ({ test }: LanguageTestProps) => {
       <div className="max-w-3xl mx-auto py-8 space-y-8">
         <h2 className="text-xl font-bold">Μέρος Β</h2>
 
-        <p>
-          Ξαναγράψτε τις παρακάτω προτάσεις με βάση τη φράση που σας δίνεται
-          στην αρχή. Γράψτε στο τετράδιο τον αριθμό της άσκησης και δίπλα τη
-          σωστή πρόταση/απάντηση.
-        </p>
+        {test.parts.B.instructionB1 && (
+          <p style={{ whiteSpace: "pre-line" }}>{test.parts.B.instructionB1}</p>
+        )}
+
+        {!test.parts.B.instructionB1 && (
+          <p>
+            Ξαναγράψτε τις παρακάτω προτάσεις με βάση τη φράση που σας δίνεται
+            στην αρχή. Γράψτε στο τετράδιο τον αριθμό της άσκησης και δίπλα τη
+            σωστή πρόταση/απάντηση.
+          </p>
+        )}
 
         {partB.map((q) => {
           if (q.type === "shortText") {
