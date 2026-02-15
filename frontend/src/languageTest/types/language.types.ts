@@ -44,7 +44,7 @@ export type LanguageTestType = {
     B: {
       type: "grammar";
       instructions?: string;
-      instructionB1?: string;
+      instructionsShortText?: string;
       questions: Question[];
     };
     C: {
