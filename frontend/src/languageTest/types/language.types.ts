@@ -19,6 +19,7 @@ export type ShortTextQuestion = QuestionBase & {
   caseSensitive?: boolean
   trim?: boolean
   normalizeGreek?: boolean
+  multipleBlanks?: boolean
 }
 
 export type Question =

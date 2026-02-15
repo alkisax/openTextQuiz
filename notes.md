@@ -83,11 +83,16 @@ TODO test 8-β-3 δέχετε πολλές απαντήσεις
   "constraints": [
     "Ακολουθείται ΑΥΣΤΗΡΑ το υπάρχον schema (id, category, type:'readingTest', title, prompt, text, parts:{A,B,C}).",
     "Το title είναι ΠΑΝΤΑ: 'Κατανόηση και Παραγωγή Γραπτού Λόγου – ΘΕΜΑ X' (όπου X ο αριθμός θέματος).",
-    "Το text ξεκινάει ΠΑΝΤΑ με τον τίτλο του κειμένου (π.χ. 'Η φιλία στον καιρό της πανδημίας') και μετά \\n\\n και μετά ΟΛΟΚΛΗΡΟ το κείμενο. Χωρίς placeholders.",
+    "Το text ξεκινάει ΠΑΝΤΑ με τον τίτλο του κειμένου και μετά \\n\\n και μετά ΟΛΟΚΛΗΡΟ το κείμενο. Χωρίς placeholders.",
     "Το text χρησιμοποιεί \\n\\n για παραγράφους.",
+    "Οι ερωτήσεις διατηρούν ΠΑΝΤΑ την αρίθμησή τους (π.χ. '1. ', '2. ') μέσα στο prompt ή/και στο question, όπως ακριβώς εμφανίζονται στο θέμα.",
     "Μέρος Α: multipleChoice & trueFalseNA, χωρίς αλλαγή διατύπωσης.",
-    "Μέρος Β1: shortText με prompt + question, __ για κενό, caseSensitive:false, trim:true, normalizeGreek:true.",
-    "Μέρος Β2: multipleChoice. Προσθέτουμε target όταν η άσκηση ζητά συνώνυμο/αντίθετο συγκεκριμένης λέξης ή φράσης (ακόμα κι αν δεν φαίνεται υπογραμμισμένη στο κείμενο). Ποτέ target:\"\".",
+    "Στις trueFalseNA ερωτήσεις το correctAnswer είναι ΑΠΟΚΛΕΙΣΤΙΚΑ ένα από: 'T', 'F', 'NA'. Ποτέ 'Σ', 'Λ', 'S' ή άλλη τιμή.",
+    "Μέρος Β1: shortText με prompt + question. Το prompt περιέχει την αρχική πρόταση με την αρίθμηση. Το question περιέχει την αναδιατυπωμένη πρόταση με __ για το κενό. caseSensitive:false, trim:true, normalizeGreek:true.",
+    "Μέρος Β2: multipleChoice.",
+    "Στις multipleChoice ερωτήσεις του Β2 ΔΕΝ προσθέτουμε target όταν η εκφώνηση είναι τύπου 'Στη φράση ... η λέξη ... σημαίνει'.",
+    "Προσθέτουμε target ΜΟΝΟ όταν η εκφώνηση ζητά ρητά λέξη με αντίθετη ή ίδια σημασία από ΥΠΟΓΡΑΜΜΙΣΜΕΝΗ λέξη ή φράση.",
+    "Ποτέ target:\"\".",
     "Μέρος Γ: essay με minWords, maxWords, evaluation standard schema.",
     "Δεν τροποποιούνται εκφωνήσεις.",
     "Δεν κόβονται προτάσεις.",
@@ -95,3 +100,77 @@ TODO test 8-β-3 δέχετε πολλές απαντήσεις
   ],
   "output": "Return only the final JSON object ready for insertion into draftLanguageTests.json"
 }
+
+## json format
+
+```json
+[
+  {
+    "id": "TEST_ID",
+    "category": "κατηγορία",
+    "type": "readingTest",
+    "title": "Τίτλος Τεστ",
+
+    "prompt": "Οδηγία πριν το κείμενο",
+
+    "text": "Κύριο κείμενο του θέματος...",
+
+    "parts": {
+      "A": {
+        "type": "comprehension",
+        "instructions": "Οδηγίες μέρους Α",
+        "questions": [
+          {
+            "id": "TEST_ID_A_1",
+            "type": "multipleChoice | trueFalseNA",
+            "question": "Ερώτηση",
+            "options": {
+              "A": "Επιλογή Α",
+              "B": "Επιλογή Β",
+              "C": "Επιλογή Γ"
+            },
+            "correctAnswer": "A | B | C | T | F | NA"
+          }
+        ]
+      },
+
+      "B": {
+        "type": "grammar",
+        "instructions": "Οδηγίες μέρους Β",
+        "questions": [
+          {
+            "id": "TEST_ID_B_1",
+            "type": "shortText | multipleChoice",
+            "prompt": "Πρόταση αναφοράς (αν υπάρχει)",
+            "question": "Ερώτηση με κενό __",
+            "correctAnswer": "σωστή απάντηση",
+            "caseSensitive": false,
+            "trim": true,
+            "normalizeGreek": true
+          }
+        ]
+      },
+
+      "C": {
+        "type": "essay",
+        "instructions": "Οδηγίες έκθεσης",
+        "question": "Θέμα ανάπτυξης",
+        "minWords": 80,
+        "maxWords": 100,
+        "evaluation": {
+          "method": "openai",
+          "responseFormat": "json",
+          "maxScore": 20,
+          "criteria": [
+            "content",
+            "coherence",
+            "grammar",
+            "vocabulary",
+            "structure"
+          ]
+        }
+      }
+    }
+  }
+]
+```

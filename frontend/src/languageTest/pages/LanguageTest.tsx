@@ -10,16 +10,23 @@ import TrueFalseQuestion from "../components/test-parts/TrueFalseQuestion";
 import MultipleChoiceWithTargetQuestion from "../components/test-parts/MultipleChoiceWithTargetQuestion";
 import ShortTextQuestion from "../components/test-parts/ShortTextQuestion";
 import LanguageGradingSummary from "../components/test-parts/LanguageGradingSummary";
-import type { EssayResult, GradedAnswer, LanguageTestType } from "../types/language.types";
+import type {
+  EssayResult,
+  GradedAnswer,
+  LanguageTestType,
+} from "../types/language.types";
 import EssayQuestion from "../components/test-parts/EssayQuestion";
 import EssayGradingSummary from "../components/test-parts/EssayGradingSummary";
 
 type LanguageTestProps = {
-  test: LanguageTestType
-}
+  test: LanguageTestType;
+};
 
 const LanguageTest = ({ test }: LanguageTestProps) => {
   const [answers, setAnswers] = useState<Record<string, string>>({});
+  const [multiAnswers, setMultiAnswers] = useState<Record<string, string[]>>(
+    {},
+  );
   const [essayText, setEssayText] = useState("");
   const [score, setScore] = useState<number | null>(null);
   const [gradedAnswers, setGradedAnswers] = useState<GradedAnswer[]>([]);
@@ -39,6 +46,20 @@ const LanguageTest = ({ test }: LanguageTestProps) => {
       ...prev,
       [id]: value,
     }));
+  };
+
+  // κάποιες ερωτήσεις τύπου shortText είναι πιθανό να έχουν δύο κενα, σε αυτές η απάντηση δεν έρχετε ως string αλλά ως string[]
+  const handleMultiChange = (id: string, index: number, value: string) => {
+    setMultiAnswers((prev) => {
+      const existing = prev[id] || [];
+      const updated = [...existing];
+      updated[index] = value;
+
+      return {
+        ...prev,
+        [id]: updated,
+      };
+    });
   };
 
   const gradeAll = () => {
@@ -73,18 +94,58 @@ const LanguageTest = ({ test }: LanguageTestProps) => {
 
       // shortText
       if (q.type === "shortText") {
-        const result = gradeShortTextDetailed(userAnswer, q.correctAnswer);
+        // MULTI BLANK
+        if (q.multipleBlanks && Array.isArray(q.correctAnswer)) {
+          const userParts = multiAnswers[q.id] || [];
+          const correctParts = q.correctAnswer;
 
-        if (result.correct) correct++;
+          let allCorrect = true;
+          let hasSpellingErrors = false;
 
-        results.push({
-          id: q.id,
-          userAnswer,
-          correctAnswer: q.correctAnswer,
-          correct: result.correct,
-          hasSpellingErrors: result.hasSpellingErrors,
-          type: q.type,
-        });
+          correctParts.forEach((correctPart, index) => {
+            const userPart = userParts[index];
+
+            const result = gradeShortTextDetailed(userPart, correctPart);
+
+            if (!result.correct) {
+              allCorrect = false;
+            }
+
+            if (result.hasSpellingErrors) {
+              hasSpellingErrors = true;
+            }
+          });
+
+          if (allCorrect) correct++;
+
+          results.push({
+            id: q.id,
+            userAnswer: userParts.join(" "),
+            correctAnswer: correctParts.join(" "),
+            correct: allCorrect,
+            hasSpellingErrors,
+            type: q.type,
+          });
+        } else {
+          // SINGLE BLANK
+          const userAnswer = answers[q.id];
+
+          const result = gradeShortTextDetailed(
+            userAnswer,
+            q.correctAnswer as string,
+          );
+
+          if (result.correct) correct++;
+
+          results.push({
+            id: q.id,
+            userAnswer,
+            correctAnswer: q.correctAnswer,
+            correct: result.correct,
+            hasSpellingErrors: result.hasSpellingErrors,
+            type: q.type,
+          });
+        }
       }
 
       // multipleChoice
@@ -199,8 +260,20 @@ const LanguageTest = ({ test }: LanguageTestProps) => {
               <ShortTextQuestion
                 key={q.id}
                 question={q}
-                value={answers[q.id]}
-                onChange={(value) => handleChange(q.id, value)}
+                value={q.multipleBlanks ? multiAnswers[q.id] : answers[q.id]}
+                onChange={(value) => {
+                  if (q.multipleBlanks) {
+                    setMultiAnswers((prev) => ({
+                      ...prev,
+                      [q.id]: value as string[],
+                    }));
+                  } else {
+                    setAnswers((prev) => ({
+                      ...prev,
+                      [q.id]: value as string,
+                    }));
+                  }
+                }}
               />
             );
           }
