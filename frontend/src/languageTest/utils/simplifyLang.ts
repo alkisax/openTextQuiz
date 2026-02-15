@@ -44,3 +44,17 @@ export const simplifyLang = (input: string): string => {
 
 	return s
 }
+
+// Θέλουμε: ασφαλή (μετα)κίνηση → να θεωρείται ίδιο με ασφαλή μετακίνηση αλλα και με ασφαλή κίνηση. Και θα (του) αποσπάσεις → ίδιο με θα του αποσπάσεις αλλα και θα αποσπάσεις
+export const expandOptionalParts = (text: string): string[] => {
+  const match = text.match(/\(([^)]+)\)/);
+
+  if (!match) return [text];
+
+  const optional = match[1];
+
+  const withPart = text.replace(/\(([^)]+)\)/, optional);
+  const withoutPart = text.replace(/\(([^)]+)\)/, "");
+
+  return [withPart.trim(), withoutPart.trim()];
+};

@@ -349,12 +349,14 @@
             "trim": true,
             "normalizeGreek": true
           },
+
           {
             "id": "LANG_TEST_2_B_2",
             "type": "shortText",
             "prompt": "2. Ο Δημήτρης, ανέκαθεν, μοίραζε το φαγητό που περίσσευε σε συμπολίτες του.",
             "question": "Ο Δημήτρης, την προηγούμενη Κυριακή, __ το φαγητό που __ σε συμπολίτες του.",
-            "correctAnswer": "μοίρασε ... περίσσεψε",
+            "correctAnswer": ["μοίρασε", "περίσσεψε"],
+            "multipleBlanks": true,
             "caseSensitive": false,
             "trim": true,
             "normalizeGreek": true
@@ -1000,7 +1002,7 @@
             "type": "shortText",
             "prompt": "1. Ο σκύλος-οδηγός μπορεί να επιτρέψει στους τυφλούς να κινούνται με ασφάλεια.",
             "question": "Ο σκύλος-οδηγός μπορεί να επιτρέψει την __ των τυφλών.",
-            "correctAnswer": "ασφαλή μετακίνηση",
+            "correctAnswer": "ασφαλή (μετα)κίνηση",
             "caseSensitive": false,
             "trim": true,
             "normalizeGreek": true
@@ -1010,7 +1012,8 @@
             "type": "shortText",
             "prompt": "2. Εάν δουν έναν σκύλο-οδηγό την ώρα που οδηγεί, θα πρέπει να κρατήσουν τα σκυλιά τους μακριά.",
             "question": "Εάν δεις έναν σκύλο-οδηγό την ώρα που οδηγεί, θα πρέπει να __ το σκυλί __ μακριά.",
-            "correctAnswer": "κρατήσεις σου",
+            "correctAnswer": ["κρατήσεις", "σου"],
+            "multipleBlanks": true,
             "caseSensitive": false,
             "trim": true,
             "normalizeGreek": true
@@ -1020,7 +1023,7 @@
             "type": "shortText",
             "prompt": "3. Δεν πρέπει να φωνάξουμε τον σκύλο με το όνομά του ή να του μιλήσουμε, γιατί θα του αποσπάσουμε την προσοχή.",
             "question": "Αν φωνάξεις τον σκύλο με το όνομά του ή του μιλήσεις, __ την προσοχή.",
-            "correctAnswer": "θα του αποσπάσεις",
+            "correctAnswer": "θα (του) αποσπάσεις",
             "caseSensitive": false,
             "trim": true,
             "normalizeGreek": true
@@ -1226,6 +1229,7 @@
             "prompt": "3. Η εξέλιξη της τεχνολογίας έχει πάντα ανάγκη και τον χειριστή επί του πλοίου.",
             "question": "Ο χειριστής επί του πλοίου είναι πάντα αναγκαίος __ της τεχνολογίας.",
             "correctAnswer": "για την εξέλιξη",
+            "acceptableAnswers": ["στην εξέλιξη"],
             "caseSensitive": false,
             "trim": true,
             "normalizeGreek": true
@@ -1647,12 +1651,14 @@
             "trim": true,
             "normalizeGreek": true
           },
+
           {
             "id": "LANG_TEST_8_B_3",
             "type": "shortText",
             "prompt": "Τώρα, 8 βδομάδες μετά το δεύτερο lockdown, τα κατάφερα.",
             "question": "Τώρα, 8 εβδομάδες από τότε __ το δεύτερο lockdown, τα κατάφερα.",
             "correctAnswer": "που τελείωσε",
+            "acceptableAnswers": ["που έληξε", "που σταμάτησε"],
             "caseSensitive": false,
             "trim": true,
             "normalizeGreek": true
@@ -2088,7 +2094,7 @@
             "type": "shortText",
             "prompt": "Αν η απάντηση από τον νοικοκύρη ή τη νοικοκυρά είναι θετική, τότε τραγουδούν τα κάλαντα.",
             "question": "Αν η απάντηση από τον νοικοκύρη ή τη νοικοκυρά ήταν θετική, τότε __ τα κάλαντα.",
-            "correctAnswer": "θα τραγουδούσαν",
+            "correctAnswer": "(θα) τραγουδούσαν",
             "caseSensitive": false,
             "trim": true,
             "normalizeGreek": true

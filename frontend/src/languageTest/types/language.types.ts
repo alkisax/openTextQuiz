@@ -18,6 +18,7 @@ export type ShortTextQuestion = QuestionBase & {
   type: 'shortText'
   caseSensitive?: boolean
   trim?: boolean
+  acceptableAnswers?: string[]
   normalizeGreek?: boolean
   multipleBlanks?: boolean
 }

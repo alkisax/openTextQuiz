@@ -1,61 +1,79 @@
-import { simplifyLang } from './simplifyLang'
+import { expandOptionalParts, simplifyLang } from "./simplifyLang";
 
 type ShortTextQuestion = {
-  id: string
-  correctAnswer: string
-  caseSensitive?: boolean
-  trim?: boolean
-  normalizeGreek?: boolean
-}
+  id: string;
+  correctAnswer: string;
+  caseSensitive?: boolean;
+  trim?: boolean;
+  normalizeGreek?: boolean;
+};
 
 export const isShortTextCorrect = (
   userAnswer: string | undefined,
-  question: ShortTextQuestion
+  question: ShortTextQuestion,
 ) => {
-  if (!userAnswer) return false
+  if (!userAnswer) return false;
 
-  let user = userAnswer
-  let correct = question.correctAnswer
+  let user = userAnswer;
+  let correct = question.correctAnswer;
 
   if (question.trim !== false) {
-    user = user.trim()
-    correct = correct.trim()
+    user = user.trim();
+    correct = correct.trim();
   }
 
   if (!question.caseSensitive) {
-    user = user.toLowerCase()
-    correct = correct.toLowerCase()
+    user = user.toLowerCase();
+    correct = correct.toLowerCase();
   }
 
   if (question.normalizeGreek) {
-    user = simplifyLang(user)
-    correct = simplifyLang(correct)
+    user = simplifyLang(user);
+    correct = simplifyLang(correct);
   }
 
-  return user === correct
-}
+  return user === correct;
+};
 
 export const gradeShortTextDetailed = (
   userAnswer: string | undefined,
-  correctAnswer: string
+  correctAnswer: string,
+  acceptableAnswers: string[] = [],
 ) => {
   if (!userAnswer) {
-    return { correct: false, hasSpellingErrors: false }
+    return { correct: false, hasSpellingErrors: false };
   }
 
-  const cleanUser = userAnswer.trim()
-  const cleanCorrect = correctAnswer.trim()
+  const cleanUser = userAnswer.trim();
 
-  if (cleanUser === cleanCorrect) {
-    return { correct: true, hasSpellingErrors: false }
+  // 🔹 δημιουργούμε variants μόνο αν υπάρχουν ()
+  const correctVariants = expandOptionalParts(correctAnswer);
+  //flatMap = map που δεν κρατά nested arrays.
+  const acceptableVariants = acceptableAnswers.flatMap(expandOptionalParts);
+
+  // exact match main
+  if (correctVariants.some((v) => cleanUser === v.trim())) {
+    return { correct: true, hasSpellingErrors: false };
   }
 
-  const simplifiedUser = simplifyLang(cleanUser)
-  const simplifiedCorrect = simplifyLang(cleanCorrect)
-
-  if (simplifiedUser === simplifiedCorrect) {
-    return { correct: true, hasSpellingErrors: true }
+  // exact match acceptable
+  if (acceptableVariants.some((v) => cleanUser === v.trim())) {
+    return { correct: true, hasSpellingErrors: false };
   }
 
-  return { correct: false, hasSpellingErrors: false }
-}
+  const simplifiedUser = simplifyLang(cleanUser);
+
+  // simplified match main
+  if (correctVariants.some((v) => simplifiedUser === simplifyLang(v.trim()))) {
+    return { correct: true, hasSpellingErrors: true };
+  }
+
+  // simplified match acceptable
+  if (
+    acceptableVariants.some((v) => simplifiedUser === simplifyLang(v.trim()))
+  ) {
+    return { correct: true, hasSpellingErrors: true };
+  }
+
+  return { correct: false, hasSpellingErrors: false };
+};

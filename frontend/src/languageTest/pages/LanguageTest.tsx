@@ -49,18 +49,18 @@ const LanguageTest = ({ test }: LanguageTestProps) => {
   };
 
   // κάποιες ερωτήσεις τύπου shortText είναι πιθανό να έχουν δύο κενα, σε αυτές η απάντηση δεν έρχετε ως string αλλά ως string[]
-  const handleMultiChange = (id: string, index: number, value: string) => {
-    setMultiAnswers((prev) => {
-      const existing = prev[id] || [];
-      const updated = [...existing];
-      updated[index] = value;
+  // const handleMultiChange = (id: string, index: number, value: string) => {
+  //   setMultiAnswers((prev) => {
+  //     const existing = prev[id] || [];
+  //     const updated = [...existing];
+  //     updated[index] = value;
 
-      return {
-        ...prev,
-        [id]: updated,
-      };
-    });
-  };
+  //     return {
+  //       ...prev,
+  //       [id]: updated,
+  //     };
+  //   });
+  // };
 
   const gradeAll = () => {
     let correct = 0;
@@ -95,6 +95,7 @@ const LanguageTest = ({ test }: LanguageTestProps) => {
       // shortText
       if (q.type === "shortText") {
         // MULTI BLANK
+        // κάποιες ερωτήσεις τύπου shortText είναι πιθανό να έχουν δύο κενα, σε αυτές η απάντηση δεν έρχετε ως string αλλά ως string[]
         if (q.multipleBlanks && Array.isArray(q.correctAnswer)) {
           const userParts = multiAnswers[q.id] || [];
           const correctParts = q.correctAnswer;
@@ -130,9 +131,11 @@ const LanguageTest = ({ test }: LanguageTestProps) => {
           // SINGLE BLANK
           const userAnswer = answers[q.id];
 
+          // TODO προς το παρόν δεχόμαστε πολλές απαντήσεις μόνο αν είναι ένα το κενο στην ερώτηση. θα δούμε αν υπάρχουν τέτοιες ερωτήσεις (δυο κενα - πολλαπλές απαντήσεις) και θα το κάνουμε τότε
           const result = gradeShortTextDetailed(
             userAnswer,
             q.correctAnswer as string,
+            q.acceptableAnswers ?? [],
           );
 
           if (result.correct) correct++;
