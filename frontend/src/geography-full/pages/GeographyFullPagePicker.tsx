@@ -1,5 +1,5 @@
 import { useState } from "react";
-import questions from "../data/geoData.json";
+import rawQuestions from "../data/geoData.json";
 import GeographyFullQuestion from "./GeographyFullQuestion";
 import { Button } from "@/components/ui/button";
 import type {
@@ -7,6 +7,7 @@ import type {
   GeoGradedAnswer,
 } from "../types/geographyFull.types";
 import GeographyFullGradingSummary from "../components/GeographyFullGradingSummary";
+import { simplifyLang, expandOptionalParts } from "../utils/simplifyLang";
 
 type Props = {
   count?: number; // πόσες ερωτήσεις θα εμφανιστούν
@@ -14,9 +15,11 @@ type Props = {
 
 const GeographyFullPagePicker = ({ count = 4 }: Props) => {
   const [selectedQuestions, setSelectedQuestions] = useState<GeoQuestion[]>([]);
-  const [answers, setAnswers] = useState<Record<string, string>>({});
+  const [answers, setAnswers] = useState<Record<string, string | string[]>>({});
   const [gradedAnswers, setGradedAnswers] = useState<GeoGradedAnswer[]>([]);
-  const [score, setScore] = useState<number | null>(null);
+  const [_score, setScore] = useState<number | null>(null);
+
+  const questions = rawQuestions as GeoQuestion[];
 
   // επιλογή τυχαίων ερωτήσεων
   const pickRandomQuestions = () => {
@@ -24,7 +27,7 @@ const GeographyFullPagePicker = ({ count = 4 }: Props) => {
     setSelectedQuestions(shuffled.slice(0, count));
   };
 
-  const handleChange = (id: string, value: string) => {
+  const handleChange = (id: string, value: string | string[]) => {
     setAnswers((prev) => ({
       ...prev,
       [id]: value,
@@ -41,17 +44,81 @@ const GeographyFullPagePicker = ({ count = 4 }: Props) => {
       total++;
 
       const userAnswer = answers[q.id];
-      const isCorrect = userAnswer === q.correctAnswer;
 
-      if (isCorrect) correct++;
+      // ======================
+      // MULTIPLE CHOICE
+      // ======================
+      if (q.type === "multipleChoice") {
+        const isCorrect = userAnswer === q.correctAnswer;
 
-      results.push({
-        id: q.id,
-        userAnswer,
-        correctAnswer: q.correctAnswer,
-        correct: isCorrect,
-        type: "multipleChoice",
-      });
+        if (isCorrect) correct++;
+
+        results.push({
+          id: q.id,
+          userAnswer,
+          correctAnswer: q.correctAnswer,
+          correct: isCorrect,
+          type: q.type,
+        });
+
+        return;
+      }
+
+      // ======================
+      // SHORT TEXT (multiple blanks)
+      // ======================
+      if (q.type === "shortText") {
+        const userParts = Array.isArray(userAnswer) ? userAnswer : [];
+        const correctParts = q.correctAnswer;
+
+        let allCorrect = true;
+        let hasSpellingErrors = false;
+
+        correctParts.forEach((correctPart, index) => {
+          const userPart = userParts[index];
+
+          if (!userPart) {
+            allCorrect = false;
+            return;
+          }
+
+          const expanded = expandOptionalParts(correctPart);
+
+          let partMatched = false;
+
+          for (const variant of expanded) {
+            const exactMatch = userPart.trim() === variant.trim();
+            const simplifiedMatch =
+              simplifyLang(userPart) === simplifyLang(variant);
+
+            if (exactMatch) {
+              partMatched = true;
+              break;
+            }
+
+            if (!exactMatch && simplifiedMatch) {
+              partMatched = true;
+              hasSpellingErrors = true;
+              break;
+            }
+          }
+
+          if (!partMatched) {
+            allCorrect = false;
+          }
+        });
+
+        if (allCorrect) correct++;
+
+        results.push({
+          id: q.id,
+          userAnswer,
+          correctAnswer: q.correctAnswer,
+          correct: allCorrect,
+          hasSpellingErrors,
+          type: q.type,
+        });
+      }
     });
 
     setScore(correct);

@@ -1,4 +1,4 @@
-// frontend\src\languageTest\utils\simplifyLang.ts
+// frontend\src\geography-full\utils\simplifyLang.ts
 
 export const simplifyLang = (input: string): string => {
 	let s = input.toLowerCase().trim()

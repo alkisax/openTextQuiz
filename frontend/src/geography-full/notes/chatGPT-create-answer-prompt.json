@@ -1,32 +1,47 @@
 {
-  "task": "Εξαγωγή ερωτήσεων γεωγραφίας πολλαπλής επιλογής από ακατέργαστο κείμενο",
+  "task": "Εξαγωγή ερωτήσεων γεωγραφίας από ακατέργαστο κείμενο",
   "instructions": [
     "Διάβασε το κείμενο που θα δοθεί.",
     "Εντόπισε κάθε ενότητα που ξεκινά με 'ΘΕΜΑ' ή 'Θέμα'.",
     "Αγνόησε πληροφορίες όπως σελίδες, τίτλους, ημερομηνίες, 'ΤΡΑΠΕΖΑ ΘΕΜΑΤΩΝ' κτλ.",
-    "Για κάθε έγκυρη ερώτηση multiple choice δημιούργησε JSON object.",
+    "Αναγνώρισε τον τύπο της ερώτησης.",
     "Η απάντηση πρέπει να είναι μόνο JSON array.",
     "Μην προσθέτεις καμία εξήγηση."
   ],
   "schema": {
-    "id": "GEO_<number>",
-    "category": "γεωγραφία",
-    "type": "multipleChoice",
-    "question": "string",
-    "options": {
-      "A": "string",
-      "B": "string",
-      "C": "string",
-      "D": "string"
+    "multipleChoice": {
+      "id": "GEO_<number>",
+      "category": "γεωγραφία",
+      "type": "multipleChoice",
+      "question": "string",
+      "options": {
+        "A": "string",
+        "B": "string",
+        "C": "string",
+        "D": "string"
+      },
+      "correctAnswer": "A|B|C|D"
     },
-    "correctAnswer": "A|B|C|D"
+    "shortTextMultipleBlanks": {
+      "id": "GEO_<number>",
+      "category": "γεωγραφία",
+      "type": "shortText",
+      "multipleBlanks": true,
+      "prompt": "string",
+      "question": "string with __ placeholders",
+      "correctAnswer": ["string"]
+    }
   },
   "rules": [
-    "Το id να ακολουθεί αρίθμηση με βάση τον αριθμό του ΘΕΜΑΤΟΣ (πχ ΘΕΜΑ 2 → GEO_2).",
+    "Το id να ακολουθεί αρίθμηση με βάση τον αριθμό του ΘΕΜΑΤΟΣ (πχ ΘΕΜΑ 5 → GEO_5).",
     "Αφαίρεσε την οδηγία 'Γράψτε στο τετράδιό σας...' από το question.",
-    "Το question να περιέχει μόνο το καθαρό ερώτημα.",
-    "Διατήρησε ακριβώς το κείμενο των επιλογών.",
-    "Το correctAnswer να είναι μόνο το γράμμα.",
-    "Επιστροφή αποτελέσματος ως array."
+    "Στις shortText ερωτήσεις εξήγαγε τη φράση 'επιλέγοντας από τις παρακάτω: ...' και τοποθέτησέ την στο πεδίο prompt.",
+    "Στις shortText ερωτήσεις αντικατέστησε όλα τα κενά (...... ή ………………) με ακριβώς δύο underscores: __.",
+    "Ο αριθμός των __ πρέπει να αντιστοιχεί ακριβώς στο μήκος του correctAnswer array.",
+    "Διατήρησε τη σωστή σειρά των απαντήσεων στα multiple blanks.",
+    "Μην προσθέτεις wordBank.",
+    "Στις multipleChoice διατήρησε ακριβώς το κείμενο των επιλογών.",
+    "Το correctAnswer για multipleChoice να είναι μόνο το γράμμα.",
+    "Επιστροφή αποτελέσματος ως JSON array."
   ]
 }
