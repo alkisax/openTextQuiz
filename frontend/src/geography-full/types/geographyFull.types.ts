@@ -30,31 +30,42 @@ export type GeoMatchingQuestion = GeoQuestionBase & {
 };
 
 export type GeoMultiSelectQuestion = GeoQuestionBase & {
-  type: 'multiSelect'
-  question: string
-  minSelections: number
-  maxSelections: number
-  options: string[]
-  correctAnswer: string[]
-}
+  type: "multiSelect";
+  question: string;
+  minSelections: number;
+  maxSelections: number;
+  options: string[];
+  correctAnswer: string[];
+};
 
 export type GeoListInputQuestion = GeoQuestionBase & {
-  type: 'listInput'
-  question: string
-  minItems: number
-  maxItems: number
-  correctAnswer: string[]
-}
+  type: "listInput";
+  question: string;
+  minItems: number;
+  maxItems: number;
+  correctAnswer: string[];
+};
 
 export type GeoTrueFalseGroupQuestion = GeoQuestionBase & {
-  type: 'trueFalseGroup'
-  question: string
+  type: "trueFalseGroup";
+  question: string;
   statements: {
-    key: string
-    text: string
-  }[]
-  correctAnswer: Record<string, 'T' | 'F'>
-}
+    key: string;
+    text: string;
+  }[];
+  correctAnswer: Record<string, "T" | "F">;
+};
+
+export type GeoCategorizationQuestion = GeoQuestionBase & {
+  type: "categorization";
+  question: string;
+  categories: {
+    key: string;
+    label: string;
+  }[];
+  items: string[];
+  correctAnswer: Record<string, string[]>; // categoryKey → items[]
+};
 
 export type GeoQuestion =
   | GeoMultipleChoiceQuestion
@@ -63,6 +74,7 @@ export type GeoQuestion =
   | GeoMultiSelectQuestion
   | GeoListInputQuestion
   | GeoTrueFalseGroupQuestion
+  |GeoCategorizationQuestion;
 
 export type GeoAnswer = string | string[] | Record<string, string>;
 

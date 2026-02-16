@@ -11,6 +11,7 @@ import type {
   GeoMultiSelectQuestion,
   GeoListInputQuestion,
   GeoTrueFalseGroupQuestion,
+  GeoCategorizationQuestion,
 } from "../types/geographyFull.types";
 import GeographyFullGradingSummary from "../components/GeographyFullGradingSummary";
 import { simplifyLang, expandOptionalParts } from "../utils/simplifyLang";
@@ -230,6 +231,31 @@ const GeographyFullPagePicker = ({ count = 4 }: Props) => {
     };
   };
 
+  const gradeCategorization = (
+    q: GeoCategorizationQuestion,
+    userAnswer: GeoAnswer | undefined,
+  ): GeoGradedAnswer => {
+    const userMap =
+      userAnswer && typeof userAnswer === "object" && !Array.isArray(userAnswer)
+        ? (userAnswer as Record<string, string>)
+        : {};
+
+    const correctMap = q.correctAnswer;
+
+    const allCorrect = Object.entries(correctMap).every(
+      ([categoryKey, items]) =>
+        items.every((item) => userMap[item] === categoryKey),
+    );
+
+    return {
+      id: q.id,
+      userAnswer,
+      correctAnswer: correctMap,
+      correct: allCorrect,
+      type: q.type,
+    };
+  };
+
   const gradeAll = () => {
     let correct = 0;
     const results: GeoGradedAnswer[] = [];
@@ -262,6 +288,10 @@ const GeographyFullPagePicker = ({ count = 4 }: Props) => {
 
         case "trueFalseGroup":
           result = gradeTrueFalseGroup(q, userAnswer);
+          break;
+
+        case "categorization":
+          result = gradeCategorization(q, userAnswer);
           break;
       }
 

@@ -5,6 +5,7 @@ import MatchingQuestionComponent from "../components/MatchingQuestion";
 import MultiSelectQuestion from "../components/MultiSelectQuestion";
 import ListInputQuestion from "../components/ListInputQuestion";
 import TrueFalseGroupQuestion from "../components/TrueFalseGroupQuestion";
+import CategorizationQuestionComponent from "../components/CategorizationQuestionComponent";
 
 type Props = {
   question: GeoQuestion;
@@ -65,6 +66,18 @@ const GeographyFullQuestion = ({ question, value, onChange }: Props) => {
           value={
             value && typeof value === "object" && !Array.isArray(value)
               ? (value as Record<string, "T" | "F">)
+              : {}
+          }
+          onChange={(val) => onChange(question.id, val)}
+        />
+      )}
+
+      {question.type === "categorization" && (
+        <CategorizationQuestionComponent
+          question={question}
+          value={
+            value && typeof value === "object" && !Array.isArray(value)
+              ? value
               : {}
           }
           onChange={(val) => onChange(question.id, val)}
