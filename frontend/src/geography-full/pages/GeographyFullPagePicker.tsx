@@ -120,6 +120,34 @@ const GeographyFullPagePicker = ({ count = 4 }: Props) => {
           type: q.type,
         });
       }
+
+            // MATCHING
+      if (q.type === 'matching') {
+        const userMap =
+          userAnswer &&
+          typeof userAnswer === 'object' &&
+          !Array.isArray(userAnswer)
+            ? userAnswer
+            : {}
+
+        const correctMap = q.correctAnswer
+
+        const allCorrect = Object.keys(correctMap).every(
+          key => userMap[key] === correctMap[key]
+        )
+
+        if (allCorrect) correct++
+
+        results.push({
+          id: q.id,
+          userAnswer,
+          correctAnswer: correctMap,
+          correct: allCorrect,
+          type: q.type,
+        })
+
+        return
+      }
     });
 
     setScore(correct);

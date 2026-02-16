@@ -44,12 +44,12 @@ const MatchingQuestionComponent = ({
           <TableRow className="border-b border-black">
             <TableHead className="w-1/2 font-bold border-r border-black">
               Στήλη Ι
-              <div className="font-semibold">Γεωγραφικά Διαμερίσματα</div>
+              <div className="font-semibold">{question.columnAHeader}</div>
             </TableHead>
 
             <TableHead className="w-1/2 font-bold">
               Στήλη ΙΙ
-              <div className="font-semibold">Περιφερειακές Ενότητες</div>
+              <div className="font-semibold">{question.columnBHeader}</div>
             </TableHead>
           </TableRow>
         </TableHeader>

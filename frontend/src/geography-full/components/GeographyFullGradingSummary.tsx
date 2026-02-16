@@ -1,16 +1,22 @@
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import type { GeoGradedAnswer } from "../types/geographyFull.types";
+import type { GeoGradedAnswer, GeoAnswer } from "../types/geographyFull.types";
 
 type Props = {
   gradedAnswers: GeoGradedAnswer[];
 };
 
-const formatAnswer = (answer: string | string[] | undefined) => {
+const formatAnswer = (answer: GeoAnswer | undefined): string => {
   if (!answer) return "—";
 
   if (Array.isArray(answer)) {
     return answer.join(" / ");
+  }
+
+  if (typeof answer === "object") {
+    return Object.entries(answer)
+      .map(([key, value]) => `${key}-${value}`)
+      .join(", ");
   }
 
   return answer;
@@ -36,7 +42,7 @@ const GeographyFullGradingSummary = ({ gradedAnswers }: Props) => {
             <li key={a.id} className="rounded-md border p-2">
               <p className="text-sm font-medium">
                 {i + 1}. {formatAnswer(a.userAnswer)} →{" "}
-                {formatAnswer(a.correctAnswer)}
+                {formatAnswer(a.correctAnswer as GeoAnswer)}
               </p>
 
               <Badge

@@ -19,11 +19,11 @@ export type GeoShortTextQuestion = GeoQuestionBase & {
   correctAnswer: string[];
 };
 
-export type GeoMatchingQuestion = {
-  id: string;
-  category: string;
+export type GeoMatchingQuestion = GeoQuestionBase & {
   type: "matching";
   question: string;
+  columnAHeader?: string;
+  columnBHeader?: string;
   columnA: { key: string; label: string }[];
   columnB: { key: string; label: string }[];
   correctAnswer: Record<string, string>;
@@ -38,8 +38,8 @@ export type GeoAnswer = string | string[] | Record<string, string>;
 
 export type GeoGradedAnswer = {
   id: string;
-  userAnswer?: GeoAnswer
-  correctAnswer: string | string[];
+  userAnswer?: GeoAnswer;
+  correctAnswer: unknown;
   correct: boolean;
   hasSpellingErrors?: boolean;
   type: GeoQuestion["type"];
