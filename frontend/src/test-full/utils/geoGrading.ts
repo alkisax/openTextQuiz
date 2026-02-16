@@ -1,4 +1,4 @@
-import type { GradedPoint, LabelCheckResult, MapPoint } from "../types/geographyFull.types"
+import type { GradedPoint, LabelCheckResult, MapPoint } from "../types/Full.types"
 import { simplifyLang } from "./simplifyLang"
 
 // GRADING (ΜΟΝΟ ΣΗΜΕΙΟ)
