@@ -46,12 +46,23 @@ export type GeoListInputQuestion = GeoQuestionBase & {
   correctAnswer: string[]
 }
 
+export type GeoTrueFalseGroupQuestion = GeoQuestionBase & {
+  type: 'trueFalseGroup'
+  question: string
+  statements: {
+    key: string
+    text: string
+  }[]
+  correctAnswer: Record<string, 'T' | 'F'>
+}
+
 export type GeoQuestion =
   | GeoMultipleChoiceQuestion
   | GeoShortTextQuestion
   | GeoMatchingQuestion
   | GeoMultiSelectQuestion
   | GeoListInputQuestion
+  | GeoTrueFalseGroupQuestion
 
 export type GeoAnswer = string | string[] | Record<string, string>;
 

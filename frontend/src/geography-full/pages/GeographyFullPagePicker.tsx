@@ -10,6 +10,7 @@ import type {
   GeoMatchingQuestion,
   GeoMultiSelectQuestion,
   GeoListInputQuestion,
+  GeoTrueFalseGroupQuestion,
 } from "../types/geographyFull.types";
 import GeographyFullGradingSummary from "../components/GeographyFullGradingSummary";
 import { simplifyLang, expandOptionalParts } from "../utils/simplifyLang";
@@ -205,6 +206,30 @@ const GeographyFullPagePicker = ({ count = 4 }: Props) => {
     };
   };
 
+  const gradeTrueFalseGroup = (
+    q: GeoTrueFalseGroupQuestion,
+    userAnswer: GeoAnswer | undefined,
+  ): GeoGradedAnswer => {
+    const userMap =
+      userAnswer && typeof userAnswer === "object" && !Array.isArray(userAnswer)
+        ? (userAnswer as Record<string, "T" | "F">)
+        : {};
+
+    const correctMap = q.correctAnswer;
+
+    const allCorrect = Object.keys(correctMap).every(
+      (key) => userMap[key] === correctMap[key],
+    );
+
+    return {
+      id: q.id,
+      userAnswer,
+      correctAnswer: correctMap,
+      correct: allCorrect,
+      type: q.type,
+    };
+  };
+
   const gradeAll = () => {
     let correct = 0;
     const results: GeoGradedAnswer[] = [];
@@ -233,6 +258,10 @@ const GeographyFullPagePicker = ({ count = 4 }: Props) => {
 
         case "listInput":
           result = gradeListInput(q, userAnswer);
+          break;
+
+        case "trueFalseGroup":
+          result = gradeTrueFalseGroup(q, userAnswer);
           break;
       }
 

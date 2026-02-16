@@ -4,6 +4,7 @@ import ShortTextQuestion from "../components/ShortTextQuestion";
 import MatchingQuestionComponent from "../components/MatchingQuestion";
 import MultiSelectQuestion from "../components/MultiSelectQuestion";
 import ListInputQuestion from "../components/ListInputQuestion";
+import TrueFalseGroupQuestion from "../components/TrueFalseGroupQuestion";
 
 type Props = {
   question: GeoQuestion;
@@ -54,6 +55,18 @@ const GeographyFullQuestion = ({ question, value, onChange }: Props) => {
         <ListInputQuestion
           question={question}
           value={Array.isArray(value) ? value : []}
+          onChange={(val) => onChange(question.id, val)}
+        />
+      )}
+
+      {question.type === "trueFalseGroup" && (
+        <TrueFalseGroupQuestion
+          question={question}
+          value={
+            value && typeof value === "object" && !Array.isArray(value)
+              ? (value as Record<string, "T" | "F">)
+              : {}
+          }
           onChange={(val) => onChange(question.id, val)}
         />
       )}
