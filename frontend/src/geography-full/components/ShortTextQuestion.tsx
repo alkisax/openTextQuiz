@@ -1,15 +1,16 @@
 import { Input } from "@/components/ui/input";
+import type { GeoAnswer } from "../types/geographyFull.types";
 
 type Props = {
   question: {
-    id: string;
-    prompt?: string;
-    question: string;
-    multipleBlanks?: boolean;
-  };
-  value: string | string[] | undefined;
-  onChange: (value: string | string[]) => void;
-};
+    id: string
+    prompt?: string
+    question: string
+    multipleBlanks?: boolean
+  }
+  value?: GeoAnswer
+  onChange: (value: GeoAnswer) => void
+}
 
 const ShortTextQuestion = ({ question, value, onChange }: Props) => {
 

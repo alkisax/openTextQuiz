@@ -1,11 +1,12 @@
 import MultipleChoiceQuestion from "@/languageTest/components/test-parts/MultipleChoiceQuestion";
-import type { GeoQuestion } from "../types/geographyFull.types";
+import type { GeoAnswer, GeoQuestion } from "../types/geographyFull.types";
 import ShortTextQuestion from "../components/ShortTextQuestion";
+import MatchingQuestionComponent from "../components/MatchingQuestion";
 
 type Props = {
   question: GeoQuestion;
-  value?: string | string[];
-  onChange: (id: string, value: string | string[]) => void;
+  value?: GeoAnswer;
+  onChange: (id: string, value: GeoAnswer) => void;
 };
 
 const GeographyFullQuestion = ({ question, value, onChange }: Props) => {
@@ -23,6 +24,18 @@ const GeographyFullQuestion = ({ question, value, onChange }: Props) => {
         <ShortTextQuestion
           question={question}
           value={value}
+          onChange={(val) => onChange(question.id, val)}
+        />
+      )}
+
+      {question.type === "matching" && (
+        <MatchingQuestionComponent
+          question={question}
+          value={
+            value && typeof value === "object" && !Array.isArray(value)
+              ? value
+              : {}
+          }
           onChange={(val) => onChange(question.id, val)}
         />
       )}

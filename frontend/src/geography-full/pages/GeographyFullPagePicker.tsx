@@ -13,9 +13,14 @@ type Props = {
   count?: number; // πόσες ερωτήσεις θα εμφανιστούν
 };
 
+type GeoAnswer =
+  | string
+  | string[]
+  | Record<string, string>
+
 const GeographyFullPagePicker = ({ count = 4 }: Props) => {
   const [selectedQuestions, setSelectedQuestions] = useState<GeoQuestion[]>([]);
-  const [answers, setAnswers] = useState<Record<string, string | string[]>>({});
+  const [answers, setAnswers] = useState<Record<string, GeoAnswer>>({});
   const [gradedAnswers, setGradedAnswers] = useState<GeoGradedAnswer[]>([]);
   const [_score, setScore] = useState<number | null>(null);
 
@@ -27,7 +32,7 @@ const GeographyFullPagePicker = ({ count = 4 }: Props) => {
     setSelectedQuestions(shuffled.slice(0, count));
   };
 
-  const handleChange = (id: string, value: string | string[]) => {
+  const handleChange = (id: string, value: GeoAnswer) => {
     setAnswers((prev) => ({
       ...prev,
       [id]: value,
@@ -45,9 +50,7 @@ const GeographyFullPagePicker = ({ count = 4 }: Props) => {
 
       const userAnswer = answers[q.id];
 
-      // ======================
       // MULTIPLE CHOICE
-      // ======================
       if (q.type === "multipleChoice") {
         const isCorrect = userAnswer === q.correctAnswer;
 
@@ -64,9 +67,7 @@ const GeographyFullPagePicker = ({ count = 4 }: Props) => {
         return;
       }
 
-      // ======================
       // SHORT TEXT (multiple blanks)
-      // ======================
       if (q.type === "shortText") {
         const userParts = Array.isArray(userAnswer) ? userAnswer : [];
         const correctParts = q.correctAnswer;
