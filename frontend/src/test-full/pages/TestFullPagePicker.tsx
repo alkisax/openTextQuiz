@@ -22,7 +22,7 @@ type Props = {
   cultCount?: number; // πόσες ερωτήσεις θα εμφανιστούν
 };
 
-const GeographyFullPagePicker = ({ geoCount = 0, cultCount = 80 }: Props) => {
+const GeographyFullPagePicker = ({ geoCount = 5, cultCount = 5 }: Props) => {
   const [selectedQuestions, setSelectedQuestions] = useState<QuestionGroups>({
     geography: [],
     culture: [],
