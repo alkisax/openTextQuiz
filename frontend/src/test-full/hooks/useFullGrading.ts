@@ -1,56 +1,35 @@
-import { useState } from "react";
-import rawQuestions from "../data/geoData.json";
-import GeographyFullQuestion from "./GeographyFullQuestion";
-import { Button } from "@/components/ui/button";
 import type {
-  GeoQuestion,
-  GeoGradedAnswer,
-  GeoMultipleChoiceQuestion,
-  GeoShortTextQuestion,
-  GeoMatchingQuestion,
-  GeoMultiSelectQuestion,
-  GeoListInputQuestion,
-  GeoTrueFalseGroupQuestion,
-  GeoCategorizationQuestion,
-  GeoAnswer,
-} from "../types/geographyFull.types";
-import FullGradingSummary from "../components/FullGradingSummary";
-import { simplifyLang, expandOptionalParts } from "../utils/simplifyLang";
-import type {
+  FullQuestion,
+  FullGradedAnswer,
+  FullAnswer,
+  FullMultipleChoiceQuestion,
+  FullShortTextQuestion,
+  FullMatchingQuestion,
+  FullMultiSelectQuestion,
+  FullListInputQuestion,
+  FullTrueFalseGroupQuestion,
+  FullCategorizationQuestion,
   GeoMapPointsQuestion,
   MapPoint,
-} from "../types/geographyFull.types";
+  FullWordMatchingQuestion,
+} from "../types/Full.types";
+
+import { simplifyLang, expandOptionalParts } from "../utils/simplifyLang";
 import { gradePoints, buildReviewPoints } from "../utils/geoGrading";
 
-type Props = {
-  count?: number; // πόσες ερωτήσεις θα εμφανιστούν
+type GradeAllResult = {
+  results: FullGradedAnswer[];
+  score: number;
 };
 
-const GeographyFullPagePicker = ({ count = 4 }: Props) => {
-  const [selectedQuestions, setSelectedQuestions] = useState<GeoQuestion[]>([]);
-  const [answers, setAnswers] = useState<Record<string, GeoAnswer>>({});
-  const [gradedAnswers, setGradedAnswers] = useState<GeoGradedAnswer[]>([]);
-  const [_score, setScore] = useState<number | null>(null);
-
-  const questions = rawQuestions as GeoQuestion[];
-
-  // επιλογή τυχαίων ερωτήσεων
-  const pickRandomQuestions = () => {
-    const shuffled = [...questions].sort(() => 0.5 - Math.random());
-    setSelectedQuestions(shuffled.slice(0, count));
-  };
-
-  const handleChange = (id: string, value: GeoAnswer) => {
-    setAnswers((prev) => ({
-      ...prev,
-      [id]: value,
-    }));
-  };
-
+export const useFullGrading = () => {
+  // =========================================================
+  // multipleChoice grading
+  // =========================================================
   const gradeMultipleChoice = (
-    q: GeoMultipleChoiceQuestion,
-    userAnswer: GeoAnswer | undefined,
-  ): GeoGradedAnswer => {
+    q: FullMultipleChoiceQuestion,
+    userAnswer: FullAnswer | undefined,
+  ): FullGradedAnswer => {
     const isCorrect = userAnswer === q.correctAnswer;
 
     return {
@@ -62,17 +41,20 @@ const GeographyFullPagePicker = ({ count = 4 }: Props) => {
     };
   };
 
+  // =========================================================
+  // shortText grading
+  // =========================================================
   const gradeShortText = (
-    q: GeoShortTextQuestion,
-    userAnswer: GeoAnswer | undefined,
-  ): GeoGradedAnswer => {
+    q: FullShortTextQuestion,
+    userAnswer: FullAnswer | undefined,
+  ): FullGradedAnswer => {
     // θέλουμε μόνο string[] εδώ (όχι MapPoint[])
     const userParts: string[] =
       Array.isArray(userAnswer) &&
       userAnswer.every((item) => typeof item === "string")
         ? userAnswer
         : [];
-        
+
     const correctParts = q.correctAnswer;
 
     let allCorrect = true;
@@ -81,25 +63,31 @@ const GeographyFullPagePicker = ({ count = 4 }: Props) => {
     correctParts.forEach((correctPart, index) => {
       const userPart = userParts[index];
 
+      // αν δεν υπάρχει απάντηση σε κάποιο blank
       if (!userPart) {
         allCorrect = false;
         return;
       }
 
+      // expandOptionalParts:
+      // πχ "Ήπειρος (Ηπείρου)" → δημιουργεί όλα τα αποδεκτά variants
       const expanded = expandOptionalParts(correctPart);
 
       let partMatched = false;
 
       for (const variant of expanded) {
         const exactMatch = userPart.trim() === variant.trim();
+
         const simplifiedMatch =
           simplifyLang(userPart) === simplifyLang(variant);
 
+        // ακριβές match
         if (exactMatch) {
           partMatched = true;
           break;
         }
 
+        // match με ορθογραφική απόκλιση
         if (!exactMatch && simplifiedMatch) {
           partMatched = true;
           hasSpellingErrors = true;
@@ -122,10 +110,13 @@ const GeographyFullPagePicker = ({ count = 4 }: Props) => {
     };
   };
 
+  // =========================================================
+  // matching grading
+  // =========================================================
   const gradeMatching = (
-    q: GeoMatchingQuestion,
-    userAnswer: GeoAnswer | undefined,
-  ): GeoGradedAnswer => {
+    q: FullMatchingQuestion,
+    userAnswer: FullAnswer | undefined,
+  ): FullGradedAnswer => {
     const userMap =
       userAnswer && typeof userAnswer === "object" && !Array.isArray(userAnswer)
         ? userAnswer
@@ -146,10 +137,13 @@ const GeographyFullPagePicker = ({ count = 4 }: Props) => {
     };
   };
 
+  // =========================================================
+  // multiSelect grading
+  // =========================================================
   const gradeMultiSelect = (
-    q: GeoMultiSelectQuestion,
-    userAnswer: GeoAnswer | undefined,
-  ): GeoGradedAnswer => {
+    q: FullMultiSelectQuestion,
+    userAnswer: FullAnswer | undefined,
+  ): FullGradedAnswer => {
     // multiSelect περιμένει string[]
     const userSelections: string[] =
       Array.isArray(userAnswer) &&
@@ -176,10 +170,13 @@ const GeographyFullPagePicker = ({ count = 4 }: Props) => {
     };
   };
 
+  // =========================================================
+  // listInput grading
+  // =========================================================
   const gradeListInput = (
-    q: GeoListInputQuestion,
-    userAnswer: GeoAnswer | undefined,
-  ): GeoGradedAnswer => {
+    q: FullListInputQuestion,
+    userAnswer: FullAnswer | undefined,
+  ): FullGradedAnswer => {
     // listInput επίσης περιμένει string[]
     const userParts: string[] =
       Array.isArray(userAnswer) &&
@@ -189,23 +186,27 @@ const GeographyFullPagePicker = ({ count = 4 }: Props) => {
 
     const cleaned = userParts.map((a) => a.trim()).filter(Boolean);
 
-    const remaining = [...q.correctAnswer]; // διαθέσιμες σωστές
+    // διαθέσιμες σωστές απαντήσεις
+    const remaining = [...q.correctAnswer];
+
     let hasSpellingErrors = false;
     let matchedCount = 0;
 
     for (const ans of cleaned) {
-      // 1) exact
+      // 1) exact match
       const exactIndex = remaining.findIndex((c) => c.trim() === ans);
+
       if (exactIndex !== -1) {
         matchedCount++;
         remaining.splice(exactIndex, 1);
         continue;
       }
 
-      // 2) simplified
+      // 2) simplified match (ορθογραφική ανοχή)
       const simplifiedIndex = remaining.findIndex(
         (c) => simplifyLang(c) === simplifyLang(ans),
       );
+
       if (simplifiedIndex !== -1) {
         matchedCount++;
         hasSpellingErrors = true;
@@ -213,6 +214,7 @@ const GeographyFullPagePicker = ({ count = 4 }: Props) => {
       }
     }
 
+    // ελέγχουμε αν ο αριθμός των απαντήσεων είναι εντός ορίων
     const meetsCount =
       cleaned.length >= q.minItems && cleaned.length <= q.maxItems;
 
@@ -228,10 +230,13 @@ const GeographyFullPagePicker = ({ count = 4 }: Props) => {
     };
   };
 
+  // =========================================================
+  // trueFalseGroup grading
+  // =========================================================
   const gradeTrueFalseGroup = (
-    q: GeoTrueFalseGroupQuestion,
-    userAnswer: GeoAnswer | undefined,
-  ): GeoGradedAnswer => {
+    q: FullTrueFalseGroupQuestion,
+    userAnswer: FullAnswer | undefined,
+  ): FullGradedAnswer => {
     const userMap =
       userAnswer && typeof userAnswer === "object" && !Array.isArray(userAnswer)
         ? (userAnswer as Record<string, "T" | "F">)
@@ -252,10 +257,13 @@ const GeographyFullPagePicker = ({ count = 4 }: Props) => {
     };
   };
 
+  // =========================================================
+  // categorization grading
+  // =========================================================
   const gradeCategorization = (
-    q: GeoCategorizationQuestion,
-    userAnswer: GeoAnswer | undefined,
-  ): GeoGradedAnswer => {
+    q: FullCategorizationQuestion,
+    userAnswer: FullAnswer | undefined,
+  ): FullGradedAnswer => {
     const userMap =
       userAnswer && typeof userAnswer === "object" && !Array.isArray(userAnswer)
         ? (userAnswer as Record<string, string>)
@@ -277,6 +285,9 @@ const GeographyFullPagePicker = ({ count = 4 }: Props) => {
     };
   };
 
+  // =========================================================
+  // helper: ελέγχει αν είναι MapPoint[]
+  // =========================================================
   const isMapPointArray = (value: unknown): value is MapPoint[] => {
     return (
       Array.isArray(value) &&
@@ -291,16 +302,22 @@ const GeographyFullPagePicker = ({ count = 4 }: Props) => {
     );
   };
 
+  // =========================================================
+  // mapPoints grading
+  // =========================================================
   const gradeMapPoints = (
     q: GeoMapPointsQuestion,
-    userAnswer: GeoAnswer | undefined,
-  ): GeoGradedAnswer => {
+    userAnswer: FullAnswer | undefined,
+  ): FullGradedAnswer => {
     const userPoints = isMapPointArray(userAnswer) ? userAnswer : [];
 
     const tolerance = q.rules?.tolerancePct ?? 3.5;
 
+    // core γεωμετρικό grading
     const graded = gradePoints(userPoints, q.canonicalAnswer.points, tolerance);
 
+    // buildReviewPoints:
+    // δημιουργεί merged view (user + canonical)
     const reviewPoints = buildReviewPoints(
       graded,
       q.canonicalAnswer.points,
@@ -322,15 +339,49 @@ const GeographyFullPagePicker = ({ count = 4 }: Props) => {
     };
   };
 
-  const gradeAll = () => {
-    let correct = 0;
-    const results: GeoGradedAnswer[] = [];
+  // =========================================================
+  // wordMatching grading
+  // =========================================================
+  const gradeWordMatching = (
+    q: FullWordMatchingQuestion,
+    userAnswer: FullAnswer | undefined,
+  ): FullGradedAnswer => {
+    const userMap =
+      userAnswer && typeof userAnswer === "object" && !Array.isArray(userAnswer)
+        ? (userAnswer as Record<string, string>)
+        : {};
 
-    selectedQuestions.forEach((q) => {
+    const correctMap = q.correctAnswer;
+
+    const allCorrect = Object.keys(correctMap).every(
+      (key) => userMap[key] === correctMap[key],
+    );
+
+    return {
+      id: q.id,
+      userAnswer,
+      correctAnswer: correctMap,
+      correct: allCorrect,
+      type: q.type,
+    };
+  };
+
+  // =========================================================
+  // MAIN gradeAll
+  // =========================================================
+  const gradeAll = (
+    questions: FullQuestion[],
+    answers: Record<string, FullAnswer>,
+  ): GradeAllResult => {
+    let correct = 0;
+    const results: FullGradedAnswer[] = [];
+
+    questions.forEach((q) => {
       const userAnswer = answers[q.id];
 
-      let result: GeoGradedAnswer | null = null;
+      let result: FullGradedAnswer | null = null;
 
+      // dispatch με βάση το type
       switch (q.type) {
         case "multipleChoice":
           result = gradeMultipleChoice(q, userAnswer);
@@ -363,6 +414,9 @@ const GeographyFullPagePicker = ({ count = 4 }: Props) => {
         case "mapPoints":
           result = gradeMapPoints(q, userAnswer);
           break;
+        case "wordMatching":
+          result = gradeWordMatching(q, userAnswer);
+          break;
       }
 
       if (result) {
@@ -371,32 +425,13 @@ const GeographyFullPagePicker = ({ count = 4 }: Props) => {
       }
     });
 
-    setScore(correct);
-    setGradedAnswers(results);
+    return {
+      results,
+      score: correct,
+    };
   };
 
-  return (
-    <div className="max-w-4xl mx-auto py-10 space-y-8">
-      <Button onClick={pickRandomQuestions}>Τυχαίες {count} Ερωτήσεις</Button>
-
-      {selectedQuestions.map((q) => (
-        <GeographyFullQuestion
-          key={q.id}
-          question={q}
-          value={answers[q.id]}
-          onChange={handleChange}
-        />
-      ))}
-
-      {selectedQuestions.length > 0 && (
-        <Button onClick={gradeAll}>Αξιολόγηση</Button>
-      )}
-
-      {gradedAnswers.length > 0 && (
-        <FullGradingSummary gradedAnswers={gradedAnswers} />
-      )}
-    </div>
-  );
+  return {
+    gradeAll,
+  };
 };
-
-export default GeographyFullPagePicker;

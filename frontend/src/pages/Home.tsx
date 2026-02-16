@@ -41,6 +41,13 @@ const Home = () => {
       >
         Geography Full
       </Button>
+      <Button
+        variant="contained"
+        size="large"
+        onClick={() => navigate("/test-full")}
+      >
+        Full Test
+      </Button>
     </Stack>
   );
 };

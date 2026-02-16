@@ -4,6 +4,7 @@ import Home from "./pages/Home"
 import OpenText from "./pages/OpenText"
 import LanguagePageWrap from "./pages/LanguagePageWrap"
 import { GeographyFullWrap } from "./pages/GeographyFullWrap"
+import { TestFullWrap } from "./pages/TestFullWrap"
 
 const App = () => {
 	return (
@@ -14,6 +15,7 @@ const App = () => {
 				<Route path="/geography-maps" element={<GeoMapPageWrap />} />
         <Route path="/language-test" element={<LanguagePageWrap />} />
         <Route path="/geography-full" element={<GeographyFullWrap />} />
+        <Route path="/test-full" element={<TestFullWrap />} />
 			</Routes>
 		</BrowserRouter>
 	)
