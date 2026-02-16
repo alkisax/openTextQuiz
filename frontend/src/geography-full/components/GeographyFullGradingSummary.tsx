@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import MapClickQuiz from "../components/MapClickQuiz";
+// import MapClickQuiz from "../components/MapClickQuiz";
 import type {
   GeoGradedAnswer,
   GeoAnswer,
