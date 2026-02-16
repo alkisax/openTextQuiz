@@ -12,15 +12,19 @@ import type {
   GeoListInputQuestion,
   GeoTrueFalseGroupQuestion,
   GeoCategorizationQuestion,
+  GeoAnswer,
 } from "../types/geographyFull.types";
 import GeographyFullGradingSummary from "../components/GeographyFullGradingSummary";
 import { simplifyLang, expandOptionalParts } from "../utils/simplifyLang";
+import type {
+  GeoMapPointsQuestion,
+  MapPoint,
+} from "../types/geographyFull.types";
+import { gradePoints, buildReviewPoints } from "../utils/geoGrading";
 
 type Props = {
   count?: number; // πόσες ερωτήσεις θα εμφανιστούν
 };
-
-type GeoAnswer = string | string[] | Record<string, string>;
 
 const GeographyFullPagePicker = ({ count = 4 }: Props) => {
   const [selectedQuestions, setSelectedQuestions] = useState<GeoQuestion[]>([]);
@@ -62,7 +66,13 @@ const GeographyFullPagePicker = ({ count = 4 }: Props) => {
     q: GeoShortTextQuestion,
     userAnswer: GeoAnswer | undefined,
   ): GeoGradedAnswer => {
-    const userParts = Array.isArray(userAnswer) ? userAnswer : [];
+    // θέλουμε μόνο string[] εδώ (όχι MapPoint[])
+    const userParts: string[] =
+      Array.isArray(userAnswer) &&
+      userAnswer.every((item) => typeof item === "string")
+        ? userAnswer
+        : [];
+        
     const correctParts = q.correctAnswer;
 
     let allCorrect = true;
@@ -140,7 +150,12 @@ const GeographyFullPagePicker = ({ count = 4 }: Props) => {
     q: GeoMultiSelectQuestion,
     userAnswer: GeoAnswer | undefined,
   ): GeoGradedAnswer => {
-    const userSelections = Array.isArray(userAnswer) ? userAnswer : [];
+    // multiSelect περιμένει string[]
+    const userSelections: string[] =
+      Array.isArray(userAnswer) &&
+      userAnswer.every((item) => typeof item === "string")
+        ? userAnswer
+        : [];
 
     const correctOptions = q.correctAnswer;
 
@@ -165,7 +180,13 @@ const GeographyFullPagePicker = ({ count = 4 }: Props) => {
     q: GeoListInputQuestion,
     userAnswer: GeoAnswer | undefined,
   ): GeoGradedAnswer => {
-    const userParts = Array.isArray(userAnswer) ? userAnswer : [];
+    // listInput επίσης περιμένει string[]
+    const userParts: string[] =
+      Array.isArray(userAnswer) &&
+      userAnswer.every((item) => typeof item === "string")
+        ? userAnswer
+        : [];
+
     const cleaned = userParts.map((a) => a.trim()).filter(Boolean);
 
     const remaining = [...q.correctAnswer]; // διαθέσιμες σωστές
@@ -256,6 +277,51 @@ const GeographyFullPagePicker = ({ count = 4 }: Props) => {
     };
   };
 
+  const isMapPointArray = (value: unknown): value is MapPoint[] => {
+    return (
+      Array.isArray(value) &&
+      value.every(
+        (v) =>
+          typeof v === "object" &&
+          v !== null &&
+          "x" in v &&
+          "y" in v &&
+          "label" in v,
+      )
+    );
+  };
+
+  const gradeMapPoints = (
+    q: GeoMapPointsQuestion,
+    userAnswer: GeoAnswer | undefined,
+  ): GeoGradedAnswer => {
+    const userPoints = isMapPointArray(userAnswer) ? userAnswer : [];
+
+    const tolerance = q.rules?.tolerancePct ?? 3.5;
+
+    const graded = gradePoints(userPoints, q.canonicalAnswer.points, tolerance);
+
+    const reviewPoints = buildReviewPoints(
+      graded,
+      q.canonicalAnswer.points,
+      tolerance,
+    );
+
+    const fullyCorrect =
+      graded.filter((p) => p.correct && p.labelCorrect).length ===
+      q.rules.maxPoints;
+
+    return {
+      id: q.id,
+      userAnswer,
+      correctAnswer: q.canonicalAnswer.points,
+      correct: fullyCorrect,
+      type: q.type,
+      mapGradedPoints: graded,
+      mapReviewPoints: reviewPoints,
+    };
+  };
+
   const gradeAll = () => {
     let correct = 0;
     const results: GeoGradedAnswer[] = [];
@@ -292,6 +358,10 @@ const GeographyFullPagePicker = ({ count = 4 }: Props) => {
 
         case "categorization":
           result = gradeCategorization(q, userAnswer);
+          break;
+
+        case "mapPoints":
+          result = gradeMapPoints(q, userAnswer);
           break;
       }
 

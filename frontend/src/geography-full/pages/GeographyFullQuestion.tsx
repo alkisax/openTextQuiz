@@ -1,11 +1,12 @@
 import MultipleChoiceQuestion from "@/languageTest/components/test-parts/MultipleChoiceQuestion";
-import type { GeoAnswer, GeoQuestion } from "../types/geographyFull.types";
+import type { GeoAnswer, GeoQuestion, MapPoint } from "../types/geographyFull.types";
 import ShortTextQuestion from "../components/ShortTextQuestion";
 import MatchingQuestionComponent from "../components/MatchingQuestion";
 import MultiSelectQuestion from "../components/MultiSelectQuestion";
 import ListInputQuestion from "../components/ListInputQuestion";
 import TrueFalseGroupQuestion from "../components/TrueFalseGroupQuestion";
 import CategorizationQuestionComponent from "../components/CategorizationQuestionComponent";
+import MapPointsQuestion from "../components/MapPointsQuestion";
 
 type Props = {
   question: GeoQuestion;
@@ -47,7 +48,11 @@ const GeographyFullQuestion = ({ question, value, onChange }: Props) => {
       {question.type === "multiSelect" && (
         <MultiSelectQuestion
           question={question}
-          value={Array.isArray(value) ? value : []}
+          value={
+            question.type === "multiSelect" && Array.isArray(value)
+              ? (value as string[])
+              : []
+          }
           onChange={(val) => onChange(question.id, val)}
         />
       )}
@@ -55,7 +60,11 @@ const GeographyFullQuestion = ({ question, value, onChange }: Props) => {
       {question.type === "listInput" && (
         <ListInputQuestion
           question={question}
-          value={Array.isArray(value) ? value : []}
+          value={
+            question.type === "listInput" && Array.isArray(value)
+              ? (value as string[])
+              : []
+          }
           onChange={(val) => onChange(question.id, val)}
         />
       )}
@@ -79,6 +88,18 @@ const GeographyFullQuestion = ({ question, value, onChange }: Props) => {
             value && typeof value === "object" && !Array.isArray(value)
               ? value
               : {}
+          }
+          onChange={(val) => onChange(question.id, val)}
+        />
+      )}
+
+      {question.type === "mapPoints" && (
+        <MapPointsQuestion
+          question={question}
+          value={
+            question.type === "mapPoints"
+              ? (value as MapPoint[] | undefined)
+              : undefined
           }
           onChange={(val) => onChange(question.id, val)}
         />

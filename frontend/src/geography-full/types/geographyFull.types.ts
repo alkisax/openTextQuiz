@@ -67,6 +67,34 @@ export type GeoCategorizationQuestion = GeoQuestionBase & {
   correctAnswer: Record<string, string[]>; // categoryKey → items[]
 };
 
+export type MapPoint = {
+  x: number; // ποσοστό X (0–100)
+  y: number; // ποσοστό Y (0–100)
+  label: string; // κείμενο (προς το παρόν δεν βαθμολογείται)
+};
+
+export type GeoMapPointsQuestion = GeoQuestionBase & {
+  type: "mapPoints";
+  question: string; // όχι "ερώτηση"
+  rules: {
+    map: true;
+    maxPoints: number;
+    tolerancePct?: number;
+    expectsSubset?: boolean;
+    minItems?: number;
+    maxItems?: number;
+  };
+  canonicalAnswer: {
+    type: "points";
+    points: {
+      x: number;
+      y: number;
+      label: string;
+      aliases?: string[];
+    }[];
+  };
+};
+
 export type GeoQuestion =
   | GeoMultipleChoiceQuestion
   | GeoShortTextQuestion
@@ -74,9 +102,16 @@ export type GeoQuestion =
   | GeoMultiSelectQuestion
   | GeoListInputQuestion
   | GeoTrueFalseGroupQuestion
-  |GeoCategorizationQuestion;
+  | GeoCategorizationQuestion
+  | GeoMapPointsQuestion;
 
-export type GeoAnswer = string | string[] | Record<string, string>;
+export type GeoAnswer = string | string[] | Record<string, string> | MapPoint[];
+
+export type GradedPoint = MapPoint & {
+  correct: boolean;
+  labelCorrect: boolean;
+  hasSpellingErrors: boolean;
+};
 
 export type GeoGradedAnswer = {
   id: string;
@@ -85,4 +120,6 @@ export type GeoGradedAnswer = {
   correct: boolean;
   hasSpellingErrors?: boolean;
   type: GeoQuestion["type"];
+  mapGradedPoints?: GradedPoint[];
+  mapReviewPoints?: MapPoint[];
 };
