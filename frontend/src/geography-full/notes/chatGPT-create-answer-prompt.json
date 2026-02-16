@@ -4,7 +4,7 @@
     "Διάβασε το κείμενο που θα δοθεί.",
     "Εντόπισε κάθε ενότητα που ξεκινά με 'ΘΕΜΑ' ή 'Θέμα'.",
     "Αγνόησε πληροφορίες όπως σελίδες, τίτλους, ημερομηνίες, 'ΤΡΑΠΕΖΑ ΘΕΜΑΤΩΝ' κτλ.",
-    "Αναγνώρισε τον τύπο της ερώτησης.",
+    "Αναγνώρισε τον τύπο της ερώτησης (multipleChoice, shortText, matching).",
     "Η απάντηση πρέπει να είναι μόνο JSON array.",
     "Μην προσθέτεις καμία εξήγηση."
   ],
@@ -30,6 +30,23 @@
       "prompt": "string",
       "question": "string with __ placeholders",
       "correctAnswer": ["string"]
+    },
+    "matching": {
+      "id": "GEO_<number>",
+      "category": "γεωγραφία",
+      "type": "matching",
+      "question": "string",
+      "columnAHeader": "string",
+      "columnBHeader": "string",
+      "columnA": [
+        { "key": "string", "label": "string" }
+      ],
+      "columnB": [
+        { "key": "string", "label": "string" }
+      ],
+      "correctAnswer": {
+        "columnA_key": "columnB_key"
+      }
     }
   },
   "rules": [
@@ -42,6 +59,12 @@
     "Μην προσθέτεις wordBank.",
     "Στις multipleChoice διατήρησε ακριβώς το κείμενο των επιλογών.",
     "Το correctAnswer για multipleChoice να είναι μόνο το γράμμα.",
+    "Στις matching ερωτήσεις:",
+    "• Αναγνώρισε τους τίτλους των στηλών και τοποθέτησέ τους στα πεδία columnAHeader και columnBHeader.",
+    "• Τοποθέτησε τα στοιχεία της πρώτης στήλης στο columnA.",
+    "• Τοποθέτησε τα στοιχεία της δεύτερης στήλης στο columnB.",
+    "• Διατήρησε ακριβώς τα keys όπως εμφανίζονται (πχ 1, 2, Α, Β, α), i), ii) κτλ).",
+    "• Το correctAnswer πρέπει να είναι object μορφής { '1': 'Γ', '2': 'Δ' }.",
     "Επιστροφή αποτελέσματος ως JSON array."
   ]
 }

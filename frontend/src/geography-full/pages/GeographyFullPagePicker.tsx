@@ -8,6 +8,8 @@ import type {
   GeoMultipleChoiceQuestion,
   GeoShortTextQuestion,
   GeoMatchingQuestion,
+  GeoMultiSelectQuestion,
+  GeoListInputQuestion,
 } from "../types/geographyFull.types";
 import GeographyFullGradingSummary from "../components/GeographyFullGradingSummary";
 import { simplifyLang, expandOptionalParts } from "../utils/simplifyLang";
@@ -132,6 +134,77 @@ const GeographyFullPagePicker = ({ count = 4 }: Props) => {
     };
   };
 
+  const gradeMultiSelect = (
+    q: GeoMultiSelectQuestion,
+    userAnswer: GeoAnswer | undefined,
+  ): GeoGradedAnswer => {
+    const userSelections = Array.isArray(userAnswer) ? userAnswer : [];
+
+    const correctOptions = q.correctAnswer;
+
+    const correctCount = userSelections.filter((opt) =>
+      correctOptions.includes(opt),
+    ).length;
+
+    const allCorrect =
+      userSelections.length === q.maxSelections &&
+      correctCount === userSelections.length;
+
+    return {
+      id: q.id,
+      userAnswer,
+      correctAnswer: correctOptions,
+      correct: allCorrect,
+      type: q.type,
+    };
+  };
+
+  const gradeListInput = (
+    q: GeoListInputQuestion,
+    userAnswer: GeoAnswer | undefined,
+  ): GeoGradedAnswer => {
+    const userParts = Array.isArray(userAnswer) ? userAnswer : [];
+    const cleaned = userParts.map((a) => a.trim()).filter(Boolean);
+
+    const remaining = [...q.correctAnswer]; // διαθέσιμες σωστές
+    let hasSpellingErrors = false;
+    let matchedCount = 0;
+
+    for (const ans of cleaned) {
+      // 1) exact
+      const exactIndex = remaining.findIndex((c) => c.trim() === ans);
+      if (exactIndex !== -1) {
+        matchedCount++;
+        remaining.splice(exactIndex, 1);
+        continue;
+      }
+
+      // 2) simplified
+      const simplifiedIndex = remaining.findIndex(
+        (c) => simplifyLang(c) === simplifyLang(ans),
+      );
+      if (simplifiedIndex !== -1) {
+        matchedCount++;
+        hasSpellingErrors = true;
+        remaining.splice(simplifiedIndex, 1);
+      }
+    }
+
+    const meetsCount =
+      cleaned.length >= q.minItems && cleaned.length <= q.maxItems;
+
+    const allCorrect = meetsCount && matchedCount === q.maxItems;
+
+    return {
+      id: q.id,
+      userAnswer,
+      correctAnswer: q.correctAnswer,
+      correct: allCorrect,
+      hasSpellingErrors: allCorrect ? hasSpellingErrors : false,
+      type: q.type,
+    };
+  };
+
   const gradeAll = () => {
     let correct = 0;
     const results: GeoGradedAnswer[] = [];
@@ -152,6 +225,14 @@ const GeographyFullPagePicker = ({ count = 4 }: Props) => {
 
         case "matching":
           result = gradeMatching(q, userAnswer);
+          break;
+
+        case "multiSelect":
+          result = gradeMultiSelect(q, userAnswer);
+          break;
+
+        case "listInput":
+          result = gradeListInput(q, userAnswer);
           break;
       }
 

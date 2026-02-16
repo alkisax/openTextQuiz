@@ -2,6 +2,8 @@ import MultipleChoiceQuestion from "@/languageTest/components/test-parts/Multipl
 import type { GeoAnswer, GeoQuestion } from "../types/geographyFull.types";
 import ShortTextQuestion from "../components/ShortTextQuestion";
 import MatchingQuestionComponent from "../components/MatchingQuestion";
+import MultiSelectQuestion from "../components/MultiSelectQuestion";
+import ListInputQuestion from "../components/ListInputQuestion";
 
 type Props = {
   question: GeoQuestion;
@@ -36,6 +38,22 @@ const GeographyFullQuestion = ({ question, value, onChange }: Props) => {
               ? value
               : {}
           }
+          onChange={(val) => onChange(question.id, val)}
+        />
+      )}
+
+      {question.type === "multiSelect" && (
+        <MultiSelectQuestion
+          question={question}
+          value={Array.isArray(value) ? value : []}
+          onChange={(val) => onChange(question.id, val)}
+        />
+      )}
+
+      {question.type === "listInput" && (
+        <ListInputQuestion
+          question={question}
+          value={Array.isArray(value) ? value : []}
           onChange={(val) => onChange(question.id, val)}
         />
       )}
