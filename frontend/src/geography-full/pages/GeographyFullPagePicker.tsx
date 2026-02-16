@@ -5,6 +5,9 @@ import { Button } from "@/components/ui/button";
 import type {
   GeoQuestion,
   GeoGradedAnswer,
+  GeoMultipleChoiceQuestion,
+  GeoShortTextQuestion,
+  GeoMatchingQuestion,
 } from "../types/geographyFull.types";
 import GeographyFullGradingSummary from "../components/GeographyFullGradingSummary";
 import { simplifyLang, expandOptionalParts } from "../utils/simplifyLang";
@@ -13,10 +16,7 @@ type Props = {
   count?: number; // πόσες ερωτήσεις θα εμφανιστούν
 };
 
-type GeoAnswer =
-  | string
-  | string[]
-  | Record<string, string>
+type GeoAnswer = string | string[] | Record<string, string>;
 
 const GeographyFullPagePicker = ({ count = 4 }: Props) => {
   const [selectedQuestions, setSelectedQuestions] = useState<GeoQuestion[]>([]);
@@ -39,114 +39,125 @@ const GeographyFullPagePicker = ({ count = 4 }: Props) => {
     }));
   };
 
-  const gradeAll = () => {
-    let correct = 0;
-    let total = 0;
+  const gradeMultipleChoice = (
+    q: GeoMultipleChoiceQuestion,
+    userAnswer: GeoAnswer | undefined,
+  ): GeoGradedAnswer => {
+    const isCorrect = userAnswer === q.correctAnswer;
 
-    const results: GeoGradedAnswer[] = [];
+    return {
+      id: q.id,
+      userAnswer,
+      correctAnswer: q.correctAnswer,
+      correct: isCorrect,
+      type: q.type,
+    };
+  };
 
-    selectedQuestions.forEach((q) => {
-      total++;
+  const gradeShortText = (
+    q: GeoShortTextQuestion,
+    userAnswer: GeoAnswer | undefined,
+  ): GeoGradedAnswer => {
+    const userParts = Array.isArray(userAnswer) ? userAnswer : [];
+    const correctParts = q.correctAnswer;
 
-      const userAnswer = answers[q.id];
+    let allCorrect = true;
+    let hasSpellingErrors = false;
 
-      // MULTIPLE CHOICE
-      if (q.type === "multipleChoice") {
-        const isCorrect = userAnswer === q.correctAnswer;
+    correctParts.forEach((correctPart, index) => {
+      const userPart = userParts[index];
 
-        if (isCorrect) correct++;
-
-        results.push({
-          id: q.id,
-          userAnswer,
-          correctAnswer: q.correctAnswer,
-          correct: isCorrect,
-          type: q.type,
-        });
-
+      if (!userPart) {
+        allCorrect = false;
         return;
       }
 
-      // SHORT TEXT (multiple blanks)
-      if (q.type === "shortText") {
-        const userParts = Array.isArray(userAnswer) ? userAnswer : [];
-        const correctParts = q.correctAnswer;
+      const expanded = expandOptionalParts(correctPart);
 
-        let allCorrect = true;
-        let hasSpellingErrors = false;
+      let partMatched = false;
 
-        correctParts.forEach((correctPart, index) => {
-          const userPart = userParts[index];
+      for (const variant of expanded) {
+        const exactMatch = userPart.trim() === variant.trim();
+        const simplifiedMatch =
+          simplifyLang(userPart) === simplifyLang(variant);
 
-          if (!userPart) {
-            allCorrect = false;
-            return;
-          }
+        if (exactMatch) {
+          partMatched = true;
+          break;
+        }
 
-          const expanded = expandOptionalParts(correctPart);
-
-          let partMatched = false;
-
-          for (const variant of expanded) {
-            const exactMatch = userPart.trim() === variant.trim();
-            const simplifiedMatch =
-              simplifyLang(userPart) === simplifyLang(variant);
-
-            if (exactMatch) {
-              partMatched = true;
-              break;
-            }
-
-            if (!exactMatch && simplifiedMatch) {
-              partMatched = true;
-              hasSpellingErrors = true;
-              break;
-            }
-          }
-
-          if (!partMatched) {
-            allCorrect = false;
-          }
-        });
-
-        if (allCorrect) correct++;
-
-        results.push({
-          id: q.id,
-          userAnswer,
-          correctAnswer: q.correctAnswer,
-          correct: allCorrect,
-          hasSpellingErrors,
-          type: q.type,
-        });
+        if (!exactMatch && simplifiedMatch) {
+          partMatched = true;
+          hasSpellingErrors = true;
+          break;
+        }
       }
 
-            // MATCHING
-      if (q.type === 'matching') {
-        const userMap =
-          userAnswer &&
-          typeof userAnswer === 'object' &&
-          !Array.isArray(userAnswer)
-            ? userAnswer
-            : {}
+      if (!partMatched) {
+        allCorrect = false;
+      }
+    });
 
-        const correctMap = q.correctAnswer
+    return {
+      id: q.id,
+      userAnswer,
+      correctAnswer: q.correctAnswer,
+      correct: allCorrect,
+      hasSpellingErrors,
+      type: q.type,
+    };
+  };
 
-        const allCorrect = Object.keys(correctMap).every(
-          key => userMap[key] === correctMap[key]
-        )
+  const gradeMatching = (
+    q: GeoMatchingQuestion,
+    userAnswer: GeoAnswer | undefined,
+  ): GeoGradedAnswer => {
+    const userMap =
+      userAnswer && typeof userAnswer === "object" && !Array.isArray(userAnswer)
+        ? userAnswer
+        : {};
 
-        if (allCorrect) correct++
+    const correctMap = q.correctAnswer;
 
-        results.push({
-          id: q.id,
-          userAnswer,
-          correctAnswer: correctMap,
-          correct: allCorrect,
-          type: q.type,
-        })
+    const allCorrect = Object.keys(correctMap).every(
+      (key) => userMap[key] === correctMap[key],
+    );
 
-        return
+    return {
+      id: q.id,
+      userAnswer,
+      correctAnswer: correctMap,
+      correct: allCorrect,
+      type: q.type,
+    };
+  };
+
+  const gradeAll = () => {
+    let correct = 0;
+    const results: GeoGradedAnswer[] = [];
+
+    selectedQuestions.forEach((q) => {
+      const userAnswer = answers[q.id];
+
+      let result: GeoGradedAnswer | null = null;
+
+      switch (q.type) {
+        case "multipleChoice":
+          result = gradeMultipleChoice(q, userAnswer);
+          break;
+
+        case "shortText":
+          result = gradeShortText(q, userAnswer);
+          break;
+
+        case "matching":
+          result = gradeMatching(q, userAnswer);
+          break;
+      }
+
+      if (result) {
+        if (result.correct) correct++;
+        results.push(result);
       }
     });
 
