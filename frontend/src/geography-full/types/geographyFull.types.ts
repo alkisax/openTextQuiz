@@ -113,6 +113,11 @@ export type GradedPoint = MapPoint & {
   hasSpellingErrors: boolean;
 };
 
+export type LabelCheckResult = {
+	correct: boolean
+	hasSpellingErrors: boolean
+}
+
 export type GeoGradedAnswer = {
   id: string;
   userAnswer?: GeoAnswer;

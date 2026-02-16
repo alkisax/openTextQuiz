@@ -3,27 +3,30 @@ import type { GeoAnswer } from "../types/geographyFull.types";
 
 type Props = {
   question: {
-    id: string
-    prompt?: string
-    question: string
-    multipleBlanks?: boolean
-  }
-  value?: GeoAnswer
-  onChange: (value: GeoAnswer) => void
-}
+    id: string;
+    prompt?: string;
+    question: string;
+    multipleBlanks?: boolean;
+  };
+  value?: GeoAnswer;
+  onChange: (value: GeoAnswer) => void;
+};
 
 const ShortTextQuestion = ({ question, value, onChange }: Props) => {
-
   const parts = question.question.split("__");
   const blanksCount = parts.length - 1;
+
+  // Ελέγχουμε αν το value είναι string[]
+  const isStringArray = (val: unknown): val is string[] => {
+    return Array.isArray(val) && val.every((item) => typeof item === "string");
+  };
 
   const handleSingleChange = (val: string) => {
     onChange(val);
   };
 
   const handleMultiChange = (index: number, val: string) => {
-    const current =
-      Array.isArray(value) ? value : [];
+    const current = isStringArray(value) ? value : [];
 
     const updated = [...current];
     updated[index] = val;
@@ -44,8 +47,12 @@ const ShortTextQuestion = ({ question, value, onChange }: Props) => {
           <Input
             value={
               question.multipleBlanks
-                ? (Array.isArray(value) ? value[index] || "" : "")
-                : (typeof value === "string" ? value : "")
+                ? isStringArray(value)
+                  ? (value[index] ?? "")
+                  : ""
+                : typeof value === "string"
+                  ? value
+                  : ""
             }
             onChange={(e) =>
               question.multipleBlanks
@@ -76,14 +83,10 @@ const ShortTextQuestion = ({ question, value, onChange }: Props) => {
   return (
     <div className="space-y-2">
       {question.prompt && (
-        <p className="text-muted-foreground">
-          {question.prompt}
-        </p>
+        <p className="text-muted-foreground">{question.prompt}</p>
       )}
 
-      <p className="font-medium leading-6">
-        {renderWithBlanks()}
-      </p>
+      <p className="font-medium leading-6">{renderWithBlanks()}</p>
     </div>
   );
 };
