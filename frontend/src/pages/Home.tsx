@@ -11,21 +11,21 @@ const Home = () => {
       justifyContent="center"
       sx={{ minHeight: "100vh" }}
     >
-      <Button
+      {/* <Button
         variant="contained"
         size="large"
         onClick={() => navigate("/open-text-page")}
       >
         Open Text
-      </Button>
+      </Button> */}
 
-      <Button
+      {/* <Button
         variant="contained"
         size="large"
         onClick={() => navigate("/geography-maps")}
       >
         Geography Maps
-      </Button>
+      </Button> */}
 
       <Button
         variant="contained"
@@ -34,13 +34,13 @@ const Home = () => {
       >
         Language Test
       </Button>
-      <Button
+      {/* <Button
         variant="contained"
         size="large"
         onClick={() => navigate("/geography-full")}
       >
         Geography Full
-      </Button>
+      </Button> */}
       <Button
         variant="contained"
         size="large"
