@@ -24,8 +24,8 @@ const MapPointsGradingBlock = ({
 
       {/* Αναλυτικό grading */}
       <div className="space-y-1 text-sm">
-        {gradedPoints.map((p, idx) => (
-          <div key={idx} className="flex flex-col gap-1">
+        {gradedPoints.map((p) => (
+          <div key={`${p.x}-${p.y}-${p.label}`} className="flex flex-col gap-1">
             <span>
               ({p.x.toFixed(1)}, {p.y.toFixed(1)}) → "{p.label}"
             </span>
