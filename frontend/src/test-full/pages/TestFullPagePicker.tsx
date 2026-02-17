@@ -137,7 +137,7 @@ const GeographyFullPagePicker = ({
   return (
     <div className="max-w-4xl mx-auto py-10 space-y-8">
       <Button onClick={pickRandomQuestions}>
-        Τυχαίες {geoCount} Ερωτήσεις
+        Τυχαίες {totalQuestions} Ερωτήσεις
       </Button>
       <Button
         variant={enableOpenText ? "default" : "secondary"}
