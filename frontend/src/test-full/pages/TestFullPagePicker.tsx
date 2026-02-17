@@ -2,6 +2,7 @@
 import { useState } from "react";
 import geoData from "../data/geoData.json";
 import cultureData from "../data/cultureData.json";
+import historyData from "../data/historyData.json";
 import TestFullQuestion from "./TestFullQuestion";
 import { Button } from "@/components/ui/button";
 import type {
@@ -15,17 +16,24 @@ import { useFullGrading } from "../hooks/useFullGrading";
 type QuestionGroups = {
   geography: FullQuestion[];
   culture: FullQuestion[];
+  history: FullQuestion[];
 };
 
 type Props = {
   geoCount?: number;
-  cultCount?: number; // πόσες ερωτήσεις θα εμφανιστούν
+  cultCount?: number;
+  histCount?: number; // πόσες ερωτήσεις θα εμφανιστούν
 };
 
-const GeographyFullPagePicker = ({ geoCount = 0, cultCount = 50 }: Props) => {
+const GeographyFullPagePicker = ({
+  geoCount = 1,
+  cultCount = 1,
+  histCount = 50,
+}: Props) => {
   const [selectedQuestions, setSelectedQuestions] = useState<QuestionGroups>({
     geography: [],
     culture: [],
+    history: [],
   });
   const [answers, setAnswers] = useState<Record<string, FullAnswer>>({});
   const [gradedAnswers, setGradedAnswers] = useState<FullGradedAnswer[]>([]);
@@ -33,6 +41,7 @@ const GeographyFullPagePicker = ({ geoCount = 0, cultCount = 50 }: Props) => {
 
   const geoQuestions = geoData as FullQuestion[];
   const cultureQuestions = cultureData as FullQuestion[];
+  const historyQuestions = historyData as FullQuestion[];
 
   // επιλογή τυχαίων ερωτήσεων
   const pickRandomQuestions = () => {
@@ -42,9 +51,14 @@ const GeographyFullPagePicker = ({ geoCount = 0, cultCount = 50 }: Props) => {
       () => 0.5 - Math.random(),
     );
 
+    const shuffledHistory = [...historyQuestions].sort(
+      () => 0.5 - Math.random(),
+    );
+
     setSelectedQuestions({
       geography: shuffledGeo.slice(0, geoCount),
       culture: shuffledCulture.slice(0, cultCount),
+      history: shuffledHistory.slice(0, histCount),
     });
 
     setAnswers({});
@@ -64,11 +78,13 @@ const GeographyFullPagePicker = ({ geoCount = 0, cultCount = 50 }: Props) => {
   const allQuestions = [
     ...selectedQuestions.geography,
     ...selectedQuestions.culture,
+    ...selectedQuestions.history,
   ];
 
-  const hasQuestions =
-    selectedQuestions.geography.length > 0 ||
-    selectedQuestions.culture.length > 0;
+const hasQuestions =
+  selectedQuestions.geography.length > 0 ||
+  selectedQuestions.culture.length > 0 ||
+  selectedQuestions.history.length > 0;
 
   const handleGradeAll = () => {
     const { results, score } = gradeAll(allQuestions, answers);
@@ -79,6 +95,7 @@ const GeographyFullPagePicker = ({ geoCount = 0, cultCount = 50 }: Props) => {
   // σκορ ανα θεματική
   const geoTotal = selectedQuestions.geography.length;
   const cultTotal = selectedQuestions.culture.length;
+  const histTotal = selectedQuestions.history.length;
 
   const geoScore = gradedAnswers.filter(
     (a) => selectedQuestions.geography.some((q) => q.id === a.id) && a.correct,
@@ -88,8 +105,12 @@ const GeographyFullPagePicker = ({ geoCount = 0, cultCount = 50 }: Props) => {
     (a) => selectedQuestions.culture.some((q) => q.id === a.id) && a.correct,
   ).length;
 
-  const totalScore = geoScore + cultScore;
-  const totalQuestions = geoTotal + cultTotal;
+  const histScore = gradedAnswers.filter(
+    (a) => selectedQuestions.history.some((q) => q.id === a.id) && a.correct,
+  ).length;
+
+  const totalScore = geoScore + cultScore + histScore;
+  const totalQuestions = geoTotal + cultTotal + histTotal;
 
   return (
     <div className="max-w-4xl mx-auto py-10 space-y-8">
@@ -127,6 +148,21 @@ const GeographyFullPagePicker = ({ geoCount = 0, cultCount = 50 }: Props) => {
         </>
       )}
 
+      {selectedQuestions.history.length > 0 && (
+        <>
+          <h2 className="text-xl font-bold mt-8">Ερωτήσεις Ιστορίας</h2>
+
+          {selectedQuestions.history.map((q) => (
+            <TestFullQuestion
+              key={q.id}
+              question={q}
+              value={answers[q.id]}
+              onChange={handleChange}
+            />
+          ))}
+        </>
+      )}
+
       {hasQuestions && <Button onClick={handleGradeAll}>Αξιολόγηση</Button>}
 
       {/* σκορ ανα θεματική */}
@@ -137,6 +173,9 @@ const GeographyFullPagePicker = ({ geoCount = 0, cultCount = 50 }: Props) => {
           </p>
           <p>
             Πολιτισμός: {cultScore} / {cultTotal}
+          </p>
+          <p>
+            Ιστορία: {histScore} / {histTotal}
           </p>
           <p className="font-bold">
             Σύνολο: {totalScore} / {totalQuestions}
