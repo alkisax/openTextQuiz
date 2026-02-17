@@ -43,11 +43,16 @@ const GeographyFullPagePicker = ({
   const [answers, setAnswers] = useState<Record<string, FullAnswer>>({});
   const [gradedAnswers, setGradedAnswers] = useState<FullGradedAnswer[]>([]);
   const [_score, setScore] = useState<number | null>(null);
+  const [enableOpenText, setEnableOpenText] = useState(true);
 
   const geoQuestions = geoData as FullQuestion[];
   const cultureQuestions = cultureData as FullQuestion[];
   const historyQuestions = historyData as FullQuestion[];
   const instQuestions = instiData as FullQuestion[];
+  // για επιλογή χωρίς ερωτήσεις open text
+  const availableInst = enableOpenText
+    ? instQuestions
+    : instQuestions.filter((q) => q.type !== "openText");
 
   // επιλογή τυχαίων ερωτήσεων
   const pickRandomQuestions = () => {
@@ -61,7 +66,7 @@ const GeographyFullPagePicker = ({
       () => 0.5 - Math.random(),
     );
 
-    const shuffledInst = [...instQuestions].sort(() => 0.5 - Math.random());
+    const shuffledInst = [...availableInst].sort(() => 0.5 - Math.random());
 
     setSelectedQuestions({
       geography: shuffledGeo.slice(0, geoCount),
@@ -97,8 +102,8 @@ const GeographyFullPagePicker = ({
     selectedQuestions.history.length > 0 ||
     selectedQuestions.institutions.length > 0;
 
-  const handleGradeAll = () => {
-    const { results, score } = gradeAll(allQuestions, answers);
+  const handleGradeAll = async () => {
+    const { results, score } = await gradeAll(allQuestions, answers);
     setGradedAnswers(results);
     setScore(score);
   };
@@ -133,6 +138,12 @@ const GeographyFullPagePicker = ({
     <div className="max-w-4xl mx-auto py-10 space-y-8">
       <Button onClick={pickRandomQuestions}>
         Τυχαίες {geoCount} Ερωτήσεις
+      </Button>
+      <Button
+        variant={enableOpenText ? "default" : "secondary"}
+        onClick={() => setEnableOpenText((prev) => !prev)}
+      >
+        {enableOpenText ? "Open Text ON" : "Open Text OFF"}
       </Button>
 
       {selectedQuestions.geography.length > 0 && (

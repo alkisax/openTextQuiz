@@ -161,4 +161,12 @@ export type FullGradedAnswer = {
   type: FullQuestion["type"];
   mapGradedPoints?: GradedPoint[];
   mapReviewPoints?: MapPoint[];
+
+    openTextScores?: {
+    content: number;
+    coverage: number;
+    language: number;
+    wordLimit: number;
+    total: number;
+  };
 };

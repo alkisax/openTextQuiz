@@ -12,10 +12,13 @@ import type {
   GeoMapPointsQuestion,
   MapPoint,
   FullWordMatchingQuestion,
+  FullOpenTextQuestion,
 } from "../types/Full.types";
 
 import { simplifyLang, expandOptionalParts } from "../utils/simplifyLang";
 import { gradePoints, buildReviewPoints } from "../utils/geoGrading";
+import axios from "axios";
+import { url } from "../constants/constants";
 
 type GradeAllResult = {
   results: FullGradedAnswer[];
@@ -367,21 +370,70 @@ export const useFullGrading = () => {
   };
 
   // =========================================================
+  // open text
+  // =========================================================
+const gradeOpenTextAsync = async (
+  q: FullOpenTextQuestion,
+  userAnswer: FullAnswer | undefined,
+): Promise<FullGradedAnswer> => {
+
+  const text = typeof userAnswer === "string" ? userAnswer.trim() : "";
+
+  // ✅ αν κενό → κατευθείαν fail, χωρίς API call
+  if (!text) {
+    return {
+      id: q.id,
+      userAnswer,
+      correctAnswer: q.correctAnswer,
+      correct: false,
+      type: q.type,
+      openTextScores: {
+        content: 0,
+        coverage: 0,
+        language: 0,
+        wordLimit: 0,
+        total: 0,
+      },
+    };
+  }
+
+  const response = await axios.post(
+    `${url}/api/grade/open-text-simple`,
+    {
+      question: q.question,
+      correctAnswer: q.correctAnswer,
+      studentText: text,
+      maxWords: q.maxWords,
+    },
+  );
+
+  const data = response.data;
+
+  return {
+    id: q.id,
+    userAnswer,
+    correctAnswer: q.correctAnswer,
+    correct: data.pass,
+    type: q.type,
+    openTextScores: data.scores,
+  };
+};
+
+  // =========================================================
   // MAIN gradeAll
   // =========================================================
-  const gradeAll = (
+  const gradeAll = async (
     questions: FullQuestion[],
     answers: Record<string, FullAnswer>,
-  ): GradeAllResult => {
+  ): Promise<GradeAllResult> => {
     let correct = 0;
     const results: FullGradedAnswer[] = [];
 
-    questions.forEach((q) => {
+    for (const q of questions) {
       const userAnswer = answers[q.id];
 
       let result: FullGradedAnswer | null = null;
 
-      // dispatch με βάση το type
       switch (q.type) {
         case "multipleChoice":
           result = gradeMultipleChoice(q, userAnswer);
@@ -414,8 +466,13 @@ export const useFullGrading = () => {
         case "mapPoints":
           result = gradeMapPoints(q, userAnswer);
           break;
+
         case "wordMatching":
           result = gradeWordMatching(q, userAnswer);
+          break;
+
+        case "openText":
+          result = await gradeOpenTextAsync(q, userAnswer);
           break;
       }
 
@@ -423,7 +480,7 @@ export const useFullGrading = () => {
         if (result.correct) correct++;
         results.push(result);
       }
-    });
+    }
 
     return {
       results,
