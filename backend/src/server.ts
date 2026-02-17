@@ -9,7 +9,7 @@ const main = async () => {
     throw new Error("MONGO_URI is not defined");
   }
 
-  await connectMongo(consts.env.MONGO_URI);
+  // await connectMongo(consts.env.MONGO_URI);
 
   app.listen(consts.env.PORT, () => {
     console.log(`🚀 Server running on http://localhost:${consts.env.PORT}`);

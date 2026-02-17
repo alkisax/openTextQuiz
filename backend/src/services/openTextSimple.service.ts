@@ -64,15 +64,16 @@ const calculateWordLimitScore = (
   wordCount: number,
   maxWords: number,
 ): number => {
-  const lower100 = Math.floor(maxWords * 0.8);
-  const upper100 = Math.ceil(maxWords * 1.2);
 
-  const lower80 = Math.floor(maxWords * 0.7);
-  const upper80 = Math.ceil(maxWords * 1.3);
+  const lower100 = Math.floor(maxWords * 0.7)
+  const upper100 = Math.ceil(maxWords * 1.3)
+
+  const lower80 = Math.floor(maxWords * 0.6)
+  const upper80 = Math.ceil(maxWords * 1.4)
 
   // Ζώνη 100%
   if (wordCount >= lower100 && wordCount <= upper100) {
-    return 100;
+    return 100
   }
 
   // Ζώνη 80%
@@ -80,12 +81,11 @@ const calculateWordLimitScore = (
     (wordCount >= lower80 && wordCount < lower100) ||
     (wordCount > upper100 && wordCount <= upper80)
   ) {
-    return 80;
+    return 80
   }
 
-  // Εκτός ορίων
-  return 0;
-};
+  return 0
+}
 
 export const gradeOpenTextSimple = async (
   question: string,
@@ -103,7 +103,7 @@ export const gradeOpenTextSimple = async (
 
   console.log("Word count:", words);
   console.log("Word limit score:", wordLimitScore);
-  
+
   // OpenAI call
   const response = await axios.post(
     OPENAI_URL,
@@ -133,7 +133,7 @@ export const gradeOpenTextSimple = async (
   const coverage = Math.max(0, Math.min(100, parsed.coverage));
   const language = Math.max(0, Math.min(100, parsed.language));
 
-  // ✅ 3️⃣ Calculate total backend-side
+  //  Calculate total backend-side
   const total = Math.round(
     (content + coverage + language + wordLimitScore) / 4,
   );
