@@ -29,10 +29,10 @@ type Props = {
 };
 
 const GeographyFullPagePicker = ({
-  geoCount = 1,
-  cultCount = 1,
-  histCount = 1,
-  instCount = 50,
+  geoCount = 4,
+  cultCount = 4,
+  histCount = 6,
+  instCount = 6,
 }: Props) => {
   const [selectedQuestions, setSelectedQuestions] = useState<QuestionGroups>({
     geography: [],
