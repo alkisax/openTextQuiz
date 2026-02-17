@@ -19,15 +19,15 @@ const WordMatchingQuestion = ({ question, value = {}, onChange }: Props) => {
   const renderText = () => {
     const parts = question.textTemplate.split(/(\d+\.\s__)/g)
 
-    return parts.map((part, index) => {
+    return parts.map((part) => {
       const match = part.match(/^(\d+)\.\s__$/)
 
-      if (!match) return <span key={index}>{part}</span>
+			if (!match) return <span key={part}>{part}</span>
 
       const blankKey = match[1]
 
       return (
-        <span key={index} className="mx-1">
+        <span key={blankKey} className="mx-1">
           <select
             value={value[blankKey] || ''}
             onChange={(e) => handleSelect(blankKey, e.target.value)}
