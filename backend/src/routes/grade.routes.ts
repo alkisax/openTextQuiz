@@ -48,4 +48,6 @@ router.post("/total/text", controllers.gradeTotalText);
 console.log("Registering POST /language/essay");
 router.post("/language/essay", controllers.gradeEssay);
 
+router.post('/open-text-simple', controllers.gradeOpenTextSimpleController)
+
 export default router;

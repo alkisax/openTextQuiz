@@ -5,8 +5,12 @@ import { ValidationError } from "../utils/error/errors.types";
 import path from "path";
 import { bm25TextGrading } from "../services/bm25Text.service";
 import { compareTextsWithBullets } from "../services/bullets.service";
-import { gradeEssayWithOpenAI, gradeLanguage } from "../services/language.service";
+import {
+  gradeEssayWithOpenAI,
+  gradeLanguage,
+} from "../services/language.service";
 import { gradeTotalTextToText } from "../services/total.service";
+import { gradeOpenTextSimple } from "../services/openTextSimple.service";
 
 /* 
 VECTOR
@@ -164,7 +168,30 @@ const gradeEssay = async (req: Request, res: Response) => {
 
     const result = await gradeEssayWithOpenAI(prompt, studentText);
     console.log("result from grade essay", result);
-    
+
+    return res.json({
+      status: true,
+      ...result,
+    });
+  } catch (error) {
+    return handleControllerError(res, error);
+  }
+};
+
+const gradeOpenTextSimpleController = async (req: Request, res: Response) => {
+  try {
+    const { question, correctAnswer, studentText, maxWords } = req.body;
+
+    if (!question || !correctAnswer || !studentText || !maxWords) {
+      throw new ValidationError("Missing required fields");
+    }
+
+    const result = await gradeOpenTextSimple(
+      question,
+      correctAnswer,
+      studentText,
+      maxWords,
+    );
 
     return res.json({
       status: true,
@@ -183,4 +210,5 @@ export const controllers = {
   gradeTextWithLanguage,
   gradeTotalText,
   gradeEssay,
+  gradeOpenTextSimpleController,
 };

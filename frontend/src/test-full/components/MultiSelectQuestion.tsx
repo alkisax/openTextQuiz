@@ -32,7 +32,7 @@ const MultiSelectQuestion = ({
 
   return (
     <div className='space-y-4'>
-      <p className='font-medium'>{question.question}</p>
+      <p className='font-medium whitespace-pre-line'>{question.question}</p>
 
       {question.media && question.media.length > 0 && (
         <QuestionMediaBlock media={question.media} />

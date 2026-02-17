@@ -9,6 +9,7 @@ import TrueFalseGroupQuestion from "../components/TrueFalseGroupQuestion";
 import CategorizationQuestionComponent from "../components/CategorizationQuestionComponent";
 import MapPointsQuestion from "../components/MapPointsQuestion";
 import WordMatchingQuestion from "../components/WordMatchingQuestion";
+import OpenTextQuestion from "../components/OpenTextQuestion";
 
 type Props = {
   question: FullQuestion;
@@ -115,6 +116,14 @@ const GeographyFullQuestion = ({ question, value, onChange }: Props) => {
               ? (value as Record<string, string>)
               : {}
           }
+          onChange={(val) => onChange(question.id, val)}
+        />
+      )}
+
+      {question.type === "openText" && (
+        <OpenTextQuestion
+          question={question}
+          value={typeof value === "string" ? value : ""}
           onChange={(val) => onChange(question.id, val)}
         />
       )}

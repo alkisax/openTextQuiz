@@ -107,13 +107,20 @@ export type GeoMapPointsQuestion = FullQuestionBase & {
 };
 
 export type FullWordMatchingQuestion = FullQuestionBase & {
-  type: 'wordMatching'
-  question: string
-  wordBank: Record<string, string>
-  textTemplate: string
-  correctAnswer: Record<string, string>
-  hasExtraOption?: boolean
-}
+  type: "wordMatching";
+  question: string;
+  wordBank: Record<string, string>;
+  textTemplate: string;
+  correctAnswer: Record<string, string>;
+  hasExtraOption?: boolean;
+};
+
+export type FullOpenTextQuestion = FullQuestionBase & {
+  type: "openText";
+  question: string;
+  maxWords: number;
+  correctAnswer: string;
+};
 
 export type FullQuestion =
   | FullMultipleChoiceQuestion
@@ -124,13 +131,15 @@ export type FullQuestion =
   | FullTrueFalseGroupQuestion
   | FullCategorizationQuestion
   | GeoMapPointsQuestion
-  | FullWordMatchingQuestion;
+  | FullWordMatchingQuestion
+  | FullOpenTextQuestion;
 
 export type FullAnswer =
   | string
   | string[]
   | Record<string, string>
-  | MapPoint[];
+  | MapPoint[]
+  | MapPoint[];;
 
 export type GradedPoint = MapPoint & {
   correct: boolean;

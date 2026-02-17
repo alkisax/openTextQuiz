@@ -3,6 +3,7 @@ import { useState } from "react";
 import geoData from "../data/geoData.json";
 import cultureData from "../data/cultureData.json";
 import historyData from "../data/historyData.json";
+import instiData from "../data/instiData.json";
 import TestFullQuestion from "./TestFullQuestion";
 import { Button } from "@/components/ui/button";
 import type {
@@ -17,23 +18,27 @@ type QuestionGroups = {
   geography: FullQuestion[];
   culture: FullQuestion[];
   history: FullQuestion[];
+  institutions: FullQuestion[];
 };
 
 type Props = {
   geoCount?: number;
   cultCount?: number;
-  histCount?: number; // πόσες ερωτήσεις θα εμφανιστούν
+  histCount?: number;
+  instCount?: number; // πόσες ερωτήσεις θα εμφανιστούν
 };
 
 const GeographyFullPagePicker = ({
   geoCount = 1,
   cultCount = 1,
-  histCount = 50,
+  histCount = 1,
+  instCount = 50,
 }: Props) => {
   const [selectedQuestions, setSelectedQuestions] = useState<QuestionGroups>({
     geography: [],
     culture: [],
     history: [],
+    institutions: [],
   });
   const [answers, setAnswers] = useState<Record<string, FullAnswer>>({});
   const [gradedAnswers, setGradedAnswers] = useState<FullGradedAnswer[]>([]);
@@ -42,6 +47,7 @@ const GeographyFullPagePicker = ({
   const geoQuestions = geoData as FullQuestion[];
   const cultureQuestions = cultureData as FullQuestion[];
   const historyQuestions = historyData as FullQuestion[];
+  const instQuestions = instiData as FullQuestion[];
 
   // επιλογή τυχαίων ερωτήσεων
   const pickRandomQuestions = () => {
@@ -55,10 +61,13 @@ const GeographyFullPagePicker = ({
       () => 0.5 - Math.random(),
     );
 
+    const shuffledInst = [...instQuestions].sort(() => 0.5 - Math.random());
+
     setSelectedQuestions({
       geography: shuffledGeo.slice(0, geoCount),
       culture: shuffledCulture.slice(0, cultCount),
       history: shuffledHistory.slice(0, histCount),
+      institutions: shuffledInst.slice(0, instCount),
     });
 
     setAnswers({});
@@ -79,12 +88,14 @@ const GeographyFullPagePicker = ({
     ...selectedQuestions.geography,
     ...selectedQuestions.culture,
     ...selectedQuestions.history,
+    ...selectedQuestions.institutions,
   ];
 
-const hasQuestions =
-  selectedQuestions.geography.length > 0 ||
-  selectedQuestions.culture.length > 0 ||
-  selectedQuestions.history.length > 0;
+  const hasQuestions =
+    selectedQuestions.geography.length > 0 ||
+    selectedQuestions.culture.length > 0 ||
+    selectedQuestions.history.length > 0 ||
+    selectedQuestions.institutions.length > 0;
 
   const handleGradeAll = () => {
     const { results, score } = gradeAll(allQuestions, answers);
@@ -96,6 +107,7 @@ const hasQuestions =
   const geoTotal = selectedQuestions.geography.length;
   const cultTotal = selectedQuestions.culture.length;
   const histTotal = selectedQuestions.history.length;
+  const instTotal = selectedQuestions.institutions.length;
 
   const geoScore = gradedAnswers.filter(
     (a) => selectedQuestions.geography.some((q) => q.id === a.id) && a.correct,
@@ -109,8 +121,13 @@ const hasQuestions =
     (a) => selectedQuestions.history.some((q) => q.id === a.id) && a.correct,
   ).length;
 
-  const totalScore = geoScore + cultScore + histScore;
-  const totalQuestions = geoTotal + cultTotal + histTotal;
+  const instScore = gradedAnswers.filter(
+    (a) =>
+      selectedQuestions.institutions.some((q) => q.id === a.id) && a.correct,
+  ).length;
+
+  const totalScore = geoScore + cultScore + histScore + instScore;
+  const totalQuestions = geoTotal + cultTotal + histTotal + instTotal;
 
   return (
     <div className="max-w-4xl mx-auto py-10 space-y-8">
@@ -163,6 +180,21 @@ const hasQuestions =
         </>
       )}
 
+      {selectedQuestions.institutions.length > 0 && (
+        <>
+          <h2 className="text-xl font-bold mt-8">Ερωτήσεις Θεσμών</h2>
+
+          {selectedQuestions.institutions.map((q) => (
+            <TestFullQuestion
+              key={q.id}
+              question={q}
+              value={answers[q.id]}
+              onChange={handleChange}
+            />
+          ))}
+        </>
+      )}
+
       {hasQuestions && <Button onClick={handleGradeAll}>Αξιολόγηση</Button>}
 
       {/* σκορ ανα θεματική */}
@@ -176,6 +208,9 @@ const hasQuestions =
           </p>
           <p>
             Ιστορία: {histScore} / {histTotal}
+          </p>
+          <p>
+            Θεσμοί: {instScore} / {instTotal}
           </p>
           <p className="font-bold">
             Σύνολο: {totalScore} / {totalQuestions}
