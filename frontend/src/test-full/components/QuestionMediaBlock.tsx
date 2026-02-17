@@ -29,7 +29,7 @@ const QuestionMediaBlock = ({ media }: Props) => {
           <div key={item.id} className="flex flex-col items-center">
             <div className="relative">
               <img
-                src={`/${item.src}`}
+                src={`${import.meta.env.BASE_URL}${item.src}`}
                 alt={item.alt || ''}
                 className="rounded border max-w-md"
               />
