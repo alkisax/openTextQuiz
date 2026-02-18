@@ -12,58 +12,65 @@ const LanguageGradingSummary = ({ gradedAnswers }: Props) => {
   const correctCount = gradedAnswers.filter(a => a.correct).length
 
   return (
-    <Card className="mt-4">
-      <CardContent>
-        <h3 className="mb-2 text-lg font-semibold">
-          Αξιολόγηση
-        </h3>
+    <Card className="mt-8">
+      <CardContent className="space-y-6">
 
-        <div className="mb-3">
-          <Badge className="bg-primary text-primary-foreground">
-            Σωστά: {correctCount} / {total}
-          </Badge>
+        {/* 🔹 Τελικό αποτέλεσμα */}
+        <div className="text-center">
+          <p className="text-sm text-muted-foreground">
+            Τελικό αποτέλεσμα
+          </p>
+          <p className="text-3xl font-bold">
+            {correctCount} / {total}
+          </p>
         </div>
 
-        <ul className="space-y-2">
+        {/* 🔹 Αναλυτικά */}
+        <div className="grid md:grid-cols-2 gap-3">
           {gradedAnswers.map((a, i) => (
-            <li key={a.id} className="rounded-md border p-2">
+            <div
+              key={a.id}
+              className="rounded-md border p-3 space-y-2 bg-muted/20"
+            >
 
-              <p className="text-sm font-medium">
-                {i + 1}. {a.userAnswer || "—"} → {a.correctAnswer}
-              </p>
+              <div className="flex justify-between items-center">
+                <span className="text-xs font-medium">
+                  Ερ. {i + 1}
+                </span>
 
-              <div className="mt-1 flex gap-2">
                 <Badge
                   className={
                     a.correct
                       ? "bg-primary text-primary-foreground"
-                      : "bg-destructive text-white"
+                      : "bg-red-500 text-white"
                   }
                 >
-                  {a.correct ? "σωστό" : "λάθος"}
+                  {a.correct ? "✔" : "λάθος"}
                 </Badge>
-
-                {a.type === "shortText" && (
-                  <Badge
-                    className={
-                      a.correct
-                        ? a.hasSpellingErrors
-                          ? "bg-secondary text-secondary-foreground"
-                          : "bg-secondary text-secondary-foreground"
-                        : "bg-destructive text-white"
-                    }
-                  >
-                    {a.correct
-                      ? a.hasSpellingErrors
-                        ? "σωστό με ορθογραφικά"
-                        : "σωστό λεκτικό"
-                      : "λάθος λεκτικό"}
-                  </Badge>
-                )}
               </div>
-            </li>
+
+              {/* Εμφάνιση σωστής απάντησης μόνο αν είναι λάθος */}
+              {!a.correct && (
+                <div className="text-xs text-muted-foreground">
+                  {a.correctAnswer}
+                </div>
+              )}
+
+              {/* ShortText ειδικό badge */}
+              {a.type === "shortText" && a.correct && (
+                <div className="text-xs">
+                  {a.hasSpellingErrors && (
+                    <span className="text-muted-foreground">
+                      Σωστό με ορθογραφικές αποκλίσεις
+                    </span>
+                  )}
+                </div>
+              )}
+
+            </div>
           ))}
-        </ul>
+        </div>
+
       </CardContent>
     </Card>
   )

@@ -17,6 +17,7 @@ import type {
 } from "../types/language.types";
 import EssayQuestion from "../components/test-parts/EssayQuestion";
 import EssayGradingSummary from "../components/test-parts/EssayGradingSummary";
+import { Button } from "@/components/ui/button";
 
 type LanguageTestProps = {
   test: LanguageTestType;
@@ -24,23 +25,18 @@ type LanguageTestProps = {
 
 const LanguageTest = ({ test }: LanguageTestProps) => {
   const [answers, setAnswers] = useState<Record<string, string>>({});
-  const [multiAnswers, setMultiAnswers] = useState<Record<string, string[]>>(
-    {},
-  );
+  const [multiAnswers, setMultiAnswers] = useState<Record<string, string[]>>({});
   const [essayText, setEssayText] = useState("");
-  const [score, setScore] = useState<number | null>(null);
+  const [_score, setScore] = useState<number | null>(null);
   const [gradedAnswers, setGradedAnswers] = useState<GradedAnswer[]>([]);
 
   const [essayResult, setEssayResult] = useState<EssayResult | null>(null);
   const [essayLoading, setEssayLoading] = useState(false);
 
-  // const test = testData[0];
   const partA = test.parts.A.questions;
   const partB = test.parts.B.questions;
   const partC = test.parts.C;
 
-  // αποθηκεύουμε τις απαντήσεις
-  // χρηαζόμαστε dynamic key για το id και για αυτό [id]: και οχι id:
   const handleChange = (id: string, value: string) => {
     setAnswers((prev) => ({
       ...prev,
@@ -48,33 +44,16 @@ const LanguageTest = ({ test }: LanguageTestProps) => {
     }));
   };
 
-  // κάποιες ερωτήσεις τύπου shortText είναι πιθανό να έχουν δύο κενα, σε αυτές η απάντηση δεν έρχετε ως string αλλά ως string[]
-  // const handleMultiChange = (id: string, index: number, value: string) => {
-  //   setMultiAnswers((prev) => {
-  //     const existing = prev[id] || [];
-  //     const updated = [...existing];
-  //     updated[index] = value;
-
-  //     return {
-  //       ...prev,
-  //       [id]: updated,
-  //     };
-  //   });
-  // };
-
   const gradeAll = () => {
     let correct = 0;
     let total = 0;
-
     const results: GradedAnswer[] = [];
 
     // Part A
     partA.forEach((q) => {
       total++;
-
       const userAnswer = answers[q.id];
       const isCorrect = userAnswer === q.correctAnswer;
-
       if (isCorrect) correct++;
 
       results.push({
@@ -89,13 +68,9 @@ const LanguageTest = ({ test }: LanguageTestProps) => {
     // Part B
     partB.forEach((q) => {
       total++;
-
       const userAnswer = answers[q.id];
 
-      // shortText
       if (q.type === "shortText") {
-        // MULTI BLANK
-        // κάποιες ερωτήσεις τύπου shortText είναι πιθανό να έχουν δύο κενα, σε αυτές η απάντηση δεν έρχετε ως string αλλά ως string[]
         if (q.multipleBlanks && Array.isArray(q.correctAnswer)) {
           const userParts = multiAnswers[q.id] || [];
           const correctParts = q.correctAnswer;
@@ -105,16 +80,10 @@ const LanguageTest = ({ test }: LanguageTestProps) => {
 
           correctParts.forEach((correctPart, index) => {
             const userPart = userParts[index];
-
             const result = gradeShortTextDetailed(userPart, correctPart);
 
-            if (!result.correct) {
-              allCorrect = false;
-            }
-
-            if (result.hasSpellingErrors) {
-              hasSpellingErrors = true;
-            }
+            if (!result.correct) allCorrect = false;
+            if (result.hasSpellingErrors) hasSpellingErrors = true;
           });
 
           if (allCorrect) correct++;
@@ -128,10 +97,6 @@ const LanguageTest = ({ test }: LanguageTestProps) => {
             type: q.type,
           });
         } else {
-          // SINGLE BLANK
-          const userAnswer = answers[q.id];
-
-          // TODO προς το παρόν δεχόμαστε πολλές απαντήσεις μόνο αν είναι ένα το κενο στην ερώτηση. θα δούμε αν υπάρχουν τέτοιες ερωτήσεις (δυο κενα - πολλαπλές απαντήσεις) και θα το κάνουμε τότε
           const result = gradeShortTextDetailed(
             userAnswer,
             q.correctAnswer as string,
@@ -151,10 +116,8 @@ const LanguageTest = ({ test }: LanguageTestProps) => {
         }
       }
 
-      // multipleChoice
       if (q.type === "multipleChoice") {
         const isCorrect = userAnswer === q.correctAnswer;
-
         if (isCorrect) correct++;
 
         results.push({
@@ -168,10 +131,7 @@ const LanguageTest = ({ test }: LanguageTestProps) => {
     });
 
     setScore(correct);
-    console.log("score :", score);
     setGradedAnswers(results);
-
-    console.log(`Total Score: ${correct} / ${total}`);
   };
 
   const gradeEssay = async () => {
@@ -179,8 +139,6 @@ const LanguageTest = ({ test }: LanguageTestProps) => {
 
     try {
       setEssayLoading(true);
-
-      console.log("url in ${url}/api/grade/language/essay :", url);
 
       const response = await axios.post<EssayResult>(
         `${url}/api/grade/language/essay`,
@@ -198,6 +156,11 @@ const LanguageTest = ({ test }: LanguageTestProps) => {
     }
   };
 
+  let questionIndex = 1;
+
+  const getGraded = (id: string) =>
+    gradedAnswers.find((a) => a.id === id);
+
   return (
     <div className="space-y-10 max-w-5xl mx-auto py-8">
       <div className="max-w-3xl mx-auto py-8">
@@ -208,7 +171,6 @@ const LanguageTest = ({ test }: LanguageTestProps) => {
 
           <CardContent className="space-y-4">
             <p className="font-bold">{test.prompt}</p>
-
             <div className="whitespace-pre-line text-justify leading-5">
               {test.text}
             </div>
@@ -216,105 +178,109 @@ const LanguageTest = ({ test }: LanguageTestProps) => {
         </Card>
       </div>
 
-      {/* part A */}
+      {/* PART A */}
       <div className="max-w-3xl mx-auto py-8 space-y-8">
         <h2 className="text-xl font-bold">Μέρος Α</h2>
 
         {partA.map((q) => {
-          if (q.type === "multipleChoice" && q.options) {
-            return (
-              <MultipleChoiceQuestion
-                key={q.id}
-                question={q}
-                value={answers[q.id]}
-                onChange={(value) => handleChange(q.id, value)}
-              />
-            );
-          }
+          const graded = getGraded(q.id);
+          const gradedClass =
+            gradedAnswers.length > 0 && graded
+              ? graded.correct
+                ? "bg-green-50 border border-green-400"
+                : "bg-red-50 border border-red-400"
+              : "";
 
-          if (q.type === "trueFalseNA") {
-            return (
-              <TrueFalseQuestion
-                key={q.id}
-                question={q}
-                value={answers[q.id]}
-                onChange={(value) => handleChange(q.id, value)}
-              />
-            );
-          }
+          return (
+            <div key={q.id} className="flex items-start gap-2">
+              <span className="font-semibold">{questionIndex++}.</span>
 
-          return null;
+              <div className={`flex-1 p-4 rounded ${gradedClass}`}>
+                {q.type === "multipleChoice" && q.options && (
+                  <MultipleChoiceQuestion
+                    question={q}
+                    value={answers[q.id]}
+                    onChange={(value) => handleChange(q.id, value)}
+                  />
+                )}
+
+                {q.type === "trueFalseNA" && (
+                  <TrueFalseQuestion
+                    question={q}
+                    value={answers[q.id]}
+                    onChange={(value) => handleChange(q.id, value)}
+                  />
+                )}
+
+                {gradedAnswers.length > 0 && graded && !graded.correct && (
+                  <div className="mt-2 text-sm text-muted-foreground">
+                    Σωστή απάντηση: {graded.correctAnswer}
+                  </div>
+                )}
+              </div>
+            </div>
+          );
         })}
       </div>
 
-      {/* part B1 */}
+      {/* PART B */}
       <div className="max-w-3xl mx-auto py-8 space-y-8">
         <h2 className="text-xl font-bold">Μέρος Β</h2>
 
-        {test.parts.B.instructionsShortText && (
-          <p style={{ whiteSpace: "pre-line" }}>{test.parts.B.instructionsShortText}</p>
-        )}
-
-        {!test.parts.B.instructionsShortText && (
-          <p>
-            Ξαναγράψτε τις παρακάτω προτάσεις με βάση τη φράση που σας δίνεται
-            στην αρχή. Γράψτε στο τετράδιο τον αριθμό της άσκησης και δίπλα τη
-            σωστή πρόταση/απάντηση.
-          </p>
-        )}
-
         {partB.map((q) => {
-          if (q.type === "shortText") {
-            return (
-              <ShortTextQuestion
-                key={q.id}
-                question={q}
-                value={q.multipleBlanks ? multiAnswers[q.id] : answers[q.id]}
-                onChange={(value) => {
-                  if (q.multipleBlanks) {
-                    setMultiAnswers((prev) => ({
-                      ...prev,
-                      [q.id]: value as string[],
-                    }));
-                  } else {
-                    setAnswers((prev) => ({
-                      ...prev,
-                      [q.id]: value as string,
-                    }));
-                  }
-                }}
-              />
-            );
-          }
+          const graded = getGraded(q.id);
+          const gradedClass =
+            gradedAnswers.length > 0 && graded
+              ? graded.correct
+                ? "bg-green-50 border border-green-400"
+                : "bg-red-50 border border-red-400"
+              : "";
 
-          return null;
+          return (
+            <div key={q.id} className="flex items-start gap-2">
+              <span className="font-semibold">{questionIndex++}.</span>
+
+              <div className={`flex-1 p-4 rounded ${gradedClass}`}>
+                {q.type === "shortText" && (
+                  <ShortTextQuestion
+                    question={q}
+                    value={q.multipleBlanks ? multiAnswers[q.id] : answers[q.id]}
+                    onChange={(value) => {
+                      if (q.multipleBlanks) {
+                        setMultiAnswers((prev) => ({
+                          ...prev,
+                          [q.id]: value as string[],
+                        }));
+                      } else {
+                        setAnswers((prev) => ({
+                          ...prev,
+                          [q.id]: value as string,
+                        }));
+                      }
+                    }}
+                  />
+                )}
+
+                {q.type === "multipleChoice" && q.options && (
+                  <MultipleChoiceWithTargetQuestion
+                    question={q}
+                    value={answers[q.id]}
+                    onChange={(value) => handleChange(q.id, value)}
+                  />
+                )}
+
+                {gradedAnswers.length > 0 && graded && !graded.correct && (
+                  <div className="mt-2 text-sm text-muted-foreground">
+                    Σωστή απάντηση: {graded.correctAnswer}
+                  </div>
+                )}
+              </div>
+            </div>
+          );
         })}
       </div>
 
-      {/* part B2 */}
-      <div className="max-w-3xl mx-auto py-8 space-y-8">
-        <p>
-          Στις προτάσεις που ακολουθούν κυκλώστε τη λέξη / φράση που έχει το
-          ίδιο νόημα με την υπογραμμισμένη λέξη / φράση: Γράψτε στο τετράδιο τον
-          αριθμό της άσκησης και δίπλα τη σωστή απάντηση.
-        </p>
-        {partB.map((q) => {
-          if (q.type === "multipleChoice" && q.options) {
-            return (
-              <MultipleChoiceWithTargetQuestion
-                key={q.id}
-                question={q}
-                value={answers[q.id]}
-                onChange={(value) => handleChange(q.id, value)}
-              />
-            );
-          }
-
-          return null;
-        })}
-      </div>
-
-      {/* Part C */}
+      {/* PART C */}
       <div className="max-w-3xl mx-auto py-8">
         <EssayQuestion
           instructions={partC.instructions}
@@ -324,25 +290,21 @@ const LanguageTest = ({ test }: LanguageTestProps) => {
           value={essayText}
           onChange={setEssayText}
         />
-        <button
+
+        <Button
           type="button"
-          className="px-4 py-2 bg-black text-white rounded"
           onClick={gradeEssay}
           disabled={essayLoading}
         >
           {essayLoading ? "Αξιολόγηση..." : "Αξιολόγηση Γ Θέματος"}
-        </button>
+        </Button>
 
         {essayResult && <EssayGradingSummary result={essayResult} />}
       </div>
 
-      <button
-        type="button"
-        className="px-4 py-2 bg-black text-white rounded"
-        onClick={gradeAll}
-      >
+      <Button type="button" onClick={gradeAll}>
         Αξιολόγηση
-      </button>
+      </Button>
 
       {gradedAnswers.length > 0 && (
         <LanguageGradingSummary gradedAnswers={gradedAnswers} />
