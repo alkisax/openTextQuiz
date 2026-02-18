@@ -397,6 +397,8 @@ export const useFullGrading = () => {
     }
 
     try {
+      console.log("url in: url /api/grade/open-text-simple");
+      
       const response = await axios.post(`${url}/api/grade/open-text-simple`, {
         question: q.question,
         correctAnswer: q.correctAnswer,
