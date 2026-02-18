@@ -18,7 +18,7 @@ import type {
 import { simplifyLang, expandOptionalParts } from "../utils/simplifyLang";
 import { gradePoints, buildReviewPoints } from "../utils/geoGrading";
 import axios from "axios";
-import { url, urlOpenText } from "../constants/constants";
+import { urlOpenText } from "../constants/constants";
 
 type GradeAllResult = {
   results: FullGradedAnswer[];
