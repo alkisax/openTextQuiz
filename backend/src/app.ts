@@ -8,12 +8,12 @@ export const app = express();
 
 console.log("=== APP START ===");
 
+app.use(express.json({ limit: '100kb' }));
+
 app.use(cors({
   origin: "*", 
   methods: ["GET", "POST"],
 }));
-
-app.use(express.json({ limit: "1mb" }));
 
 app.get("/api/ping", (_req: Request, res: Response) => {
   console.log("someone pinged here");

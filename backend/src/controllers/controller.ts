@@ -158,39 +158,45 @@ const gradeTotalText = async (req: Request, res: Response) => {
 };
 
 // για την ενότητα της έκθεσης
+// helper
+const countWords = (text: string) =>
+  text.trim().split(/\s+/).filter(Boolean).length;
+
+// =================================================
+// Essay
+// =================================================
 const gradeEssay = async (req: Request, res: Response) => {
   try {
     const { prompt, studentText } = req.body;
 
-    if (!prompt || !studentText) {
-      throw new ValidationError("prompt and studentText are required");
+    // 1. type check
+    if (typeof prompt !== 'string' || typeof studentText !== 'string') {
+      throw new ValidationError('Invalid input types');
     }
 
-    const result = await gradeEssayWithOpenAI(prompt, studentText);
-    console.log("result from grade essay", result);
+    // 2. trim
+    const safePrompt = prompt.trim();
+    const studentSafeText = studentText.trim();
 
-    return res.json({
-      status: true,
-      ...result,
-    });
-  } catch (error) {
-    return handleControllerError(res, error);
-  }
-};
-
-const gradeOpenTextSimpleController = async (req: Request, res: Response) => {
-  try {
-    const { question, correctAnswer, studentText, maxWords } = req.body;
-
-    if (!question || !correctAnswer || !studentText || !maxWords) {
-      throw new ValidationError("Missing required fields");
+    // 3. empty check
+    if (!safePrompt || !studentSafeText) {
+      throw new ValidationError('prompt and studentText are required');
     }
 
-    const result = await gradeOpenTextSimple(
-      question,
-      correctAnswer,
-      studentText,
-      maxWords,
+    // 4. char hard cap
+    if (studentSafeText.length > 5000) {
+      throw new ValidationError('Text too large');
+    }
+
+    // 5. word hard cap
+    const wordCount = countWords(studentSafeText);
+    if (wordCount > 200) {
+      throw new ValidationError('Word limit exceeded');
+    }
+
+    const result = await gradeEssayWithOpenAI(
+      safePrompt,
+      studentSafeText
     );
 
     return res.json({
@@ -201,6 +207,67 @@ const gradeOpenTextSimpleController = async (req: Request, res: Response) => {
     return handleControllerError(res, error);
   }
 };
+
+// =================================================
+// Open Text Simple
+// =================================================
+const gradeOpenTextSimpleController = async (
+  req: Request,
+  res: Response
+) => {
+  try {
+    const { question, correctAnswer, studentText, maxWords } = req.body;
+
+    // 1. type check
+    if (
+      typeof question !== 'string' ||
+      typeof correctAnswer !== 'string' ||
+      typeof studentText !== 'string' ||
+      typeof maxWords !== 'number'
+    ) {
+      throw new ValidationError('Invalid input types');
+    }
+
+    // 2. bounds check για maxWords
+    if (!Number.isFinite(maxWords) || maxWords < 1 || maxWords > 1000) {
+      throw new ValidationError('Invalid maxWords');
+    }
+
+    // 3. trim
+    const studentSafeText = studentText.trim();
+
+    // 4. empty check
+    if (!studentSafeText) {
+      throw new ValidationError('studentText is required');
+    }
+
+    // 5. char hard cap
+    if (studentSafeText.length > 5000) {
+      throw new ValidationError('Text too large');
+    }
+
+    // 6. word hard cap (security cap)
+    const wordCount = countWords(studentSafeText);
+    if (wordCount > 200) {
+      throw new ValidationError('Word limit exceeded');
+    }
+
+    const result = await gradeOpenTextSimple(
+      question.trim(),
+      correctAnswer.trim(),
+      studentSafeText,
+      maxWords
+    );
+
+    return res.json({
+      status: true,
+      ...result,
+    });
+  } catch (error) {
+    return handleControllerError(res, error);
+  }
+};
+
 
 export const controllers = {
   gradeWithCosineDb,

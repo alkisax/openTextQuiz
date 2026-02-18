@@ -18,7 +18,7 @@ import type {
 import { simplifyLang, expandOptionalParts } from "../utils/simplifyLang";
 import { gradePoints, buildReviewPoints } from "../utils/geoGrading";
 import axios from "axios";
-import { url, urlOpenText } from "../constants/constants";
+import { urlOpenText } from "../constants/constants";
 
 type GradeAllResult = {
   results: FullGradedAnswer[];
@@ -396,9 +396,29 @@ export const useFullGrading = () => {
       };
     }
 
-    console.log(" test if url not used here load. url:", url);
-    
-    console.log("url in: url /api/grade/open-text-simple", urlOpenText);
+    // υπολογισμός λέξεων
+    const wordCount = text ? text.split(/\s+/).filter(Boolean).length : 0;
+
+    // αν ξεπερνά τις 200 λέξεις → fail χωρίς API call
+    if (wordCount > 200) {
+      return {
+        id: q.id,
+        userAnswer,
+        correctAnswer: q.correctAnswer,
+        correct: false,
+        type: q.type,
+        openTextScores: {
+          content: 0,
+          coverage: 0,
+          language: 0,
+          wordLimit: 0,
+          total: 0,
+        },
+      };
+    }
+
+    // console.log(" test if url not used here load. url:", url);
+    // console.log("url in: url /api/grade/open-text-simple", urlOpenText);
     try {
       const response = await axios.post(
         `${urlOpenText}/api/grade/open-text-simple`,

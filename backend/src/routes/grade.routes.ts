@@ -20,6 +20,15 @@
 
 import { Router } from "express";
 import { controllers } from "../controllers/controller";
+import rateLimit from 'express-rate-limit';
+
+const essayLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 20,
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
 
 const router = Router();
 
@@ -46,8 +55,8 @@ router.post("/total/text", controllers.gradeTotalText);
 
 // για την ενώτητα της έκθεσης
 console.log("Registering POST /language/essay");
-router.post("/language/essay", controllers.gradeEssay);
+router.post("/language/essay", essayLimiter, controllers.gradeEssay);
 
-router.post('/open-text-simple', controllers.gradeOpenTextSimpleController)
+router.post('/open-text-simple', essayLimiter, controllers.gradeOpenTextSimpleController)
 
 export default router;
