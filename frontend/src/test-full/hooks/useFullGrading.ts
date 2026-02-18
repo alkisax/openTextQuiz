@@ -372,52 +372,67 @@ export const useFullGrading = () => {
   // =========================================================
   // open text
   // =========================================================
-const gradeOpenTextAsync = async (
-  q: FullOpenTextQuestion,
-  userAnswer: FullAnswer | undefined,
-): Promise<FullGradedAnswer> => {
+  const gradeOpenTextAsync = async (
+    q: FullOpenTextQuestion,
+    userAnswer: FullAnswer | undefined,
+  ): Promise<FullGradedAnswer> => {
+    const text = typeof userAnswer === "string" ? userAnswer.trim() : "";
 
-  const text = typeof userAnswer === "string" ? userAnswer.trim() : "";
+    // ✅ αν κενό → κατευθείαν fail, χωρίς API call
+    if (!text) {
+      return {
+        id: q.id,
+        userAnswer,
+        correctAnswer: q.correctAnswer,
+        correct: false,
+        type: q.type,
+        openTextScores: {
+          content: 0,
+          coverage: 0,
+          language: 0,
+          wordLimit: 0,
+          total: 0,
+        },
+      };
+    }
 
-  // ✅ αν κενό → κατευθείαν fail, χωρίς API call
-  if (!text) {
-    return {
-      id: q.id,
-      userAnswer,
-      correctAnswer: q.correctAnswer,
-      correct: false,
-      type: q.type,
-      openTextScores: {
-        content: 0,
-        coverage: 0,
-        language: 0,
-        wordLimit: 0,
-        total: 0,
-      },
-    };
-  }
+    try {
+      const response = await axios.post(`${url}/api/grade/open-text-simple`, {
+        question: q.question,
+        correctAnswer: q.correctAnswer,
+        studentText: text,
+        maxWords: q.maxWords,
+      });
 
-  const response = await axios.post(
-    `${url}/api/grade/open-text-simple`,
-    {
-      question: q.question,
-      correctAnswer: q.correctAnswer,
-      studentText: text,
-      maxWords: q.maxWords,
-    },
-  );
+      const data = response.data;
 
-  const data = response.data;
+      return {
+        id: q.id,
+        userAnswer,
+        correctAnswer: q.correctAnswer,
+        correct: data.pass,
+        type: q.type,
+        openTextScores: data.scores,
+      };
+    } catch (error) {
+      console.error("OpenText grading failed:", error);
 
-  return {
-    id: q.id,
-    userAnswer,
-    correctAnswer: q.correctAnswer,
-    correct: data.pass,
-    type: q.type,
-    openTextScores: data.scores,
+      return {
+        id: q.id,
+        userAnswer,
+        correctAnswer: q.correctAnswer,
+        correct: false,
+        type: q.type,
+        openTextScores: {
+          content: 0,
+          coverage: 0,
+          language: 0,
+          wordLimit: 0,
+          total: 0,
+        },
+      };
+    }
   };
-};
 
   // =========================================================
   // MAIN gradeAll
