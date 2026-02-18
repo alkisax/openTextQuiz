@@ -1,0 +1,2260 @@
+[
+  {
+    "id": "AUDIO_1",
+    "title": "ΘΕΜΑ 1",
+    "audioUrl": "https://exetaseis-ithageneia.ypes.gr/PAPYROS/services/CustomServices/getExamTopicAudio/485/907951",
+    "parts": [
+      {
+        "id": "A",
+        "title": "ΜΕΡΟΣ Α",
+        "description": "Ακούστε τη συζήτηση δύο φίλων για τα χόμπι τους και επιλέξτε τη σωστή απάντηση στις ερωτήσεις που ακολουθούν.",
+        "questions": [
+          {
+            "id": "AUDIO_1_A_1",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Τι καινούργιο χόμπι ξεκίνησε ο Γιώργος;",
+            "options": {
+              "A": "Μαθήματα χορού",
+              "B": "Ζωγραφική",
+              "C": "Περίπατο"
+            },
+            "correctAnswer": "B"
+          },
+          {
+            "id": "AUDIO_1_A_2",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Πώς νιώθει η Μαρία για τα μαθήματα χορού;",
+            "options": {
+              "A": "Τα βρίσκει διασκεδαστικά",
+              "B": "Τα βρίσκει κουραστικά",
+              "C": "Δεν της αρέσουν"
+            },
+            "correctAnswer": "A"
+          },
+          {
+            "id": "AUDIO_1_A_3",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Ο Γιώργος προτιμά:",
+            "options": {
+              "A": "Γυμναστική",
+              "B": "Ήσυχες δραστηριότητες",
+              "C": "Ομαδικά παιχνίδια"
+            },
+            "correctAnswer": "B"
+          },
+          {
+            "id": "AUDIO_1_A_4",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Η Μαρία ρωτάει τον Γιώργο αν:",
+            "options": {
+              "A": "Θα πάρει μέρος σε έκθεση",
+              "B": "Θα συνεχίσει να ζωγραφίζει",
+              "C": "Θα ξεκινήσει χορό"
+            },
+            "correctAnswer": "A"
+          },
+          {
+            "id": "AUDIO_1_A_5",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Ο Γιώργος ζωγραφίζει:",
+            "options": {
+              "A": "Για διασκέδαση",
+              "B": "Γιατί δεν του αρέσει καμία άλλη δραστηριότητα",
+              "C": "Για να κάνει δώρα τις ζωγραφιές του σε άλλους"
+            },
+            "correctAnswer": "A"
+          }
+        ]
+      },
+      {
+        "id": "B",
+        "title": "ΜΕΡΟΣ Β",
+        "description": "Ακούστε την περιγραφή μιας μέρας ενός μαθητή και σημειώστε τις Σωστές (Σ) και Λάθος (Λ) προτάσεις.",
+        "questions": [
+          {
+            "id": "AUDIO_1_B_1",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Ο μαθητής ξύπνησε στις 8:00.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "B"
+          },
+          {
+            "id": "AUDIO_1_B_2",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Αγαπημένο μάθημα του μαθητή είναι τα μαθηματικά.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "A"
+          },
+          {
+            "id": "AUDIO_1_B_3",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Ο μαθητής έφαγε μεσημεριανό μετά το σχολείο.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "A"
+          },
+          {
+            "id": "AUDIO_1_B_4",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Το βράδυ ο μαθητής διάβασε για το τεστ.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "B"
+          },
+          {
+            "id": "AUDIO_1_B_5",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Ο μαθητής χαλάρωσε βλέποντας τηλεόραση.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "A"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "AUDIO_1_B_1",
+    "category": "ακουστικό",
+    "active": true,
+    "type": "multipleChoice",
+    "audioUrl": "https://exetaseis-ithageneia.ypes.gr/PAPYROS/services/CustomServices/getExamTopicAudio/485/907951",
+    "question": "Ο μαθητής ξύπνησε στις 8:00.",
+    "options": {
+      "Α": "Σωστό",
+      "F": "Λάθος"
+    },
+    "correctAnswer": "F"
+  },
+  {
+    "id": "AUDIO_1_B_2",
+    "category": "ακουστικό",
+    "active": true,
+    "type": "multipleChoice",
+    "audioUrl": "https://exetaseis-ithageneia.ypes.gr/PAPYROS/services/CustomServices/getExamTopicAudio/485/907951",
+    "question": "Αγαπημένο μάθημα του μαθητή είναι τα μαθηματικά.",
+    "options": {
+      "Α": "Σωστό",
+      "B": "Λάθος"
+    },
+    "correctAnswer": "Α"
+  },
+  {
+    "id": "AUDIO_1_B_3",
+    "category": "ακουστικό",
+    "active": true,
+    "type": "multipleChoice",
+    "audioUrl": "https://exetaseis-ithageneia.ypes.gr/PAPYROS/services/CustomServices/getExamTopicAudio/485/907951",
+    "question": "Ο μαθητής έφαγε μεσημεριανό μετά το σχολείο.",
+    "options": {
+      "Α": "Σωστό",
+      "F": "Λάθος"
+    },
+    "correctAnswer": "Α"
+  },
+  {
+    "id": "AUDIO_1_B_4",
+    "category": "ακουστικό",
+    "active": true,
+    "type": "multipleChoice",
+    "audioUrl": "https://exetaseis-ithageneia.ypes.gr/PAPYROS/services/CustomServices/getExamTopicAudio/485/907951",
+    "question": "Το βράδυ ο μαθητής διάβασε για το τεστ.",
+    "options": {
+      "Α": "Σωστό",
+      "F": "Λάθος"
+    },
+    "correctAnswer": "F"
+  },
+  {
+    "id": "AUDIO_1_B_5",
+    "category": "ακουστικό",
+    "active": true,
+    "type": "multipleChoice",
+    "audioUrl": "https://exetaseis-ithageneia.ypes.gr/PAPYROS/services/CustomServices/getExamTopicAudio/485/907951",
+    "question": "Ο μαθητής χαλάρωσε βλέποντας τηλεόραση.",
+    "options": {
+      "Α": "Σωστό",
+      "F": "Λάθος"
+    },
+    "correctAnswer": "Α"
+  },
+  {
+    "id": "AUDIO_2",
+    "title": "ΘΕΜΑ 2",
+    "audioUrl": "https://exetaseis-ithageneia.ypes.gr/PAPYROS/services/CustomServices/getExamTopicAudio/486/501",
+    "parts": [
+      {
+        "id": "A",
+        "title": "ΜΕΡΟΣ Α",
+        "description": "Ακούστε μία ανακοίνωση της Ελληνικής Ένωσης Τραπεζών και επιλέξτε τη σωστή απάντηση στις ερωτήσεις που ακολουθούν.",
+        "questions": [
+          {
+            "id": "AUDIO_2_A_1",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Η Ελληνική Ένωση Τραπεζών ενημερώνει τους πολίτες για συναλλαγές που δεν θα γίνονται:",
+            "options": {
+              "A": "Μέσα στην τράπεζα.",
+              "B": "Στα αυτόματα μηχανήματα.",
+              "C": "Με κανέναν τρόπο."
+            },
+            "correctAnswer": "A"
+          },
+          {
+            "id": "AUDIO_2_A_2",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Οι πολίτες μπορούν να πάρουν μετρητά μέχρι 400 ευρώ:",
+            "options": {
+              "A": "Με χρεωστική κάρτα.",
+              "B": "Με το βιβλιάριο.",
+              "C": "Μέσω Ίντερνετ."
+            },
+            "correctAnswer": "A"
+          },
+          {
+            "id": "AUDIO_2_A_3",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Οι καταθέσεις ως 1000 ευρώ γίνονται:",
+            "options": {
+              "A": "Με το βιβλιάριο.",
+              "B": "Μέσω διαδικτύου.",
+              "C": "Στα αυτόματα μηχανήματα."
+            },
+            "correctAnswer": "C"
+          },
+          {
+            "id": "AUDIO_2_A_4",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Ενημέρωση λογαριασμού γίνεται:",
+            "options": {
+              "A": "Με το βιβλιάριο.",
+              "B": "Μόνο στα αυτόματα μηχανήματα.",
+              "C": "Στα αυτόματα μηχανήματα ή μέσω ίντερνετ."
+            },
+            "correctAnswer": "C"
+          },
+          {
+            "id": "AUDIO_2_A_5",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Για να πληρώσει κανείς έναν λογαριασμό:",
+            "options": {
+              "A": "Πρέπει να πάει στην τράπεζα.",
+              "B": "Μπορεί να χρησιμοποιήσει το διαδίκτυο.",
+              "C": "Πρέπει να έχει βιβλιάριο."
+            },
+            "correctAnswer": "B"
+          }
+        ]
+      },
+      {
+        "id": "B",
+        "title": "ΜΕΡΟΣ Β",
+        "description": "Ακούστε την ανακοίνωση μιας κατασκήνωσης και σημειώστε με Χ τις σωστές (Σ) και λάθος (Λ) προτάσεις.",
+        "questions": [
+          {
+            "id": "AUDIO_2_B_1",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Χιλιάδες μαθητές και καθηγητές επιλέγουν και εμπιστεύονται την αθλητική κατασκήνωση «οι αργοναύτες».",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "B"
+          },
+          {
+            "id": "AUDIO_2_B_2",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Οι μαθητές πηγαίνουν στην κατασκήνωση για τις αθλητικές δράσεις.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "A"
+          },
+          {
+            "id": "AUDIO_2_B_3",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Οι εγκαταστάσεις και τα στελέχη είναι λόγοι επιλογής της κατασκήνωσης από τους γονείς.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "A"
+          },
+          {
+            "id": "AUDIO_2_B_4",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Εδώ και 35 χρόνια λειτουργούν τμήματα για παιδιά προσχολικής ηλικίας.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "B"
+          },
+          {
+            "id": "AUDIO_2_B_5",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Οι μαθητές δευτεροβάθμιας εκπαίδευσης μπορούν να πάνε στην κατασκήνωση τον Ιούνιο.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "B"
+          }
+        ]
+      }
+    ]
+  },
+
+  
+  {
+    "id": "AUDIO_3",
+    "title": "ΘΕΜΑ 3",
+    "audioUrl": "https://exetaseis-ithageneia.ypes.gr/PAPYROS/services/CustomServices/getExamTopicAudio/487/502",
+    "parts": [
+      {
+        "id": "A",
+        "title": "ΜΕΡΟΣ Α",
+        "description": "Ακούστε μία διαφήμιση του μανάβικου «Η ωραία Ελένη» και επιλέξτε τη σωστή απάντηση στις ερωτήσεις που ακολουθούν.",
+        "questions": [
+          {
+            "id": "AUDIO_3_A_1",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Το μανάβικο «Η Ωραία Ελένη» πουλάει",
+            "options": {
+              "A": "Μόνο φρούτα.",
+              "B": "Μόνο λαχανικά.",
+              "C": "Διάφορα προϊόντα."
+            },
+            "correctAnswer": "C"
+          },
+          {
+            "id": "AUDIO_3_A_2",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Τα προϊόντα είναι εξαιρετικά γιατί",
+            "options": {
+              "A": "Είναι ντόπια.",
+              "B": "Η διατροφή έχει σημασία.",
+              "C": "Είναι φρέσκα."
+            },
+            "correctAnswer": "B"
+          },
+          {
+            "id": "AUDIO_3_A_3",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Τα φρούτα και τα λαχανικά είναι όλα καλά γιατί",
+            "options": {
+              "A": "Τα καλλιεργούν οι ίδιοι.",
+              "B": "Είναι φτηνά.",
+              "C": "Είναι πολλά."
+            },
+            "correctAnswer": "A"
+          },
+          {
+            "id": "AUDIO_3_A_4",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Οι τιμές στο μανάβικο είναι",
+            "options": {
+              "A": "Ίδιες με όλα τα άλλα μανάβικα.",
+              "B": "Οι πιο ακριβές της αγοράς.",
+              "C": "Οι πιο φτηνές της αγοράς."
+            },
+            "correctAnswer": "C"
+          },
+          {
+            "id": "AUDIO_3_A_5",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Μπορεί κάποιος να κάνει αγορές στο μανάβικο",
+            "options": {
+              "A": "Από το διαδίκτυο.",
+              "B": "Από το τηλέφωνο.",
+              "C": "Με ηλεκτρονικό ταχυδρομείο."
+            },
+            "correctAnswer": "B"
+          }
+        ]
+      },
+      {
+        "id": "B",
+        "title": "ΜΕΡΟΣ Β",
+        "description": "Ακούστε μία περιγραφή για τον Παρθενώνα και σημειώστε με Χ τις σωστές (Σ) και λάθος (Λ) προτάσεις.",
+        "questions": [
+          {
+            "id": "AUDIO_3_B_1",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Ο Παρθενώνας χτίστηκε τον 5ο αιώνα π.Χ.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "A"
+          },
+          {
+            "id": "AUDIO_3_B_2",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Ο ρυθμός του Παρθενώνα είναι ιωνικός.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "B"
+          },
+          {
+            "id": "AUDIO_3_B_3",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Ο ναός σχεδιάστηκε από τους αρχιτέκτονες Ικτίνο και Καλλικράτη.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "A"
+          },
+          {
+            "id": "AUDIO_3_B_4",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Το μήκος και το πλάτος του Παρθενώνα αποτελείται από ίσο αριθμό κιόνων.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "B"
+          },
+          {
+            "id": "AUDIO_3_B_5",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Με σύγχρονα μέσα, μπορεί να ξαναγίνει ένας ίδιος ναός.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "B"
+          }
+        ]
+      }
+    ]
+  },
+  
+  {
+    "id": "AUDIO_4",
+    "title": "ΘΕΜΑ 4",
+    "audioUrl": "https://exetaseis-ithageneia.ypes.gr/PAPYROS/services/CustomServices/getExamTopicAudio/488/816506",
+    "parts": [
+      {
+        "id": "A",
+        "title": "ΜΕΡΟΣ Α",
+        "description": "Ακούστε την ιστορία της Μαρίας Κάλλας και επιλέξτε τη σωστή απάντηση στις ερωτήσεις που ακολουθούν.",
+        "questions": [
+          {
+            "id": "AUDIO_4_A_1",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Η Μαρία Κάλλας",
+            "options": {
+              "A": "Από μικρή ηλικία ήταν καλή μαθήτρια.",
+              "B": "Από μικρή ηλικία είχε υπέροχη φωνή.",
+              "C": "Όταν ήταν μικρή, είχε κερδίσει σε διαγωνισμό ζωγραφικής."
+            },
+            "correctAnswer": "B"
+          },
+          {
+            "id": "AUDIO_4_A_2",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Το 1937 η Κάλλας",
+            "options": {
+              "A": "Επέστρεψε στην Ελλάδα με όλη της την οικογένεια.",
+              "B": "Γράφτηκε μαζί με την αδερφή της στο Εθνικό Ωδείο της Αθήνας.",
+              "C": "Εγκαταστάθηκε στην Αθήνα, χωρίς τον πατέρα της."
+            },
+            "correctAnswer": "C"
+          },
+          {
+            "id": "AUDIO_4_A_3",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Έγινε παγκοσμίως γνωστή, όταν τραγούδησε",
+            "options": {
+              "A": "Στη «Σκάλα» του Μιλάνου.",
+              "B": "Στην Όπερα της Νέας Υόρκης.",
+              "C": "Την «Τζιοκόντα»."
+            },
+            "correctAnswer": "C"
+          },
+          {
+            "id": "AUDIO_4_A_4",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Ο Μενεγκίνι",
+            "options": {
+              "A": "Λάτρεψε τη φωνή της Κάλλας.",
+              "B": "Τη βοήθησε στη δουλειά της.",
+              "C": "Θαύμασε την Κάλλας για την ομορφιά της."
+            },
+            "correctAnswer": "B"
+          },
+          {
+            "id": "AUDIO_4_A_5",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Στο τέλος της καριέρας της η Κάλλας",
+            "options": {
+              "A": "Ζούσε μόνη και μακριά από τον κόσμο.",
+              "B": "Έκανε έναν ακόμη γάμο.",
+              "C": "Τραγούδησε στην Όπερα της Νέας Υόρκης."
+            },
+            "correctAnswer": "A"
+          }
+        ]
+      },
+      {
+        "id": "B",
+        "title": "ΜΕΡΟΣ Β",
+        "description": "Ακούστε ένα μήνυμα για τον Όλυμπο και σημειώστε τις Σωστές (Σ) και Λάθος (Λ) προτάσεις.",
+        "questions": [
+          {
+            "id": "AUDIO_4_B_1",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Ο Όλυμπος είναι γνωστός σε όλο τον κόσμο επειδή είναι το ψηλότερο βουνό της Ελλάδας.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "B"
+          },
+          {
+            "id": "AUDIO_4_B_2",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Σύμφωνα με τη μυθολογία, στον Όλυμπο κατοικούσαν οι 12 θεοί.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "A"
+          },
+          {
+            "id": "AUDIO_4_B_3",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Ένας από τους λόγους επίσκεψης του Ολύμπου είναι η φυσική ομορφιά.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "A"
+          },
+          {
+            "id": "AUDIO_4_B_4",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Οι αθλητές ακολουθούν μία συγκεκριμένη διαδρομή.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "B"
+          },
+          {
+            "id": "AUDIO_4_B_5",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Το Λιτόχωρο βρίσκεται 100 χιλιόμετρα από τη Θεσσαλονίκη.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "A"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "AUDIO_5",
+    "title": "ΘΕΜΑ 5",
+    "audioUrl": "https://exetaseis-ithageneia.ypes.gr/PAPYROS/services/CustomServices/getExamTopicAudio/489/504",
+    "parts": [
+      {
+        "id": "A",
+        "title": "ΜΕΡΟΣ Α",
+        "description": "Ακούστε ένα μήνυμα από μια ιστοσελίδα που υπόσχεται να κάνει τη ζωή σας ευκολότερη. Επιλέξτε τη σωστή απάντηση στις ερωτήσεις που ακολουθούν.",
+        "questions": [
+          {
+            "id": "AUDIO_5_A_1",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Το μήνυμα έχει στόχο:",
+            "options": {
+              "A": "Να βοηθήσει κάποιον να μην μπερδεύεται στο σούπερ μάρκετ.",
+              "B": "Να μην γυρίζει στο σπίτι με παραπάνω ψώνια.",
+              "C": "Να βοηθήσει κάποιον να μην ξεχνά όσα πρέπει να αγοράσει."
+            },
+            "correctAnswer": "C"
+          },
+          {
+            "id": "AUDIO_5_A_2",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Η προτεινόμενη λίστα θα βοηθήσει κάποιον στο να:",
+            "options": {
+              "A": "Να ξέρει σε ποιο ράφι να κοιτάξει.",
+              "B": "Να χωρίζει τα ψώνια σε κατηγορίες.",
+              "C": "Να κάνει τα ψώνια γρήγορα."
+            },
+            "correctAnswer": "C"
+          },
+          {
+            "id": "AUDIO_5_A_3",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Στη λίστα",
+            "options": {
+              "A": "Υπάρχουν κάποιες συγκεκριμένες κατηγορίες προϊόντων.",
+              "B": "Μπορούν να προστεθούν πολλές κατηγορίες προϊόντων.",
+              "C": "Υπάρχουν κατηγορίες μόνο για τα βασικά είδη."
+            },
+            "correctAnswer": "A"
+          },
+          {
+            "id": "AUDIO_5_A_4",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Ο καταναλωτής",
+            "options": {
+              "A": "Δεν μπορεί να γράψει στη λίστα.",
+              "B": "Μπορεί μόνο να τσεκάρει στη λίστα.",
+              "C": "Μπορεί να γράψει στη λίστα."
+            },
+            "correctAnswer": "C"
+          },
+          {
+            "id": "AUDIO_5_A_5",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Η κατηγορία «Εποχιακά»",
+            "options": {
+              "A": "Περιλαμβάνει είδη από τις άλλες κατηγορίες.",
+              "B": "Ειδικές ανάγκες σε είδη.",
+              "C": "Φρούτα και λαχανικά εποχής."
+            },
+            "correctAnswer": "B"
+          }
+        ]
+      },
+      {
+        "id": "B",
+        "title": "ΜΕΡΟΣ Β",
+        "description": "Ακούστε την εισαγωγή μίας ραδιοφωνικής εκπομπής για παραγωγούς στην Ελλάδα και σημειώστε με Χ τις σωστές (Σ) και λάθος (Λ) προτάσεις.",
+        "questions": [
+          {
+            "id": "AUDIO_5_B_1",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Το αφιέρωμα της εκπομπής αφορά παραδοσιακά προϊόντα της Ελλάδας.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "B"
+          },
+          {
+            "id": "AUDIO_5_B_2",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Η εκπομπή ασχολείται με παραγωγούς που κάνουν εξαγωγές.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "A"
+          },
+          {
+            "id": "AUDIO_5_B_3",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Οι εξαγωγές προϊόντων γίνονται σε όλον τον κόσμο.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "B"
+          },
+          {
+            "id": "AUDIO_5_B_4",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Τα προϊόντα που εξάγονται είναι μόνο φρούτα και λαχανικά.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "B"
+          },
+          {
+            "id": "AUDIO_5_B_5",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Η παραγωγή αυτών των προϊόντων απαιτεί πλούσια εδάφη.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "B"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "AUDIO_6",
+    "title": "ΘΕΜΑ 6",
+    "audioUrl": "https://exetaseis-ithageneia.ypes.gr/PAPYROS/services/CustomServices/getExamTopicAudio/490/618176",
+    "parts": [
+      {
+        "id": "A",
+        "title": "ΜΕΡΟΣ Α",
+        "description": "Ακούστε πληροφορίες για το επίτευγμα ενός Έλληνα πρωταθλητή και επιλέξτε τη σωστή απάντηση στις ερωτήσεις που ακολουθούν.",
+        "questions": [
+          {
+            "id": "AUDIO_6_A_1",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Ο Κανέλλος Κανελλόπουλος είναι",
+            "options": {
+              "A": "Κωπηλάτης.",
+              "B": "Ιστιοπλόος.",
+              "C": "Ποδηλάτης."
+            },
+            "correctAnswer": "C"
+          },
+          {
+            "id": "AUDIO_6_A_2",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Ο προορισμός του Κανελλόπουλου ήταν",
+            "options": {
+              "A": "Η Κρήτη.",
+              "B": "Η Σαντορίνη.",
+              "C": "Η Μύκονος."
+            },
+            "correctAnswer": "B"
+          },
+          {
+            "id": "AUDIO_6_A_3",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Η προετοιμασία του Κανελλόπουλου κράτησε",
+            "options": {
+              "A": "Ένα τρίμηνο.",
+              "B": "Ένα εξάμηνο.",
+              "C": "Ένα εννιάμηνο."
+            },
+            "correctAnswer": "B"
+          },
+          {
+            "id": "AUDIO_6_A_4",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Η απόσταση που κάλυψε ο Κανελλόπουλος ήταν",
+            "options": {
+              "A": "118 χιλιόμετρα.",
+              "B": "128 χιλιόμετρα.",
+              "C": "138 χιλιόμετρα."
+            },
+            "correctAnswer": "A"
+          },
+          {
+            "id": "AUDIO_6_A_5",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Η διάρκεια του ταξιδιού του Κανελλόπουλου ήταν",
+            "options": {
+              "A": "3 ώρες και 44 λεπτά.",
+              "B": "2 ώρες και 54 λεπτά.",
+              "C": "3 ώρες και 54 λεπτά."
+            },
+            "correctAnswer": "C"
+          }
+        ]
+      },
+      {
+        "id": "B",
+        "title": "ΜΕΡΟΣ Β",
+        "description": "Ακούστε τον διάλογο μεταξύ ενός άνδρα και μιας γυναίκας και σημειώστε στο τετράδιό σας τις σωστές (Σ) και λάθος (Λ) προτάσεις.",
+        "questions": [
+          {
+            "id": "AUDIO_6_B_1",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Το όνομα του ξενοδοχείου είναι «Το κύμα».",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "B"
+          },
+          {
+            "id": "AUDIO_6_B_2",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Η γιαγιά της γυναίκας δεν έφυγε ποτέ από το νησί.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "B"
+          },
+          {
+            "id": "AUDIO_6_B_3",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Η γυναίκα θέλει να κλείσει ένα δωμάτιο για τον επόμενο μήνα.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "A"
+          },
+          {
+            "id": "AUDIO_6_B_4",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Η γυναίκα θα επισκεφτεί το νησί με την οικογένειά της.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "A"
+          },
+          {
+            "id": "AUDIO_6_B_5",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Ο άνδρας έκλεισε δωμάτιο στη γυναίκα.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "B"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "AUDIO_7",
+    "title": "ΘΕΜΑ 7",
+    "audioUrl": "https://exetaseis-ithageneia.ypes.gr/PAPYROS/services/CustomServices/getExamTopicAudio/491/506",
+    "parts": [
+      {
+        "id": "A",
+        "title": "ΜΕΡΟΣ Α",
+        "description": "Ακούστε την περιγραφή για το Μουσείο Μπενάκη και επιλέξτε τη σωστή απάντηση στις ερωτήσεις που ακολουθούν.",
+        "questions": [
+          {
+            "id": "AUDIO_7_A_1",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Το Μουσείο Μπενάκη ιδρύθηκε από",
+            "options": {
+              "A": "Τον Εμμανουήλ Μπενάκη.",
+              "B": "Τον Αντώνη Μπενάκη.",
+              "C": "Την οικογένεια Μπενάκη."
+            },
+            "correctAnswer": "B"
+          },
+          {
+            "id": "AUDIO_7_A_2",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Το Μουσείο Μπενάκη στεγάζεται",
+            "options": {
+              "A": "Στο σπίτι της οικογένειας στην Αλεξάνδρεια.",
+              "B": "Στο σπίτι της οικογένειας στην Αθήνα.",
+              "C": "Στην εταιρία της οικογένειας στην Αθήνα."
+            },
+            "correctAnswer": "B"
+          },
+          {
+            "id": "AUDIO_7_A_3",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Το Μουσείο φιλοξενεί",
+            "options": {
+              "A": "Έργα σύγχρονης τέχνης.",
+              "B": "Παγκόσμια έργα τέχνης όλων των εποχών.",
+              "C": "Ελληνικά έργα τέχνης όλων των εποχών."
+            },
+            "correctAnswer": "C"
+          },
+          {
+            "id": "AUDIO_7_A_4",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Το Μουσείο είναι",
+            "options": {
+              "A": "Δημόσιο ίδρυμα.",
+              "B": "Ιδιωτικό ίδρυμα.",
+              "C": "Δημόσιος οργανισμός."
+            },
+            "correctAnswer": "B"
+          },
+          {
+            "id": "AUDIO_7_A_5",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Το Μουσείο",
+            "options": {
+              "A": "Συνεργάζεται με άλλα μουσεία.",
+              "B": "Έχει τις δικές του εκθέσεις.",
+              "C": "Φιλοξενεί μόνο ελληνικές εκθέσεις."
+            },
+            "correctAnswer": "A"
+          }
+        ]
+      },
+      {
+        "id": "B",
+        "title": "ΜΕΡΟΣ Β",
+        "description": "Ακούστε ένα μήνυμα για τα δικαιώματά σας στην Ευρώπη και σημειώστε με Χ τις σωστές (Σ) και λάθος (Λ) προτάσεις.",
+        "questions": [
+          {
+            "id": "AUDIO_7_B_1",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Αν είναι κανείς πολίτης της Ελλάδας, είναι και της Ευρώπης.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "A"
+          },
+          {
+            "id": "AUDIO_7_B_2",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Οι Ευρωπαίοι πολίτες μπορούν να δουλέψουν σε οποιαδήποτε χώρα της Ευρωπαϊκής Ένωσης.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "A"
+          },
+          {
+            "id": "AUDIO_7_B_3",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Οι Ευρωπαίοι πολίτες μπορούν να πάρουν σύνταξη μόνο από τη δική τους χώρα.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "B"
+          },
+          {
+            "id": "AUDIO_7_B_4",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Σε περίπτωση ανάγκης, πρέπει να πάει κανείς οπωσδήποτε στην Πρεσβεία ή στο Προξενείο της χώρας του.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "B"
+          },
+          {
+            "id": "AUDIO_7_B_5",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Τα δικαιώματα των Ευρωπαίων πολιτών προστατεύονται από νόμους.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "A"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "AUDIO_8",
+    "title": "ΘΕΜΑ 8",
+    "audioUrl": "https://exetaseis-ithageneia.ypes.gr/PAPYROS/services/CustomServices/getExamTopicAudio/492/507",
+    "parts": [
+      {
+        "id": "A",
+        "title": "ΜΕΡΟΣ Α",
+        "description": "Ακούστε μία ανακοίνωση για την εξυπηρέτηση από τα ΚΕΠ μέσω τηλεδιάσκεψης και επιλέξτε τη σωστή απάντηση στις ερωτήσεις που ακολουθούν.",
+        "questions": [
+          {
+            "id": "AUDIO_8_A_1",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Η εξυπηρέτηση των πολιτών μέσω τηλεδιάσκεψης γίνεται:",
+            "options": {
+              "A": "Μέσω τηλεφώνου.",
+              "B": "Μέσω βιντεοκλήσης.",
+              "C": "Με επίσκεψη."
+            },
+            "correctAnswer": "B"
+          },
+          {
+            "id": "AUDIO_8_A_2",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Η πλατφόρμα δημιουργείται:",
+            "options": {
+              "A": "Από το Υπουργείο.",
+              "B": "Από το ΚΕΠ.",
+              "C": "Από τον πολίτη."
+            },
+            "correctAnswer": "A"
+          },
+          {
+            "id": "AUDIO_8_A_3",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Η εξυπηρέτηση μέσω της πλατφόρμας γίνεται:",
+            "options": {
+              "A": "Από υπαλλήλους των ΚΕΠ.",
+              "B": "Από δημόσιους υπαλλήλους.",
+              "C": "Από ειδικούς υπαλλήλους."
+            },
+            "correctAnswer": "A"
+          },
+          {
+            "id": "AUDIO_8_A_4",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Στην πλατφόρμα εξυπηρετούνται:",
+            "options": {
+              "A": "Μόνο πολίτες.",
+              "B": "Μόνο επιχειρήσεις.",
+              "C": "Πολίτες και επιχειρήσεις."
+            },
+            "correctAnswer": "C"
+          },
+          {
+            "id": "AUDIO_8_A_5",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Το ραντεβού",
+            "options": {
+              "A": "Το κλείνει το ΚΕΠ.",
+              "B": "Το ζητάει ο πολίτης.",
+              "C": "Κλείνεται αυτόματα."
+            },
+            "correctAnswer": "B"
+          }
+        ]
+      },
+      {
+        "id": "B",
+        "title": "ΜΕΡΟΣ Β",
+        "description": "Ακούστε μια περιηγητική περιγραφή για το φαράγγι του Ενιπέα και σημειώστε με Χ τις σωστές (Σ) και λάθος (Λ) προτάσεις.",
+        "questions": [
+          {
+            "id": "AUDIO_8_B_1",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Με την προτεινόμενη διαδρομή μπορεί κανείς να γνωρίσει τον Όλυμπο.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "A"
+          },
+          {
+            "id": "AUDIO_8_B_2",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Οι Μύλοι είναι λίγο έξω από το Λιτόχωρο.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "A"
+          },
+          {
+            "id": "AUDIO_8_B_3",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Ο επισκέπτης έχει τη δυνατότητα να κολυμπήσει.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "A"
+          },
+          {
+            "id": "AUDIO_8_B_4",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Η διαδρομή δεν περνάει από μοναστήρια.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "B"
+          },
+          {
+            "id": "AUDIO_8_B_5",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Οι δύο πλευρές του φαραγγιού δεν συνδέονται με κανέναν τρόπο.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "B"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "AUDIO_9",
+    "title": "ΘΕΜΑ 9",
+    "audioUrl": "https://exetaseis-ithageneia.ypes.gr/PAPYROS/services/CustomServices/getExamTopicAudio/493/508",
+    "parts": [
+      {
+        "id": "A",
+        "title": "ΜΕΡΟΣ Α",
+        "description": "Ακούστε το προωθητικό μήνυμα για την ελληνική κουζίνα και επιλέξτε τη σωστή απάντηση στις ερωτήσεις που ακολουθούν.",
+        "questions": [
+          {
+            "id": "AUDIO_9_A_1",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Η ελληνική κουζίνα είναι διάσημη για",
+            "options": {
+              "A": "Τα μεγάλα πιάτα.",
+              "B": "Τη θρεπτική αξία.",
+              "C": "Την παράξενη γεύση."
+            },
+            "correctAnswer": "B"
+          },
+          {
+            "id": "AUDIO_9_A_2",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Η νοστιμιά οφείλεται",
+            "options": {
+              "A": "Στο τηγάνισμα.",
+              "B": "Στις σάλτσες.",
+              "C": "Στα καρυκεύματα."
+            },
+            "correctAnswer": "C"
+          },
+          {
+            "id": "AUDIO_9_A_3",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Η μεσογειακή διατροφή έχει αξία γιατί",
+            "options": {
+              "A": "Έχει πλούσια θρεπτικά συστατικά.",
+              "B": "Την προτείνουν οι διατροφολόγοι.",
+              "C": "Στηρίζεται στην ελληνική διατροφή."
+            },
+            "correctAnswer": "A"
+          },
+          {
+            "id": "AUDIO_9_A_4",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Μπορεί κανείς να ζήσει περισσότερα χρόνια αν",
+            "options": {
+              "A": "Τρώει χωριάτικη σαλάτα.",
+              "B": "Ακολουθεί τις συμβουλές των διατροφολόγων.",
+              "C": "Κάνει μεσογειακή διατροφή."
+            },
+            "correctAnswer": "C"
+          },
+          {
+            "id": "AUDIO_9_A_5",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Η βασική σύνθεση της χωριάτικης σαλάτας",
+            "options": {
+              "A": "Είναι πάντα η ίδια.",
+              "B": "Διαφέρει από τόπο σε τόπο.",
+              "C": "Εξαρτάται από τον μάγειρα."
+            },
+            "correctAnswer": "A"
+          }
+        ]
+      },
+      {
+        "id": "B",
+        "title": "ΜΕΡΟΣ Β",
+        "description": "Ακούστε μία εξιστόρηση για την κήρυξη της ελληνικής επανάστασης και σημειώστε με Χ τις σωστές (Σ) και λάθος (Λ) προτάσεις.",
+        "questions": [
+          {
+            "id": "AUDIO_9_B_1",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Η ελληνική επανάσταση ξεκίνησε από τη Ρωσία.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "B"
+          },
+          {
+            "id": "AUDIO_9_B_2",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Ο Σούτσος ήταν μέλος της Φιλικής Εταιρείας.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "A"
+          },
+          {
+            "id": "AUDIO_9_B_3",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Ο Υψηλάντης ήταν ένας από εκείνους που ξεκίνησαν την επανάσταση.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "A"
+          },
+          {
+            "id": "AUDIO_9_B_4",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Η προκήρυξη της επανάστασης έγινε στη Μολδαβία.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "A"
+          },
+          {
+            "id": "AUDIO_9_B_5",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Η προκήρυξη καλούσε τους Έλληνες να αγωνιστούν μόνο για την πατρίδα τους.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "B"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "AUDIO_10",
+    "title": "ΘΕΜΑ 10",
+    "audioUrl": "https://exetaseis-ithageneia.ypes.gr/PAPYROS/services/CustomServices/getExamTopicAudio/494/509",
+    "parts": [
+      {
+        "id": "A",
+        "title": "ΜΕΡΟΣ Α",
+        "description": "Ακούστε ένα διαφημιστικό μήνυμα για τα ελληνικά πανηγύρια και επιλέξτε τη σωστή απάντηση στις ερωτήσεις που ακολουθούν.",
+        "questions": [
+          {
+            "id": "AUDIO_10_A_1",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Τα πανηγύρια προς τιμή των Αγίων οργανώνονται",
+            "options": {
+              "A": "Από τον δήμο.",
+              "B": "Από την εκκλησία.",
+              "C": "Από τους ντόπιους."
+            },
+            "correctAnswer": "C"
+          },
+          {
+            "id": "AUDIO_10_A_2",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Τα πανηγύρια περιλαμβάνουν",
+            "options": {
+              "A": "Εκκλησιασμό.",
+              "B": "Φαγητό και χορό.",
+              "C": "Μαγείρεμα."
+            },
+            "correctAnswer": "B"
+          },
+          {
+            "id": "AUDIO_10_A_3",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Ο Άγιος Σπυρίδωνας τιμάται",
+            "options": {
+              "A": "Στη Ζάκυνθο.",
+              "B": "Στην Κέρκυρα.",
+              "C": "Στην Κεφαλονιά."
+            },
+            "correctAnswer": "B"
+          },
+          {
+            "id": "AUDIO_10_A_4",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Η εικόνα του Προφήτη Ηλία κατεβαίνει στο χωριό της Αγιάσου από",
+            "options": {
+              "A": "Όσους έχουν άλογα.",
+              "B": "Όσους έχουν στολισμένα άλογα.",
+              "C": "Έναν τυχερό καβαλάρη."
+            },
+            "correctAnswer": "B"
+          },
+          {
+            "id": "AUDIO_10_A_5",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Η Εκατονταπυλιανή και η Χοζοβιώτισσα είναι",
+            "options": {
+              "A": "Πανηγύρια.",
+              "B": "Εκκλησίες.",
+              "C": "Νησιά."
+            },
+            "correctAnswer": "B"
+          }
+        ]
+      },
+      {
+        "id": "B",
+        "title": "ΜΕΡΟΣ Β",
+        "description": "Ακούστε μία ιστορία για τα γλυκά κουταλιού της Ελλάδας και σημειώστε τις σωστές (Σ) και λάθος (Λ) προτάσεις.",
+        "questions": [
+          {
+            "id": "AUDIO_10_B_1",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Τα γλυκά κουταλιού δημιουργήθηκαν γιατί περίσσευαν πολλά φρούτα.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "B"
+          },
+          {
+            "id": "AUDIO_10_B_2",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Ένας τρόπος για να διατηρήσουν οι νοικοκυρές τα φρούτα ήταν να τα κάνουν μαρμελάδα.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "A"
+          },
+          {
+            "id": "AUDIO_10_B_3",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Οι νοικοκυρές έβαζαν τα φρούτα σε σιρόπι, χωρίς να τα βράσουν.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "B"
+          },
+          {
+            "id": "AUDIO_10_B_4",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Λέγονται γλυκά κουταλιού γιατί τα έβραζαν με κουτάλι.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "B"
+          },
+          {
+            "id": "AUDIO_10_B_5",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Τα γλυκά κουταλιού άρεσαν πάντα στους καλεσμένους.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "A"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "AUDIO_11",
+    "title": "ΘΕΜΑ 11",
+    "audioUrl": "https://exetaseis-ithageneia.ypes.gr/PAPYROS/services/CustomServices/getExamTopicAudio/495/510",
+    "parts": [
+      {
+        "id": "A",
+        "title": "ΜΕΡΟΣ Α",
+        "description": "Ακούστε ένα μέρος της συνέντευξης με τη συγγραφέα Βικτόρια Χίσλοπ και επιλέξτε τη σωστή απάντηση στις ερωτήσεις που ακολουθούν.",
+        "questions": [
+          {
+            "id": "AUDIO_11_A_1",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Σύμφωνα με τη συγγραφέα, τα μυστικά των οικογενειών",
+            "options": {
+              "A": "Δεν λέγονται.",
+              "B": "Παρουσιάζουν ενδιαφέρον.",
+              "C": "Ξεχνιούνται από τους νεότερους."
+            },
+            "correctAnswer": "B"
+          },
+          {
+            "id": "AUDIO_11_A_2",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Πολύτιμες ιστορίες χάνονται επειδή",
+            "options": {
+              "A": "Δεν έχουν ενδιαφέρον για το κοινό.",
+              "B": "Παλιά μέλη μιας οικογένειας νομίζουν ότι δεν έχουν ενδιαφέρον.",
+              "C": "Νέα μέλη μιας οικογένειας δεν ενδιαφέρονται."
+            },
+            "correctAnswer": "B"
+          },
+          {
+            "id": "AUDIO_11_A_3",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Η ιστορία διαδραματίζεται στην Αθήνα επειδή",
+            "options": {
+              "A": "Είναι η πρωτεύουσα της Ελλάδας.",
+              "B": "Εκεί έχει σπίτι η συγγραφέας.",
+              "C": "Εκεί έγιναν πολλά στην Κατοχή."
+            },
+            "correctAnswer": "C"
+          },
+          {
+            "id": "AUDIO_11_A_4",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Στη διάρκεια της Κατοχής στην Αθήνα",
+            "options": {
+              "A": "Έγιναν αλλαγές.",
+              "B": "Έγινε πόλεμος.",
+              "C": "Δόθηκαν πολιτικές μάχες."
+            },
+            "correctAnswer": "C"
+          },
+          {
+            "id": "AUDIO_11_A_5",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Η συγγραφέας πέρασε πολύ χρόνο στην Αθήνα",
+            "options": {
+              "A": "Για να φανταστεί και να γράψει την ιστορία.",
+              "B": "Για να περπατήσει στους δρόμους.",
+              "C": "Για να επισκεφτεί το σπίτι της."
+            },
+            "correctAnswer": "A"
+          }
+        ]
+      },
+      {
+        "id": "B",
+        "title": "ΜΕΡΟΣ Β",
+        "description": "Ακούστε μία συζήτηση στον σταθμό και σημειώστε στον πίνακα με Χ τις σωστές (Σ) και λάθος (Λ) προτάσεις.",
+        "questions": [
+          {
+            "id": "AUDIO_11_B_1",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Ο πολίτης θέλει να ταξιδέψει στην Αθήνα και δεν ξέρει πότε θα γυρίσει.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "A"
+          },
+          {
+            "id": "AUDIO_11_B_2",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Δρομολόγια γίνονται μόνο το πρωί.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "B"
+          },
+          {
+            "id": "AUDIO_11_B_3",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Δεν υπάρχει διαφορά μεταξύ Α και Β θέσης.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "B"
+          },
+          {
+            "id": "AUDIO_11_B_4",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Ο πολίτης μπορεί να πιει έναν καφέ κατά τη διάρκεια του ταξιδιού.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "A"
+          },
+          {
+            "id": "AUDIO_11_B_5",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Αποφασίζει να αγοράσει εισιτήριο με το τρένο των πέντε.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "A"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "AUDIO_12",
+    "title": "ΘΕΜΑ 12",
+    "audioUrl": "https://exetaseis-ithageneia.ypes.gr/PAPYROS/services/CustomServices/getExamTopicAudio/496/511",
+    "parts": [
+      {
+        "id": "A",
+        "title": "ΜΕΡΟΣ Α",
+        "description": "Ακούστε τις οδηγίες της Πολιτικής Προστασίας για έντονα καιρικά φαινόμενα και επιλέξτε τη σωστή απάντηση στις ερωτήσεις που ακολουθούν.",
+        "questions": [
+          {
+            "id": "AUDIO_12_A_1",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Για τα καιρικά φαινόμενα, οι πολίτες μπορούν να ενημερώνονται",
+            "options": {
+              "A": "Από το διαδίκτυο.",
+              "B": "Από την τηλεόραση και το ραδιόφωνο.",
+              "C": "Από τις εφημερίδες."
+            },
+            "correctAnswer": "B"
+          },
+          {
+            "id": "AUDIO_12_A_2",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Σε περίπτωση ανάγκης, οι πολίτες μπορούν να καλέσουν",
+            "options": {
+              "A": "Τη μετεωρολογική υπηρεσία.",
+              "B": "Ένα νοσοκομείο.",
+              "C": "Την Αστυνομία."
+            },
+            "correctAnswer": "C"
+          },
+          {
+            "id": "AUDIO_12_A_3",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Ο Ευρωπαϊκός Αριθμός Έκτακτης Ανάγκης είναι",
+            "options": {
+              "A": "100.",
+              "B": "166.",
+              "C": "112."
+            },
+            "correctAnswer": "C"
+          },
+          {
+            "id": "AUDIO_12_A_4",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Τα μικρά παιδιά πρέπει να ξέρουν",
+            "options": {
+              "A": "Το μικρό τους όνομα.",
+              "B": "Το επίθετό τους.",
+              "C": "Μόνο το τηλέφωνο του σπιτιού."
+            },
+            "correctAnswer": "B"
+          },
+          {
+            "id": "AUDIO_12_A_5",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Στο σπίτι πρέπει πάντα να υπάρχουν",
+            "options": {
+              "A": "Κουτί πρώτων βοηθειών και φακός.",
+              "B": "Ρεύμα και νερό.",
+              "C": "Φαγώσιμα."
+            },
+            "correctAnswer": "A"
+          }
+        ]
+      },
+      {
+        "id": "B",
+        "title": "ΜΕΡΟΣ Β",
+        "description": "Ακούστε ένα απόσπασμα για τη Σπιναλόγκα ως Μνημείο Παγκόσμιας Κληρονομιάς και σημειώστε με Χ τις σωστές (Σ) και λάθος (Λ) προτάσεις.",
+        "questions": [
+          {
+            "id": "AUDIO_12_B_1",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Η Ελλάδα ζητά να αναγνωριστεί η Σπιναλόγκα μνημείο παγκόσμιας κληρονομιάς.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "B"
+          },
+          {
+            "id": "AUDIO_12_B_2",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Η Σπιναλόγκα συμβολίζει τον ανθρώπινο πόνο αλλά και τη θέληση για ζωή.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "A"
+          },
+          {
+            "id": "AUDIO_12_B_3",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Η Unesco ζητά να αναγνωριστεί η Σπιναλόγκα Μνημείο Παγκόσμιας Κληρονομιάς.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "A"
+          },
+          {
+            "id": "AUDIO_12_B_4",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Η Σπιναλόγκα ήταν το νησί των λεπρών.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "A"
+          },
+          {
+            "id": "AUDIO_12_B_5",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Οι τελευταίες λέξεις γράφτηκαν σε ένα σπίτι της Σπιναλόγκας.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "B"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "AUDIO_13",
+    "title": "ΘΕΜΑ 13",
+    "audioUrl": "https://exetaseis-ithageneia.ypes.gr/PAPYROS/services/CustomServices/getExamTopicAudio/497/512",
+    "parts": [
+      {
+        "id": "A",
+        "title": "ΜΕΡΟΣ Α",
+        "description": "Υγειονομική κάλυψη για σύντομη διαμονή στο εξωτερικό. Ακούστε το μήνυμα για την υγειονομική κάλυψη και επιλέξτε τη σωστή απάντηση στις ερωτήσεις που ακολουθούν.",
+        "questions": [
+          {
+            "id": "AUDIO_13_A_1",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Αν ένας υπήκοος της Ευρωπαϊκής Ένωσης αρρωστήσει ξαφνικά σε άλλη χώρα της ΕΕ",
+            "options": {
+              "A": "Πρέπει να επιστρέψει στη χώρα του.",
+              "B": "Μπορεί να νοσηλευτεί στη χώρα που βρίσκεται.",
+              "C": "Πρέπει να μείνει στη χώρα που βρίσκεται για ένα διάστημα."
+            },
+            "correctAnswer": "B"
+          },
+          {
+            "id": "AUDIO_13_A_2",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Σε οποιαδήποτε χώρα της Ευρωπαϊκής Ένωσης, οι πολίτες της",
+            "options": {
+              "A": "Μπορούν να επισκεφτούν γιατρό.",
+              "B": "Πρέπει να επισκεφτούν γιατρό της χώρας τους.",
+              "C": "Πρέπει να ασφαλιστούν στη χώρα που βρίσκονται."
+            },
+            "correctAnswer": "A"
+          },
+          {
+            "id": "AUDIO_13_A_3",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Οι ασφαλισμένοι πολίτες μιας χώρας της Ευρωπαϊκής Ένωσης",
+            "options": {
+              "A": "Έχουν τα ίδια δικαιώματα με όλους τους πολίτες της Ευρωπαϊκής Ένωσης.",
+              "B": "Έχουν περισσότερα δικαιώματα στη χώρα τους.",
+              "C": "Έχουν τα ίδια δικαιώματα μόνο με τους πολίτες της χώρας στην οποία βρίσκονται."
+            },
+            "correctAnswer": "A"
+          },
+          {
+            "id": "AUDIO_13_A_4",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Η Ευρωπαϊκή Κάρτα Ασφάλισης Ασθενείας ισχύει",
+            "options": {
+              "A": "Για ανασφάλιστους.",
+              "B": "Για πολίτες οποιασδήποτε χώρας.",
+              "C": "Για επιχειρηματίες."
+            },
+            "correctAnswer": "B"
+          },
+          {
+            "id": "AUDIO_13_A_5",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Η Ευρωπαϊκή Κάρτα Ασφάλισης Ασθενείας είναι χρήσιμη",
+            "options": {
+              "A": "Για να ξέρει κανείς τα νοσοκομεία της ΕΕ.",
+              "B": "Για να έχει κανείς υγειονομική κάλυψη.",
+              "C": "Για να ξέρει κανείς τις υπηρεσίες υγείας."
+            },
+            "correctAnswer": "B"
+          }
+        ]
+      },
+      {
+        "id": "B",
+        "title": "ΜΕΡΟΣ Β",
+        "description": "Ακούστε μία περιγραφή για την εφημερίδα των κυριών του 1887 και σημειώστε με Χ τις σωστές (Σ) και λάθος (Λ) προτάσεις.",
+        "questions": [
+          {
+            "id": "AUDIO_13_B_1",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Η Καλλιρρόη Παρρέν ασχολήθηκε με το γυναικείο κίνημα.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "A"
+          },
+          {
+            "id": "AUDIO_13_B_2",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Στην εφημερίδα των Κυριών έγραφαν μόνο γυναίκες.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "A"
+          },
+          {
+            "id": "AUDIO_13_B_3",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Η Παρρέν είχε κοινωνική δράση.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "A"
+          },
+          {
+            "id": "AUDIO_13_B_4",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Το λογοτεχνικό της έργο ήταν φτωχό.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "B"
+          },
+          {
+            "id": "AUDIO_13_B_5",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Η Παρρέν διατήρησε τη λαϊκή παράδοση.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "A"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "AUDIO_14",
+    "title": "ΘΕΜΑ 14",
+    "audioUrl": "https://exetaseis-ithageneia.ypes.gr/PAPYROS/services/CustomServices/getExamTopicAudio/498/513",
+    "parts": [
+      {
+        "id": "A",
+        "title": "ΜΕΡΟΣ Α",
+        "description": "Ακούστε μία ανακοίνωση του Δικτύου Ευρωπαϊκών Κέντρων Καταναλωτών και επιλέξτε τη σωστή απάντηση στις ερωτήσεις που ακολουθούν.",
+        "questions": [
+          {
+            "id": "AUDIO_14_A_1",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Τα Ευρωπαϊκά Κέντρα Καταναλωτών μπορούν να βοηθήσουν κάποιον που",
+            "options": {
+              "A": "Μένει στην Ισλανδία.",
+              "B": "Επισκέπτεται την Ισλανδία.",
+              "C": "Ψωνίζει στην Ισλανδία."
+            },
+            "correctAnswer": "C"
+          },
+          {
+            "id": "AUDIO_14_A_2",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Τα Ευρωπαϊκά Κέντρα Καταναλωτών μπορούν να",
+            "options": {
+              "A": "Ενημερώσουν τους καταναλωτές για τα δικαιώματά τους.",
+              "B": "Κάνουν νόμους για τους καταναλωτές.",
+              "C": "Προστατεύουν το κράτος."
+            },
+            "correctAnswer": "A"
+          },
+          {
+            "id": "AUDIO_14_A_3",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Τα Ευρωπαϊκά Κέντρα Καταναλωτών παρέχουν βοήθεια για αγορές",
+            "options": {
+              "A": "Μόνο σε κατάστημα λιανικής.",
+              "B": "Στο διαδίκτυο.",
+              "C": "Προϊόντων μόνο άλλων χωρών."
+            },
+            "correctAnswer": "B"
+          },
+          {
+            "id": "AUDIO_14_A_4",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Τα Ευρωπαϊκά Κέντρα Καταναλωτών",
+            "options": {
+              "A": "Κάνουν μια καταγγελία για εσάς.",
+              "B": "Κάνουν μία ρύθμιση για εσάς.",
+              "C": "Παρέχουν συμβουλές."
+            },
+            "correctAnswer": "C"
+          },
+          {
+            "id": "AUDIO_14_A_5",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Τα Ευρωπαϊκά Κέντρα Καταναλωτών",
+            "options": {
+              "A": "Μπορούν πάντα να σας δώσουν βοήθεια.",
+              "B": "Να σας στείλουν σε άλλο φορέα.",
+              "C": "Να σας επιστρέψουν τα χρήματά σας."
+            },
+            "correctAnswer": "B"
+          }
+        ]
+      },
+      {
+        "id": "B",
+        "title": "ΜΕΡΟΣ Β",
+        "description": "Ακούστε ένα αφιέρωμα στον φωτογράφο Γιάννη Μπεχράκη και σημειώστε με Χ τις σωστές (Σ) και λάθος (Λ) προτάσεις.",
+        "questions": [
+          {
+            "id": "AUDIO_14_B_1",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Ο Γιάννης Μπεχράκης ήταν δημοσιογράφος.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "B"
+          },
+          {
+            "id": "AUDIO_14_B_2",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Ο Γιάννης Μπεχράκης πήρε το βραβείο Πούλιτζερ για τις φωτογραφίες σε πολέμους.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "B"
+          },
+          {
+            "id": "AUDIO_14_B_3",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Ο Γιάννης Μπεχράκης έκανε σπουδές στο εξωτερικό.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "A"
+          },
+          {
+            "id": "AUDIO_14_B_4",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Το βραβείο Πούλιτζερ που πήρε ήταν το πρώτο του.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "B"
+          },
+          {
+            "id": "AUDIO_14_B_5",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Στόχος του ήταν να πει την ιστορία στον κόσμο.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "A"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "AUDIO_15",
+    "title": "ΘΕΜΑ 15",
+    "audioUrl": "https://exetaseis-ithageneia.ypes.gr/PAPYROS/services/CustomServices/getExamTopicAudio/499/514",
+    "parts": [
+      {
+        "id": "A",
+        "title": "ΜΕΡΟΣ Α",
+        "description": "Ακούστε τη δήλωση του Επιτρόπου Δικαιοσύνης για την ιθαγένεια και επιλέξτε τη σωστή απάντηση στις ερωτήσεις που ακολουθούν.",
+        "questions": [
+          {
+            "id": "AUDIO_15_A_1",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Σύμφωνα με τη δήλωση, η ιθαγένεια",
+            "options": {
+              "A": "Είναι ένα σημαντικό ζήτημα για την Ευρωπαϊκή Ένωση.",
+              "B": "Δεν αποτελεί ιδιαίτερα σημαντικό θέμα στην Ευρωπαϊκή Ένωση.",
+              "C": "Ενδιαφέρει την κάθε χώρα χωριστά."
+            },
+            "correctAnswer": "A"
+          },
+          {
+            "id": "AUDIO_15_A_2",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Τα δικαιώματα των πολιτών της ΕΕ",
+            "options": {
+              "A": "Είναι δεδομένα.",
+              "B": "Απειλούνται από προκλήσεις.",
+              "C": "Δέχονται περιορισμούς."
+            },
+            "correctAnswer": "B"
+          },
+          {
+            "id": "AUDIO_15_A_3",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Η πανδημία",
+            "options": {
+              "A": "Περιόρισε κάποια δικαιώματα.",
+              "B": "Απείλησε τους δημοκρατικούς θεσμούς.",
+              "C": "Έβαλε σε κίνδυνο το ευρωπαϊκό εγχείρημα."
+            },
+            "correctAnswer": "A"
+          },
+          {
+            "id": "AUDIO_15_A_4",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Ο Επίτροπος δεσμεύτηκε να",
+            "options": {
+              "A": "Περιορίσει την κυκλοφορία.",
+              "B": "Αναστείλει την ιθαγένεια.",
+              "C": "Προστατεύσει τους πολίτες."
+            },
+            "correctAnswer": "C"
+          },
+          {
+            "id": "AUDIO_15_A_5",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Στόχος του είναι",
+            "options": {
+              "A": "Να σταματήσει τις προκλήσεις.",
+              "B": "Να δυναμώσει την Ευρωπαϊκή Ένωση.",
+              "C": "Να προστατεύσει την Ευρωπαϊκή Ένωση από την πανδημία."
+            },
+            "correctAnswer": "B"
+          }
+        ]
+      },
+      {
+        "id": "B",
+        "title": "ΜΕΡΟΣ Β",
+        "description": "Ακούστε την περιγραφή για το θέατρο της Επιδαύρου και σημειώστε με Χ τις σωστές (Σ) και λάθος (Λ) προτάσεις.",
+        "questions": [
+          {
+            "id": "AUDIO_15_B_1",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Το θέατρο της Επιδαύρου είναι αφιερωμένο στον Ασκληπιό.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "A"
+          },
+          {
+            "id": "AUDIO_15_B_2",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Το θέατρο της Επιδαύρου βρίσκεται στον νομό Αργολίδας.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "A"
+          },
+          {
+            "id": "AUDIO_15_B_3",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Το θέατρο της Επιδαύρου έχει την τελειότερη ακουστική παγκοσμίως.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "B"
+          },
+          {
+            "id": "AUDIO_15_B_4",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Στο θέατρο δίνονται παραστάσεις αρχαίας κωμωδίας.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "B"
+          },
+          {
+            "id": "AUDIO_15_B_5",
+            "category": "ακουστικό",
+            "active": true,
+            "type": "multipleChoice",
+            "question": "Το πρώτο έργο που ανέβηκε στο θέατρο της Επιδαύρου ήταν του τραγικού ποιητή Αισχύλου.",
+            "options": {
+              "A": "Σωστό",
+              "B": "Λάθος"
+            },
+            "correctAnswer": "B"
+          }
+        ]
+      }
+    ]
+  }
+]

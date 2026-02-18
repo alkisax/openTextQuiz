@@ -1,22 +1,16 @@
-import { NavLink } from "react-router-dom"
-import { Button } from "@/components/ui/button"
+import { NavLink } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 const Navbar = () => {
   return (
     <nav className="border-b bg-background">
       <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-
-        <div className="font-semibold text-lg">
-          ΠΕΓΠ
-        </div>
+        <div className="font-semibold text-lg">ΠΕΓΠ</div>
 
         <div className="flex gap-3">
-
           <NavLink to="/">
             {({ isActive }) => (
-              <Button variant={isActive ? "default" : "ghost"}>
-                Αρχική
-              </Button>
+              <Button variant={isActive ? "default" : "ghost"}>Αρχική</Button>
             )}
           </NavLink>
 
@@ -30,16 +24,21 @@ const Navbar = () => {
 
           <NavLink to="/test-full">
             {({ isActive }) => (
-              <Button variant={isActive ? "default" : "ghost"}>
-                Γνώσεων
-              </Button>
+              <Button variant={isActive ? "default" : "ghost"}>Γνώσεων</Button>
             )}
           </NavLink>
 
+          <NavLink to="/audio-test">
+            {({ isActive }) => (
+              <Button variant={isActive ? "default" : "ghost"}>
+                Ακουστικό
+              </Button>
+            )}
+          </NavLink>
         </div>
       </div>
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

@@ -9,7 +9,6 @@ const Home = () => {
   return (
     <div className="min-h-screen bg-muted/30 flex items-center justify-center p-6">
       <div className="max-w-4xl w-full space-y-8">
-
         {/* Εισαγωγή */}
         <Card>
           <CardHeader>
@@ -26,9 +25,9 @@ const Home = () => {
             </p>
 
             <p>
-              Οι εξετάσεις διεξάγονται δύο φορές τον χρόνο (Άνοιξη και Φθινόπωρο)
-              και περιλαμβάνουν γλωσσική επάρκεια επιπέδου Β1 και αξιολόγηση
-              γνώσεων σε βασικές θεματικές ενότητες.
+              Οι εξετάσεις διεξάγονται δύο φορές τον χρόνο (Άνοιξη και
+              Φθινόπωρο) και περιλαμβάνουν γλωσσική επάρκεια επιπέδου Β1 και
+              αξιολόγηση γνώσεων σε βασικές θεματικές ενότητες.
             </p>
 
             <Separator />
@@ -48,7 +47,6 @@ const Home = () => {
 
         {/* Ενότητες */}
         <div className="grid md:grid-cols-2 gap-6">
-
           {/* <Button
             variant="default"
             size="lg"
@@ -73,15 +71,13 @@ const Home = () => {
             </CardHeader>
 
             <CardContent className="space-y-4 text-sm text-muted-foreground">
-              <p>
-                Αξιολόγηση γλωσσικής επάρκειας επιπέδου Β1:
-              </p>
+              <p>Αξιολόγηση γλωσσικής επάρκειας επιπέδου Β1:</p>
 
               <ul className="list-disc pl-5 space-y-1">
                 <li>Κατανόηση κειμένου</li>
                 <li>Σύντομες γραπτές απαντήσεις</li>
                 <li>Παραγωγή γραπτού λόγου</li>
-                <br/>
+                <br />
               </ul>
 
               <Button
@@ -110,9 +106,7 @@ const Home = () => {
             </CardHeader>
 
             <CardContent className="space-y-4 text-sm text-muted-foreground">
-              <p>
-                Αξιολόγηση γνώσεων σε τέσσερις βασικές ενότητες:
-              </p>
+              <p>Αξιολόγηση γνώσεων σε τέσσερις βασικές ενότητες:</p>
 
               <ul className="list-disc pl-5 space-y-1">
                 <li>Πολιτικοί Θεσμοί</li>
@@ -131,8 +125,26 @@ const Home = () => {
             </CardContent>
           </Card>
 
-        </div>
+          <Card className="hover:shadow-md transition">
+            <CardHeader>
+              <CardTitle className="text-lg">
+                Κατανόηση Προφορικού Λόγου
+              </CardTitle>
+            </CardHeader>
 
+            <CardContent className="space-y-4 text-sm text-muted-foreground">
+              <p>Ακουστικό τεστ κατανόησης με επιλογή θέματος.</p>
+
+              <Button
+                size="lg"
+                className="w-full"
+                onClick={() => navigate("/audio-test")}
+              >
+                Έναρξη Προσομοίωσης
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
       </div>
     </div>
   );

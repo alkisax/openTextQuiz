@@ -5,6 +5,7 @@ import OpenText from "./pages/OpenText"
 import LanguagePageWrap from "./pages/LanguagePageWrap"
 import { GeographyFullWrap } from "./pages/GeographyFullWrap"
 import { TestFullWrap } from "./pages/TestFullWrap"
+import AudioTest from "./test-full/pages/AudioTest"
 import Layout from "./layout/Layout"
 
 
@@ -19,6 +20,7 @@ const App = () => {
           <Route path="/language-test" element={<LanguagePageWrap />} />
           <Route path="/geography-full" element={<GeographyFullWrap />} />
           <Route path="/test-full" element={<TestFullWrap />} />
+          <Route path="/audio-test" element={<AudioTest />} />
         </Routes>
       </Layout>
     </BrowserRouter>
