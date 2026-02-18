@@ -150,12 +150,15 @@ const GeographyFullPagePicker = ({
         <>
           <h2 className="text-xl font-bold">Ερωτήσεις Γεωγραφίας</h2>
 
+
           {selectedQuestions.geography.map((q) => (
             <TestFullQuestion
               key={q.id}
               question={q}
               value={answers[q.id]}
               onChange={handleChange}
+              gradedAnswer={gradedAnswers.find((a) => a.id === q.id)}
+              showGrading={gradedAnswers.length > 0}
             />
           ))}
         </>
@@ -171,6 +174,8 @@ const GeographyFullPagePicker = ({
               question={q}
               value={answers[q.id]}
               onChange={handleChange}
+              gradedAnswer={gradedAnswers.find((a) => a.id === q.id)}
+              showGrading={gradedAnswers.length > 0}
             />
           ))}
         </>
@@ -186,6 +191,8 @@ const GeographyFullPagePicker = ({
               question={q}
               value={answers[q.id]}
               onChange={handleChange}
+              gradedAnswer={gradedAnswers.find((a) => a.id === q.id)}
+              showGrading={gradedAnswers.length > 0}
             />
           ))}
         </>
@@ -201,6 +208,8 @@ const GeographyFullPagePicker = ({
               question={q}
               value={answers[q.id]}
               onChange={handleChange}
+              gradedAnswer={gradedAnswers.find((a) => a.id === q.id)}
+              showGrading={gradedAnswers.length > 0}
             />
           ))}
         </>
