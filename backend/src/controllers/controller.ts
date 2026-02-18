@@ -162,9 +162,7 @@ const gradeTotalText = async (req: Request, res: Response) => {
 const countWords = (text: string) =>
   text.trim().split(/\s+/).filter(Boolean).length;
 
-// =================================================
 // Essay
-// =================================================
 const gradeEssay = async (req: Request, res: Response) => {
   try {
     const { prompt, studentText } = req.body;
@@ -208,9 +206,8 @@ const gradeEssay = async (req: Request, res: Response) => {
   }
 };
 
-// =================================================
+
 // Open Text Simple
-// =================================================
 const gradeOpenTextSimpleController = async (
   req: Request,
   res: Response
