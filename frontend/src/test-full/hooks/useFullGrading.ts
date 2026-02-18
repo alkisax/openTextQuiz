@@ -18,7 +18,7 @@ import type {
 import { simplifyLang, expandOptionalParts } from "../utils/simplifyLang";
 import { gradePoints, buildReviewPoints } from "../utils/geoGrading";
 import axios from "axios";
-import { url } from "../constants/constants";
+import { url, urlOpenText } from "../constants/constants";
 
 type GradeAllResult = {
   results: FullGradedAnswer[];
@@ -396,14 +396,17 @@ export const useFullGrading = () => {
       };
     }
 
-    console.log("url in: url /api/grade/open-text-simple", url);
+    console.log("url in: url /api/grade/open-text-simple", urlOpenText);
     try {
-      const response = await axios.post(`${url}/api/grade/open-text-simple`, {
-        question: q.question,
-        correctAnswer: q.correctAnswer,
-        studentText: text,
-        maxWords: q.maxWords,
-      });
+      const response = await axios.post(
+        `${urlOpenText}/api/grade/open-text-simple`,
+        {
+          question: q.question,
+          correctAnswer: q.correctAnswer,
+          studentText: text,
+          maxWords: q.maxWords,
+        },
+      );
 
       const data = response.data;
 
