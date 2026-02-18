@@ -18,7 +18,7 @@ import type {
 import { simplifyLang, expandOptionalParts } from "../utils/simplifyLang";
 import { gradePoints, buildReviewPoints } from "../utils/geoGrading";
 import axios from "axios";
-import { urlOpenText } from "../constants/constants";
+import { url, urlOpenText } from "../constants/constants";
 
 type GradeAllResult = {
   results: FullGradedAnswer[];
@@ -396,6 +396,8 @@ export const useFullGrading = () => {
       };
     }
 
+    console.log(" test if url not used here load. url:", url);
+    
     console.log("url in: url /api/grade/open-text-simple", urlOpenText);
     try {
       const response = await axios.post(
