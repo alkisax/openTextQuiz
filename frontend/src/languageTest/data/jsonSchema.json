@@ -1,69 +1,69 @@
 [
-  {
-    "id": "TEST_ID",
-    "category": "κατηγορία",
-    "type": "readingTest",
-    "title": "Τίτλος Τεστ",
+	{
+		"id": "TEST_ID",
+		"category": "κατηγορία",
+		"type": "readingTest",
+		"title": "Τίτλος Τεστ",
 
-    "prompt": "Οδηγία πριν το κείμενο",
+		"prompt": "Οδηγία πριν το κείμενο",
 
-    "text": "Κύριο κείμενο του θέματος...",
+		"text": "Κύριο κείμενο του θέματος...",
 
-    "parts": {
-      "A": {
-        "type": "comprehension",
-        "instructions": "Οδηγίες μέρους Α",
-        "questions": [
-          {
-            "id": "TEST_ID_A_1",
-            "type": "multipleChoice | trueFalseNA",
-            "question": "Ερώτηση",
-            "options": {
-              "A": "Επιλογή Α",
-              "B": "Επιλογή Β",
-              "C": "Επιλογή Γ"
-            },
-            "correctAnswer": "A | B | C | T | F | NA"
-          }
-        ]
-      },
+		"parts": {
+			"A": {
+				"type": "comprehension",
+				"instructions": "Οδηγίες μέρους Α",
+				"questions": [
+					{
+						"id": "TEST_ID_A_1",
+						"type": "multipleChoice | trueFalseNA",
+						"question": "Ερώτηση",
+						"options": {
+							"A": "Επιλογή Α",
+							"B": "Επιλογή Β",
+							"C": "Επιλογή Γ"
+						},
+						"correctAnswer": "A | B | C | T | F | NA"
+					}
+				]
+			},
 
-      "B": {
-        "type": "grammar",
-        "instructions": "Οδηγίες μέρους Β",
-        "questions": [
-          {
-            "id": "TEST_ID_B_1",
-            "type": "shortText | multipleChoice",
-            "prompt": "Πρόταση αναφοράς (αν υπάρχει)",
-            "question": "Ερώτηση με κενό __",
-            "correctAnswer": "σωστή απάντηση",
-            "caseSensitive": false,
-            "trim": true,
-            "normalizeGreek": true
-          }
-        ]
-      },
+			"B": {
+				"type": "grammar",
+				"instructions": "Οδηγίες μέρους Β",
+				"questions": [
+					{
+						"id": "TEST_ID_B_1",
+						"type": "shortText | multipleChoice",
+						"prompt": "Πρόταση αναφοράς (αν υπάρχει)",
+						"question": "Ερώτηση με κενό __",
+						"correctAnswer": "σωστή απάντηση",
+						"caseSensitive": false,
+						"trim": true,
+						"normalizeGreek": true
+					}
+				]
+			},
 
-      "C": {
-        "type": "essay",
-        "instructions": "Οδηγίες έκθεσης",
-        "question": "Θέμα ανάπτυξης",
-        "minWords": 80,
-        "maxWords": 100,
-        "evaluation": {
-          "method": "openai",
-          "responseFormat": "json",
-          "maxScore": 20,
-          "criteria": [
-            "content",
-            "coherence",
-            "grammar",
-            "vocabulary",
-            "structure"
-          ]
-        }
-      }
-    }
-  }
+			"C": {
+				"type": "essay",
+				"instructions": "Οδηγίες έκθεσης",
+				"question": "Θέμα ανάπτυξης",
+				"minWords": 80,
+				"maxWords": 100,
+				"evaluation": {
+					"method": "openai",
+					"responseFormat": "json",
+					"maxScore": 20,
+					"criteria": [
+						"content",
+						"coherence",
+						"grammar",
+						"vocabulary",
+						"structure"
+					]
+				}
+			}
+		}
+	}
 ]

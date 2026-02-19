@@ -3,7 +3,5 @@
 import GeographyFullPagePicker from "@/geography-full/pages/GeographyFullPagePicker"
 
 export const GeographyFullWrap = () => {
-  return (
-    <GeographyFullPagePicker  />
-  )
+	return <GeographyFullPagePicker />
 }

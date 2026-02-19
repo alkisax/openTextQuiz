@@ -1,111 +1,115 @@
-import MultipleChoiceQuestion from "@/languageTest/components/test-parts/MultipleChoiceQuestion";
-import type { GeoAnswer, GeoQuestion, MapPoint } from "../types/geographyFull.types";
-import ShortTextQuestion from "../components/ShortTextQuestion";
-import MatchingQuestionComponent from "../components/MatchingQuestion";
-import MultiSelectQuestion from "../components/MultiSelectQuestion";
-import ListInputQuestion from "../components/ListInputQuestion";
-import TrueFalseGroupQuestion from "../components/TrueFalseGroupQuestion";
-import CategorizationQuestionComponent from "../components/CategorizationQuestionComponent";
-import MapPointsQuestion from "../components/MapPointsQuestion";
+import MultipleChoiceQuestion from "@/languageTest/components/test-parts/MultipleChoiceQuestion"
+import CategorizationQuestionComponent from "../components/CategorizationQuestionComponent"
+import ListInputQuestion from "../components/ListInputQuestion"
+import MapPointsQuestion from "../components/MapPointsQuestion"
+import MatchingQuestionComponent from "../components/MatchingQuestion"
+import MultiSelectQuestion from "../components/MultiSelectQuestion"
+import ShortTextQuestion from "../components/ShortTextQuestion"
+import TrueFalseGroupQuestion from "../components/TrueFalseGroupQuestion"
+import type {
+	GeoAnswer,
+	GeoQuestion,
+	MapPoint,
+} from "../types/geographyFull.types"
 
 type Props = {
-  question: GeoQuestion;
-  value?: GeoAnswer;
-  onChange: (id: string, value: GeoAnswer) => void;
-};
+	question: GeoQuestion
+	value?: GeoAnswer
+	onChange: (id: string, value: GeoAnswer) => void
+}
 
 const GeographyFullQuestion = ({ question, value, onChange }: Props) => {
-  return (
-    <div className="space-y-4 border p-4 rounded">
-      {question.type === "multipleChoice" && (
-        <MultipleChoiceQuestion
-          question={question}
-          value={value as string}
-          onChange={(val) => onChange(question.id, val)}
-        />
-      )}
+	return (
+		<div className="space-y-4 border p-4 rounded">
+			{question.type === "multipleChoice" && (
+				<MultipleChoiceQuestion
+					question={question}
+					value={value as string}
+					onChange={(val) => onChange(question.id, val)}
+				/>
+			)}
 
-      {question.type === "shortText" && (
-        <ShortTextQuestion
-          question={question}
-          value={value}
-          onChange={(val) => onChange(question.id, val)}
-        />
-      )}
+			{question.type === "shortText" && (
+				<ShortTextQuestion
+					question={question}
+					value={value}
+					onChange={(val) => onChange(question.id, val)}
+				/>
+			)}
 
-      {question.type === "matching" && (
-        <MatchingQuestionComponent
-          question={question}
-          value={
-            value && typeof value === "object" && !Array.isArray(value)
-              ? value
-              : {}
-          }
-          onChange={(val) => onChange(question.id, val)}
-        />
-      )}
+			{question.type === "matching" && (
+				<MatchingQuestionComponent
+					question={question}
+					value={
+						value && typeof value === "object" && !Array.isArray(value)
+							? value
+							: {}
+					}
+					onChange={(val) => onChange(question.id, val)}
+				/>
+			)}
 
-      {question.type === "multiSelect" && (
-        <MultiSelectQuestion
-          question={question}
-          value={
-            question.type === "multiSelect" && Array.isArray(value)
-              ? (value as string[])
-              : []
-          }
-          onChange={(val) => onChange(question.id, val)}
-        />
-      )}
+			{question.type === "multiSelect" && (
+				<MultiSelectQuestion
+					question={question}
+					value={
+						question.type === "multiSelect" && Array.isArray(value)
+							? (value as string[])
+							: []
+					}
+					onChange={(val) => onChange(question.id, val)}
+				/>
+			)}
 
-      {question.type === "listInput" && (
-        <ListInputQuestion
-          question={question}
-          value={
-            question.type === "listInput" && Array.isArray(value)
-              ? (value as string[])
-              : []
-          }
-          onChange={(val) => onChange(question.id, val)}
-        />
-      )}
+			{question.type === "listInput" && (
+				<ListInputQuestion
+					question={question}
+					value={
+						question.type === "listInput" && Array.isArray(value)
+							? (value as string[])
+							: []
+					}
+					onChange={(val) => onChange(question.id, val)}
+				/>
+			)}
 
-      {question.type === "trueFalseGroup" && (
-        <TrueFalseGroupQuestion
-          question={question}
-          value={
-            value && typeof value === "object" && !Array.isArray(value)
-              ? (value as Record<string, "T" | "F">)
-              : {}
-          }
-          onChange={(val) => onChange(question.id, val)}
-        />
-      )}
+			{question.type === "trueFalseGroup" && (
+				<TrueFalseGroupQuestion
+					question={question}
+					value={
+						value && typeof value === "object" && !Array.isArray(value)
+							? (value as Record<string, "T" | "F">)
+							: {}
+					}
+					onChange={(val) => onChange(question.id, val)}
+				/>
+			)}
 
-      {question.type === "categorization" && (
-        <CategorizationQuestionComponent
-          question={question}
-          value={
-            value && typeof value === "object" && !Array.isArray(value)
-              ? value
-              : {}
-          }
-          onChange={(val) => onChange(question.id, val)}
-        />
-      )}
+			{question.type === "categorization" && (
+				<CategorizationQuestionComponent
+					question={question}
+					value={
+						value && typeof value === "object" && !Array.isArray(value)
+							? value
+							: {}
+					}
+					onChange={(val) => onChange(question.id, val)}
+				/>
+			)}
 
-      {question.type === "mapPoints" && (
-        <MapPointsQuestion
-          question={question}
-          value={
-            question.type === "mapPoints"
-              ? (value as MapPoint[] | undefined)
-              : undefined
-          }
-          onChange={(val) => onChange(question.id, val)}
-        />
-      )}
-    </div>
-  );
-};
+			{question.type === "mapPoints" && (
+				<MapPointsQuestion
+					question={question}
+					value={
+						question.type === "mapPoints"
+							? (value as MapPoint[] | undefined)
+							: undefined
+					}
+					onChange={(val) => onChange(question.id, val)}
+				/>
+			)}
+		</div>
+	)
+}
 
-export default GeographyFullQuestion;
+export default GeographyFullQuestion
