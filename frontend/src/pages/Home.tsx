@@ -134,6 +134,7 @@ const Home = () => {
 
             <CardContent className="space-y-4 text-sm text-muted-foreground">
               <p>Ακουστικό τεστ κατανόησης με επιλογή θέματος.</p>
+              <br />
 
               <Button
                 size="lg"
@@ -141,6 +142,33 @@ const Home = () => {
                 onClick={() => navigate("/audio-test")}
               >
                 Έναρξη Προσομοίωσης
+              </Button>
+            </CardContent>
+          </Card>
+
+          <Card className="hover:shadow-md transition">
+            <CardHeader>
+              <CardTitle className="text-lg">
+                Παραγωγή Προφορικού Λόγου
+              </CardTitle>
+            </CardHeader>
+
+            <CardContent className="space-y-4 text-sm text-muted-foreground">
+              <p>
+                Θέματα στην ενότητα της Γλώσσας – Παραγωγή Προφορικού Λόγου.
+              </p>
+
+              <Button
+                size="lg"
+                className="w-full"
+                onClick={() =>
+                  window.open(
+                    "https://exetaseis-ithageneia.ypes.gr/PAPYROS/services/CustomServices/getExamTopic/907931?1771488887281",
+                    "_blank",
+                  )
+                }
+              >
+                Προβολή PDF
               </Button>
             </CardContent>
           </Card>
