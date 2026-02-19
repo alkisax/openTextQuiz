@@ -7,11 +7,13 @@ import { GeographyFullWrap } from "./pages/GeographyFullWrap"
 import { TestFullWrap } from "./pages/TestFullWrap"
 import AudioTest from "./test-full/pages/AudioTest"
 import Layout from "./layout/Layout"
+import ScrollToTop from "./components/ScrollToTop"
 
 
 const App = () => {
   return (
     <BrowserRouter basename={import.meta.env.BASE_URL}>
+      <ScrollToTop />
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />

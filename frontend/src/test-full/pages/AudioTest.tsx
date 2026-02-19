@@ -10,10 +10,7 @@ import {
 } from "@/components/ui/select";
 import AudioQuestion from "./AudioQuestion";
 import { useFullGrading } from "../hooks/useFullGrading";
-import type {
-  FullAnswer,
-  FullGradedAnswer,
-} from "../types/Full.types";
+import type { FullAnswer, FullGradedAnswer } from "../types/Full.types";
 
 type AudioQuestionType = {
   id: string;
@@ -49,7 +46,7 @@ const AudioTest = () => {
   const { gradeAll } = useFullGrading();
 
   const selectedTopic = audioTopics.find(
-    (topic) => topic.id === selectedTopicId
+    (topic) => topic.id === selectedTopicId,
   );
 
   const handleRandom = () => {
@@ -70,13 +67,13 @@ const AudioTest = () => {
     if (!selectedTopic) return;
 
     // flatten όλα τα parts
-    const allQuestions = selectedTopic.parts.flatMap((part) =>
-      part.questions
-    );
+    const allQuestions = selectedTopic.parts.flatMap((part) => part.questions);
 
     const { results } = await gradeAll(allQuestions, answers);
     setGradedAnswers(results);
   };
+
+  console.log(audioTopics)
 
   return (
     <div className="max-w-4xl mx-auto py-10 space-y-8">
@@ -87,7 +84,7 @@ const AudioTest = () => {
             <SelectTrigger>
               <SelectValue placeholder="Επέλεξε θέμα" />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="max-h-60 overflow-y-auto">
               {audioTopics.map((topic) => (
                 <SelectItem key={topic.id} value={topic.id}>
                   {topic.title}
@@ -96,9 +93,7 @@ const AudioTest = () => {
             </SelectContent>
           </Select>
 
-          <Button onClick={handleRandom}>
-            Επιλογή Τυχαίου Θέματος
-          </Button>
+          <Button onClick={handleRandom}>Επιλογή Τυχαίου Θέματος</Button>
         </div>
       )}
 
@@ -110,37 +105,25 @@ const AudioTest = () => {
           </h2>
 
           {/* AUDIO PLAYER */}
-          <audio
-            controls
-            src={selectedTopic.audioUrl}
-            className="w-full"
-          />
+          <audio controls src={selectedTopic.audioUrl} className="w-full" />
 
           {/* PARTS + QUESTIONS */}
           {selectedTopic.parts.map((part) => (
             <div key={part.id} className="space-y-6">
               <div className="mt-8">
-                <h3 className="text-xl font-semibold">
-                  {part.title}
-                </h3>
-                <p className="text-muted-foreground">
-                  {part.description}
-                </p>
+                <h3 className="text-xl font-semibold">{part.title}</h3>
+                <p className="text-muted-foreground">{part.description}</p>
               </div>
 
               {part.questions.map((q, index) => (
                 <div key={q.id} className="flex items-start gap-2">
-                  <span className="font-semibold">
-                    {index + 1}.
-                  </span>
+                  <span className="font-semibold">{index + 1}.</span>
 
                   <AudioQuestion
                     question={q}
                     value={answers[q.id]}
                     onChange={handleChange}
-                    gradedAnswer={gradedAnswers.find(
-                      (a) => a.id === q.id
-                    )}
+                    gradedAnswer={gradedAnswers.find((a) => a.id === q.id)}
                     showGrading={gradedAnswers.length > 0}
                   />
                 </div>
@@ -148,9 +131,7 @@ const AudioTest = () => {
             </div>
           ))}
 
-          <Button onClick={handleGradeAll}>
-            Αξιολόγηση
-          </Button>
+          <Button onClick={handleGradeAll}>Αξιολόγηση</Button>
         </>
       )}
     </div>

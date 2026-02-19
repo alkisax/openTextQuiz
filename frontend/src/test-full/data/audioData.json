@@ -146,71 +146,6 @@
     ]
   },
   {
-    "id": "AUDIO_1_B_1",
-    "category": "ακουστικό",
-    "active": true,
-    "type": "multipleChoice",
-    "audioUrl": "https://exetaseis-ithageneia.ypes.gr/PAPYROS/services/CustomServices/getExamTopicAudio/485/907951",
-    "question": "Ο μαθητής ξύπνησε στις 8:00.",
-    "options": {
-      "Α": "Σωστό",
-      "F": "Λάθος"
-    },
-    "correctAnswer": "F"
-  },
-  {
-    "id": "AUDIO_1_B_2",
-    "category": "ακουστικό",
-    "active": true,
-    "type": "multipleChoice",
-    "audioUrl": "https://exetaseis-ithageneia.ypes.gr/PAPYROS/services/CustomServices/getExamTopicAudio/485/907951",
-    "question": "Αγαπημένο μάθημα του μαθητή είναι τα μαθηματικά.",
-    "options": {
-      "Α": "Σωστό",
-      "B": "Λάθος"
-    },
-    "correctAnswer": "Α"
-  },
-  {
-    "id": "AUDIO_1_B_3",
-    "category": "ακουστικό",
-    "active": true,
-    "type": "multipleChoice",
-    "audioUrl": "https://exetaseis-ithageneia.ypes.gr/PAPYROS/services/CustomServices/getExamTopicAudio/485/907951",
-    "question": "Ο μαθητής έφαγε μεσημεριανό μετά το σχολείο.",
-    "options": {
-      "Α": "Σωστό",
-      "F": "Λάθος"
-    },
-    "correctAnswer": "Α"
-  },
-  {
-    "id": "AUDIO_1_B_4",
-    "category": "ακουστικό",
-    "active": true,
-    "type": "multipleChoice",
-    "audioUrl": "https://exetaseis-ithageneia.ypes.gr/PAPYROS/services/CustomServices/getExamTopicAudio/485/907951",
-    "question": "Το βράδυ ο μαθητής διάβασε για το τεστ.",
-    "options": {
-      "Α": "Σωστό",
-      "F": "Λάθος"
-    },
-    "correctAnswer": "F"
-  },
-  {
-    "id": "AUDIO_1_B_5",
-    "category": "ακουστικό",
-    "active": true,
-    "type": "multipleChoice",
-    "audioUrl": "https://exetaseis-ithageneia.ypes.gr/PAPYROS/services/CustomServices/getExamTopicAudio/485/907951",
-    "question": "Ο μαθητής χαλάρωσε βλέποντας τηλεόραση.",
-    "options": {
-      "Α": "Σωστό",
-      "F": "Λάθος"
-    },
-    "correctAnswer": "Α"
-  },
-  {
     "id": "AUDIO_2",
     "title": "ΘΕΜΑ 2",
     "audioUrl": "https://exetaseis-ithageneia.ypes.gr/PAPYROS/services/CustomServices/getExamTopicAudio/486/501",
@@ -356,7 +291,6 @@
       }
     ]
   },
-
   {
     "id": "AUDIO_3",
     "title": "ΘΕΜΑ 3",
@@ -503,7 +437,6 @@
       }
     ]
   },
-
   {
     "id": "AUDIO_4",
     "title": "ΘΕΜΑ 4",
