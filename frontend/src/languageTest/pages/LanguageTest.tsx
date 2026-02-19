@@ -68,7 +68,7 @@ const LanguageTest = ({ test }: LanguageTestProps) => {
 
 		// Part B
 		partB.forEach((q) => {
-			total++
+			_total++
 			const userAnswer = answers[q.id]
 
 			if (q.type === "shortText") {
