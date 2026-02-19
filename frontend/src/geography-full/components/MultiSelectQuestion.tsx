@@ -29,15 +29,25 @@ const MultiSelectQuestion = ({ question, value = [], onChange }: Props) => {
 			<p className="font-medium">{question.question}</p>
 
 			<div className="space-y-2">
-				{question.options.map((option) => (
-					<div key={option} className="flex items-center space-x-2">
-						<Checkbox
-							checked={value?.includes(option)}
-							onCheckedChange={() => handleToggle(option)}
-						/>
-						<label className="text-sm font-medium">{option}</label>
-					</div>
-				))}
+				{question.options.map((option) => {
+					const inputId = `multi-${question.id}-${option}`
+
+					return (
+						<div key={option} className="flex items-center space-x-2">
+							<Checkbox
+								id={inputId}
+								checked={value.includes(option)}
+								onCheckedChange={() => handleToggle(option)}
+							/>
+							<label
+								htmlFor={inputId}
+								className="text-sm font-medium cursor-pointer"
+							>
+								{option}
+							</label>
+						</div>
+					)
+				})}
 			</div>
 
 			<p className="text-xs text-muted-foreground">

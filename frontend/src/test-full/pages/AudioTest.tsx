@@ -73,7 +73,7 @@ const AudioTest = () => {
 		setGradedAnswers(results)
 	}
 
-	console.log(audioTopics)
+	// console.log(audioTopics)
 
 	return (
 		<div className="max-w-4xl mx-auto py-10 space-y-8">
@@ -105,7 +105,10 @@ const AudioTest = () => {
 					</h2>
 
 					{/* AUDIO PLAYER */}
-					<audio controls src={selectedTopic.audioUrl} className="w-full" />
+					<audio controls src={selectedTopic.audioUrl} className="w-full">
+						{/* το λιντ με υποχρεωνε να έχω captions και έβαλα ένα mock */}
+						<track kind="captions" src="" label="Greek captions" default />
+					</audio>
 
 					{/* PARTS + QUESTIONS */}
 					{selectedTopic.parts.map((part) => (

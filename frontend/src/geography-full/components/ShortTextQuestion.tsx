@@ -40,7 +40,7 @@ const ShortTextQuestion = ({ question, value, onChange }: Props) => {
 		}
 
 		return parts.map((part, index) => (
-			<span key={index}>
+			<span key={`${part}`}>
 				{part}
 
 				{index < blanksCount && (

@@ -22,7 +22,10 @@ const ListInputQuestion = ({ question, value = [], onChange }: Props) => {
 
 			<div className="space-y-2">
 				{Array.from({ length: itemsCount }).map((_, index) => (
-					<div key={index} className="flex items-center gap-2">
+					<div
+						key={`list-input-${question.id}-${index}`}
+						className="flex items-center gap-2"
+					>
 						<div className="w-6 text-sm font-semibold">{index + 1}.</div>
 						<Input
 							value={value[index] ?? ""}

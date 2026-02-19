@@ -20,7 +20,11 @@ const Navbar = () => {
 				</div>
 
 				{/* Hamburger button */}
-				<button className="md:hidden" onClick={() => setOpen((prev) => !prev)}>
+				<button
+					type="button"
+					className="md:hidden"
+					onClick={() => setOpen((prev) => !prev)}
+				>
 					{open ? <X size={22} /> : <Menu size={22} />}
 				</button>
 			</div>

@@ -47,12 +47,12 @@ const LanguageTest = ({ test }: LanguageTestProps) => {
 
 	const gradeAll = () => {
 		let correct = 0
-		let total = 0
+		let _total = 0
 		const results: GradedAnswer[] = []
 
 		// Part A
 		partA.forEach((q) => {
-			total++
+			_total++
 			const userAnswer = answers[q.id]
 			const isCorrect = userAnswer === q.correctAnswer
 			if (isCorrect) correct++

@@ -4,11 +4,9 @@ import { useLocation } from "react-router-dom"
 const ScrollToTop = () => {
 	const { pathname } = useLocation()
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: scroll on route change
 	useEffect(() => {
-		window.scrollTo({
-			top: 0,
-			behavior: "instant", // ή "smooth"
-		})
+		window.scrollTo(0, 0)
 	}, [pathname])
 
 	return null
