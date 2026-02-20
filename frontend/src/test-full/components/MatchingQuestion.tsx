@@ -109,6 +109,7 @@ const MatchingQuestionComponent = ({
                       side="bottom"
                       align="start"
                       sideOffset={4}
+                      avoidCollisions={false}
                       className="z-50"
                     >
                       {question.columnB.map((opt) => (
