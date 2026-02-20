@@ -96,25 +96,19 @@ const MatchingQuestionComponent = ({
                 </TableCell>
 
                 <TableCell>
-                  <Select
+                  <select
+                    className="w-52 rounded-md border border-input bg-background px-3 py-2 text-sm"
                     value={value[item.key] ?? ""}
-                    onValueChange={(val) => handleSelect(item.key, val)}
+                    onChange={(e) => handleSelect(item.key, e.target.value)}
                   >
-                    <SelectTrigger className="w-52">
-                      <SelectValue placeholder="Επιλογή" />
-                    </SelectTrigger>
+                    <option value="">Επιλογή</option>
 
-                    <SelectContent
-                      onCloseAutoFocus={(e) => e.preventDefault()}
-                      className="z-50 max-h-60 overflow-auto"
-                    >
-                      {question.columnB.map((opt) => (
-                        <SelectItem key={opt.key} value={opt.key}>
-                          {opt.key}. {opt.label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+                    {question.columnB.map((opt) => (
+                      <option key={opt.key} value={opt.key}>
+                        {opt.key}. {opt.label}
+                      </option>
+                    ))}
+                  </select>
                 </TableCell>
               </TableRow>
             ))}
