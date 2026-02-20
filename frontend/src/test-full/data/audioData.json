@@ -5108,5 +5108,1465 @@
 				]
 			}
 		]
+	},
+	{
+		"id": "AUDIO_36",
+		"title": "ΘΕΜΑ 36",
+		"audioUrl": "https://exetaseis-ithageneia.ypes.gr/PAPYROS/services/CustomServices/getExamTopicAudio/470/535",
+		"parts": [
+			{
+				"id": "A",
+				"title": "ΜΕΡΟΣ Α",
+				"description": "Ακούστε τις πληροφορίες για μια εκδρομή και επιλέξτε τη σωστή απάντηση στις ερωτήσεις που ακολουθούν.",
+				"questions": [
+					{
+						"id": "AUDIO_36_A_1",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Το λεωφορείο αναχωρεί από την Πλατεία Αριστοτέλους",
+						"options": {
+							"A": "στις 8:00.",
+							"B": "στις 8:05.",
+							"C": "στις 8:15."
+						},
+						"correctAnswer": "C"
+					},
+					{
+						"id": "AUDIO_36_A_2",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Η διάρκεια της διαδρομής είναι",
+						"options": {
+							"A": "20 λεπτά.",
+							"B": "3 ώρες.",
+							"C": "3 ώρες και 20 λεπτά."
+						},
+						"correctAnswer": "B"
+					},
+					{
+						"id": "AUDIO_36_A_3",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Στα Μετέωρα λειτουργούν",
+						"options": {
+							"A": "2 μοναστήρια.",
+							"B": "4 μοναστήρια.",
+							"C": "6 μοναστήρια."
+						},
+						"correctAnswer": "C"
+					},
+					{
+						"id": "AUDIO_36_A_4",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Στην τιμή συμπεριλαμβάνονται",
+						"options": {
+							"A": "τα έξοδα μεταφοράς.",
+							"B": "τα έξοδα διατροφής.",
+							"C": "η ξενάγηση στα μοναστήρια."
+						},
+						"correctAnswer": "A"
+					},
+					{
+						"id": "AUDIO_36_A_5",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Στα μοναστήρια η είσοδος είναι δωρεάν",
+						"options": {
+							"A": "για όλους τους επισκέπτες.",
+							"B": "για τους Έλληνες επισκέπτες.",
+							"C": "για τους ξένους επισκέπτες."
+						},
+						"correctAnswer": "B"
+					}
+				]
+			},
+			{
+				"id": "B",
+				"title": "ΜΕΡΟΣ Β",
+				"description": "Ακούστε μερικούς από τους κανονισμούς μιας κατασκήνωσης. Σημειώστε με Χ τις σωστές (Σ) και λάθος (Λ) προτάσεις.",
+				"questions": [
+					{
+						"id": "AUDIO_36_B_1",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Τα παιδιά μπορούν να προσέλθουν στην κατασκήνωση μόνο κατά τις πρωινές ώρες.",
+						"options": {
+							"A": "Σωστό",
+							"B": "Λάθος"
+						},
+						"correctAnswer": "A"
+					},
+					{
+						"id": "AUDIO_36_B_2",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Η κατασκήνωση καλύπτει όλα τα έξοδα σε περίπτωση που κάποιο παιδί αρρωστήσει.",
+						"options": {
+							"A": "Σωστό",
+							"B": "Λάθος"
+						},
+						"correctAnswer": "B"
+					},
+					{
+						"id": "AUDIO_36_B_3",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Είναι υποχρεωτική η προσκόμιση πιστοποιητικού υγείας του παιδιού.",
+						"options": {
+							"A": "Σωστό",
+							"B": "Λάθος"
+						},
+						"correctAnswer": "A"
+					},
+					{
+						"id": "AUDIO_36_B_4",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Το τηλεφωνικό κέντρο λειτουργεί καθ’ όλη τη διάρκεια της ημέρας.",
+						"options": {
+							"A": "Σωστό",
+							"B": "Λάθος"
+						},
+						"correctAnswer": "B"
+					},
+					{
+						"id": "AUDIO_36_B_5",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Οι γονείς μπορούν να επισκεφτούν τα παιδιά τους μόνο κάθε Σάββατο απόγευμα.",
+						"options": {
+							"A": "Σωστό",
+							"B": "Λάθος"
+						},
+						"correctAnswer": "A"
+					}
+				]
+			}
+		]
+	},
+	{
+		"id": "AUDIO_37",
+		"title": "ΘΕΜΑ 37",
+		"audioUrl": "https://exetaseis-ithageneia.ypes.gr/PAPYROS/services/CustomServices/getExamTopicAudio/471/703990",
+		"parts": [
+			{
+				"id": "A",
+				"title": "ΜΕΡΟΣ Α",
+				"description": "Ακούστε κάποιες πληροφορίες για το κτίριο της Βουλής των Ελλήνων και επιλέξτε τη σωστή απάντηση στις ερωτήσεις που ακολουθούν.",
+				"questions": [
+					{
+						"id": "AUDIO_37_A_1",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Το κτίριο της Βουλής των Ελλήνων:",
+						"options": {
+							"A": "έχει δύο ορόφους.",
+							"B": "έχει τρεις ορόφους.",
+							"C": "έχει τέσσερις ορόφους."
+						},
+						"correctAnswer": "B"
+					},
+					{
+						"id": "AUDIO_37_A_2",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Το κτίριο της Βουλής των Ελλήνων βρίσκεται:",
+						"options": {
+							"A": "στην πλατεία Συντάγματος.",
+							"B": "στην πλατεία Σταδίου.",
+							"C": "στην οδό Σταδίου."
+						},
+						"correctAnswer": "A"
+					},
+					{
+						"id": "AUDIO_37_A_3",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Το 1909 το κτίριο καταστράφηκε από:",
+						"options": {
+							"A": "σεισμό.",
+							"B": "πλημμύρα.",
+							"C": "φωτιά."
+						},
+						"correctAnswer": "C"
+					},
+					{
+						"id": "AUDIO_37_A_4",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Μετά το 1924, το κτίριο χρησιμοποιήθηκε ως:",
+						"options": {
+							"A": "παλάτι.",
+							"B": "ανάκτορο.",
+							"C": "νοσοκομείο."
+						},
+						"correctAnswer": "C"
+					},
+					{
+						"id": "AUDIO_37_A_5",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Μπροστά από το κτίριο βρίσκεται ένα μνημείο προς τιμήν:",
+						"options": {
+							"A": "των Ευζώνων και των Ελλήνων πολιτικών.",
+							"B": "των Ελλήνων στρατιωτών που πολέμησαν για την Ελλάδα.",
+							"C": "της Προεδρικής Φρουράς."
+						},
+						"correctAnswer": "B"
+					}
+				]
+			},
+			{
+				"id": "B",
+				"title": "ΜΕΡΟΣ Β",
+				"description": "Ακούστε έναν διάλογο μεταξύ μιας δημοσιογράφου και ενός μέλους περιβαλλοντικής οργάνωσης σε μια ραδιοφωνική εκπομπή και σημειώστε τις σωστές (Σ) και λάθος (Λ) προτάσεις.",
+				"questions": [
+					{
+						"id": "AUDIO_37_B_1",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Η περιβαλλοντική οργάνωση «Προστατεύω τη Φύση» λειτουργεί από το 1995.",
+						"options": {
+							"A": "Σωστό",
+							"B": "Λάθος"
+						},
+						"correctAnswer": "B"
+					},
+					{
+						"id": "AUDIO_37_B_2",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Η περιβαλλοντική οργάνωση «Προστατεύω τη Φύση» δεν συνεργάζεται με άλλες οργανώσεις.",
+						"options": {
+							"A": "Σωστό",
+							"B": "Λάθος"
+						},
+						"correctAnswer": "B"
+					},
+					{
+						"id": "AUDIO_37_B_3",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Σκοπός της «Προστατεύω τη Φύση» είναι η προστασία των θαλάσσιων ζώων.",
+						"options": {
+							"A": "Σωστό",
+							"B": "Λάθος"
+						},
+						"correctAnswer": "B"
+					},
+					{
+						"id": "AUDIO_37_B_4",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Κάθε πολίτης μπορεί να συμμετέχει στις εκδηλώσεις της οργάνωσης, αλλά δεν μπορεί να γίνει μέλος της.",
+						"options": {
+							"A": "Σωστό",
+							"B": "Λάθος"
+						},
+						"correctAnswer": "B"
+					},
+					{
+						"id": "AUDIO_37_B_5",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Όποιος το επιθυμεί, μπορεί να βοηθήσει οικονομικά την περιβαλλοντική οργάνωση.",
+						"options": {
+							"A": "Σωστό",
+							"B": "Λάθος"
+						},
+						"correctAnswer": "A"
+					}
+				]
+			}
+		]
+	},
+	{
+		"id": "AUDIO_38",
+		"title": "ΘΕΜΑ 38",
+		"audioUrl": "https://exetaseis-ithageneia.ypes.gr/PAPYROS/services/CustomServices/getExamTopicAudio/472/537",
+		"parts": [
+			{
+				"id": "A",
+				"title": "ΜΕΡΟΣ Α",
+				"description": "Ακούστε πληροφορίες για το Αριστοτέλειο Πανεπιστήμιο Θεσσαλονίκης και επιλέξτε τη σωστή απάντηση στις ερωτήσεις που ακολουθούν.",
+				"questions": [
+					{
+						"id": "AUDIO_38_A_1",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Η ίδρυση του Πανεπιστημίου πραγματοποιήθηκε",
+						"options": {
+							"A": "το 1925.",
+							"B": "το 1945.",
+							"C": "το 1954."
+						},
+						"correctAnswer": "A"
+					},
+					{
+						"id": "AUDIO_38_A_2",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Η αρχική ονομασία του Πανεπιστημίου ήταν",
+						"options": {
+							"A": "Πανεπιστήμιο φιλόσοφου Αριστοτέλη.",
+							"B": "Αριστοτελικό Πανεπιστήμιο.",
+							"C": "Πανεπιστήμιο Θεσσαλονίκης."
+						},
+						"correctAnswer": "C"
+					},
+					{
+						"id": "AUDIO_38_A_3",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Ο Άγιος Δημήτριος απεικονίζεται",
+						"options": {
+							"A": "στη σημαία του Πανεπιστημίου.",
+							"B": "στο σήμα του Πανεπιστημίου.",
+							"C": "στην είσοδο του Πανεπιστημίου."
+						},
+						"correctAnswer": "B"
+					},
+					{
+						"id": "AUDIO_38_A_4",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Η έκταση της πανεπιστημιούπολης είναι",
+						"options": {
+							"A": "περίπου 340 στρέμματα.",
+							"B": "πάνω από 430 στρέμματα.",
+							"C": "γύρω στα 540 στρέμματα."
+						},
+						"correctAnswer": "B"
+					},
+					{
+						"id": "AUDIO_38_A_5",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Το Πανεπιστήμιο βρίσκεται",
+						"options": {
+							"A": "στην είσοδο της Θεσσαλονίκης.",
+							"B": "στα δυτικά της Θεσσαλονίκης.",
+							"C": "στο κέντρο της Θεσσαλονίκης."
+						},
+						"correctAnswer": "C"
+					}
+				]
+			},
+			{
+				"id": "B",
+				"title": "ΜΕΡΟΣ Β",
+				"description": "Ακούστε τη συζήτηση μεταξύ δύο γυναικών. Σημειώστε με Χ τις σωστές (Σ) και λάθος (Λ) προτάσεις.",
+				"questions": [
+					{
+						"id": "AUDIO_38_B_1",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Οι δύο φίλες συναντήθηκαν σε ένα καφέ.",
+						"options": {
+							"A": "Σωστό",
+							"B": "Λάθος"
+						},
+						"correctAnswer": "B"
+					},
+					{
+						"id": "AUDIO_38_B_2",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Ο τίτλος του έργου που θα παρακολουθήσουν είναι «Όνειρο θερινής νύχτας».",
+						"options": {
+							"A": "Σωστό",
+							"B": "Λάθος"
+						},
+						"correctAnswer": "B"
+					},
+					{
+						"id": "AUDIO_38_B_3",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Οι δύο φίλες κανονίζουν να πάνε στο θέατρο το Σάββατο.",
+						"options": {
+							"A": "Σωστό",
+							"B": "Λάθος"
+						},
+						"correctAnswer": "A"
+					},
+					{
+						"id": "AUDIO_38_B_4",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Μαζί τους στο θέατρο θα είναι και μία ακόμη γυναίκα.",
+						"options": {
+							"A": "Σωστό",
+							"B": "Λάθος"
+						},
+						"correctAnswer": "A"
+					},
+					{
+						"id": "AUDIO_38_B_5",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Η παράσταση που αποφάσισαν να πάνε αρχίζει στις 9:00 το βράδυ.",
+						"options": {
+							"A": "Σωστό",
+							"B": "Λάθος"
+						},
+						"correctAnswer": "B"
+					}
+				]
+			}
+		]
+	},
+	{
+		"id": "AUDIO_39",
+		"title": "ΘΕΜΑ 39",
+		"audioUrl": "https://exetaseis-ithageneia.ypes.gr/PAPYROS/services/CustomServices/getExamTopicAudio/473/521626",
+		"parts": [
+			{
+				"id": "A",
+				"title": "ΜΕΡΟΣ Α",
+				"description": "Ακούστε πληροφορίες για τον ποιητή Οδυσσέα Ελύτη και επιλέξτε τη σωστή απάντηση στις ερωτήσεις που ακολουθούν.",
+				"questions": [
+					{
+						"id": "AUDIO_39_A_1",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Ο Οδυσσέας Ελύτης γεννήθηκε:",
+						"options": {
+							"A": "στην Αθήνα.",
+							"B": "στο Ηράκλειο.",
+							"C": "στη Λέσβο."
+						},
+						"correctAnswer": "B"
+					},
+					{
+						"id": "AUDIO_39_A_2",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Ο Οδυσσέας Ελύτης:",
+						"options": {
+							"A": "ολοκλήρωσε τις σπουδές του στη Νομική.",
+							"B": "έγινε διδάκτορας της Νομικής.",
+							"C": "εγκατέλειψε τις σπουδές του στη Νομική."
+						},
+						"correctAnswer": "C"
+					},
+					{
+						"id": "AUDIO_39_A_3",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Τα πρώτα του ποιήματα:",
+						"options": {
+							"A": "αντιμετωπίστηκαν με καχυποψία.",
+							"B": "δέχτηκαν πολύ σκληρή κριτική.",
+							"C": "αγαπήθηκαν από τους αναγνώστες."
+						},
+						"correctAnswer": "C"
+					},
+					{
+						"id": "AUDIO_39_A_4",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Όταν άρχισε ο πόλεμος, ο Ελύτης:",
+						"options": {
+							"A": "πολέμησε στο μέτωπο.",
+							"B": "πήγε στη Γαλλία.",
+							"C": "εξέδωσε την πρώτη του ποιητική συλλογή."
+						},
+						"correctAnswer": "A"
+					},
+					{
+						"id": "AUDIO_39_A_5",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Ο ποιητής βραβεύτηκε:",
+						"options": {
+							"A": "με το Νόμπελ.",
+							"B": "με το Όσκαρ.",
+							"C": "με το βραβείο ποίησης."
+						},
+						"correctAnswer": "A"
+					}
+				]
+			},
+			{
+				"id": "B",
+				"title": "ΜΕΡΟΣ Β",
+				"description": "Ακούστε οδηγίες για ηλεκτρονική αγορά εισιτηρίων για το θέατρο και σημειώστε στον πίνακα με Χ τις σωστές (Σ) και λάθος (Λ) προτάσεις.",
+				"questions": [
+					{
+						"id": "AUDIO_39_B_1",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Για την πραγματοποίηση αγορών είναι απαραίτητη η δημιουργία λογαριασμού.",
+						"options": {
+							"A": "Σωστό",
+							"B": "Λάθος"
+						},
+						"correctAnswer": "A"
+					},
+					{
+						"id": "AUDIO_39_B_2",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Ο χρήστης έχει τη δυνατότητα να παρακολουθήσει παλαιότερες συναλλαγές του.",
+						"options": {
+							"A": "Σωστό",
+							"B": "Λάθος"
+						},
+						"correctAnswer": "A"
+					},
+					{
+						"id": "AUDIO_39_B_3",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Ο χρήστης πρέπει υποχρεωτικά να συμπληρώσει όλα τα στοιχεία που του ζητούνται.",
+						"options": {
+							"A": "Σωστό",
+							"B": "Λάθος"
+						},
+						"correctAnswer": "B"
+					},
+					{
+						"id": "AUDIO_39_B_4",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Ο χρήστης πρέπει να συμπληρώσει τα στοιχεία του με ελληνικούς ή λατινικούς χαρακτήρες.",
+						"options": {
+							"A": "Σωστό",
+							"B": "Λάθος"
+						},
+						"correctAnswer": "B"
+					},
+					{
+						"id": "AUDIO_39_B_5",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Οι αγορές πραγματοποιούνται μόνο με πιστωτική κάρτα.",
+						"options": {
+							"A": "Σωστό",
+							"B": "Λάθος"
+						},
+						"correctAnswer": "B"
+					}
+				]
+			}
+		]
+	},
+	{
+		"id": "AUDIO_40",
+		"title": "ΘΕΜΑ 40",
+		"audioUrl": "https://exetaseis-ithageneia.ypes.gr/PAPYROS/services/CustomServices/getExamTopicAudio/474/703991",
+		"parts": [
+			{
+				"id": "A",
+				"title": "ΜΕΡΟΣ Α",
+				"description": "Ακούστε κάποιες πληροφορίες για το Κρατικό Πιστοποιητικό Πληροφορικής και επιλέξτε τη σωστή απάντηση στις ερωτήσεις που ακολουθούν.",
+				"questions": [
+					{
+						"id": "AUDIO_40_A_1",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Οι εξετάσεις για το Κρατικό Πιστοποιητικό Πληροφορικής",
+						"options": {
+							"A": "γίνονται τουλάχιστον μια φορά το χρόνο.",
+							"B": "γίνονται μόνο μια φορά το χρόνο.",
+							"C": "γίνονται κάθε εξάμηνο."
+						},
+						"correctAnswer": "A"
+					},
+					{
+						"id": "AUDIO_40_A_2",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Η εξέταση για το Κρατικό Πιστοποιητικό Πληροφορικής",
+						"options": {
+							"A": "είναι γραπτή.",
+							"B": "είναι ηλεκτρονική.",
+							"C": "είναι προφορική."
+						},
+						"correctAnswer": "B"
+					},
+					{
+						"id": "AUDIO_40_A_3",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Για το Κρατικό Πιστοποιητικό Πληροφορικής οι υποψήφιοι:",
+						"options": {
+							"A": "εξετάζονται σε τρεις ενότητες.",
+							"B": "εξετάζονται για λιγότερες από τρεις ώρες.",
+							"C": "εξετάζονται για δεκαπέντε λεπτά."
+						},
+						"correctAnswer": "A"
+					},
+					{
+						"id": "AUDIO_40_A_4",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Κατά τη διάρκεια των εξετάσεων",
+						"options": {
+							"A": "δεν υπάρχουν διαλείμματα.",
+							"B": "υπάρχει μόνο ένα διάλειμμα.",
+							"C": "υπάρχουν τουλάχιστον δύο διαλείμματα."
+						},
+						"correctAnswer": "C"
+					},
+					{
+						"id": "AUDIO_40_A_5",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Ο κάθε υποψήφιος για τις εξετάσεις πρέπει:",
+						"options": {
+							"A": "να κάνει μια αίτηση.",
+							"B": "να αποκτήσει έναν κωδικό και να συμπληρώσει τα στοιχεία του.",
+							"C": "να στείλει τα προσωπικά του στοιχεία."
+						},
+						"correctAnswer": "B"
+					}
+				]
+			},
+			{
+				"id": "B",
+				"title": "ΜΕΡΟΣ Β",
+				"description": "Ακούστε ένα κείμενο για τα ΕΛΤΑ και σημειώστε τις σωστές (Σ) και λάθος (Λ) προτάσεις.",
+				"questions": [
+					{
+						"id": "AUDIO_40_B_1",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Τα θεματικά γραμματόσημα είχαν θέμα τα απειλούμενα άγρια ζώα την περσινή χρονιά.",
+						"options": {
+							"A": "Σωστό",
+							"B": "Λάθος"
+						},
+						"correctAnswer": "B"
+					},
+					{
+						"id": "AUDIO_40_B_2",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Απεικονίζονται ζώα που ζουν σε ζωολογικούς κήπους.",
+						"options": {
+							"A": "Σωστό",
+							"B": "Λάθος"
+						},
+						"correctAnswer": "B"
+					},
+					{
+						"id": "AUDIO_40_B_3",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Για τα φετινά γραμματόσημα επιλέχθηκαν δύο ζώα.",
+						"options": {
+							"A": "Σωστό",
+							"B": "Λάθος"
+						},
+						"correctAnswer": "A"
+					},
+					{
+						"id": "AUDIO_40_B_4",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Τα ελληνικά γραμματόσημα σχεδιάστηκαν από καθηγητές της Σχολής Καλών Τεχνών.",
+						"options": {
+							"A": "Σωστό",
+							"B": "Λάθος"
+						},
+						"correctAnswer": "B"
+					},
+					{
+						"id": "AUDIO_40_B_5",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Η θεματική έκδοση των ελληνικών γραμματοσήμων θα λάβει μέρος σε έναν διαγωνισμό.",
+						"options": {
+							"A": "Σωστό",
+							"B": "Λάθος"
+						},
+						"correctAnswer": "A"
+					}
+				]
+			}
+		]
+	},
+	{
+		"id": "AUDIO_41",
+		"title": "ΘΕΜΑ 41",
+		"audioUrl": "https://exetaseis-ithageneia.ypes.gr/PAPYROS/services/CustomServices/getExamTopicAudio/475/540",
+		"parts": [
+			{
+				"id": "A",
+				"title": "ΜΕΡΟΣ Α",
+				"description": "Ακούστε τους κανόνες λειτουργίας μιας Δανειστικής Βιβλιοθήκης και επιλέξτε τη σωστή απάντηση στις ερωτήσεις που ακολουθούν.",
+				"questions": [
+					{
+						"id": "AUDIO_41_A_1",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Για να δανειστείς βιβλία πρέπει να έχεις μαζί σου:",
+						"options": {
+							"A": "την κάρτα μέλους.",
+							"B": "την αίτηση εγγραφής.",
+							"C": "την αστυνομική ταυτότητα."
+						},
+						"correctAnswer": "A"
+					},
+					{
+						"id": "AUDIO_41_A_2",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Μπορείς να δανειστείς ένα βιβλίο για:",
+						"options": {
+							"A": "10 μέρες.",
+							"B": "15 μέρες.",
+							"C": "20 μέρες."
+						},
+						"correctAnswer": "B"
+					},
+					{
+						"id": "AUDIO_41_A_3",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Κάθε μέλος μπορεί να δανειστεί",
+						"options": {
+							"A": "μόνο ένα βιβλίο τη φορά.",
+							"B": "έως τρία βιβλία τη φορά.",
+							"C": "όσα βιβλία θέλει κάθε φορά."
+						},
+						"correctAnswer": "B"
+					},
+					{
+						"id": "AUDIO_41_A_4",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Δεν επιτρέπεται ο δανεισμός",
+						"options": {
+							"A": "παιδικών βιβλίων.",
+							"B": "ποιητικών συλλογών.",
+							"C": "λεξικών."
+						},
+						"correctAnswer": "C"
+					},
+					{
+						"id": "AUDIO_41_A_5",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Αν χάσεις το βιβλίο που δανείστηκες,",
+						"options": {
+							"A": "πρέπει να το αντικαταστήσεις με ένα ίδιο βιβλίο.",
+							"B": "πρέπει να το αντικαταστήσεις με ένα βιβλίο ίσης αξίας.",
+							"C": "χάνεις αυτόματα το δικαίωμα δανεισμού."
+						},
+						"correctAnswer": "A"
+					}
+				]
+			},
+			{
+				"id": "B",
+				"title": "ΜΕΡΟΣ Β",
+				"description": "Ακούστε την τηλεφωνική συζήτηση μεταξύ ενός άνδρα και μιας γυναίκας. Σημειώστε με Χ τις σωστές (Σ) και λάθος (Λ) προτάσεις.",
+				"questions": [
+					{
+						"id": "AUDIO_41_B_1",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Η γυναίκα ενδιαφέρεται να αγοράσει ένα σπίτι.",
+						"options": {
+							"A": "Σωστό",
+							"B": "Λάθος"
+						},
+						"correctAnswer": "B"
+					},
+					{
+						"id": "AUDIO_41_B_2",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Το σπίτι έχει δύο κρεβατοκάμαρες.",
+						"options": {
+							"A": "Σωστό",
+							"B": "Λάθος"
+						},
+						"correctAnswer": "A"
+					},
+					{
+						"id": "AUDIO_41_B_3",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Το σπίτι βρίσκεται πίσω από μία εκκλησία.",
+						"options": {
+							"A": "Σωστό",
+							"B": "Λάθος"
+						},
+						"correctAnswer": "A"
+					},
+					{
+						"id": "AUDIO_41_B_4",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Το σπίτι είναι επιπλωμένο.",
+						"options": {
+							"A": "Σωστό",
+							"B": "Λάθος"
+						},
+						"correctAnswer": "B"
+					},
+					{
+						"id": "AUDIO_41_B_5",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Ο άνδρας και η γυναίκα θα συναντηθούν σε μία ώρα.",
+						"options": {
+							"A": "Σωστό",
+							"B": "Λάθος"
+						},
+						"correctAnswer": "A"
+					}
+				]
+			}
+		]
+	},
+	{
+		"id": "AUDIO_42",
+		"title": "ΘΕΜΑ 42",
+		"audioUrl": "https://exetaseis-ithageneia.ypes.gr/PAPYROS/services/CustomServices/getExamTopicAudio/476/541",
+		"parts": [
+			{
+				"id": "A",
+				"title": "ΜΕΡΟΣ Α",
+				"description": "Ακούστε την είδηση για έναν σεισμό και επιλέξτε τη σωστή απάντηση στις ερωτήσεις που ακολουθούν.",
+				"questions": [
+					{
+						"id": "AUDIO_42_A_1",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Ο σεισμός έγινε",
+						"options": {
+							"A": "τα ξημερώματα της ίδιας μέρας.",
+							"B": "το μεσημέρι της προηγούμενης μέρας.",
+							"C": "το απόγευμα της προηγούμενης μέρας."
+						},
+						"correctAnswer": "B"
+					},
+					{
+						"id": "AUDIO_42_A_2",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Οι δύο ηλικιωμένοι",
+						"options": {
+							"A": "τραυματίστηκαν ελαφρά.",
+							"B": "τραυματίστηκαν βαριά.",
+							"C": "σκοτώθηκαν."
+						},
+						"correctAnswer": "C"
+					},
+					{
+						"id": "AUDIO_42_A_3",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Μεγάλες ζημιές έχει υποστεί",
+						"options": {
+							"A": "η εκκλησία.",
+							"B": "το Δημοτικό Σχολείο.",
+							"C": "το Γυμνάσιο."
+						},
+						"correctAnswer": "A"
+					},
+					{
+						"id": "AUDIO_42_A_4",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Εξαιτίας του σεισμού το νησί δεν έχει",
+						"options": {
+							"A": "νερό.",
+							"B": "ρεύμα.",
+							"C": "τηλέφωνο."
+						},
+						"correctAnswer": "B"
+					},
+					{
+						"id": "AUDIO_42_A_5",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Οι ειδικοί",
+						"options": {
+							"A": "δεν περιμένουν μετασεισμούς.",
+							"B": "περιμένουν ισχυρούς μετασεισμούς.",
+							"C": "περιμένουν μετασεισμούς πιο ασθενείς από τον κύριο σεισμό."
+						},
+						"correctAnswer": "B"
+					}
+				]
+			},
+			{
+				"id": "B",
+				"title": "ΜΕΡΟΣ Β",
+				"description": "Ακούστε τη συζήτηση μεταξύ μιας μητέρας και του καθηγητή της κόρης της. Σημειώστε με Χ τις σωστές (Σ) και λάθος (Λ) προτάσεις.",
+				"questions": [
+					{
+						"id": "AUDIO_42_B_1",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Η Μαρίνα παρουσιάζει προβλήματα συμπεριφοράς.",
+						"options": {
+							"A": "Σωστό",
+							"B": "Λάθος"
+						},
+						"correctAnswer": "B"
+					},
+					{
+						"id": "AUDIO_42_B_2",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Ο καθηγητής είναι Μαθηματικός.",
+						"options": {
+							"A": "Σωστό",
+							"B": "Λάθος"
+						},
+						"correctAnswer": "A"
+					},
+					{
+						"id": "AUDIO_42_B_3",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Η Μαρίνα δε διαβάζει καθόλου.",
+						"options": {
+							"A": "Σωστό",
+							"B": "Λάθος"
+						},
+						"correctAnswer": "B"
+					},
+					{
+						"id": "AUDIO_42_B_4",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Η μητέρα της Μαρίνας δεν είναι μορφωμένη.",
+						"options": {
+							"A": "Σωστό",
+							"B": "Λάθος"
+						},
+						"correctAnswer": "A"
+					},
+					{
+						"id": "AUDIO_42_B_5",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Ο καθηγητής προτείνει να κάνει η Μαρίνα ιδιαίτερα μαθήματα.",
+						"options": {
+							"A": "Σωστό",
+							"B": "Λάθος"
+						},
+						"correctAnswer": "B"
+					}
+				]
+			}
+		]
+	},
+	{
+		"id": "AUDIO_43",
+		"title": "ΘΕΜΑ 43",
+		"audioUrl": "https://exetaseis-ithageneia.ypes.gr/PAPYROS/services/CustomServices/getExamTopicAudio/477/542",
+		"parts": [
+			{
+				"id": "A",
+				"title": "ΜΕΡΟΣ Α",
+				"description": "Ακούστε την ανακοίνωση ενός Δήμου και επιλέξτε τη σωστή απάντηση στις ερωτήσεις που ακολουθούν.",
+				"questions": [
+					{
+						"id": "AUDIO_43_A_1",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Τα τμήματα απευθύνονται",
+						"options": {
+							"A": "μόνο στους δημότες.",
+							"B": "μόνο στους κατοίκους της περιοχής.",
+							"C": "σε όλους τους ενδιαφερόμενους."
+						},
+						"correctAnswer": "C"
+					},
+					{
+						"id": "AUDIO_43_A_2",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Φέτος δε θα λειτουργήσει",
+						"options": {
+							"A": "το τμήμα πιάνου.",
+							"B": "το τμήμα κιθάρας.",
+							"C": "το τμήμα ζωγραφικής."
+						},
+						"correctAnswer": "B"
+					},
+					{
+						"id": "AUDIO_43_A_3",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Τα παιδιά δεν μπορούν να παρακολουθήσουν",
+						"options": {
+							"A": "το τμήμα θεάτρου.",
+							"B": "το τμήμα ζωγραφικής.",
+							"C": "το τμήμα αγιογραφίας."
+						},
+						"correctAnswer": "C"
+					},
+					{
+						"id": "AUDIO_43_A_4",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Οι εγγραφές γίνονται:",
+						"options": {
+							"A": "με επίσκεψη στον Δήμο.",
+							"B": "μέσω της ιστοσελίδας του Δήμου.",
+							"C": "τηλεφωνώντας στο αρμόδιο τμήμα του Δήμου."
+						},
+						"correctAnswer": "A"
+					},
+					{
+						"id": "AUDIO_43_A_5",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Έκπτωση δικαιούνται",
+						"options": {
+							"A": "οι δημότες.",
+							"B": "οι πολύτεκνοι.",
+							"C": "οι άνεργοι."
+						},
+						"correctAnswer": "C"
+					}
+				]
+			},
+			{
+				"id": "B",
+				"title": "ΜΕΡΟΣ Β",
+				"description": "Ακούστε τη συζήτηση μεταξύ μιας γυναίκας και ενός άνδρα. Σημειώστε με Χ τις σωστές (Σ) και λάθος (Λ) προτάσεις.",
+				"questions": [
+					{
+						"id": "AUDIO_43_B_1",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Ο άνδρας έχασε το πορτοφόλι του την προηγούμενη μέρα.",
+						"options": {
+							"A": "Σωστό",
+							"B": "Λάθος"
+						},
+						"correctAnswer": "A"
+					},
+					{
+						"id": "AUDIO_43_B_2",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Ο άνδρας έχασε το πορτοφόλι του στον χώρο εργασίας του.",
+						"options": {
+							"A": "Σωστό",
+							"B": "Λάθος"
+						},
+						"correctAnswer": "B"
+					},
+					{
+						"id": "AUDIO_43_B_3",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Μέσα στο πορτοφόλι δεν υπήρχαν καθόλου χρήματα.",
+						"options": {
+							"A": "Σωστό",
+							"B": "Λάθος"
+						},
+						"correctAnswer": "B"
+					},
+					{
+						"id": "AUDIO_43_B_4",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Μέσα στο πορτοφόλι υπήρχε το δίπλωμα οδήγησης του άνδρα.",
+						"options": {
+							"A": "Σωστό",
+							"B": "Λάθος"
+						},
+						"correctAnswer": "A"
+					},
+					{
+						"id": "AUDIO_43_B_5",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Ο άνδρας έκανε δήλωση απώλειας στην αστυνομία.",
+						"options": {
+							"A": "Σωστό",
+							"B": "Λάθος"
+						},
+						"correctAnswer": "A"
+					}
+				]
+			}
+		]
+	},
+	{
+		"id": "AUDIO_44",
+		"title": "ΘΕΜΑ 44",
+		"audioUrl": "https://exetaseis-ithageneia.ypes.gr/PAPYROS/services/CustomServices/getExamTopicAudio/478/543",
+		"parts": [
+			{
+				"id": "A",
+				"title": "ΜΕΡΟΣ Α",
+				"description": "Ακούστε πληροφορίες για το άγαλμα του Μεγάλου Αλεξάνδρου και επιλέξτε τη σωστή απάντηση στις ερωτήσεις που ακολουθούν.",
+				"questions": [
+					{
+						"id": "AUDIO_44_A_1",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Το άγαλμα του Μεγάλου Αλεξάνδρου είναι φτιαγμένο",
+						"options": {
+							"A": "από χαλκό.",
+							"B": "από μπρούτζο.",
+							"C": "από μάρμαρο."
+						},
+						"correctAnswer": "B"
+					},
+					{
+						"id": "AUDIO_44_A_2",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Ο Μέγας Αλέξανδρος αναπαρίσταται",
+						"options": {
+							"A": "πάνω στο άλογό του.",
+							"B": "δίπλα στο άλογό του.",
+							"C": "όρθιος με ασπίδα."
+						},
+						"correctAnswer": "A"
+					},
+					{
+						"id": "AUDIO_44_A_3",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Τα χρήματα για την ανέγερση του αλόγου συγκεντρώθηκαν",
+						"options": {
+							"A": "από δωρεές.",
+							"B": "από εράνους.",
+							"C": "από φόρους."
+						},
+						"correctAnswer": "B"
+					},
+					{
+						"id": "AUDIO_44_A_4",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Το εργαστήριο του γλύπτη βρισκόταν",
+						"options": {
+							"A": "στη Θεσσαλονίκη.",
+							"B": "στην Πεντέλη.",
+							"C": "στην Παλλήνη."
+						},
+						"correctAnswer": "C"
+					},
+					{
+						"id": "AUDIO_44_A_5",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Το άγαλμα έχει ύψος",
+						"options": {
+							"A": "4 μέτρα.",
+							"B": "6 μέτρα.",
+							"C": "11 μέτρα."
+						},
+						"correctAnswer": "B"
+					}
+				]
+			},
+			{
+				"id": "B",
+				"title": "ΜΕΡΟΣ Β",
+				"description": "Ακούστε την τηλεφωνική συζήτηση μεταξύ ενός άνδρα και μιας γυναίκας. Σημειώστε με Χ τις σωστές (Σ) και λάθος (Λ) προτάσεις.",
+				"questions": [
+					{
+						"id": "AUDIO_44_B_1",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Ο άνδρας είναι υδραυλικός.",
+						"options": {
+							"A": "Σωστό",
+							"B": "Λάθος"
+						},
+						"correctAnswer": "A"
+					},
+					{
+						"id": "AUDIO_44_B_2",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Το μπάνιο της γυναίκας πλημμύρισε.",
+						"options": {
+							"A": "Σωστό",
+							"B": "Λάθος"
+						},
+						"correctAnswer": "A"
+					},
+					{
+						"id": "AUDIO_44_B_3",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Η γυναίκα μένει στο κέντρο.",
+						"options": {
+							"A": "Σωστό",
+							"B": "Λάθος"
+						},
+						"correctAnswer": "B"
+					},
+					{
+						"id": "AUDIO_44_B_4",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Ο άνδρας θα πάει στο σπίτι της γυναίκας το ίδιο βράδυ.",
+						"options": {
+							"A": "Σωστό",
+							"B": "Λάθος"
+						},
+						"correctAnswer": "A"
+					},
+					{
+						"id": "AUDIO_44_B_5",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Η γυναίκα θα πληρώσει με πιστωτική κάρτα.",
+						"options": {
+							"A": "Σωστό",
+							"B": "Λάθος"
+						},
+						"correctAnswer": "B"
+					}
+				]
+			}
+		]
+	},
+	{
+		"id": "AUDIO_45",
+		"title": "ΘΕΜΑ 45",
+		"audioUrl": "https://exetaseis-ithageneia.ypes.gr/PAPYROS/services/CustomServices/getExamTopicAudio/479/544",
+		"parts": [
+			{
+				"id": "A",
+				"title": "ΜΕΡΟΣ Α",
+				"description": "Ακούστε την είδηση για μια πυρκαγιά και επιλέξτε τη σωστή απάντηση στις ερωτήσεις που ακολουθούν.",
+				"questions": [
+					{
+						"id": "AUDIO_45_A_1",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Η φωτιά ξέσπασε",
+						"options": {
+							"A": "αργά το προηγούμενο βράδυ.",
+							"B": "το απόγευμα της προηγούμενης μέρας.",
+							"C": "τα ξημερώματα της ίδιας μέρας."
+						},
+						"correctAnswer": "A"
+					},
+					{
+						"id": "AUDIO_45_A_2",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Η φωτιά ξεκίνησε",
+						"options": {
+							"A": "από άγνωστη αιτία.",
+							"B": "από μια ηλεκτρική σόμπα.",
+							"C": "από ένα αναμμένο κερί."
+						},
+						"correctAnswer": "B"
+					},
+					{
+						"id": "AUDIO_45_A_3",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Την ώρα της πυρκαγιάς",
+						"options": {
+							"A": "οι ένοικοι ήταν μέσα στο σπίτι.",
+							"B": "οι ένοικοι απουσίαζαν.",
+							"C": "οι ένοικοι βγήκαν από το σπίτι."
+						},
+						"correctAnswer": "B"
+					},
+					{
+						"id": "AUDIO_45_A_4",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Στο σημείο έφτασε μεγάλη πυροσβεστική δύναμη,",
+						"options": {
+							"A": "γιατί κινδύνευαν ανθρώπινες ζωές.",
+							"B": "γιατί η φωτιά ήταν μεγάλη.",
+							"C": "γιατί κινδύνευαν και άλλα διαμερίσματα."
+						},
+						"correctAnswer": "C"
+					},
+					{
+						"id": "AUDIO_45_A_5",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Το διαμέρισμα που ξέσπασε η φωτιά",
+						"options": {
+							"A": "κάηκε τελείως.",
+							"B": "είχε ελαφρές ζημιές.",
+							"C": "είχε σοβαρές ζημιές."
+						},
+						"correctAnswer": "A"
+					}
+				]
+			},
+			{
+				"id": "B",
+				"title": "ΜΕΡΟΣ Β",
+				"description": "Ακούστε τον Χρήστο να αφηγείται πώς αποφάσισε να μεταναστεύσει στη Σουηδία. Σημειώστε με Χ τις σωστές (Σ) και λάθος (Λ) προτάσεις.",
+				"questions": [
+					{
+						"id": "AUDIO_45_B_1",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Στην Αθήνα, ο Χρήστος εργαζόταν σε μια μεγάλη τράπεζα.",
+						"options": {
+							"A": "Σωστό",
+							"B": "Λάθος"
+						},
+						"correctAnswer": "B"
+					},
+					{
+						"id": "AUDIO_45_B_2",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Ο Χρήστος ήταν ικανοποιημένος από τη δουλειά του στην Αθήνα.",
+						"options": {
+							"A": "Σωστό",
+							"B": "Λάθος"
+						},
+						"correctAnswer": "A"
+					},
+					{
+						"id": "AUDIO_45_B_3",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Ο Χρήστος έχασε τη δουλειά του, λόγω της οικονομικής κρίσης.",
+						"options": {
+							"A": "Σωστό",
+							"B": "Λάθος"
+						},
+						"correctAnswer": "A"
+					},
+					{
+						"id": "AUDIO_45_B_4",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Ο Χρήστος έψαχνε για δουλειά έναν ολόκληρο χρόνο.",
+						"options": {
+							"A": "Σωστό",
+							"B": "Λάθος"
+						},
+						"correctAnswer": "B"
+					},
+					{
+						"id": "AUDIO_45_B_5",
+						"category": "ακουστικό",
+						"active": true,
+						"type": "multipleChoice",
+						"question": "Ο Χρήστος ζήτησε βοήθεια από τον Ορέστη.",
+						"options": {
+							"A": "Σωστό",
+							"B": "Λάθος"
+						},
+						"correctAnswer": "B"
+					}
+				]
+			}
+		]
 	}
 ]
