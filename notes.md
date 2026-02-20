@@ -227,3 +227,301 @@ TODO test 8-β-3 δέχετε πολλές απαντήσεις
   }
 ]
 ```
+# προταση για το test (με json)
+καλημέρα 
+
+Εχω φτιάξει ένα branch `alkis-wip`
+Σε αυτό έχω περάσει την προσέγγισή μου για την διαχείρηση του test
+τα κυριότερα αρχεία αν θέλετε να δείτε είναι τα:
+
+1. `core\frontend\js\test-full\pages\TestFullPagePicker.tsx`
+στο οποίο γίνετε ένα render μιας μιας των ερωτήσεων με ένα map
+
+2. `core\frontend\js\test-full\pages\TestFullQuestion.tsx`
+στο οποίο διαχορίζει το είδος της ερώτησης και διαλέγει το component που θα την κάνει render
+
+και
+3. `core\frontend\js\test-full\hooks\useFullGrading.ts `
+στο οπόιο υπάρχει όλη η λογική της βαθμολόγισης
+
+- συνάντησα πολλά διαφορετικά ήδη ερωτήσεων τα οποία περίπου είναι: 
+multipleChoice - shortText (δηλ κειμενο ελάχιστον λέξεων, έχω γράψει σε αλλο issue την προσέγγιση που ακολούθησα) - matching (αντιστοίχηση) - multiSelect (σαν multiple με περισσοτερες της μια σωστές) - listInput (ζητα πχ 4 απο λίστα) - trueFalseGroup (κάποιες ερωτήσεις είχαν πολλές σωστό/λάθος, αν μια ερώτηση ήταν απλώς σωστό/λάθος διαχειρίστικε ως multiple) - categorization - mapPoints (βάλε σημείο στον χάρτη) - wordMatching - openText (μικρά κείμενα 50-100 λέξεων)
+
+- επειδή δεν ήθελα να πειράξω το backend γιατί δεν είμαι εξοικιομένος με την python, στην αρχή δοκιμαστικά πέρασα δεδομένα σε json αρχεία (με οργανωμένα json prompts προς το chatGpt (μπορείτε να δείτε κάποια απο αυτά στο φάκελο core\frontend\js\test-full\notes)). Δυστοιχώς σιγά σιγα αυτή η επιλογή κατέληψε σε μια αρχιτεκτονική επιλογή. Αλλα και πάλι αναρωτιέμαι αν η sql θα ήταν κατάλληλη γιατι σχεδόν ανα δυο τρείς ερωτήσεις συνάνταγες μια υποπαραλαγή με διαφορετικά πεδία και ίσως να χρειαζόταν κάτι με λίγότερο αυστηρό schema. Τελος πάντων αυτό έκανα. ελπίζω να λύνει περισσότερα προβλήματα απο όσα δημιουργεί
+
+- τα json για ολοκληρη την ιστορια, γεωγραφία, πολιτισμό, θεσμοί και 35/50 ακουστικά μπορείτε να τα βρείτε στο 
+`core\frontend\js\test-full\data `
+και 45/100 θέματα γλώσσας στο 
+`core\frontend\js\languageTest\data`
+
+- οι ερωτήσεις open-text προσεγγίστηκαν όπως και στην έκθεση με call στο openAI api με όλα τα σχετικά προβλήματα (τιμής, μη σταθερότητας των αποτελεσμάτων κλπ). Εχουν υλοποιηθεί με κώδικα που βρίσκετε εκτός του branch και κάλουν εναν προσωρινό εξωτερικό προωσπικό μου server
+
+Για να λειτουργήσει η αξιολόγηση της έκθεσης στο branch αυτό, απαιτείται:
+`core/frontend/.env`
+με:
+VITE_LANGUAGE_GRADER_URL=https://portfolio-projects.space/open-text
+
+- οι φωτογραφίες εχουν μπει στο `core\frontend\static\test-full` που είναι στο .gitignore ομως
+
+- τα ηχητικά αρχεία δεν βρίσκονται εδώ αλλα τα παίρνω απο το site του υπουργείου κανοντας inspecti → network
+
+- μπορείτε να δείτε την κατάσταση του τέστ ως εκεί που έχω φτάσει εδω
+[test ithagenia](https://portfolio-projects.space/open-text/)
+
+
+### το prompt που στέλνετε στο openAI
+```ts
+ `
+Είσαι επίσημος εξεταστής.
+Ερώτηση:
+"${question}"
+Σωστή απάντηση:
+"""
+${correctAnswer}
+"""
+Απάντηση μαθητή:
+"""
+${studentText}
+"""
+Αξιολόγησε από 0 έως 100:
+1. content → ορθότητα και κατανόηση
+2. coverage → αν καλύπτει τα βασικά σημεία
+3. language → σαφήνεια και γραμματική
+ΕΠΙΣΤΡΕΨΕ ΜΟΝΟ έγκυρο JSON:
+{
+  "content": number,
+  "coverage": number,
+  "language": number
+}
+`
+```
+
+### node → openAi
+```ts
+router.post("/language/essay", essayLimiter, controllers.gradeEssay);
+router.post('/open-text-simple', essayLimiter, controllers.gradeOpenTextSimpleController)
+
+// για την ενότητα της έκθεσης
+// helper
+const countWords = (text: string) =>
+  text.trim().split(/\s+/).filter(Boolean).length;
+
+// Open Text Simple
+const gradeOpenTextSimpleController = async (
+  req: Request,
+  res: Response
+) => {
+  try {
+    const { question, correctAnswer, studentText, maxWords } = req.body;
+
+    // 1. type check
+    if (
+      typeof question !== 'string' ||
+      typeof correctAnswer !== 'string' ||
+      typeof studentText !== 'string' ||
+      typeof maxWords !== 'number'
+    ) {
+      throw new ValidationError('Invalid input types');
+    }
+
+    // 2. bounds check για maxWords
+    if (!Number.isFinite(maxWords) || maxWords < 1 || maxWords > 1000) {
+      throw new ValidationError('Invalid maxWords');
+    }
+
+    // 3. trim
+    const studentSafeText = studentText.trim();
+
+    // 4. empty check
+    if (!studentSafeText) {
+      throw new ValidationError('studentText is required');
+    }
+
+    // 5. char hard cap
+    if (studentSafeText.length > 5000) {
+      throw new ValidationError('Text too large');
+    }
+
+    // 6. word hard cap (security cap)
+    const wordCount = countWords(studentSafeText);
+    if (wordCount > 200) {
+      throw new ValidationError('Word limit exceeded');
+    }
+
+    const result = await gradeOpenTextSimple(
+      question.trim(),
+      correctAnswer.trim(),
+      studentSafeText,
+      maxWords
+    );
+
+    return res.json({
+      status: true,
+      ...result,
+    });
+  } catch (error) {
+    return handleControllerError(res, error);
+  }
+};
+
+const calculateWordLimitScore = (
+  wordCount: number,
+  maxWords: number,
+): number => {
+
+  const lower100 = Math.floor(maxWords * 0.7)
+  const upper100 = Math.ceil(maxWords * 1.3)
+
+  const lower80 = Math.floor(maxWords * 0.6)
+  const upper80 = Math.ceil(maxWords * 1.4)
+
+  // Ζώνη 100%
+  if (wordCount >= lower100 && wordCount <= upper100) {
+    return 100
+  }
+
+  // Ζώνη 80%
+  if (
+    (wordCount >= lower80 && wordCount < lower100) ||
+    (wordCount > upper100 && wordCount <= upper80)
+  ) {
+    return 80
+  }
+
+  return 0
+}
+
+export const gradeOpenTextSimple = async (
+  question: string,
+  correctAnswer: string,
+  studentText: string,
+  maxWords: number,
+): Promise<SimpleResult> => {
+  if (!question || !correctAnswer || !studentText) {
+    throw new ValidationError("Missing required fields");
+  }
+
+  // Word count locally
+  const words = countWords(studentText);
+  const wordLimitScore = calculateWordLimitScore(words, maxWords);
+
+  console.log("Word count:", words);
+  console.log("Word limit score:", wordLimitScore);
+
+  // OpenAI call
+  const response = await axios.post(
+    OPENAI_URL,
+    {
+      model: MODEL,
+      messages: [
+        {
+          role: "user",
+          content: buildPrompt(question, correctAnswer, studentText),
+        },
+      ],
+      temperature: 0,
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${consts.env.OPENAI_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+    },
+  );
+
+  const raw = response.data.choices[0].message.content;
+  const parsed = JSON.parse(raw) as SimpleScores;
+
+  // clamp safety
+  const content = Math.max(0, Math.min(100, parsed.content));
+  const coverage = Math.max(0, Math.min(100, parsed.coverage));
+  const language = Math.max(0, Math.min(100, parsed.language));
+
+  //  Calculate total backend-side
+  const total = Math.round(
+    (content + coverage + language + wordLimitScore) / 4,
+  );
+  const pass = total > 60;
+  return {
+    scores: {
+      content,
+      coverage,
+      language,
+      wordLimit: wordLimitScore,
+      total,
+    },
+    pass,
+  };
+};
+```
+
+### δείγμα απο τα json μοντέλα
+```json
+{
+  "Question": {
+    "id": "string",
+    "category": "string",
+    "active": true,
+    "type": "multipleChoice | multiSelect | shortText | trueFalseGroup | matching | openText",
+
+    "common": {
+      "question": "string",
+      "prompt": "string (optional)"
+    },
+
+    "multipleChoice": {
+      "options": {
+        "A": "string",
+        "B": "string",
+        "C": "string",
+        "D": "string"
+      },
+      "correctAnswer": "string"
+    },
+
+    "multiSelect": {
+      "options": ["string"],
+      "correctAnswer": ["string"],
+      "maxSelections": 2
+    },
+
+    "shortText": {
+      "multipleBlanks": true,
+      "prompt": "string (optional)",
+      "correctAnswer": ["string"]
+    },
+
+    "trueFalseGroup": {
+      "statements": [
+        {
+          "key": "string",
+          "text": "string"
+        }
+      ],
+      "correctAnswer": {
+        "statement.key": "T | F"
+      }
+    },
+
+    "matching": {
+      "columnAHeader": "string",
+      "columnBHeader": "string",
+      "columnA": [
+        { "key": "string", "label": "string" }
+      ],
+      "columnB": [
+        { "key": "string", "label": "string" }
+      ],
+      "correctAnswer": {
+        "columnA.key": "columnB.key"
+      }
+    },
+
+    "openText": {
+      "maxWords": 50,
+      "correctAnswer": "string"
+    }
+  }
+}
+
+```
