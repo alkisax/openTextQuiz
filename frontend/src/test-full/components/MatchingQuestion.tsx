@@ -105,12 +105,8 @@ const MatchingQuestionComponent = ({
                     </SelectTrigger>
 
                     <SelectContent
-                      position="popper"
-                      side="bottom"
-                      align="start"
-                      sideOffset={4}
-                      avoidCollisions={false}
-                      className="z-50"
+                      onCloseAutoFocus={(e) => e.preventDefault()}
+                      className="z-50 max-h-60 overflow-auto"
                     >
                       {question.columnB.map((opt) => (
                         <SelectItem key={opt.key} value={opt.key}>
