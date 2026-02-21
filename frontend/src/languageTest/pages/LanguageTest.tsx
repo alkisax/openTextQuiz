@@ -2,7 +2,7 @@
 
 // import testData from "../data/draftLanguageTests.json";
 import axios from "axios"
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { url } from "@/constants/constants"
@@ -33,6 +33,7 @@ const LanguageTest = ({ test }: LanguageTestProps) => {
 
 	const [essayResult, setEssayResult] = useState<EssayResult | null>(null)
 	const [essayLoading, setEssayLoading] = useState(false)
+	const textRef = useRef<HTMLDivElement | null>(null)
 
 	const partA = test.parts.A.questions
 	const partB = test.parts.B.questions
@@ -161,6 +162,34 @@ const LanguageTest = ({ test }: LanguageTestProps) => {
 
 	const getGraded = (id: string) => gradedAnswers.find((a) => a.id === id)
 
+	useEffect(() => {
+		const element = textRef.current
+		if (!element) return
+
+		const handleHighlight = () => {
+			const selection = window.getSelection()
+			if (!selection || selection.isCollapsed) return
+
+			const range = selection.getRangeAt(0)
+			if (!element.contains(range.commonAncestorContainer)) return
+
+			try {
+				const span = document.createElement("span")
+				span.className = "bg-yellow-300 px-1"
+				range.surroundContents(span)
+				selection.removeAllRanges()
+			} catch {
+				selection.removeAllRanges()
+			}
+		}
+
+		element.addEventListener("mouseup", handleHighlight)
+
+		return () => {
+			element.removeEventListener("mouseup", handleHighlight)
+		}
+	}, [])
+
 	return (
 		<div className="space-y-10 max-w-5xl mx-auto py-8">
 			<div className="max-w-3xl mx-auto py-8">
@@ -171,7 +200,10 @@ const LanguageTest = ({ test }: LanguageTestProps) => {
 
 					<CardContent className="space-y-4">
 						<p className="font-bold">{test.prompt}</p>
-						<div className="whitespace-pre-line text-justify leading-5">
+						<div
+							ref={textRef}
+							className="whitespace-pre-line text-justify leading-5 cursor-text select-text"
+						>
 							{test.text}
 						</div>
 					</CardContent>
