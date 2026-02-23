@@ -11,23 +11,23 @@ import AudioTest from "./test-full/pages/AudioTest"
 import LanguagePagePicker from "./test-full/pages/LanguagePagePicker"
 
 const App = () => {
-  return (
-    <BrowserRouter basename={import.meta.env.BASE_URL}>
-      <ScrollToTop />
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/open-text-page" element={<OpenText />} />
-          <Route path="/geography-maps" element={<GeoMapPageWrap />} />
-          <Route path="/language-test" element={<LanguagePageWrap />} />
-          <Route path="/geography-full" element={<GeographyFullWrap />} />
-          <Route path="/test-full" element={<TestFullWrap />} />
-          <Route path="/audio-test" element={<AudioTest />} />
-          <Route path="/language-test-full" element={<LanguagePagePicker />} />
-        </Routes>
-      </Layout>
-    </BrowserRouter>
-  )
+	return (
+		<BrowserRouter basename={import.meta.env.BASE_URL}>
+			<ScrollToTop />
+			<Layout>
+				<Routes>
+					<Route path="/" element={<Home />} />
+					<Route path="/open-text-page" element={<OpenText />} />
+					<Route path="/geography-maps" element={<GeoMapPageWrap />} />
+					<Route path="/language-test" element={<LanguagePageWrap />} />
+					<Route path="/geography-full" element={<GeographyFullWrap />} />
+					<Route path="/test-full" element={<TestFullWrap />} />
+					<Route path="/audio-test" element={<AudioTest />} />
+					<Route path="/language-test-full" element={<LanguagePagePicker />} />
+				</Routes>
+			</Layout>
+		</BrowserRouter>
+	)
 }
 
 export default App

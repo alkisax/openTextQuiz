@@ -74,9 +74,9 @@ export type FullTrueFalseGroupQuestion = FullQuestionBase & {
 }
 
 export type FullTrueFalseNAQuestion = FullQuestionBase & {
-  type: "trueFalseNA"
-  question: string
-  correctAnswer: "T" | "F" | "NA"
+	type: "trueFalseNA"
+	question: string
+	correctAnswer: "T" | "F" | "NA"
 }
 
 export type FullCategorizationQuestion = FullQuestionBase & {
@@ -141,7 +141,7 @@ export type FullQuestion =
 	| FullMultiSelectQuestion
 	| FullListInputQuestion
 	| FullTrueFalseGroupQuestion
-  | FullTrueFalseNAQuestion
+	| FullTrueFalseNAQuestion
 	| FullCategorizationQuestion
 	| GeoMapPointsQuestion
 	| FullWordMatchingQuestion

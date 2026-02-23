@@ -83,10 +83,14 @@ const ShortTextQuestion = ({ question, value, onChange }: Props) => {
 	return (
 		<div className="space-y-2">
 			{question.prompt && (
-				<p className="text-muted-foreground whitespace-pre-line">{question.prompt}</p>
+				<p className="text-muted-foreground whitespace-pre-line">
+					{question.prompt}
+				</p>
 			)}
 
-			<p className="font-medium leading-6 whitespace-pre-line">{renderWithBlanks()}</p>
+			<p className="font-medium leading-6 whitespace-pre-line">
+				{renderWithBlanks()}
+			</p>
 		</div>
 	)
 }
