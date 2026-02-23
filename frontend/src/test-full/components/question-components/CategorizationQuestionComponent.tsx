@@ -5,7 +5,7 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/components/ui/select"
-import type { FullCategorizationQuestion } from "../types/Full.types"
+import type { FullCategorizationQuestion } from "../../types/Full.types"
 
 type Props = {
 	question: FullCategorizationQuestion

@@ -1,5 +1,5 @@
-import type { FullWordMatchingQuestion } from "../types/Full.types"
-import QuestionMediaBlock from "./QuestionMediaBlock"
+import type { FullWordMatchingQuestion } from "../../types/Full.types"
+import QuestionMediaBlock from "../QuestionMediaBlock"
 
 type Props = {
 	question: FullWordMatchingQuestion

@@ -1,5 +1,5 @@
 import { Input } from "@/components/ui/input"
-import type { FullAnswer } from "../types/Full.types"
+import type { FullAnswer } from "../../types/Full.types"
 
 type Props = {
 	question: {

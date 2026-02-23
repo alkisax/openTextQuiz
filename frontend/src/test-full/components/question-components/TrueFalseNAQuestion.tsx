@@ -1,6 +1,6 @@
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
-import type { FullTrueFalseNAQuestion } from "../types/Full.types"
+import type { FullTrueFalseNAQuestion } from "../../types/Full.types"
 
 type Props = {
   question: FullTrueFalseNAQuestion

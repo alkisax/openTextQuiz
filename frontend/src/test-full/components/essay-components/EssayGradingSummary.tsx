@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
-import type { EssayResult } from "../types/language.types"
+import type { EssayResult } from "../../types/language.types"
 
 type Props = {
 	result: EssayResult

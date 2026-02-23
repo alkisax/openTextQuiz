@@ -10,17 +10,17 @@ import type {
   FullQuestion,
 } from "../types/Full.types"
 
-import MultipleChoiceQuestion from "../components/MultipleChoiceQuestion"
-import ShortTextQuestion from "../components/ShortTextQuestion"
-import MatchingQuestionComponent from "../components/MatchingQuestion"
-import TrueFalseNAQuestion from "../components/TrueFalseNAQuestion"
+import MultipleChoiceQuestion from "../components/question-components/MultipleChoiceQuestion"
+import ShortTextQuestion from "../components/question-components/ShortTextQuestion"
+import MatchingQuestionComponent from "../components/question-components/MatchingQuestion"
+import TrueFalseNAQuestion from "../components/question-components/TrueFalseNAQuestion"
 
-import EssayQuestion from "../components/EssayQuestion"
-import EssayGradingSummary from "../components/EssayGradingSummary"
+import EssayQuestion from "../components/essay-components/EssayQuestion"
+import EssayGradingSummary from "../components/essay-components/EssayGradingSummary"
 
 import type { LanguageFullTestType } from "../types/language.types"
 import { useEssayGrading } from "../hooks/useEssayGrading"
-import LanguageGradingSummary from "../components/LanguageGradingSummary"
+import LanguageGradingSummary from "../components/grading-components/LanguageGradingSummary"
 
 type Props = {
   test: LanguageFullTestType

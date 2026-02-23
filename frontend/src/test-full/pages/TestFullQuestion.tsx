@@ -1,16 +1,16 @@
 // frontend\src\test-full\pages\TestFullQuestion.tsx
 
-import CategorizationQuestionComponent from "../components/CategorizationQuestionComponent"
-import ListInputQuestion from "../components/ListInputQuestion"
-import MapPointsGradingBlock from "../components/MapPointsGradingBlock"
-import MapPointsQuestion from "../components/MapPointsQuestion"
-import MatchingQuestionComponent from "../components/MatchingQuestion"
-import MultipleChoiceQuestion from "../components/MultipleChoiceQuestion"
-import MultiSelectQuestion from "../components/MultiSelectQuestion"
-import OpenTextQuestion from "../components/OpenTextQuestion"
-import ShortTextQuestion from "../components/ShortTextQuestion"
-import TrueFalseGroupQuestion from "../components/TrueFalseGroupQuestion"
-import WordMatchingQuestion from "../components/WordMatchingQuestion"
+import CategorizationQuestionComponent from "../components/question-components/CategorizationQuestionComponent"
+import ListInputQuestion from "../components/question-components/ListInputQuestion"
+import MapPointsGradingBlock from "../components/map-components/MapPointsGradingBlock"
+import MapPointsQuestion from "../components/map-components/MapPointsQuestion"
+import MatchingQuestionComponent from "../components/question-components/MatchingQuestion"
+import MultipleChoiceQuestion from "../components/question-components/MultipleChoiceQuestion"
+import MultiSelectQuestion from "../components/question-components/MultiSelectQuestion"
+import OpenTextQuestion from "../components/question-components/OpenTextQuestion"
+import ShortTextQuestion from "../components/question-components/ShortTextQuestion"
+import TrueFalseGroupQuestion from "../components/question-components/TrueFalseGroupQuestion"
+import WordMatchingQuestion from "../components/question-components/WordMatchingQuestion"
 import type {
 	FullAnswer,
 	FullGradedAnswer,

@@ -15,8 +15,8 @@ import {
 	TableHeader,
 	TableRow,
 } from "@/components/ui/table"
-import type { FullMatchingQuestion } from "../types/Full.types"
-import QuestionMediaBlock from "./QuestionMediaBlock"
+import type { FullMatchingQuestion } from "../../types/Full.types"
+import QuestionMediaBlock from "../QuestionMediaBlock"
 
 type Props = {
 	question: FullMatchingQuestion

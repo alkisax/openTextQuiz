@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
-import type { FullGradedAnswer } from "../types/Full.types"
+import type { FullGradedAnswer } from "../../types/Full.types"
 
 type Props = {
   gradedAnswers: FullGradedAnswer[]

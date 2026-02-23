@@ -1,6 +1,6 @@
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
-import type { FullOpenTextQuestion } from "../types/Full.types"
+import type { FullOpenTextQuestion } from "../../types/Full.types"
 
 type Props = {
 	question: FullOpenTextQuestion

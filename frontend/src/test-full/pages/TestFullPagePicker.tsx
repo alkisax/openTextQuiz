@@ -1,7 +1,7 @@
 // frontend\src\test-full\pages\TestFullPagePicker.tsx
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import FullGradingSummary from "../components/FullGradingSummary"
+import FullGradingSummary from "../components/grading-components/FullGradingSummary"
 import cultureData from "../data/cultureData.json"
 import geoData from "../data/geoData.json"
 import historyData from "../data/historyData.json"

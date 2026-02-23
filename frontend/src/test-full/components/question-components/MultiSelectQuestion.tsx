@@ -1,6 +1,6 @@
 import { Checkbox } from "@/components/ui/checkbox"
-import type { FullMultiSelectQuestion } from "../types/Full.types"
-import QuestionMediaBlock from "./QuestionMediaBlock"
+import type { FullMultiSelectQuestion } from "../../types/Full.types"
+import QuestionMediaBlock from "../QuestionMediaBlock"
 
 type Props = {
 	question: FullMultiSelectQuestion

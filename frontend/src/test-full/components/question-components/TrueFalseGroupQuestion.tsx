@@ -1,7 +1,7 @@
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import type { FullTrueFalseGroupQuestion } from "../types/Full.types"
-import QuestionMediaBlock from "./QuestionMediaBlock"
+import type { FullTrueFalseGroupQuestion } from "../../types/Full.types"
+import QuestionMediaBlock from "../QuestionMediaBlock"
 
 type Props = {
 	question: FullTrueFalseGroupQuestion

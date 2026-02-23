@@ -3,8 +3,8 @@
 
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import type { FullMultipleChoiceQuestion } from "../types/Full.types"
-import QuestionMediaBlock from "./QuestionMediaBlock"
+import type { FullMultipleChoiceQuestion } from "../../types/Full.types"
+import QuestionMediaBlock from "../QuestionMediaBlock"
 
 type Props = {
 	question: FullMultipleChoiceQuestion
