@@ -12,10 +12,17 @@ const testData = rawTestData as LanguageFullTestType[]
 const LanguagePagePicker = () => {
   const [chosenTest, setChosenTest] = useState<LanguageFullTestType | null>(null)
 
-  const activeTests = useMemo(
-    () => testData.filter((t) => t.active !== false),
-    []
-  )
+  const activeTests = useMemo(() => {
+    return testData
+      .filter((t) => t.active !== false)
+      .sort((a, b) => {
+        const getNum = (title: string) => {
+          const match = title.match(/ΘΕΜΑ\s+(\d+)/)
+          return match ? Number(match[1]) : 0
+        }
+        return getNum(a.title) - getNum(b.title)
+      })
+  }, [])
 
   const handleRandom = () => {
     if (activeTests.length === 0) return

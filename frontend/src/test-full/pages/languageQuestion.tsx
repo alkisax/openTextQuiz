@@ -188,6 +188,17 @@ const LanguageQuestion = ({ test }: Props) => {
       <div className="space-y-6">
         <h2 className="text-xl font-bold">Μέρος Β</h2>
 
+        {test.parts.B.instructionsMultipleChoice && (
+          <p className="text-muted-foreground whitespace-pre-line">
+            multiple choice οδηγίες: {test.parts.B.instructionsMultipleChoice}
+          </p>
+        )}
+        {test.parts.B.instructionsShortText && (
+          <p className="text-muted-foreground whitespace-pre-line">
+            Ερωτήσεις σύντομου κειμένου οδηγίες: {test.parts.B.instructionsShortText}
+          </p>
+        )}
+
         {partB.map((q) => {
           const graded = getGraded(q.id)
           const gradedClass =
@@ -251,26 +262,26 @@ const LanguageQuestion = ({ test }: Props) => {
 
       {/* PART C */}
       <div>
-      <EssayQuestion
-        instructions={partC.instructions}
-        question={partC.question}
-        minWords={partC.minWords}
-        maxWords={partC.maxWords}
-        value={essayText}
-        onChange={setEssayText}
-      />
+        <EssayQuestion
+          instructions={partC.instructions}
+          question={partC.question}
+          minWords={partC.minWords}
+          maxWords={partC.maxWords}
+          value={essayText}
+          onChange={setEssayText}
+        />
 
-      <Button
-        onClick={() =>
-          gradeEssay({
-            prompt: partC.question,
-            studentText: essayText,
-          })
-        }
-        disabled={essayLoading}
-      >
-        {essayLoading ? "Αξιολόγηση..." : "Αξιολόγηση Έκθεσης"}
-      </Button>        
+        <Button
+          onClick={() =>
+            gradeEssay({
+              prompt: partC.question,
+              studentText: essayText,
+            })
+          }
+          disabled={essayLoading}
+        >
+          {essayLoading ? "Αξιολόγηση..." : "Αξιολόγηση Έκθεσης"}
+        </Button>
       </div>
 
 

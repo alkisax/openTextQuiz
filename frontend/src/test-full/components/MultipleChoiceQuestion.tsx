@@ -15,7 +15,7 @@ type Props = {
 const MultipleChoiceQuestion = ({ question, value, onChange }: Props) => {
 	return (
 		<div className="space-y-3">
-			<p className="font-medium">{question.question}</p>
+			<p className="font-medium whitespace-pre-line">{question.question}</p>
 
 			{question.media && <QuestionMediaBlock media={question.media} />}
 

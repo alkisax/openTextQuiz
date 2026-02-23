@@ -51,15 +51,17 @@ export const useFullGrading = () => {
     q: FullShortTextQuestion,
     userAnswer: FullAnswer | undefined,
   ): FullGradedAnswer => {
-    const userParts: string[] =
-      typeof userAnswer === "string"
-        ? [userAnswer]
-        : Array.isArray(userAnswer) &&
-            userAnswer.every((item) => typeof item === "string")
-          ? userAnswer
-          : [];
+    const correctParts = Array.isArray(q.correctAnswer)
+      ? q.correctAnswer
+      : [q.correctAnswer];
 
-    const correctParts = q.correctAnswer;
+    const userParts: string[] =
+      Array.isArray(userAnswer) &&
+      userAnswer.every((item) => typeof item === "string")
+        ? userAnswer
+        : typeof userAnswer === "string"
+          ? [userAnswer]
+          : [];
 
     let allCorrect = true;
     let hasSpellingErrors = false;
