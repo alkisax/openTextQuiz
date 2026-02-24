@@ -2,6 +2,7 @@ import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import type { FullTrueFalseNAQuestion } from "../../types/Full.types"
 
+// value schema: "T" | "F" | "NA" Απλό string union. Δεν είναι object όπως στο trueFalseGroup.
 type Props = {
 	question: FullTrueFalseNAQuestion
 	value?: string
@@ -41,3 +42,13 @@ const TrueFalseNAQuestion = ({ question, value, onChange }: Props) => {
 }
 
 export default TrueFalseNAQuestion
+
+/*
+{
+  "id": "LANG_TEST_1_A_6",
+  "type": "trueFalseNA",
+  "question": "Οι ηλεκτρονικές συναλλαγές περιορίζουν τις επιλογές μας",
+  "correctAnswer": "F",
+  "category": "γλώσσα"
+},
+*/

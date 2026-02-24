@@ -2,6 +2,7 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import type { FullOpenTextQuestion } from "../../types/Full.types"
 
+// value schema: "Το εκλογικό σύστημα είναι..." Απλό string. Το grading (AI) λαμβάνει αυτό το string αυτούσιο.
 type Props = {
 	question: FullOpenTextQuestion
 	value?: string
@@ -9,8 +10,12 @@ type Props = {
 }
 
 const OpenTextQuestion = ({ question, value = "", onChange }: Props) => {
+  // Υπολογισμός λέξεων:
+	// trim → αφαιρούμε κενά αρχής/τέλους
+	// split(/\s+/) → διαχωρισμός σε whitespace
 	const wordCount = value.trim() ? value.trim().split(/\s+/).length : 0
 
+  // UI-only validation (δεν κόβει input, απλά ενημερώνει)
 	const isOverLimit = wordCount > question.maxWords
 
 	return (
@@ -24,6 +29,7 @@ const OpenTextQuestion = ({ question, value = "", onChange }: Props) => {
 				rows={6}
 			/>
 
+      {/* UI feedback — δεν επιβάλλει hard stop */}
 			<div className="text-sm text-muted-foreground">
 				Λέξεις: {wordCount} / {question.maxWords}
 			</div>
@@ -38,3 +44,15 @@ const OpenTextQuestion = ({ question, value = "", onChange }: Props) => {
 }
 
 export default OpenTextQuestion
+
+/*
+	{
+		"id": "INST_68",
+		"category": "θεσμοί",
+		"active": true,
+		"type": "openText",
+		"question": "Τι είναι «το εκλογικό σύστημα;» Απάντηση: μέχρι πενήντα(50) λέξεις",
+		"maxWords": 50,
+		"correctAnswer": "Εκλογικό σύστημα είναι ο τρόπος κατανομής των βουλευτικών εδρών και εκλογής των υποψηφίων στις εκλογές. Ορίζεται με ειδικό νόμο ή κανονισμό, ο οποίος ονομάζεται εκλογικός. Με βάση τις διατάξεις του για την εκπροσώπηση των πολιτικών συνδυασμών, διακρίνεται σε τρεις βασικές κατηγορίες: πλειοψηφικό, αναλογικό και σύνθετο ή μικτό."
+	},
+*/

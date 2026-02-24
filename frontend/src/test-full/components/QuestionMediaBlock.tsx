@@ -17,6 +17,7 @@ const extractLetter = (src: string): string => {
 }
 
 const QuestionMediaBlock = ({ media }: Props) => {
+  // Guard: αν δεν υπάρχει media → δεν γίνεται render τίποτα
 	if (!media || media.length === 0) return null
 
 	return (

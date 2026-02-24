@@ -1,12 +1,5 @@
 // frontend\src\test-full\components\MatchingQuestion.tsx
 
-// import {
-//   Select,
-//   SelectContent,
-//   SelectItem,
-//   SelectTrigger,
-//   SelectValue,
-// } from "@/components/ui/select";
 import {
 	Table,
 	TableBody,
@@ -18,6 +11,7 @@ import {
 import type { FullMatchingQuestion } from "../../types/Full.types"
 import QuestionMediaBlock from "../QuestionMediaBlock"
 
+// value schema: { "1": "C", "2": "A" } όπου key = columnA.key και value = columnB.key
 type Props = {
 	question: FullMatchingQuestion
 	value?: Record<string, string>
@@ -29,6 +23,8 @@ const MatchingQuestionComponent = ({
 	value = {},
 	onChange,
 }: Props) => {
+
+  // χρειάζεται νέο γιατι ο Parent δεν ξέρει το schema κάθε ερώτησης
 	const handleSelect = (rowKey: string, selected: string) => {
 		onChange({
 			...value,
@@ -41,6 +37,7 @@ const MatchingQuestionComponent = ({
 			{/* Εκφώνηση */}
 			<p className="font-medium">{question.question}</p>
 
+      {/* ενας renderer μιας η περισσοτερων εικονων. είναι έτσι σε πολλα components που είναι πιθανό να έχουν πεδία question.media */}
 			{question.media && question.media.length > 0 && (
 				<QuestionMediaBlock media={question.media} />
 			)}
@@ -98,6 +95,7 @@ const MatchingQuestionComponent = ({
 								</TableCell>
 
 								<TableCell>
+                  {/* χρησιμοποιούμε select γιατι είχαμε προβλήματα σε mobile Opera browser */}
 									<select
 										className="w-52 rounded-md border border-input bg-background px-3 py-2 text-sm"
 										value={value[item.key] ?? ""}
@@ -122,3 +120,60 @@ const MatchingQuestionComponent = ({
 }
 
 export default MatchingQuestionComponent
+
+
+/*
+	{
+		"id": "CULT_16",
+		"category": "πολιτισμός",
+		"active": true,
+		"type": "matching",
+		"question": "Να αναγνωρίσετε τα μνημεία που απεικονίζονται στις φωτογραφίες.",
+		"media": [
+			{
+				"id": "A",
+				"type": "image",
+				"src": "test-full/media/culture/16a.jpg",
+				"alt": "Εικ. Α"
+			},
+			{
+				"id": "B",
+				"type": "image",
+				"src": "test-full/media/culture/16b.jpg",
+				"alt": "Εικ. Β"
+			},
+			{
+				"id": "C",
+				"type": "image",
+				"src": "test-full/media/culture/16c.jpg",
+				"alt": "Εικ. Γ"
+			},
+			{
+				"id": "D",
+				"type": "image",
+				"src": "test-full/media/culture/16d.jpg",
+				"alt": "Εικ. Δ"
+			}
+		],
+		"columnAHeader": "Μνημεία",
+		"columnBHeader": "Εικόνες",
+		"columnA": [
+			{ "key": "1", "label": "Οι στύλοι του Ολυμπίου Διός στην Αθήνα" },
+			{ "key": "2", "label": "Η Θόλος των Δελφών" },
+			{ "key": "3", "label": "Η Πύλη των Λεόντων στις Μυκήνες" },
+			{ "key": "4", "label": "Ο Ναός Ποσειδώνος στο Σούνιο" }
+		],
+		"columnB": [
+			{ "key": "A", "label": "Εικ. Α" },
+			{ "key": "B", "label": "Εικ. Β" },
+			{ "key": "C", "label": "Εικ. Γ" },
+			{ "key": "D", "label": "Εικ. Δ" }
+		],
+		"correctAnswer": {
+			"1": "C",
+			"2": "B",
+			"3": "D",
+			"4": "A"
+		}
+	},
+*/
