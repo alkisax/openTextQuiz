@@ -53,7 +53,7 @@ router.post("/language", controllers.gradeTextWithLanguage);
 // ✅ TOTAL (text-to-text)
 router.post("/total/text", controllers.gradeTotalText);
 
-// για την ενώτητα της έκθεσης
+// για την ενοτητα της έκθεσης
 console.log("Registering POST /language/essay");
 router.post("/language/essay", essayLimiter, controllers.gradeEssay);
 

@@ -14,7 +14,7 @@ const Navbar = () => {
 				{/* Desktop menu */}
 				<div className="hidden md:flex gap-3">
 					<NavItem to="/" label="Αρχική" />
-					<NavItem to="/language-test" label="Κατανόηση Γλώσσας" />
+					<NavItem to="/language-test-full" label="Κατανόηση Γλώσσας" />
 					<NavItem to="/test-full" label="Γνώσεων" />
 					<NavItem to="/audio-test" label="Ακουστικό" />
 				</div>
@@ -34,7 +34,7 @@ const Navbar = () => {
 				<div className="md:hidden px-4 pb-4 flex flex-col gap-3">
 					<NavItem to="/" label="Αρχική" onClick={() => setOpen(false)} />
 					<NavItem
-						to="/language-test"
+						to="/language-test-full"
 						label="Κατανόηση Γλώσσας"
 						onClick={() => setOpen(false)}
 					/>
