@@ -44,6 +44,7 @@ type GradeAllResult = {
 export const useFullGrading = () => {
 	
 	// 🖖 multipleChoice grading
+  //  -------------------------
   // value schema: "A"  όπου value = το key της επιλογής (πχ "A", "B", "C", "D")
 	const gradeMultipleChoice = (
 		q: FullMultipleChoiceQuestion,
@@ -62,6 +63,7 @@ export const useFullGrading = () => {
 	}
 
 	// 🎉shortText grading
+  // -------------------
   // value schema: Αν multipleBlanks = false: "Καποδίστριας" Αν multipleBlanks = true: ["Φίλιππος Β΄", "Κωνσταντίνος ΙΑ΄ Παλαιολόγος", ...]
 	const gradeShortText = (
 		q: FullShortTextQuestion,
@@ -134,6 +136,7 @@ export const useFullGrading = () => {
 	}
 	
 	// 💥 matching grading
+  //  -------------------
   // value schema: { "1": "C", "2": "A" } όπου key = columnA.key και value = columnB.key
 	const gradeMatching = (
 		q: FullMatchingQuestion,
@@ -163,6 +166,7 @@ export const useFullGrading = () => {
 	}
 
 	// 💣 multiSelect grading
+  // ----------------------
   // value schema: ["B", "C"] όπου κάθε στοιχείο του array είναι option key.
 	const gradeMultiSelect = (
 		q: FullMultiSelectQuestion,
@@ -197,6 +201,7 @@ export const useFullGrading = () => {
 	}
 	
 	// 🐥 listInput grading
+  //  --------------------
   // value schema: ["Αττικής", "Κρήτης", "", ""] Array σταθερού μήκους (maxItems) Κάθε index αντιστοιχεί σε μία αριθμημένη γραμμή απάντησης.
   // Πάντα array μήκους maxItems, Κάποια indexes μπορεί να είναι "", Η θέση δεν παίζει ρόλο στο grading
 	const gradeListInput = (
@@ -258,6 +263,7 @@ export const useFullGrading = () => {
 	}
 	
 	// ✅ trueFalseGroup grading
+  //  ------------------------
   // value schema: { "1": "T", "2": "F", "3": "T" } όπου key = statement.key
 	const gradeTrueFalseGroup = (
 		q: FullTrueFalseGroupQuestion,
@@ -285,6 +291,7 @@ export const useFullGrading = () => {
 
 	
 	// 😶trueFalseNA grading
+  // ---------------------
   // value schema: "T" | "F" | "NA" Απλό string union. Δεν είναι object όπως στο trueFalseGroup.
 	const gradeTrueFalseNA = (
 		q: FullTrueFalseNAQuestion,
@@ -303,6 +310,7 @@ export const useFullGrading = () => {
 
 	
 	// 😺 categorization grading
+  // -------------------------
   // value schema: { "Κερκίνη": "II", "Αλιάκμονας": "I" }
 	const gradeCategorization = (
 		q: FullCategorizationQuestion,
@@ -346,7 +354,8 @@ export const useFullGrading = () => {
 	}
 
 	
-	//🌏 mapPoints grading
+	// 🌏 mapPoints grading
+  // --------------------- 
 	const gradeMapPoints = (
 		q: GeoMapPointsQuestion,
 		userAnswer: FullAnswer | undefined,
@@ -383,6 +392,7 @@ export const useFullGrading = () => {
 
 	
 	// 📕 wordMatching grading
+  // -------------------------
   // value schema: { "1": "του Δία", "2": "του Απόλλωνα" } key = blankKey (αριθμός κενού μέσα στο textTemplate), value = wordBank key (πχ "1A", "2B")
 	const gradeWordMatching = (
 		q: FullWordMatchingQuestion,
@@ -410,6 +420,7 @@ export const useFullGrading = () => {
 
 	
 	// 💬 open text
+  //  -----------
   // value schema: "Το εκλογικό σύστημα είναι..." Απλό string. Το grading (AI) λαμβάνει αυτό το string αυτούσιο.
 	const gradeOpenTextAsync = async (
 		q: FullOpenTextQuestion,

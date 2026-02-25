@@ -3,7 +3,8 @@ import ScrollToTop from "./components/ScrollToTop"
 import Layout from "./layout/Layout"
 import { GeographyFullWrap } from "./pages/GeographyFullWrap"
 import GeoMapPageWrap from "./pages/GeoMapPageWrap"
-import Home from "./pages/Home"
+// import Home from "./pages/Home"
+import EntryPoint from './test-full/pages/EntryPoint'
 import LanguagePageWrap from "./pages/LanguagePageWrap"
 import OpenText from "./pages/OpenText"
 import { TestFullWrap } from "./pages/TestFullWrap"
@@ -16,7 +17,7 @@ const App = () => {
 			<ScrollToTop />
 			<Layout>
 				<Routes>
-					<Route path="/" element={<Home />} />
+					<Route path="/" element={<EntryPoint />} />
 					<Route path="/open-text-page" element={<OpenText />} />
 					<Route path="/geography-maps" element={<GeoMapPageWrap />} />
 					<Route path="/language-test" element={<LanguagePageWrap />} />
