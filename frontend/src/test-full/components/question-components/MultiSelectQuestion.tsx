@@ -7,68 +7,67 @@ import QuestionMediaBlock from "../QuestionMediaBlock"
 
 // value schema: ["B", "C"] όπου κάθε στοιχείο του array είναι option key.
 type Props = {
-  question: FullMultiSelectQuestion
-  value?: string[]
-  onChange: (value: string[]) => void
+	question: FullMultiSelectQuestion
+	value?: string[]
+	onChange: (value: string[]) => void
 }
 
 const MultiSelectQuestion = ({ question, value = [], onChange }: Props) => {
+	// Toggle επιλογής:
+	// - Αν υπάρχει → αφαιρείται
+	// - Αν δεν υπάρχει → προστίθεται
+	// - Αν έχει φτάσει maxSelections → αγνοείται
+	// Δεν γίνεται enforcement του minSelections στο UI (μόνο ενημερωτικό). Το  το ελέγχει το grading.
+	const handleToggle = (option: string) => {
+		const current = value ?? []
+		const alreadySelected = current.includes(option)
 
-  // Toggle επιλογής:
-  // - Αν υπάρχει → αφαιρείται
-  // - Αν δεν υπάρχει → προστίθεται
-  // - Αν έχει φτάσει maxSelections → αγνοείται
-  // Δεν γίνεται enforcement του minSelections στο UI (μόνο ενημερωτικό). Το  το ελέγχει το grading.
-  const handleToggle = (option: string) => {
-    const current = value ?? []
-    const alreadySelected = current.includes(option)
+		if (alreadySelected) {
+			onChange(current.filter((o) => o !== option))
+			return
+		}
 
-    if (alreadySelected) {
-      onChange(current.filter((o) => o !== option))
-      return
-    }
+		// Αν φτάσαμε maxSelections δεν προσθέτουμε άλλο
+		if (current.length >= question.maxSelections) return
 
-    // Αν φτάσαμε maxSelections δεν προσθέτουμε άλλο
-    if (current.length >= question.maxSelections) return
+		onChange([...current, option])
+	}
 
-    onChange([...current, option])
-  }
+	return (
+		<div className="space-y-4">
+			<p className="font-medium whitespace-pre-line">{question.question}</p>
 
-  return (
-    <div className="space-y-4">
-      <p className="font-medium whitespace-pre-line">{question.question}</p>
+			{/* ενας renderer μιας η περισσοτερων εικονων. είναι έτσι σε πολλα components που είναι πιθανό να έχουν πεδία question.media */}
+			{question.media && question.media.length > 0 && (
+				<QuestionMediaBlock media={question.media} />
+			)}
 
-      {/* ενας renderer μιας η περισσοτερων εικονων. είναι έτσι σε πολλα components που είναι πιθανό να έχουν πεδία question.media */}
-      {question.media && question.media.length > 0 && (
-        <QuestionMediaBlock media={question.media} />
-      )}
+			<div className="space-y-2">
+				{question.options.map((option) => {
+					const id = `multi-${question.id}-${option}`
 
-      <div className="space-y-2">
-        {question.options.map((option) => {
-          const id = `multi-${question.id}-${option}`
+					// δεν χρειαζόμαστε Object.entries(...) όπως στο multiple γιατί εκεί ήταν options: { A: 'Αθήνα', B: 'Ρώμη' } ενώ εδώ options: ["A", "B", "C", "D"]. Άρα είναι ήδη array
+					// εδώ έχουμε απλό label και οχι Label γιατι αν δεν κάνω λάθος έσπαγε σε mobile
+					return (
+						<div key={option} className="flex items-center space-x-2">
+							<Checkbox
+								id={id}
+								checked={value.includes(option)}
+								onCheckedChange={() => handleToggle(option)}
+							/>
+							<label htmlFor={id} className="text-sm font-medium">
+								{option}
+							</label>
+						</div>
+					)
+				})}
+			</div>
 
-          // δεν χρειαζόμαστε Object.entries(...) όπως στο multiple γιατί εκεί ήταν options: { A: 'Αθήνα', B: 'Ρώμη' } ενώ εδώ options: ["A", "B", "C", "D"]. Άρα είναι ήδη array
-          // εδώ έχουμε απλό label και οχι Label γιατι αν δεν κάνω λάθος έσπαγε σε mobile
-          return (
-            <div key={option} className="flex items-center space-x-2">
-              <Checkbox
-                id={id}
-                checked={value.includes(option)}
-                onCheckedChange={() => handleToggle(option)}
-              />
-              <label htmlFor={id} className="text-sm font-medium">
-                {option}
-              </label>
-            </div>
-          )
-        })}
-      </div>
-
-      <p className="text-xs text-muted-foreground">
-        Επιλέξτε {question.minSelections} έως {question.maxSelections}.
-      </p>
-    </div>
-  )
+			<p className="text-xs text-muted-foreground">
+				Επιλέξτε {question.minSelections} έως {question.maxSelections}.
+			</p>
+		</div>
+	)
 }
 
 export default MultiSelectQuestion

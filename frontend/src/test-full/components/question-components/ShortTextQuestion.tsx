@@ -14,22 +14,22 @@ type Props = {
 }
 
 const ShortTextQuestion = ({ question, value, onChange }: Props) => {
-  // Χωρίζουμε το κείμενο στα "__" placeholders
+	// Χωρίζουμε το κείμενο στα "__" placeholders
 	const parts = question.question.split("__")
 	const blanksCount = parts.length - 1
 
 	// Ελέγχουμε αν το value είναι string[]
-  // Type guard για να ξεχωρίζουμε string[] από string
+	// Type guard για να ξεχωρίζουμε string[] από string
 	const isStringArray = (val: unknown): val is string[] => {
 		return Array.isArray(val) && val.every((item) => typeof item === "string")
 	}
 
-  // Single blank case
+	// Single blank case
 	const handleSingleChange = (val: string) => {
 		onChange(val)
 	}
 
-  // Multiple blanks case
+	// Multiple blanks case
 	const handleMultiChange = (index: number, val: string) => {
 		const current = isStringArray(value) ? value : []
 
@@ -40,7 +40,7 @@ const ShortTextQuestion = ({ question, value, onChange }: Props) => {
 	}
 
 	const renderWithBlanks = () => {
-    // Αν δεν υπάρχουν "__" → απλό κείμενο
+		// Αν δεν υπάρχουν "__" → απλό κείμενο
 		if (blanksCount === 0) {
 			return question.question
 		}
@@ -88,7 +88,7 @@ const ShortTextQuestion = ({ question, value, onChange }: Props) => {
 
 	return (
 		<div className="space-y-2">
-      {/* Προαιρετικό prompt (π.χ. οδηγίες) */}
+			{/* Προαιρετικό prompt (π.χ. οδηγίες) */}
 			{question.prompt && (
 				<p className="text-muted-foreground whitespace-pre-line">
 					{question.prompt}

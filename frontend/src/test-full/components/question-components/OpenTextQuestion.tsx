@@ -10,12 +10,12 @@ type Props = {
 }
 
 const OpenTextQuestion = ({ question, value = "", onChange }: Props) => {
-  // Υπολογισμός λέξεων:
+	// Υπολογισμός λέξεων:
 	// trim → αφαιρούμε κενά αρχής/τέλους
 	// split(/\s+/) → διαχωρισμός σε whitespace
 	const wordCount = value.trim() ? value.trim().split(/\s+/).length : 0
 
-  // UI-only validation (δεν κόβει input, απλά ενημερώνει)
+	// UI-only validation (δεν κόβει input, απλά ενημερώνει)
 	const isOverLimit = wordCount > question.maxWords
 
 	return (
@@ -29,7 +29,7 @@ const OpenTextQuestion = ({ question, value = "", onChange }: Props) => {
 				rows={6}
 			/>
 
-      {/* UI feedback — δεν επιβάλλει hard stop */}
+			{/* UI feedback — δεν επιβάλλει hard stop */}
 			<div className="text-sm text-muted-foreground">
 				Λέξεις: {wordCount} / {question.maxWords}
 			</div>

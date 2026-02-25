@@ -23,8 +23,7 @@ const MatchingQuestionComponent = ({
 	value = {},
 	onChange,
 }: Props) => {
-
-  // χρειάζεται νέο γιατι ο Parent δεν ξέρει το schema κάθε ερώτησης
+	// χρειάζεται νέο γιατι ο Parent δεν ξέρει το schema κάθε ερώτησης
 	const handleSelect = (rowKey: string, selected: string) => {
 		onChange({
 			...value,
@@ -37,7 +36,7 @@ const MatchingQuestionComponent = ({
 			{/* Εκφώνηση */}
 			<p className="font-medium">{question.question}</p>
 
-      {/* ενας renderer μιας η περισσοτερων εικονων. είναι έτσι σε πολλα components που είναι πιθανό να έχουν πεδία question.media */}
+			{/* ενας renderer μιας η περισσοτερων εικονων. είναι έτσι σε πολλα components που είναι πιθανό να έχουν πεδία question.media */}
 			{question.media && question.media.length > 0 && (
 				<QuestionMediaBlock media={question.media} />
 			)}
@@ -95,7 +94,7 @@ const MatchingQuestionComponent = ({
 								</TableCell>
 
 								<TableCell>
-                  {/* χρησιμοποιούμε select γιατι είχαμε προβλήματα σε mobile Opera browser */}
+									{/* χρησιμοποιούμε select γιατι είχαμε προβλήματα σε mobile Opera browser */}
 									<select
 										className="w-52 rounded-md border border-input bg-background px-3 py-2 text-sm"
 										value={value[item.key] ?? ""}
@@ -120,7 +119,6 @@ const MatchingQuestionComponent = ({
 }
 
 export default MatchingQuestionComponent
-
 
 /*
 	{

@@ -12,8 +12,7 @@ type Props = {
 }
 
 const TrueFalseGroupQuestion = ({ question, value = {}, onChange }: Props) => {
-
-  // o parent δεν γνωρίζει schema κάθε ερώτησης
+	// o parent δεν γνωρίζει schema κάθε ερώτησης
 	const handleChange = (key: string, val: "T" | "F") => {
 		onChange({
 			...value,
@@ -23,10 +22,10 @@ const TrueFalseGroupQuestion = ({ question, value = {}, onChange }: Props) => {
 
 	return (
 		<div className="space-y-4">
-      {/* εκφώνηση */}
+			{/* εκφώνηση */}
 			<p className="font-medium">{question.question}</p>
 
-      {/* ενας renderer μιας η περισσοτερων εικονων. είναι έτσι σε πολλα components που είναι πιθανό να έχουν πεδία question.media */}
+			{/* ενας renderer μιας η περισσοτερων εικονων. είναι έτσι σε πολλα components που είναι πιθανό να έχουν πεδία question.media */}
 			{question.media && question.media.length > 0 && (
 				<QuestionMediaBlock media={question.media} />
 			)}
@@ -38,7 +37,7 @@ const TrueFalseGroupQuestion = ({ question, value = {}, onChange }: Props) => {
 							{statement.key}. {statement.text}
 						</p>
 
-            {/* Κάθε statement έχει ανεξάρτητο RadioGroup. (είμαστε μέσα στο map) */}
+						{/* Κάθε statement έχει ανεξάρτητο RadioGroup. (είμαστε μέσα στο map) */}
 						<RadioGroup
 							value={value[statement.key]}
 							onValueChange={(val) =>

@@ -19,7 +19,6 @@ const CategorizationQuestionComponent = ({
 	value = {},
 	onChange,
 }: Props) => {
-
 	const handleSelect = (item: string, categoryKey: string) => {
 		onChange({
 			...value,
@@ -29,7 +28,7 @@ const CategorizationQuestionComponent = ({
 
 	return (
 		<div className="space-y-4">
-      {/* εκφώνηση */}
+			{/* εκφώνηση */}
 			<p className="font-medium">{question.question}</p>
 
 			<div className="space-y-3">

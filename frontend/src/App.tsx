@@ -3,12 +3,12 @@ import ScrollToTop from "./components/ScrollToTop"
 import Layout from "./layout/Layout"
 import { GeographyFullWrap } from "./pages/GeographyFullWrap"
 import GeoMapPageWrap from "./pages/GeoMapPageWrap"
-// import Home from "./pages/Home"
-import EntryPoint from './test-full/pages/EntryPoint'
 import LanguagePageWrap from "./pages/LanguagePageWrap"
 import OpenText from "./pages/OpenText"
 import { TestFullWrap } from "./pages/TestFullWrap"
 import AudioTest from "./test-full/pages/AudioTest"
+// import Home from "./pages/Home"
+import EntryPoint from "./test-full/pages/EntryPoint"
 import LanguagePagePicker from "./test-full/pages/LanguagePagePicker"
 
 const App = () => {

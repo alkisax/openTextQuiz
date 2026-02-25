@@ -17,14 +17,14 @@ const WordMatchingQuestion = ({ question, value = {}, onChange }: Props) => {
 	}
 
 	const renderText = () => {
-    // textTemplate περιέχει placeholders μορφής: "1. __", "2. __" κλπ.  Με split κρατάμε και τα delimiters, ώστε να τα αντικαταστήσουμε με <select>.
+		// textTemplate περιέχει placeholders μορφής: "1. __", "2. __" κλπ.  Με split κρατάμε και τα delimiters, ώστε να τα αντικαταστήσουμε με <select>.
 		const parts = question.textTemplate.split(/(\d+\.\s__)/g)
 
 		return parts.map((part) => {
-      // Ελέγχουμε αν το κομμάτι είναι placeholder
+			// Ελέγχουμε αν το κομμάτι είναι placeholder
 			const match = part.match(/^(\d+)\.\s__$/)
 
-      // Αν δεν είναι placeholder → απλό κείμενο
+			// Αν δεν είναι placeholder → απλό κείμενο
 			if (!match) return <span key={part}>{part}</span>
 
 			const blankKey = match[1]
@@ -52,7 +52,7 @@ const WordMatchingQuestion = ({ question, value = {}, onChange }: Props) => {
 		<div className="space-y-4">
 			<p className="font-medium">{question.question}</p>
 
-      {/* ενας renderer μιας η περισσοτερων εικονων. είναι έτσι σε πολλα components που είναι πιθανό να έχουν πεδία question.media */}
+			{/* ενας renderer μιας η περισσοτερων εικονων. είναι έτσι σε πολλα components που είναι πιθανό να έχουν πεδία question.media */}
 			{question.media && question.media.length > 0 && (
 				<QuestionMediaBlock media={question.media} />
 			)}

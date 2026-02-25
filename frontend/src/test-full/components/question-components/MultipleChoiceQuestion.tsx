@@ -19,11 +19,11 @@ const MultipleChoiceQuestion = ({ question, value, onChange }: Props) => {
 		<div className="space-y-3">
 			<p className="font-medium whitespace-pre-line">{question.question}</p>
 
-      {/* ενας renderer μιας η περισσοτερων εικονων. είναι έτσι σε πολλα components που είναι πιθανό να έχουν πεδία question.media */}
+			{/* ενας renderer μιας η περισσοτερων εικονων. είναι έτσι σε πολλα components που είναι πιθανό να έχουν πεδία question.media */}
 			{question.media && <QuestionMediaBlock media={question.media} />}
 
 			<RadioGroup value={value} onValueChange={onChange}>
-        {/* Δεν μπορείς να κάνεις map απευθείας γιατί είναι object, όχι array. Αν έχεις: options: {  A: 'Αθήνα',  B: 'Ρώμη' } Τότε: key → "A", option → "Αθήνα" */}
+				{/* Δεν μπορείς να κάνεις map απευθείας γιατί είναι object, όχι array. Αν έχεις: options: {  A: 'Αθήνα',  B: 'Ρώμη' } Τότε: key → "A", option → "Αθήνα" */}
 				{Object.entries(question.options).map(([key, option]) => (
 					<div key={key} className="flex items-center space-x-2">
 						<RadioGroupItem value={key} id={`${question.id}_${key}`} />
