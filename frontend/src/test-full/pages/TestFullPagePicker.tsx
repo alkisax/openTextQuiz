@@ -8,7 +8,7 @@
 5. με την handleChange αποθηκεύει στο state την απάντηση, φτιάχνει έναν ενιαίο πίνακα απαντήσεων και τον στέλνει για βαθμολόγηση στην useFullGrading
 6. αν έχουμε αποτελέσματα τα προβάλει με την FullGradingSummary
 */
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { useLocation } from 'react-router-dom'
 import { Button } from "@/components/ui/button"
 import FullGradingSummary from "../components/grading-components/FullGradingSummary"
@@ -59,6 +59,9 @@ const GeographyFullPagePicker = ({
   // αλλαγές για να μπορεί να λειτουργήσει η σελίδα ως single topic
   const [questionPointer, setQuestionPointer] = useState(0)
 
+  // συναντήσαμε το εξής προβλημα. Αν χωρις να κάνω refresh εκανα πολλά τεστ και έπεφτα στην ίδια ερώτηση αυτή εμφανιζόταν με προεπιλεγμένη την προηγούμενη απάντηση. το προβλημα μάλλον οφειλόταν στο οτι δεν έκανε ξανα mount το αντιστοιχο component που έδειχνε την ερώτηση, οπότε φτιάξαμε αυτή την ref για να μπαίνει στο αντίστοιχο key
+  const resetKeyRef = useRef(0)
+
   const location = useLocation()
   const navState = location.state as Props | null
 
@@ -69,7 +72,7 @@ const GeographyFullPagePicker = ({
 
   const singleTopicMode = isSingleTopicMode(geo, cult, hist, inst)  
 
-  	// φέρνουμε τα data απο τα json
+  // φέρνουμε τα data απο τα json
 	const geoQuestions = geoData as FullQuestion[]
 	const cultureQuestions = cultureData as FullQuestion[]
 	const historyQuestions = historyData as FullQuestion[]
@@ -113,7 +116,8 @@ const GeographyFullPagePicker = ({
 
 	// επιλογή τυχαίων ερωτήσεων
 	const pickRandomQuestions = () => {
-		//αντίγραφο του array (ώστε να μην αλλάξεις το original JSON)
+    resetKeyRef.current += 1
+		// αντίγραφο του array (ώστε να μην αλλάξεις το original JSON)
 		// τυχαίο ανακάτεμα: η sort συγκρίνει ζευγάρια στοιχείων και επειδή επιστρέφουμε τυχαία θετικό/αρνητικό αριθμό, η σειρά προκύπτει τυχαία
 		const shuffledGeo = [...geoQuestions].sort(() => 0.5 - Math.random())
 
@@ -207,7 +211,8 @@ const GeographyFullPagePicker = ({
 	let questionIndex = 1
 
 	return (
-		<div className="max-w-4xl mx-auto py-10 space-y-8">
+    // δες resetKeyRef ↑↑
+		<div key={resetKeyRef.current} className="max-w-4xl mx-auto py-10 space-y-8">
 			<Button onClick={pickRandomQuestions}>Τυχαίες Ερωτήσεις</Button>
 
 			{/* έχουμε προσθέσει την επιλογή να μην εμφανίζονται ερωτήσεις τύπου open text που κάνουν call στο openAI api κυρίως για dev λόγους αλλα ας μείνει προς το παρόν */}
