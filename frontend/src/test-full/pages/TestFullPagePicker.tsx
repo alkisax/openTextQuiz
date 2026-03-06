@@ -23,6 +23,7 @@ import type {
 	FullQuestion,
 } from "../types/Full.types"
 import TestFullQuestion from "./TestFullQuestion"
+import { isSingleTopicMode, pickNextQuestionHelper, } from '../utils/singleTopicHelper'
 
 type QuestionGroups = {
 	geography: FullQuestion[]
@@ -66,74 +67,41 @@ const GeographyFullPagePicker = ({
   const hist = navState?.histCount ?? histCount
   const inst = navState?.instCount ?? instCount
 
-  // true αν έχουμε μόνο μια θεματική ενεργή (TODO να γίνει ποιο όμορφο αυτό schöne Scheiße)
-  const singleTopicMode =
-    (geo > 0 && cult === 0 && hist === 0 && inst === 0) ||
-    (geo === 0 && cult > 0 && hist === 0 && inst === 0) ||
-    (geo === 0 && cult === 0 && hist > 0 && inst === 0) ||
-    (geo === 0 && cult === 0 && hist === 0 && inst > 0)
+  const singleTopicMode = isSingleTopicMode(geo, cult, hist, inst)  
 
-	// φέρνουμε τα data απο τα json
+  	// φέρνουμε τα data απο τα json
 	const geoQuestions = geoData as FullQuestion[]
 	const cultureQuestions = cultureData as FullQuestion[]
 	const historyQuestions = historyData as FullQuestion[]
 	const instQuestions = instiData as FullQuestion[]
 
   const pickNextQuestion = () => {
-  if (!singleTopicMode) return
+    if (!singleTopicMode) return
 
-  // Ελέγχει ποια θεματική είναι ενεργή
-  if (geo > 0) {
-    // το modulo το έχουμε για να ξεκινάει ξανα απο την αρχή αν πάει να πάρει ερώτηση που δεν είναι έξω απo το array
-    const q = geoQuestions[questionPointer % geoQuestions.length]
-    setSelectedQuestions({
-      geography: [q], // δηλ geoQuestions[q]
-      culture: [],
-      history: [],
-      institutions: [],
-    })
+    const next = pickNextQuestionHelper(
+      questionPointer,
+      geo,
+      cult,
+      hist,
+      inst,
+      geoQuestions,
+      cultureQuestions,
+      historyQuestions,
+      instQuestions,
+    )
+
+    setSelectedQuestions(next)
+
+    setQuestionPointer((p) => p + 1)
+    setAnswers({})
+    setGradedAnswers([])
   }
 
-  if (cult > 0) {
-    const q = cultureQuestions[questionPointer % cultureQuestions.length]
-    setSelectedQuestions({
-      geography: [],
-      culture: [q],
-      history: [],
-      institutions: [],
-    })
-  }
-
-  if (hist > 0) {
-    const q = historyQuestions[questionPointer % historyQuestions.length]
-    setSelectedQuestions({
-      geography: [],
-      culture: [],
-      history: [q],
-      institutions: [],
-    })
-  }
-
-  if (inst > 0) {
-    const q = instQuestions[questionPointer % instQuestions.length]
-    setSelectedQuestions({
-      geography: [],
-      culture: [],
-      history: [],
-      institutions: [q],
-    })
-  }
-
-  setQuestionPointer((p) => p + 1)
-  setAnswers({})
-  setGradedAnswers([])
-}
-
-useEffect(() => {
-  if (singleTopicMode) {
-    pickNextQuestion()
-  }
-}, [])
+  useEffect(() => {
+    if (singleTopicMode) {
+      pickNextQuestion()
+    }
+  }, [])
 
 	// φέρνουμε τις εξισωσης αξιολογησης απο το hook
 	const { gradeAll } = useFullGrading()
