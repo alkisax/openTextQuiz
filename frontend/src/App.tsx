@@ -1,4 +1,4 @@
-import { HashRouter, Route, Routes } from "react-router-dom"
+import { BrowserRouter, Route, Routes } from "react-router-dom"
 import ScrollToTop from "./components/ScrollToTop"
 import Layout from "./layout/Layout"
 import { GeographyFullWrap } from "./pages/GeographyFullWrap"
@@ -13,7 +13,7 @@ import LanguagePagePicker from "./test-full/pages/LanguagePagePicker"
 
 const App = () => {
 	return (
-		<HashRouter basename={import.meta.env.BASE_URL}>
+		<BrowserRouter basename={import.meta.env.BASE_URL}>
 			<ScrollToTop />
 			<Layout>
 				<Routes>
@@ -27,7 +27,7 @@ const App = () => {
 					<Route path="/language-test-full" element={<LanguagePagePicker />} />
 				</Routes>
 			</Layout>
-		</HashRouter>
+		</BrowserRouter>
 	)
 }
 
