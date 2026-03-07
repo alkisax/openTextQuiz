@@ -7,17 +7,17 @@ type QuestionGroups = {
   institutions: FullQuestion[]
 }
 
-// true αν έχουμε μόνο μια θεματική ενεργή (TODO να γίνει ποιο όμορφο αυτό schöne Scheiße)
+// true αν έχουμε μόνο μια θεματική ενεργή (schöne Scheiße)
 export const isSingleTopicMode = (
   geo: number,
   cult: number,
   hist: number,
   inst: number,
-) =>
-  (geo > 0 && cult === 0 && hist === 0 && inst === 0) ||
-  (geo === 0 && cult > 0 && hist === 0 && inst === 0) ||
-  (geo === 0 && cult === 0 && hist > 0 && inst === 0) ||
-  (geo === 0 && cult === 0 && hist === 0 && inst > 0)
+) => {
+  const activeTopics = [geo, cult, hist, inst].filter((count) => count > 0).length
+
+  return activeTopics === 1
+}
 
 export const pickNextQuestionHelper = (
   questionPointer: number,
