@@ -213,7 +213,11 @@ const GeographyFullPagePicker = ({
   // }
   //  και score απλώς το πλήθος των ερωτήσεων που έχουν correct: true
   const handleGradeAll = async () => {
-    const { results, score } = await gradeAll(allQuestions, answers)
+    // είχαμε ένα πρόβλημα με την τυχαία σειρά των ερωτήσεων. οι απαντήσεις δεν ακολουθούσαν την σειρα των ερωτήσεων αλλα συνέχιζε να δείχνει ανα θεματική
+    const questionsToGrade = mixedMode ? mixedQuestions : allQuestions
+
+    const { results, score } = await gradeAll(questionsToGrade, answers)
+
     setGradedAnswers(results)
     setScore(score)
   }

@@ -5,6 +5,7 @@
   "biome.binPath": "${workspaceFolder}/frontend/node_modules/.bin/biome.cmd",
   "cSpell.words": [
     "insti",
+    "OPENTEXT",
     "predeploy"
   ]
 }
