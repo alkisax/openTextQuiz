@@ -149,7 +149,7 @@ const Home = () => {
             </CardContent>
           </Card>
 
-          <Card className='hover:shadow-md transition'>
+          <Card className='hover:shadow-md transition md:col-span-2'>
             <CardHeader>
               <CardTitle className='text-lg'>
                 Θεσμοί, Ιστορία, Γεωγραφία, Πολιτισμός
@@ -157,7 +157,8 @@ const Home = () => {
             </CardHeader>
 
             <CardContent className='space-y-4 text-sm text-muted-foreground'>
-              <div className='grid grid-cols-1 gap-2'>
+              <div className='grid grid-cols-1 md:grid-cols-2 gap-2'>
+
                 <Button
                   variant='secondary'
                   className='w-full'
@@ -205,6 +206,7 @@ const Home = () => {
                 >
                   Ερωτήσεις Θεσμών
                 </Button>
+
               </div>
             </CardContent>
           </Card>

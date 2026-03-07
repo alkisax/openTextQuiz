@@ -2,5 +2,8 @@
   "eslint.enable": false,
   "editor.formatOnSave": false,
   "biome.useNodeModules": true,
-  "biome.binPath": "${workspaceFolder}/frontend/node_modules/.bin/biome.cmd"
+  "biome.binPath": "${workspaceFolder}/frontend/node_modules/.bin/biome.cmd",
+  "cSpell.words": [
+    "insti"
+  ]
 }

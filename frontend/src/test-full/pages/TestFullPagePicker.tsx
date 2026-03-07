@@ -58,6 +58,12 @@ const GeographyFullPagePicker = ({
   const [enableOpenText, setEnableOpenText] = useState(true)
   // αλλαγές για να μπορεί να λειτουργήσει η σελίδα ως single topic
   const [questionPointer, setQuestionPointer] = useState(0)
+  const [shuffleSingle, setShuffleSingle] = useState(false)
+  // ως single topic κάνουμε πρώτα ένα shuffle τις ερωτήσεις
+  const [shuffledGeo, setShuffledGeo] = useState<FullQuestion[]>([])
+  const [shuffledCulture, setShuffledCulture] = useState<FullQuestion[]>([])
+  const [shuffledHistory, setShuffledHistory] = useState<FullQuestion[]>([])
+  const [shuffledInst, setShuffledInst] = useState<FullQuestion[]>([])
   // ζητήθηκε στην προσομοίωση να είναι ανάκατες ερωτήσεις και χωρίς τιτλους θεματικών. θα το κάνουμε να είναι επιλογή
   // ανάκατες ερωτήσεις
   const [mixedMode, setMixedMode] = useState(false)
@@ -85,16 +91,24 @@ const GeographyFullPagePicker = ({
   const pickNextQuestion = () => {
     if (!singleTopicMode) return
 
+    const geoSource = shuffleSingle && shuffledGeo.length ? shuffledGeo : geoQuestions
+
+    const cultSource = shuffleSingle && shuffledCulture.length ? shuffledCulture : cultureQuestions
+
+    const histSource = shuffleSingle && shuffledHistory.length ? shuffledHistory : historyQuestions
+
+    const instSource = shuffleSingle && shuffledInst.length ? shuffledInst : instQuestions
+
     const next = pickNextQuestionHelper(
       questionPointer,
       geo,
       cult,
       hist,
       inst,
-      geoQuestions,
-      cultureQuestions,
-      historyQuestions,
-      instQuestions,
+      geoSource,
+      cultSource,
+      histSource,
+      instSource,
     )
 
     setSelectedQuestions(next)
@@ -105,10 +119,17 @@ const GeographyFullPagePicker = ({
   }
 
   useEffect(() => {
-    if (singleTopicMode) {
-      pickNextQuestion()
+    if (!singleTopicMode) return
+
+    if (shuffleSingle) {
+      setShuffledGeo([...geoQuestions].sort(() => 0.5 - Math.random()))
+      setShuffledCulture([...cultureQuestions].sort(() => 0.5 - Math.random()))
+      setShuffledHistory([...historyQuestions].sort(() => 0.5 - Math.random()))
+      setShuffledInst([...instQuestions].sort(() => 0.5 - Math.random()))
     }
-  }, [])
+
+    pickNextQuestion()
+  }, [shuffleSingle])
 
   // φέρνουμε τις εξισωσης αξιολογησης απο το hook
   const { gradeAll } = useFullGrading()
@@ -290,9 +311,15 @@ const GeographyFullPagePicker = ({
     // δες resetKeyRef ↑↑
     <div key={resetKeyRef.current} className="max-w-4xl mx-auto py-10 space-y-8">
       <Button onClick={pickRandomQuestions}>Τυχαίες Ερωτήσεις</Button>
-      <Button onClick={() => setMixedMode(true)}>
-        Ανάμεικτες Ερωτήσεις
-      </Button>
+      {singleTopicMode ? (
+        <Button onClick={() => setShuffleSingle((p) => !p)}>
+          {shuffleSingle ? "Σειριακή Σειρά" : "Τυχαία Σειρά"}
+        </Button>
+      ) : (
+        <Button onClick={() => setMixedMode(true)}>
+          Ανάμεικτες Ερωτήσεις
+        </Button>
+      )}
 
       {/* έχουμε προσθέσει την επιλογή να μην εμφανίζονται ερωτήσεις τύπου open text που κάνουν call στο openAI api κυρίως για dev λόγους αλλα ας μείνει προς το παρόν */}
       <Button
