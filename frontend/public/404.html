@@ -1,4 +1,4 @@
 <script>
-  const path = window.location.pathname.replace('/openTextQuiz', '');
-  window.location.replace('/openTextQuiz/#' + path);
+  sessionStorage.redirect = location.pathname + location.search + location.hash;
+  location.replace("/openTextQuiz/");
 </script>
