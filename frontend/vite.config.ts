@@ -4,7 +4,12 @@ import react from "@vitejs/plugin-react"
 import { defineConfig } from "vite"
 
 export default defineConfig(({ mode }) => ({
-	base: mode === "production" ? "/open-text/" : "/",
+base:
+  process.env.GH_PAGES
+    ? "/openTextQuiz/"
+    : mode === "production"
+    ? "/open-text/"
+    : "/",
 	plugins: [react(), tailwindcss()],
 	resolve: {
 		alias: {
