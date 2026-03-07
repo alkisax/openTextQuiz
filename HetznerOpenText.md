@@ -65,3 +65,4 @@ cd /var/www/open-text \
 `pm2 flush open-text`
 
 github page → https://alkisax.github.io/openTextQuiz/
+με npm run gh-predeploy και npm run gh-deploy
