@@ -66,3 +66,5 @@ cd /var/www/open-text \
 
 github page → https://alkisax.github.io/openTextQuiz/
 με npm run gh-predeploy και npm run gh-deploy
+
+Yγ. μην ξεχάσω την σελίδα https://portfolio-projects.space/open-text/open-text-page
