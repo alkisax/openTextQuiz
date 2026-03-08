@@ -44,6 +44,11 @@ certbot --nginx -d portfolio-projects.space -d www.portfolio-projects.space
 systemctl reload nginx
 ```
 
+github page → https://alkisax.github.io/openTextQuiz/
+με npm run gh-predeploy και npm run gh-deploy
+
+Yγ. μην ξεχάσω την σελίδα https://portfolio-projects.space/open-text/open-text-page και https://portfolio-projects.space/open-text/open-text-page
+
 ## oneline deploy
 ssh root@49.12.76.128
 ```bash
@@ -63,8 +68,3 @@ cd /var/www/open-text \
 ```
 `pm2 logs open-text --lines 100`
 `pm2 flush open-text`
-
-github page → https://alkisax.github.io/openTextQuiz/
-με npm run gh-predeploy και npm run gh-deploy
-
-Yγ. μην ξεχάσω την σελίδα https://portfolio-projects.space/open-text/open-text-page
