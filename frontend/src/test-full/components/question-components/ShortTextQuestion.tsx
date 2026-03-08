@@ -30,15 +30,15 @@ const ShortTextQuestion = ({ question, value, onChange }: Props) => {
 	}
 
 	// Multiple blanks case
-  const handleMultiChange = (index: number, val: string) => {
-    const current = isStringArray(value)
-      ? [...value]
-      : Array(blanksCount).fill("")
+	const handleMultiChange = (index: number, val: string) => {
+		const current = isStringArray(value)
+			? [...value]
+			: Array(blanksCount).fill("")
 
-    current[index] = val
+		current[index] = val
 
-    onChange(current)
-  }
+		onChange(current)
+	}
 
 	const renderWithBlanks = () => {
 		// Αν δεν υπάρχουν "__" → απλό κείμενο
