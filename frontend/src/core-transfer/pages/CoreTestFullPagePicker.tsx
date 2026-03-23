@@ -11,6 +11,12 @@ import type { CoreGradedAnswer } from '../types/client.types'
 const CoreTestFullPagePicker = () => {
   const questions = data.true_false as Statement[]
 
+  // οι απαντήσεις έχουν την σειρά της απάντησης και το ποια απάντηση επέλεξε ο χρήστης (επειδή οι ερωτήσεις κάνουν shuffle δεν είναι απαραίτητο οτι ταυτίζετε με την σωστή σειρά της απάντησης)
+  // οι απαντήσεις αποθηκεύουν:
+  // - index: ποια επιλογή πάτησε ο χρήστης (στο UI μετά το shuffle)
+  // - order: mapping από UI θέση → original index
+  // πχ original: [A, B, C] → shuffled: [B, C, A] → order = [1, 2, 0]
+  // άρα αν user πατήσει index = 0 → επέλεξε το original index 1 (B)
   const [answers, setAnswers] = useState<Record<number, { index: number; order: number[] }>>({})
   const [gradedAnswers, setGradedAnswers] = useState<CoreGradedAnswer[]>([])
   const [score, setScore] = useState<number | null>(null)

@@ -14,9 +14,16 @@ const TrueFalseQuestion = ({ question, userAnswer, onChange }: Props) => {
   // κάνουμε type narrowing
   const content = question.content as TrueFalseContent
 
+  // αυτό προστέθηκε για την λειτουργία shuffled. To προβλημα που προσπαθούμε να λύσουμε είναι το εξής: σε κάθε render αλλάζει η σειρά που εμφανίζονται οι απαντήσεις. Εμείς έχουμε κρατήσει που βρίσκονται οι αρχικές θέσεις των ερωτήσεων και που πήγαν μετά και έτσι μπορούμε να αντιστοιχισουμε την απάντηση του user στην σειρά που του εμφανίστηκε με την αρχική θέση της απάντησης αυτής στα data
+  // ο λόγος που χρησιμοποιούμε useMemo είναι γιατί δεν θέλουμε να κάνει rerender και άρα reshuffle τις απαντήσεις πριν να είναι ώρα.
   const shuffledChoices = useMemo(() => {
+    // φτιάχνουμε array με indexes των επιλογών
+    // πχ choices: [A, B, C] → indexed: [0, 1, 2]
     const indexed = content.choices.map((_, i) => i)
 
+  // κάνουμε shuffle τα indexes (όχι τα ίδια τα choices)
+  // πχ [0,1,2] → [1,2,0]
+  // αυτό είναι το "order": UI θέση → original index
     return indexed.sort(() => 0.5 - Math.random())
   }, [question.id])
 
