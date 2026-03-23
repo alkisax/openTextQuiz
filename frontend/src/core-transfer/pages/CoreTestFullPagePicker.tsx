@@ -9,9 +9,9 @@ import type { Statement } from "../types/models"
 import CoreTestFullQuestion from "./CoreTestFullQuestion"
 
 // μεταφορά απο '../data/trueFalseData.json' → props που μου έρχονται απο inertia back
-type Props = {
-	questions: Statement[]
-}
+// type Props = {
+// 	questions: Statement[]
+// }
 
 // const CoreTestFullPagePicker = ({ questions }: Props) => {
 const CoreTestFullPagePicker = () => {

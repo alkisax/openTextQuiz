@@ -1,5 +1,5 @@
 ﻿// frontend\src\pages\Playground.tsx
-import CoreTestFullPagePicker from "@/core-transfer/pages/CoreTestFullPagePicker"
+// import CoreTestFullPagePicker from "@/core-transfer/pages/CoreTestFullPagePicker"
 import type { Exam } from "../core-transfer/types/models"
 
 type PlaygroundProps = {
