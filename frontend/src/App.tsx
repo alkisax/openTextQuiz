@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import ScrollToTop from "./components/ScrollToTop"
+import CoreTestFullPagePicker from "./core-transfer/pages/CoreTestFullPagePicker"
 import Layout from "./layout/Layout"
 import { GeographyFullWrap } from "./pages/GeographyFullWrap"
 import GeoMapPageWrap from "./pages/GeoMapPageWrap"
@@ -10,7 +11,6 @@ import AudioTest from "./test-full/pages/AudioTest"
 // import Home from "./pages/Home"
 import EntryPoint from "./test-full/pages/EntryPoint"
 import LanguagePagePicker from "./test-full/pages/LanguagePagePicker"
-import CoreTestFullPagePicker from "./core-transfer/pages/CoreTestFullPagePicker"
 
 const App = () => {
 	return (
@@ -19,7 +19,7 @@ const App = () => {
 			<Layout>
 				<Routes>
 					<Route path="/" element={<EntryPoint />} />
-          <Route path='/core-test' element={<CoreTestFullPagePicker />} />
+					<Route path="/core-test" element={<CoreTestFullPagePicker />} />
 					<Route path="/open-text-page" element={<OpenText />} />
 					<Route path="/geography-maps" element={<GeoMapPageWrap />} />
 					<Route path="/language-test" element={<LanguagePageWrap />} />

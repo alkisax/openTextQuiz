@@ -1,84 +1,88 @@
 // frontend/src/core-transfer/hooks/useCoreFullGrading.ts
 
-import type { CoreAnswer, CoreGradedAnswer, GradeAllResult } from '../types/client.types'
-import type { Statement, TrueFalseContent } from '../types/models'
+import type {
+	CoreAnswer,
+	CoreGradedAnswer,
+	GradeAllResult,
+} from "../types/client.types"
+import type { Statement, TrueFalseContent } from "../types/models"
 
 export const useCoreFullGrading = () => {
+	const gradeTrueFalse = (
+		question: Statement,
+		userAnswer: CoreAnswer | undefined,
+	): CoreGradedAnswer => {
+		if (question.type !== "TRUE_FALSE") {
+			throw new Error("Wrong type")
+		}
 
-  const gradeTrueFalse = (
-    question: Statement,
-    userAnswer: CoreAnswer | undefined
-  ): CoreGradedAnswer => {
+		const content = question.content as TrueFalseContent
 
-    if (question.type !== 'TRUE_FALSE') {
-      throw new Error('Wrong type')
-    }
+		// έχουμε ένα arr με [ { **, is_correct: false }, { **, is_correct: true } ] → βρίσκει σε ποιο index είναι η σωστή απάντηση
+		// συγκρίνουμε την επιλογή του χρήστη με τη σωστή επιλογή
+		// παίρνεις το index που είδε ο user
+		const correctOriginalIndex = content.choices.findIndex(
+			(choice) => choice.is_correct,
+		)
 
-    const content = question.content as TrueFalseContent
+		// βρίσκουμε σε ποια θέση εμφανίστηκε μετά το shuffle
+		const correctIndexInShuffled = userAnswer?.order.findIndex(
+			(i) => i === correctOriginalIndex,
+		)
 
-    // έχουμε ένα arr με [ { **, is_correct: false }, { **, is_correct: true } ] → βρίσκει σε ποιο index είναι η σωστή απάντηση
-    // συγκρίνουμε την επιλογή του χρήστη με τη σωστή επιλογή
-    // παίρνεις το index που είδε ο user
-    const correctOriginalIndex = content.choices.findIndex(choice => choice.is_correct)
+		// συγκρίνουμε με αυτό που πάτησε ο user
+		const isCorrect = userAnswer?.index === correctIndexInShuffled
 
-    // βρίσκουμε σε ποια θέση εμφανίστηκε μετά το shuffle
-    const correctIndexInShuffled = userAnswer?.order.findIndex(
-      i => i === correctOriginalIndex
-    )
+		// αν δεν δώσει απάντηση false
+		if (!userAnswer || !userAnswer.order) {
+			return {
+				id: question.id,
+				userAnswer,
+				correctAnswer: correctOriginalIndex,
+				correct: false,
+				type: "TRUE_FALSE",
+			}
+		}
 
-    // συγκρίνουμε με αυτό που πάτησε ο user
-    const isCorrect = userAnswer?.index === correctIndexInShuffled
+		return {
+			id: question.id,
+			userAnswer,
+			correctAnswer: correctOriginalIndex, // (κρατάμε και το correctAnswer για UI feedback)
+			correct: isCorrect, // αυτό είναι το σημείο που επιστρέφουμε όλη την ερώτηση με boolean σωστο/λάθος
+			type: "TRUE_FALSE",
+		}
+	}
 
-    // αν δεν δώσει απάντηση false
-    if (!userAnswer || !userAnswer.order) {
-      return {
-        id: question.id,
-        userAnswer,
-        correctAnswer: correctOriginalIndex,
-        correct: false,
-        type: 'TRUE_FALSE'
-      }
-    }
+	const gradeAll = (
+		questions: Statement[],
+		answers: Record<number, CoreAnswer>,
+	): GradeAllResult => {
+		let correct = 0
+		const results: CoreGradedAnswer[] = []
 
-    return {
-      id: question.id,
-      userAnswer,
-      correctAnswer: correctOriginalIndex, // (κρατάμε και το correctAnswer για UI feedback)
-      correct: isCorrect, // αυτό είναι το σημείο που επιστρέφουμε όλη την ερώτηση με boolean σωστο/λάθος
-      type: 'TRUE_FALSE'
-    }
-  }
+		for (const question of questions) {
+			// φέρνουμε την απάντηση απο το array των απαντήσεων
+			const userAnswer = answers[question.id]
+			let result: CoreGradedAnswer
 
-  const gradeAll = (
-    questions: Statement[],
-    answers: Record<number, CoreAnswer>
-  ): GradeAllResult => {
-    let correct = 0
-    const results: CoreGradedAnswer[] = []
+			switch (question.type) {
+				case "TRUE_FALSE":
+					result = gradeTrueFalse(question, userAnswer)
+					break
 
-    for (const question of questions) {
-      // φέρνουμε την απάντηση απο το array των απαντήσεων
-      const userAnswer = answers[question.id]
-      let result: CoreGradedAnswer
+				default:
+					throw new Error(`Unsupported type: ${question.type}`)
+			}
 
-      switch (question.type) {
-        case 'TRUE_FALSE':
-          result = gradeTrueFalse(question, userAnswer)
-          break
+			if (result.correct) correct++
+			results.push(result)
+		}
 
-        default:
-          throw new Error(`Unsupported type: ${question.type}`)
-      }
+		return {
+			results,
+			score: correct,
+		}
+	}
 
-      if (result.correct) correct++
-      results.push(result)
-    }
-
-    return {
-      results,
-      score: correct
-    }
-  }
-
-  return { gradeAll }
+	return { gradeAll }
 }
