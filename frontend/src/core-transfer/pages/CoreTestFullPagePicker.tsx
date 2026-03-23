@@ -1,8 +1,7 @@
 // frontend/src/core-transfer/pages/CoreTestFullPagePicker.tsx
 
-import data from '../data/testData.json'
-
 import { useState } from "react"
+import data from "../data/testData.json"
 import { useCoreFullGrading } from "../hooks/useCoreFullGrading"
 import type { CoreGradedAnswer } from "../types/client.types"
 import type { Statement } from "../types/models"
@@ -15,10 +14,7 @@ import CoreTestFullQuestion from "./CoreTestFullQuestion"
 
 // const CoreTestFullPagePicker = ({ questions }: Props) => {
 const CoreTestFullPagePicker = () => {
-  const questions = [
-    ...data.true_false,
-    ...data.multiple_choice
-  ] as Statement[]
+	const questions = [...data.true_false, ...data.multiple_choice] as Statement[]
 
 	// οι απαντήσεις έχουν την σειρά της απάντησης και το ποια απάντηση επέλεξε ο χρήστης (επειδή οι ερωτήσεις κάνουν shuffle δεν είναι απαραίτητο οτι ταυτίζετε με την σωστή σειρά της απάντησης)
 	// οι απαντήσεις αποθηκεύουν:

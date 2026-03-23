@@ -52,25 +52,24 @@ export const useCoreFullGrading = () => {
 		}
 	}
 
-  const gradeTrueFalseSimple = (
-    question: Statement,
-    userAnswer: CoreAnswer | undefined
-  ): CoreGradedAnswer => {
+	const gradeTrueFalseSimple = (
+		question: Statement,
+		userAnswer: CoreAnswer | undefined,
+	): CoreGradedAnswer => {
+		const content = question.content
 
-    const content = question.content
+		const correctIndex = content.choices.findIndex((c) => c.is_correct)
 
-    const correctIndex = content.choices.findIndex(c => c.is_correct)
+		const isCorrect = userAnswer?.index === correctIndex
 
-    const isCorrect = userAnswer?.index === correctIndex
-
-    return {
-      id: question.id,
-      userAnswer,
-      correctAnswer: correctIndex,
-      correct: !!isCorrect,
-      type: 'TRUE_FALSE'
-    }
-  }
+		return {
+			id: question.id,
+			userAnswer,
+			correctAnswer: correctIndex,
+			correct: !!isCorrect,
+			type: "TRUE_FALSE",
+		}
+	}
 
 	const gradeAll = (
 		questions: Statement[],
@@ -89,9 +88,9 @@ export const useCoreFullGrading = () => {
 					result = gradeMultiple(question, userAnswer)
 					break
 
-        case 'TRUE_FALSE':
-          result = gradeTrueFalseSimple(question, userAnswer)
-          break
+				case "TRUE_FALSE":
+					result = gradeTrueFalseSimple(question, userAnswer)
+					break
 
 				default:
 					throw new Error(`Unsupported type: ${question.type}`)
