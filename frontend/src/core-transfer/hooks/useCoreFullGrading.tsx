@@ -26,9 +26,8 @@ export const useCoreFullGrading = () => {
 		)
 
 		// βρίσκουμε σε ποια θέση εμφανίστηκε μετά το shuffle
-		const correctIndexInShuffled = userAnswer?.order.findIndex(
-			(i) => i === correctOriginalIndex,
-		)
+		const correctIndexInShuffled =
+			userAnswer?.order.indexOf(correctOriginalIndex)
 
 		// συγκρίνουμε με αυτό που πάτησε ο user
 		const isCorrect = userAnswer?.index === correctIndexInShuffled
@@ -53,6 +52,26 @@ export const useCoreFullGrading = () => {
 		}
 	}
 
+  const gradeTrueFalseSimple = (
+    question: Statement,
+    userAnswer: CoreAnswer | undefined
+  ): CoreGradedAnswer => {
+
+    const content = question.content as TrueFalseContent
+
+    const correctIndex = content.choices.findIndex(c => c.is_correct)
+
+    const isCorrect = userAnswer?.index === correctIndex
+
+    return {
+      id: question.id,
+      userAnswer,
+      correctAnswer: correctIndex,
+      correct: !!isCorrect,
+      type: 'TRUE_FALSE'
+    }
+  }
+
 	const gradeAll = (
 		questions: Statement[],
 		answers: Record<number, CoreAnswer>,
@@ -66,9 +85,13 @@ export const useCoreFullGrading = () => {
 			let result: CoreGradedAnswer
 
 			switch (question.type) {
-				case "TRUE_FALSE":
+				case "MULTIPLE_CHOICE":
 					result = gradeTrueFalse(question, userAnswer)
 					break
+
+        case 'TRUE_FALSE':
+          result = gradeTrueFalseSimple(question, userAnswer)
+          break
 
 				default:
 					throw new Error(`Unsupported type: ${question.type}`)

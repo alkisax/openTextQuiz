@@ -1,10 +1,11 @@
 // frontend/src/core-transfer/pages/CoreTestFullPagePicker.tsx
 
+import data from '../data/trueFalseData.json'
+
 import { useState } from "react"
 import { useCoreFullGrading } from "../hooks/useCoreFullGrading"
 import type { CoreGradedAnswer } from "../types/client.types"
 import type { Statement } from "../types/models"
-// import data from '../data/trueFalseData.json'
 import CoreTestFullQuestion from "./CoreTestFullQuestion"
 
 // μεταφορά απο '../data/trueFalseData.json' → props που μου έρχονται απο inertia back
@@ -12,8 +13,9 @@ type Props = {
 	questions: Statement[]
 }
 
-const CoreTestFullPagePicker = ({ questions }: Props) => {
-	// const questions = data.true_false as Statement[]
+// const CoreTestFullPagePicker = ({ questions }: Props) => {
+const CoreTestFullPagePicker = () => {
+  const questions = data.true_false as Statement[]
 
 	// οι απαντήσεις έχουν την σειρά της απάντησης και το ποια απάντηση επέλεξε ο χρήστης (επειδή οι ερωτήσεις κάνουν shuffle δεν είναι απαραίτητο οτι ταυτίζετε με την σωστή σειρά της απάντησης)
 	// οι απαντήσεις αποθηκεύουν:
@@ -87,6 +89,7 @@ const CoreTestFullPagePicker = ({ questions }: Props) => {
 
 			{/* submit */}
 			<button
+				type="button"
 				onClick={handleSubmit}
 				className="px-4 py-2 bg-black text-white rounded"
 			>

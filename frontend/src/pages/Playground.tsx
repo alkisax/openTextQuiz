@@ -20,7 +20,6 @@ export default function Playground({ exam }: PlaygroundProps) {
 						<pre className="text-sm text-muted-foreground">
 							{JSON.stringify(exam.true_false[0], null, 2)}
 						</pre>
-						<CoreTestFullPagePicker questions={exam.true_false} />
 					</div>
 				) : (
 					<p className="text-muted-foreground">
@@ -30,7 +29,7 @@ export default function Playground({ exam }: PlaygroundProps) {
 
 				{exam.true_false?.length ? (
 					<div className="rounded-lg border p-4">
-						<CoreTestFullPagePicker questions={exam.true_false} />
+						{/* <CoreTestFullPagePicker questions={exam.true_false} /> */}
 					</div>
 				) : (
 					<p className="text-muted-foreground">
