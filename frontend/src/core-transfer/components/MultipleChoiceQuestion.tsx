@@ -10,7 +10,7 @@ type Props = {
 	onChange: (value: number, order: number[]) => void
 }
 
-const TrueFalseQuestion = ({ question, userAnswer, onChange }: Props) => {
+const MultipleChoiceQuestion = ({ question, userAnswer, onChange }: Props) => {
 	// κάνουμε type narrowing
 	const content = question.content as TrueFalseContent
 
@@ -60,4 +60,4 @@ const TrueFalseQuestion = ({ question, userAnswer, onChange }: Props) => {
 	)
 }
 
-export default TrueFalseQuestion
+export default MultipleChoiceQuestion

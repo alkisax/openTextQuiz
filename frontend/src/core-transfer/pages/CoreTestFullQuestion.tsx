@@ -1,6 +1,6 @@
 // frontend/src/core-transfer/pages/CoreTestFullQuestion.tsx
 
-import TrueFalseQuestion from "../components/TrueFalseQuestion"
+import MultipleChoiceQuestion from "../components/MultipleChoiceQuestion"
 import TrueFalseStatementQuestion from "../components/TrueFalseStatementQuestion"
 import { StatementType } from "../types/enums"
 import type { Statement } from "../types/models"
@@ -15,7 +15,7 @@ const CoreTestFullQuestion = ({ question, userAnswer, onChange }: Props) => {
   // dispatcher ανά type
   if (question.type === StatementType.MULTIPLE_CHOICE) {
     return (
-      <TrueFalseQuestion // TODO θα αλλάξουμε το
+      <MultipleChoiceQuestion // TODO θα αλλάξουμε το
         question={question}
         userAnswer={userAnswer}
         onChange={onChange}

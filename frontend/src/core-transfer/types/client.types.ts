@@ -8,7 +8,7 @@ export type CoreGradedAnswer = {
 	userAnswer: CoreAnswer | undefined
 	correctAnswer: number
 	correct: boolean
-	type: "TRUE_FALSE"
+	type: "TRUE_FALSE" | "MULTIPLE_CHOICE"
 }
 
 export type GradeAllResult = {

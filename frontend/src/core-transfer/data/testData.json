@@ -69,7 +69,46 @@
 			"modified": "2026-01-01T00:00:00Z"
 		}
 	],
-	"multiple_choice": [],
+    "multiple_choice": [
+    {
+      "id": 7,
+      "category": "CIVICS",
+      "type": "MULTIPLE_CHOICE",
+      "is_active": true,
+      "content": {
+        "prompt_text": "Κατά το διάστημα που η Βουλή είναι ανοιχτή πόσες φορές την εβδομάδα απαντάει ο Πρωθυπουργός σε Επίκαιρες Ερωτήσεις (Ώρα του Πρωθυπουργού);",
+        "choices": [
+          {
+            "is_correct": true,
+            "text": "Μια φορά"
+          },
+          {
+            "is_correct": false,
+            "text": "Δύο φορές"
+          },
+          {
+            "is_correct": false,
+            "text": "Καμία φορά"
+          },
+          {
+            "is_correct": false,
+            "text": "Απεριόριστος αριθμός"
+          }
+        ]
+      },
+      "exam_sessions": [
+        {
+          "id": 2,
+          "year": 2026,
+          "month": 11,
+          "month_display": "November"
+        }
+      ],
+      "exam_sessions_preview": "",
+      "created_at": "2026-01-01T10:00:00Z",
+      "updated_at": "2026-01-01T10:00:00Z"
+    }
+  ],
 	"fill_in_the_blank": [],
 	"drag_and_drop": [],
 	"matching": []

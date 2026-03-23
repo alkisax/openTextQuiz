@@ -5,18 +5,18 @@ import type {
 	CoreGradedAnswer,
 	GradeAllResult,
 } from "../types/client.types"
-import type { Statement, TrueFalseContent } from "../types/models"
+import type { Statement } from "../types/models"
 
 export const useCoreFullGrading = () => {
-	const gradeTrueFalse = (
+	const gradeMultiple = (
 		question: Statement,
 		userAnswer: CoreAnswer | undefined,
 	): CoreGradedAnswer => {
-		if (question.type !== "TRUE_FALSE") {
+		if (question.type !== "MULTIPLE_CHOICE") {
 			throw new Error("Wrong type")
 		}
 
-		const content = question.content as TrueFalseContent
+		const content = question.content
 
 		// έχουμε ένα arr με [ { **, is_correct: false }, { **, is_correct: true } ] → βρίσκει σε ποιο index είναι η σωστή απάντηση
 		// συγκρίνουμε την επιλογή του χρήστη με τη σωστή επιλογή
@@ -39,7 +39,7 @@ export const useCoreFullGrading = () => {
 				userAnswer,
 				correctAnswer: correctOriginalIndex,
 				correct: false,
-				type: "TRUE_FALSE",
+				type: "MULTIPLE_CHOICE",
 			}
 		}
 
@@ -48,7 +48,7 @@ export const useCoreFullGrading = () => {
 			userAnswer,
 			correctAnswer: correctOriginalIndex, // (κρατάμε και το correctAnswer για UI feedback)
 			correct: isCorrect, // αυτό είναι το σημείο που επιστρέφουμε όλη την ερώτηση με boolean σωστο/λάθος
-			type: "TRUE_FALSE",
+			type: "MULTIPLE_CHOICE",
 		}
 	}
 
@@ -57,7 +57,7 @@ export const useCoreFullGrading = () => {
     userAnswer: CoreAnswer | undefined
   ): CoreGradedAnswer => {
 
-    const content = question.content as TrueFalseContent
+    const content = question.content
 
     const correctIndex = content.choices.findIndex(c => c.is_correct)
 
@@ -86,7 +86,7 @@ export const useCoreFullGrading = () => {
 
 			switch (question.type) {
 				case "MULTIPLE_CHOICE":
-					result = gradeTrueFalse(question, userAnswer)
+					result = gradeMultiple(question, userAnswer)
 					break
 
         case 'TRUE_FALSE':
