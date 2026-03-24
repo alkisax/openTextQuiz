@@ -1,17 +1,20 @@
 // core\frontend\js\trueFalse-alkis\core-transfer\components\MultipleChoiceQuestion.tsx
 
 import { useMemo } from "react"
-import type { CoreAnswer } from "../types/client.types"
+import type { CoreAnswer, CoreGradedAnswer } from "../types/client.types"
 import type { Statement, TrueFalseContent } from "../types/models"
+import { formatCorrectAnswer } from "../utils/formatGradedAnswer"
 import QuestionMediaBlock from "./QuestionMediaBlock"
 
 type Props = {
 	question: Statement
 	userAnswer?: CoreAnswer
 	onChange: (value: CoreAnswer) => void
+  gradedAnswer?: CoreGradedAnswer
+	showGrading?: boolean
 }
 
-const MultipleChoiceQuestion = ({ question, userAnswer, onChange }: Props) => {
+const MultipleChoiceQuestion = ({ question, userAnswer, onChange, gradedAnswer, showGrading }: Props) => {
 	// κάνουμε type narrowing
 	const content = question.content as TrueFalseContent
 
@@ -29,8 +32,30 @@ const MultipleChoiceQuestion = ({ question, userAnswer, onChange }: Props) => {
 		return indexed.sort(() => 0.5 - Math.random())
 	}, []) // (αγνόησα το lint) θέλουμε shuffle μόνο στο mount (όχι σε κάθε render / change)
 
+  // απλως τα styling classnames που μου κάνουν το κουτί πρασινο/κόκκινο μετά την αξιολογηση
+  const gradedClass =
+    showGrading && gradedAnswer
+      ? gradedAnswer.correct
+        ? "bg-green-50 border border-green-400"
+        : "bg-red-50 border border-red-400"
+      : ""
+
+  // ενα μικρό component για την εμφάνιση του αποτελέσματος της κάθε ερώτησης
+  const correctAnswerBlock =
+    showGrading &&
+    gradedAnswer &&
+    !gradedAnswer.correct ? (
+      <div className="mt-3 p-3 bg-muted rounded text-sm">
+        <p className="font-semibold">Σωστή απάντηση:</p>
+        <p>{formatCorrectAnswer(gradedAnswer.correctAnswer)}</p>
+      </div>
+    ) : null
+
 	return (
-		<div className="border p-4 rounded space-y-3">
+
+
+      <div className={`border p-4 rounded space-y-3 ${gradedClass}`}>
+        		<div className="border p-4 rounded space-y-3">
 			{/* prompt */}
 			{content.prompt_text && <p>{content.prompt_text}</p>}
 
@@ -64,6 +89,8 @@ const MultipleChoiceQuestion = ({ question, userAnswer, onChange }: Props) => {
 					</div>
 				)
 			})}
+        {/* {correctAnswerBlock} */}
+      </div>
 		</div>
 	)
 }

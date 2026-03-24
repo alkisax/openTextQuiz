@@ -66,6 +66,8 @@ const CoreTestFullPagePicker = () => {
 							question={q}
 							userAnswer={answers[q.id]}
 							onChange={(value) => handleChange(q.id, value)}
+              gradedAnswer={graded}
+              showGrading={score !== null}
 						/>
 
 						{/* κάτω απο κάθε απαντημένη ερώτηση το UI εμφανίζει το αποτέλεσμα */}
