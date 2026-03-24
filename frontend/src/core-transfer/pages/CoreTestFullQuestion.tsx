@@ -1,19 +1,22 @@
-// frontend/src/core-transfer/pages/CoreTestFullQuestion.tsx
+// core\frontend\js\trueFalse-alkis\core-transfer\pages\CoreTestFullQuestion.tsx
 
 import MultipleChoiceQuestion from "../components/MultipleChoiceQuestion"
 import TrueFalseStatementQuestion from "../components/TrueFalseStatementQuestion"
+import type { CoreAnswer } from "../types/client.types"
 import { StatementType } from "../types/enums"
 import type { Statement } from "../types/models"
 
 type Props = {
 	question: Statement
-	userAnswer?: number
-	onChange: (value: number, order: number[]) => void
+	userAnswer?: CoreAnswer
+	onChange: (value: CoreAnswer) => void
 }
 
 const CoreTestFullQuestion = ({ question, userAnswer, onChange }: Props) => {
 	// dispatcher ανά type
 	if (question.type === StatementType.MULTIPLE_CHOICE) {
+		console.log(question)
+
 		return (
 			<MultipleChoiceQuestion // TODO θα αλλάξουμε το
 				question={question}
@@ -24,6 +27,7 @@ const CoreTestFullQuestion = ({ question, userAnswer, onChange }: Props) => {
 	}
 
 	if (question.type === StatementType.TRUE_FALSE) {
+		console.log(question)
 		return (
 			<TrueFalseStatementQuestion
 				question={question}

@@ -1,5 +1,4 @@
-﻿// frontend\src\pages\Playground.tsx
-// import CoreTestFullPagePicker from "@/core-transfer/pages/CoreTestFullPagePicker"
+﻿// import CoreTestFullPagePicker from "../core-transfer/pages/CoreTestFullPagePicker"
 import type { Exam } from "../core-transfer/types/models"
 
 type PlaygroundProps = {
@@ -44,6 +43,7 @@ export default function Playground({ exam }: PlaygroundProps) {
 				{exam.multiple_choice ? (
 					<div className="rounded-lg border p-4">
 						{/* TODO: Replace with <MultipleChoiceQuestion quiz={exam.multiple_choice[0]} /> */}
+						{/* <CoreTestFullPagePicker questions={exam.multiple_choice} /> */}
 						<pre className="text-sm text-muted-foreground">
 							{JSON.stringify(exam.multiple_choice[0], null, 2)}
 						</pre>

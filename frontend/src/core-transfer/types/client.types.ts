@@ -1,7 +1,6 @@
-export type CoreAnswer = {
-	index: number
-	order: number[]
-}
+export type CoreAnswer =
+	| { type: "single"; index: number; order: number[] }
+	| { type: "multi_tf"; values: Record<number, boolean> }
 
 export type CoreGradedAnswer = {
 	id: number

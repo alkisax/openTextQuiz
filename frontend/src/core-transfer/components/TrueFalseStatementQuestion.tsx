@@ -1,11 +1,12 @@
-// frontend\src\core-transfer\components\TrueFalseStatementQuestion.tsx
+import { useState } from "react"
+import type { CoreAnswer } from "../types/client.types"
 import type { Statement, TrueFalseContent } from "../types/models"
 import QuestionMediaBlock from "./QuestionMediaBlock"
 
 type Props = {
 	question: Statement
-	userAnswer?: number
-	onChange: (value: number, order: number[]) => void
+	userAnswer?: CoreAnswer
+	onChange: (value: CoreAnswer) => void
 }
 
 const TrueFalseStatementQuestion = ({
@@ -15,9 +16,23 @@ const TrueFalseStatementQuestion = ({
 }: Props) => {
 	const content = question.content as TrueFalseContent
 
-	// βρίσκουμε index απο data (όχι hardcode)
-	const trueIndex = content.choices.findIndex((c) => c.text === "Σωστό")
-	const falseIndex = content.choices.findIndex((c) => c.text === "Λάθος")
+	const [localAnswers, setLocalAnswers] = useState<Record<number, boolean>>(
+		userAnswer?.type === "multi_tf" ? userAnswer.values : {},
+	)
+
+	const handleSelect = (index: number, value: boolean) => {
+		const updated = {
+			...localAnswers,
+			[index]: value,
+		}
+
+		setLocalAnswers(updated)
+
+		onChange({
+			type: "multi_tf",
+			values: updated,
+		})
+	}
 
 	return (
 		<div className="border p-4 rounded space-y-3">
@@ -32,26 +47,41 @@ const TrueFalseStatementQuestion = ({
 				/>
 			)}
 
-			{/* TRUE / FALSE */}
-			<div className="flex gap-4">
-				<label>
-					<input
-						type="radio"
-						checked={userAnswer === trueIndex}
-						onChange={() => onChange(trueIndex, [])}
-					/>
-					Σωστό
-				</label>
+			{/* statements */}
+			{content.choices.map((choice, index) => (
+				<div
+					key={`${question.id}-${choice.text}`}
+					className="flex gap-4 items-center"
+				>
+					<span className="flex-1">{choice.text}</span>
 
-				<label>
-					<input
-						type="radio"
-						checked={userAnswer === falseIndex}
-						onChange={() => onChange(falseIndex, [])}
-					/>
-					Λάθος
-				</label>
-			</div>
+					<label>
+						<input
+							type="radio"
+							name={`q-${question.id}-${index}`}
+							checked={
+								userAnswer?.type === "multi_tf" &&
+								userAnswer.values[index] === true
+							}
+							onChange={() => handleSelect(index, true)}
+						/>
+						Σωστό
+					</label>
+
+					<label>
+						<input
+							type="radio"
+							name={`q-${question.id}-${index}`}
+							checked={
+								userAnswer?.type === "multi_tf" &&
+								userAnswer.values[index] === false
+							}
+							onChange={() => handleSelect(index, false)}
+						/>
+						Λάθος
+					</label>
+				</div>
+			))}
 		</div>
 	)
 }

@@ -1,9 +1,9 @@
-// frontend/src/core-transfer/pages/CoreTestFullPagePicker.tsx
+// core\frontend\js\trueFalse-alkis\core-transfer\pages\CoreTestFullPagePicker.tsx
 
 import { useState } from "react"
 import data from "../data/testData.json"
 import { useCoreFullGrading } from "../hooks/useCoreFullGrading"
-import type { CoreGradedAnswer } from "../types/client.types"
+import type { CoreAnswer, CoreGradedAnswer } from "../types/client.types"
 import type { Statement } from "../types/models"
 import CoreTestFullQuestion from "./CoreTestFullQuestion"
 
@@ -22,9 +22,7 @@ const CoreTestFullPagePicker = () => {
 	// - order: mapping από UI θέση → original index
 	// πχ original: [A, B, C] → shuffled: [B, C, A] → order = [1, 2, 0]
 	// άρα αν user πατήσει index = 0 → επέλεξε το original index 1 (B)
-	const [answers, setAnswers] = useState<
-		Record<number, { index: number; order: number[] }>
-	>({})
+	const [answers, setAnswers] = useState<Record<number, CoreAnswer>>({})
 	const [gradedAnswers, setGradedAnswers] = useState<CoreGradedAnswer[]>([])
 	const [score, setScore] = useState<number | null>(null)
 
@@ -33,10 +31,7 @@ const CoreTestFullPagePicker = () => {
 	const { gradeAll } = useCoreFullGrading()
 
 	// στην επιλογή ερώτηση όλα ίδια εκτός απο το [id]: value
-	const handleChange = (
-		id: number,
-		value: { index: number; order: number[] },
-	) => {
+	const handleChange = (id: number, value: CoreAnswer) => {
 		setAnswers((prev) => ({
 			...prev,
 			[id]: value,
@@ -69,10 +64,8 @@ const CoreTestFullPagePicker = () => {
 						{/* καλούμε το component που διαχειρίζεστε του διαφορετικους τύπους ερωτήσεων */}
 						<CoreTestFullQuestion
 							question={q}
-							userAnswer={answers[q.id]?.index}
-							onChange={(val, order) =>
-								handleChange(q.id, { index: val, order })
-							}
+							userAnswer={answers[q.id]}
+							onChange={(value) => handleChange(q.id, value)}
 						/>
 
 						{/* κάτω απο κάθε απαντημένη ερώτηση το UI εμφανίζει το αποτέλεσμα */}

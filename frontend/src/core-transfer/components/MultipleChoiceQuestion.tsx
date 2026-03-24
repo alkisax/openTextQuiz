@@ -1,13 +1,14 @@
-// frontend/src/core-transfer/components/TrueFalseQuestion.tsx
+// core\frontend\js\trueFalse-alkis\core-transfer\components\MultipleChoiceQuestion.tsx
 
 import { useMemo } from "react"
+import type { CoreAnswer } from "../types/client.types"
 import type { Statement, TrueFalseContent } from "../types/models"
 import QuestionMediaBlock from "./QuestionMediaBlock"
 
 type Props = {
 	question: Statement
-	userAnswer?: number
-	onChange: (value: number, order: number[]) => void
+	userAnswer?: CoreAnswer
+	onChange: (value: CoreAnswer) => void
 }
 
 const MultipleChoiceQuestion = ({ question, userAnswer, onChange }: Props) => {
@@ -49,8 +50,15 @@ const MultipleChoiceQuestion = ({ question, userAnswer, onChange }: Props) => {
 					<div key={`q-${question.id}-choice-${i}`}>
 						<input
 							type="radio"
-							checked={userAnswer === i}
-							onChange={() => onChange(i, shuffledChoices)}
+							name={`q-${question.id}`}
+							checked={userAnswer?.type === "single" && userAnswer.index === i}
+							onChange={() =>
+								onChange({
+									type: "single",
+									index: i,
+									order: shuffledChoices,
+								})
+							}
 						/>
 						<span>{choice.text}</span>
 					</div>

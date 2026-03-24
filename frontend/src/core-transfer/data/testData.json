@@ -6,10 +6,20 @@
 			"category": "CULTURE",
 			"is_active": true,
 			"content": {
-				"prompt_text": "O Αυτοκράτορας Θεοδόσιος έκτισε τα πρώτα τείχη της Κωνσταντινουπόλεως",
+				"prompt_text": "Επιλέξτε ποια είναι σωστά:",
 				"choices": [
-					{ "text": "Σωστό", "is_correct": false },
-					{ "text": "Λάθος", "is_correct": true }
+					{
+						"text": "Ο Αυτοκράτορας Θεοδόσιος έκτισε τα πρώτα τείχη της Κωνσταντινουπόλεως",
+						"is_correct": false
+					},
+					{
+						"text": "Ο Ιουστινιανός έκτισε την Αγία Σοφία",
+						"is_correct": true
+					},
+					{
+						"text": "Η Κωνσταντινούπολη ήταν πρωτεύουσα της Ρώμης από την αρχή",
+						"is_correct": false
+					}
 				]
 			},
 			"exam_sessions": [],
@@ -23,44 +33,20 @@
 			"category": "CULTURE",
 			"is_active": true,
 			"content": {
-				"prompt_text": "Ο Αυτοκράτορας Ιουστινιανός ανήγειρε τον Ιππόδρομο της Κωνσταντινουπόλεως.",
+				"prompt_text": "Ποια από τα παρακάτω ισχύουν:",
 				"choices": [
-					{ "text": "Σωστό", "is_correct": false },
-					{ "text": "Λάθος", "is_correct": true }
-				]
-			},
-			"exam_sessions": [],
-			"exam_sessions_preview": "",
-			"created": "2026-01-01T00:00:00Z",
-			"modified": "2026-01-01T00:00:00Z"
-		},
-		{
-			"id": 3,
-			"type": "TRUE_FALSE",
-			"category": "CULTURE",
-			"is_active": true,
-			"content": {
-				"prompt_text": "Ο Ιερός Ναός της Αγίας Σοφίας ανεγέρθη επί Αυτοκράτορα Ιουστινιανού.",
-				"choices": [
-					{ "text": "Σωστό", "is_correct": true },
-					{ "text": "Λάθος", "is_correct": false }
-				]
-			},
-			"exam_sessions": [],
-			"exam_sessions_preview": "",
-			"created": "2026-01-01T00:00:00Z",
-			"modified": "2026-01-01T00:00:00Z"
-		},
-		{
-			"id": 4,
-			"type": "TRUE_FALSE",
-			"category": "CULTURE",
-			"is_active": true,
-			"content": {
-				"prompt_text": "Ο Ιερός Ναός της Αγίας Ειρήνης στην Κωνσταντινούπολη κτίστηκε από τον Μεγάλο Κωνσταντίνο.",
-				"choices": [
-					{ "text": "Σωστό", "is_correct": true },
-					{ "text": "Λάθος", "is_correct": false }
+					{
+						"text": "Η Αγία Σοφία χτίστηκε τον 6ο αιώνα",
+						"is_correct": true
+					},
+					{
+						"text": "Ο Ιππόδρομος χτίστηκε από τον Ιουστινιανό",
+						"is_correct": false
+					},
+					{
+						"text": "Ο Μέγας Κωνσταντίνος ίδρυσε την Κωνσταντινούπολη",
+						"is_correct": true
+					}
 				]
 			},
 			"exam_sessions": [],
@@ -76,34 +62,15 @@
 			"type": "MULTIPLE_CHOICE",
 			"is_active": true,
 			"content": {
-				"prompt_text": "Κατά το διάστημα που η Βουλή είναι ανοιχτή πόσες φορές την εβδομάδα απαντάει ο Πρωθυπουργός σε Επίκαιρες Ερωτήσεις (Ώρα του Πρωθυπουργού);",
+				"prompt_text": "Κατά το διάστημα που η Βουλή είναι ανοιχτή πόσες φορές την εβδομάδα απαντάει ο Πρωθυπουργός;",
 				"choices": [
-					{
-						"is_correct": true,
-						"text": "Μια φορά"
-					},
-					{
-						"is_correct": false,
-						"text": "Δύο φορές"
-					},
-					{
-						"is_correct": false,
-						"text": "Καμία φορά"
-					},
-					{
-						"is_correct": false,
-						"text": "Απεριόριστος αριθμός"
-					}
+					{ "is_correct": true, "text": "Μια φορά" },
+					{ "is_correct": false, "text": "Δύο φορές" },
+					{ "is_correct": false, "text": "Καμία φορά" },
+					{ "is_correct": false, "text": "Απεριόριστος αριθμός" }
 				]
 			},
-			"exam_sessions": [
-				{
-					"id": 2,
-					"year": 2026,
-					"month": 11,
-					"month_display": "November"
-				}
-			],
+			"exam_sessions": [],
 			"exam_sessions_preview": "",
 			"created_at": "2026-01-01T10:00:00Z",
 			"updated_at": "2026-01-01T10:00:00Z"
