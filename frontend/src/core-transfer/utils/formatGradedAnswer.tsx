@@ -22,4 +22,3 @@ export const formatCorrectAnswer = (answer: unknown): string => {
 
 	return String(answer)
 }
-

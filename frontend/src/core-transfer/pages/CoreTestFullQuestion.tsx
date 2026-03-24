@@ -10,36 +10,42 @@ type Props = {
 	question: Statement
 	userAnswer?: CoreAnswer
 	onChange: (value: CoreAnswer) => void
-  gradedAnswer?: CoreGradedAnswer
+	gradedAnswer?: CoreGradedAnswer
 	showGrading?: boolean
 }
 
-const CoreTestFullQuestion = ({ question, userAnswer, onChange, gradedAnswer, showGrading }: Props) => {
+const CoreTestFullQuestion = ({
+	question,
+	userAnswer,
+	onChange,
+	gradedAnswer,
+	showGrading,
+}: Props) => {
 	// dispatcher ανά type
 	if (question.type === StatementType.MULTIPLE_CHOICE) {
 		console.log(question)
 
 		return (
-      <MultipleChoiceQuestion
-        question={question}
-        userAnswer={userAnswer}
-        onChange={onChange}
-        gradedAnswer={gradedAnswer}
-        showGrading={showGrading}
-      />
+			<MultipleChoiceQuestion
+				question={question}
+				userAnswer={userAnswer}
+				onChange={onChange}
+				gradedAnswer={gradedAnswer}
+				showGrading={showGrading}
+			/>
 		)
 	}
 
 	if (question.type === StatementType.TRUE_FALSE) {
 		console.log(question)
 		return (
-      <TrueFalseStatementQuestion
-        question={question}
-        userAnswer={userAnswer}
-        onChange={onChange}
-        gradedAnswer={gradedAnswer}
-        showGrading={showGrading}
-      />
+			<TrueFalseStatementQuestion
+				question={question}
+				userAnswer={userAnswer}
+				onChange={onChange}
+				gradedAnswer={gradedAnswer}
+				showGrading={showGrading}
+			/>
 		)
 	}
 
