@@ -3,7 +3,7 @@
 import { useMemo } from "react"
 import type { CoreAnswer, CoreGradedAnswer } from "../types/client.types"
 import type { Statement, TrueFalseContent } from "../types/models"
-import { formatCorrectAnswer } from "../utils/formatGradedAnswer"
+// import { formatCorrectAnswer } from "../utils/formatGradedAnswer"
 import QuestionMediaBlock from "./QuestionMediaBlock"
 
 type Props = {
@@ -41,15 +41,15 @@ const MultipleChoiceQuestion = ({ question, userAnswer, onChange, gradedAnswer, 
       : ""
 
   // ενα μικρό component για την εμφάνιση του αποτελέσματος της κάθε ερώτησης
-  const correctAnswerBlock =
-    showGrading &&
-    gradedAnswer &&
-    !gradedAnswer.correct ? (
-      <div className="mt-3 p-3 bg-muted rounded text-sm">
-        <p className="font-semibold">Σωστή απάντηση:</p>
-        <p>{formatCorrectAnswer(gradedAnswer.correctAnswer)}</p>
-      </div>
-    ) : null
+  // const correctAnswerBlock =
+  //   showGrading &&
+  //   gradedAnswer &&
+  //   !gradedAnswer.correct ? (
+  //     <div className="mt-3 p-3 bg-muted rounded text-sm">
+  //       <p className="font-semibold">Σωστή απάντηση:</p>
+  //       <p>{formatCorrectAnswer(gradedAnswer.correctAnswer)}</p>
+  //     </div>
+  //   ) : null
 
 	return (
 
